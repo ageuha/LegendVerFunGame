@@ -7,12 +7,13 @@ namespace _02._Member.KJW.Code.Player
     public class PlayerInput : MonoBehaviour
     {
         [SerializeField] private InputReader inputReader;
+        public bool IsDashing => inputReader.IsDashing;
         
-        public event Action<Vector2> OnMoved;
+        public Vector2 MoveDir { get; private set; }
 
         private void Awake()
         {
-            inputReader.OnMoved += (v) => OnMoved?.Invoke(v);
+            inputReader.OnMoved += (dir) => MoveDir = dir;
         }
     }
 }

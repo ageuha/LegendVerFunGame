@@ -14,9 +14,10 @@ namespace _02._Member.KJW.Code.Player
             _moveCompo = GetComponent<PlayerMovement>();
         }
 
-        private void Start()
+        private void Update()
         {
-            _inputCompo.OnMoved += (v) => _moveCompo.Move(v);
+            _moveCompo.SetMove(_inputCompo.MoveDir, _inputCompo.IsDashing);
         }
+
     }
 }
