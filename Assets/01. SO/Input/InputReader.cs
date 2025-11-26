@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static InputSystem_Actions;
 
-namespace _01._SO
+namespace _01._SO.Input
 {
     [CreateAssetMenu(fileName = "InputReader", menuName = "SO/InputReader")]
     public class InputReader : ScriptableObject, IPlayerActions

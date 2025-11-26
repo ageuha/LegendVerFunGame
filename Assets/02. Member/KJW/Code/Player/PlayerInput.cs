@@ -1,5 +1,5 @@
 using System;
-using _01._SO;
+using _01._SO.Input;
 using UnityEngine;
 
 namespace _02._Member.KJW.Code.Player
