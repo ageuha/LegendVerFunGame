@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2442d76bf7a9a1541b2b558a1fac6a79, type: 3}
-  m_Name: Result
+  m_Script: {fileID: 11500000, guid: b5d19b6b2352d6642b3357fd23837067, type: 3}
+  m_Name: RecipeListSO
   m_EditorClassIdentifier: 
-  <ItemID>k__BackingField: 5
-  <ItemName>k__BackingField: Result
-  <ItemIcon>k__BackingField: {fileID: 0}
-  <MaxStackAmount>k__BackingField: 1
+  <RecipeSOList>k__BackingField:
+  - {fileID: 11400000, guid: 0d4d2e18730d3a445a58cd02c2c1b520, type: 2}
