@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Test2
   m_EditorClassIdentifier: 
   <ItemName>k__BackingField: Test2
-  <Icon>k__BackingField: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  <Icon>k__BackingField: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   <ItemID>k__BackingField: c3498d198acd0164dae1fe3018e6e2d6
   <MaxStack>k__BackingField: 64
