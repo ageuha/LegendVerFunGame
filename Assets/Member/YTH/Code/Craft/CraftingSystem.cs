@@ -1,3 +1,4 @@
+using Code.Core.Utility;
 using UnityEngine;
 using YTH.Code.Item;
 
@@ -75,6 +76,8 @@ namespace YTH.Code.Craft
                 {
                     if (currentItem != null)
                     {
+                        Logging.Log($"둘이 다름 {i+1}번 째1");
+                        Logging.Log($"{requiredMaterial.ItemName} , {currentItem.itemData.ItemName}");
                         return false;
                     }
                 }
@@ -82,11 +85,13 @@ namespace YTH.Code.Craft
                 {
                     if (currentItem == null || currentItem.itemData != requiredMaterial || currentItem.stackSize < 1)
                     {
+                        Logging.Log($"둘이 다름 {i+1}번 째");
                         return false;
                     }
                 }
             }
 
+            Logging.Log("가능!");
             return true;
         }
 

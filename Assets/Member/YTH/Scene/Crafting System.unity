@@ -168,12 +168,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f8bab177737b0e24f85cfd8c8717bbc0, type: 2}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: f8bab177737b0e24f85cfd8c8717bbc0, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 11400000, guid: c3498d198acd0164dae1fe3018e6e2d6, type: 2}
   - {fileID: 11400000, guid: c3498d198acd0164dae1fe3018e6e2d6, type: 2}
-  defaultRecipe: {fileID: 11400000, guid: 9a4aa26cd7b3d874eb648609e93ed88c, type: 2}
+  recipeList:
+  - {fileID: 11400000, guid: 9a4aa26cd7b3d874eb648609e93ed88c, type: 2}
 --- !u!1 &1970006200
 GameObject:
   m_ObjectHideFlags: 0

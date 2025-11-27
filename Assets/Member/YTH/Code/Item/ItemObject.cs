@@ -1,6 +1,7 @@
 using Code.Core.GlobalSO;
 using Code.Core.Utility;
 using DG.Tweening;
+using KJW.Code.Player;
 using UnityEngine;
 using YTH.Code.Interface;
 
@@ -23,7 +24,10 @@ namespace YTH.Code.Item
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            transform.DOMove(collision.gameObject.transform.position, tweeningInfo.Duration).SetEase(tweeningInfo.EasingType);
+            if(collision.TryGetComponent<Player>(out Player player))
+            {
+                transform.DOMove(collision.gameObject.transform.position, tweeningInfo.Duration).SetEase(tweeningInfo.EasingType);
+            }
         }
 
         private void OnTriggerExit2D(Collider2D collision)
