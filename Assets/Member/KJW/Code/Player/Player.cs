@@ -1,23 +1,24 @@
 using System;
 using UnityEngine;
 
-namespace _02._Member.KJW.Code.Player
+namespace KJW.Code.Player
 {
     public class Player : MonoBehaviour
     {
-        private PlayerInput _inputCompo;
-        private PlayerMovement _moveCompo;
+        public PlayerInput InputCompo {get; private set;}
+        public PlayerMovement MoveCompo {get; private set;}
+
+        public bool CanDash { get; private set; }
 
         private void Awake()
         {
-            _inputCompo = GetComponent<PlayerInput>();
-            _moveCompo = GetComponent<PlayerMovement>();
+            InputCompo = GetComponent<PlayerInput>();
+            MoveCompo = GetComponent<PlayerMovement>();
         }
 
         private void Update()
         {
-            _moveCompo.SetMove(_inputCompo.MoveDir, _inputCompo.IsDashing);
+            MoveCompo.SetMove(InputCompo.MoveDir);
         }
-
     }
 }
