@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static InputSystem_Actions;
 
-namespace _SO.Input
+namespace Input
 {
     [CreateAssetMenu(fileName = "InputReader", menuName = "SO/InputReader")]
     public class InputReader : ScriptableObject, IPlayerActions
@@ -12,6 +12,8 @@ namespace _SO.Input
         public event Action<Vector2> OnMoved;
         public event Action OnAttacked;
         public event Action OnAttackReleased;
+        public event Action OnRolled;
+        public event Action<Vector2> OnAimed;
 
         private void OnEnable()
         {
@@ -37,6 +39,16 @@ namespace _SO.Input
                 OnAttacked?.Invoke();
             if (context.canceled)
                 OnAttackReleased?.Invoke();
+        }
+
+        public void OnRoll(InputAction.CallbackContext context)
+        {
+            OnRolled?.Invoke();
+        }
+
+        public void OnOnAim(InputAction.CallbackContext context)
+        {
+            OnAimed?.Invoke(context.ReadValue<Vector2>());
         }
     }
 }

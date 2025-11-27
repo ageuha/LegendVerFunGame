@@ -1,5 +1,5 @@
 using System;
-using _SO.Input;
+using Input;
 using UnityEngine;
 
 namespace KJW.Code.Player
@@ -9,10 +9,14 @@ namespace KJW.Code.Player
         [field: SerializeField] public InputReader InputReader {get; private set;}
         
         public Vector2 MoveDir { get; private set; }
+        public event Action OnAttacked;
+        public event Action OnAttackReleased;
 
         private void Awake()
         {
             InputReader.OnMoved += (dir) => MoveDir = dir;
+            InputReader.OnAttacked += () => OnAttacked?.Invoke();
+            InputReader.OnAttackReleased += () => OnAttackReleased?.Invoke();
         }
     }
 }
