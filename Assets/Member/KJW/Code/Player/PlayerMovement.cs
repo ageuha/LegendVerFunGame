@@ -1,5 +1,5 @@
 using System;
-using KJW.Code.Move;
+using KJW.Code.Data;
 using UnityEngine;
 
 namespace KJW.Code.Player
@@ -30,7 +30,7 @@ namespace KJW.Code.Player
 
         private float CalculateSpeed(Vector2 moveDir)
         {
-            if(moveDir.sqrMagnitude > 0)
+            if (moveDir.sqrMagnitude > 0)
             {
                 _currentVelocity += MoveData.Acceleration * Time.deltaTime;
             }
