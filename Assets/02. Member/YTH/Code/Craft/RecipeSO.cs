@@ -1,7 +1,9 @@
+using System.Collections.Generic;
 using _02._Member.YTH.Code.Item;
 using UnityEngine;
+using YTH.Item;
 
-namespace _02._Member.YTH.Code.Craft
+namespace YTH.Craft
 {    
     [CreateAssetMenu(fileName = "RecipeSO", menuName = "SO/Recipe")]
     public class RecipeSO : ScriptableObject
