@@ -1,19 +1,18 @@
 using System;
-using _01._SO.Input;
+using _SO.Input;
 using UnityEngine;
 
-namespace _02._Member.KJW.Code.Player
+namespace KJW.Code.Player
 {
     public class PlayerInput : MonoBehaviour
     {
-        [SerializeField] private InputReader inputReader;
-        public bool IsDashing => inputReader.IsDashing;
+        [field: SerializeField] public InputReader InputReader {get; private set;}
         
         public Vector2 MoveDir { get; private set; }
 
         private void Awake()
         {
-            inputReader.OnMoved += (dir) => MoveDir = dir;
+            InputReader.OnMoved += (dir) => MoveDir = dir;
         }
     }
 }
