@@ -16,9 +16,9 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Dash",
+                    "name": "Attack",
                     "type": "Button",
-                    "id": "a9fba7df-b10e-4750-a2f9-4a284e1aebcb",
+                    "id": "525da41e-6c68-4995-bf00-d1b7906df4ec",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -83,12 +83,12 @@
                 },
                 {
                     "name": "",
-                    "id": "5ae8d7ca-3a1d-41a5-81d0-854983f8c5f3",
-                    "path": "<Keyboard>/shift",
+                    "id": "109d76b7-ef61-4fc9-ae2c-6b6b74007e0e",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Dash",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

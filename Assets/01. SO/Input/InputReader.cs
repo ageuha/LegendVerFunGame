@@ -3,15 +3,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static InputSystem_Actions;
 
-namespace _01._SO.Input
+namespace _SO.Input
 {
     [CreateAssetMenu(fileName = "InputReader", menuName = "SO/InputReader")]
     public class InputReader : ScriptableObject, IPlayerActions
     {
         private InputSystem_Actions _actions;
         public event Action<Vector2> OnMoved;
-        
-        public bool IsDashing { get; private set; }
+        public event Action OnAttacked;
+        public event Action OnAttackReleased;
 
         private void OnEnable()
         {
@@ -31,12 +31,12 @@ namespace _01._SO.Input
             OnMoved?.Invoke(context.ReadValue<Vector2>());
         }
 
-        public void OnDash(InputAction.CallbackContext context)
+        public void OnAttack(InputAction.CallbackContext context)
         {
             if (context.performed)
-                IsDashing = true;
+                OnAttacked?.Invoke();
             if (context.canceled)
-                IsDashing = false;
+                OnAttackReleased?.Invoke();
         }
     }
 }
