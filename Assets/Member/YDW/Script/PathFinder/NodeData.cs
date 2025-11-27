@@ -10,14 +10,12 @@ namespace _02._Member.YDW.Script.PathFinder
         public Vector3 worldPosition;
         public Vector3Int cellPosition;
         public List<LinkData> neighbors;
-        public bool canBuild;
 
-        public NodeData(Vector3 worldPosition, Vector3Int cellPosition, bool canBuild)
+        public NodeData(Vector3 worldPosition, Vector3Int cellPosition)
         {
             this.worldPosition = worldPosition;
             this.cellPosition = cellPosition;
             neighbors = new List<LinkData>();
-            this.canBuild = canBuild;
         }
 
         public void AddNeighbors(NodeData neighborNode)

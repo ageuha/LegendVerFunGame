@@ -81,21 +81,11 @@ namespace _02._Member.YDW.Script.PathFinder
                     {
                         if (bakedData.SetCanBuildPoints.Count > 0)
                         {
-                            foreach (Vector3Int point in bakedData.SetCanBuildPoints)
-                            {
-                                if (targetCell == point) //내가 지금 추가하려는 포인트와 리스트안에 세팅 해주겠다고 선언한 값이 동일 하다면
-                                {
-                                    AddPoint(targetCell,bakedData.SetCanBuildValue);
-                                }
-                                else
-                                {
-                                    AddPoint(targetCell,false);
-                                }
-                            }
+                            AddPoint(targetCell);
                         }
                         else
                         {
-                            AddPoint(targetCell,false);
+                            AddPoint(targetCell);
                         }
                         
                     }
@@ -110,10 +100,10 @@ namespace _02._Member.YDW.Script.PathFinder
             bool hasGround = groundMap.HasTile(targetCell);
             return hasGround && hasObstacle == false;
         }
-        private void AddPoint(Vector3Int targetCell,bool canBuild)
+        private void AddPoint(Vector3Int targetCell)
         {
             Vector3 worldPosition = groundMap.GetCellCenterWorld(targetCell);
-            bakedData.AddPoint(worldPosition, targetCell, canBuild);
+            bakedData.AddPoint(worldPosition, targetCell);
         }
 #if UNITY_EDITOR
         private void OnDrawGizmos()
