@@ -26,17 +26,15 @@ namespace KJW.Code.Player
 
         private void Update()
         {
-            if (_player.InputCompo.MoveDir != Vector2.zero)
-            {
-                _playerStateMachine.UpdateState(PlayerStateType.Walk);
-                return;
-            }
-            else
+            _playerStateMachine.CurrentState.Update();
+            
+            if (_player.InputCompo.MoveDir == Vector2.zero)
             {
                 _playerStateMachine.UpdateState(PlayerStateType.Idle);
                 return;
             }
-            _playerStateMachine.CurrentState.Update();
+            
+            _playerStateMachine.UpdateState(PlayerStateType.Walk);
         }
     }
 }
