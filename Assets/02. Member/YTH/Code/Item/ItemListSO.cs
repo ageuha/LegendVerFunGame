@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace YTH.Item
+namespace _02._Member.YTH.Code.Item
 {    
     [CreateAssetMenu(fileName = "ItemListSO", menuName = "SO/List/Item")]
     public class ItemListSO : ScriptableObject

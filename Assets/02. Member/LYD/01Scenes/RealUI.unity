@@ -151,10 +151,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1316582032}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 66.435, y: -22.005001}
+  m_SizeDelta: {x: 112.87, y: 24.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &397822288
 MonoBehaviour:
@@ -343,6 +343,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4964792967772097334, guid: ed8bd1583828b7945b4837447484ba01, type: 3}
+      propertyPath: tabGroup
+      value: 
+      objectReference: {fileID: 635735313}
+    - target: {fileID: 4964792967772097334, guid: ed8bd1583828b7945b4837447484ba01, type: 3}
+      propertyPath: element.value
+      value: 
+      objectReference: {fileID: 1263499389}
     - target: {fileID: 6855310726938176538, guid: ed8bd1583828b7945b4837447484ba01, type: 3}
       propertyPath: m_Name
       value: TabButton (3)
@@ -397,10 +405,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1316582032}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 232.32, y: -46.015003}
+  m_SizeDelta: {x: 444.64, y: 24.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &591165049
 MonoBehaviour:
@@ -1352,6 +1360,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4964792967772097334, guid: ed8bd1583828b7945b4837447484ba01, type: 3}
+      propertyPath: tabGroup
+      value: 
+      objectReference: {fileID: 635735313}
+    - target: {fileID: 4964792967772097334, guid: ed8bd1583828b7945b4837447484ba01, type: 3}
+      propertyPath: element.value
+      value: 
+      objectReference: {fileID: 1652201992}
     - target: {fileID: 6855310726938176538, guid: ed8bd1583828b7945b4837447484ba01, type: 3}
       propertyPath: m_Name
       value: TabButton (1)
@@ -1724,7 +1740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1316582032
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1744,7 +1760,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 68.020004}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1316582033
 MonoBehaviour:
@@ -2133,6 +2149,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4964792967772097334, guid: ed8bd1583828b7945b4837447484ba01, type: 3}
+      propertyPath: tabGroup
+      value: 
+      objectReference: {fileID: 635735313}
+    - target: {fileID: 4964792967772097334, guid: ed8bd1583828b7945b4837447484ba01, type: 3}
+      propertyPath: element.value
+      value: 
+      objectReference: {fileID: 866474369}
     - target: {fileID: 6855310726938176538, guid: ed8bd1583828b7945b4837447484ba01, type: 3}
       propertyPath: m_Name
       value: TabButton (2)
@@ -2243,6 +2267,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4964792967772097334, guid: ed8bd1583828b7945b4837447484ba01, type: 3}
+      propertyPath: tabGroup
+      value: 
+      objectReference: {fileID: 635735313}
+    - target: {fileID: 4964792967772097334, guid: ed8bd1583828b7945b4837447484ba01, type: 3}
+      propertyPath: element.value
+      value: 
+      objectReference: {fileID: 745416170}
     - target: {fileID: 6855310726938176538, guid: ed8bd1583828b7945b4837447484ba01, type: 3}
       propertyPath: m_Name
       value: TabButton (4)
@@ -2583,10 +2615,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4964792967772097334, guid: ed8bd1583828b7945b4837447484ba01, type: 3}
-      propertyPath: visual
-      value: 
-      objectReference: {fileID: 758451643690741801}
-    - target: {fileID: 4964792967772097334, guid: ed8bd1583828b7945b4837447484ba01, type: 3}
       propertyPath: tabGroup
       value: 
       objectReference: {fileID: 635735313}
@@ -2598,31 +2626,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TabButton
       objectReference: {fileID: 0}
-    - target: {fileID: 8823133210018580597, guid: ed8bd1583828b7945b4837447484ba01, type: 3}
-      propertyPath: tabGroup
-      value: 
-      objectReference: {fileID: 635735313}
-    - target: {fileID: 8823133210018580597, guid: ed8bd1583828b7945b4837447484ba01, type: 3}
-      propertyPath: element.value
-      value: 
-      objectReference: {fileID: 2451392159210093664}
-    m_RemovedComponents:
-    - {fileID: 8823133210018580597, guid: ed8bd1583828b7945b4837447484ba01, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed8bd1583828b7945b4837447484ba01, type: 3}
---- !u!114 &758451643690741801 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7945461735498969219, guid: ed8bd1583828b7945b4837447484ba01, type: 3}
-  m_PrefabInstance: {fileID: 758451643690741800}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2451392159210093661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2717,7 +2725,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3241062556266167155, guid: 4806edd5671c5774ca9ee6bb66a128ef, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8932759784434868868, guid: 4806edd5671c5774ca9ee6bb66a128ef, type: 3}
       propertyPath: m_Color.b
@@ -2730,6 +2738,10 @@ PrefabInstance:
     - target: {fileID: 8932759784434868868, guid: 4806edd5671c5774ca9ee6bb66a128ef, type: 3}
       propertyPath: m_Color.r
       value: 0.9254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932759784434868868, guid: 4806edd5671c5774ca9ee6bb66a128ef, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
