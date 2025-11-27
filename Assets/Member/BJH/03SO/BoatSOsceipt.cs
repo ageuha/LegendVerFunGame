@@ -3,6 +3,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "BoatSOsceipt", menuName = "Scriptable Objects/BoatSOsceipt")]
 public class BoatSOsceipt : ScriptableObject
 {
-    private bool _isAuto;
-    private float _maxSpeed;
+    [field: SerializeField] public bool IsAuto { get; private set; }
+    
+    [field: SerializeField] public float Acceleration { get; private set; }
+    [field: SerializeField] public float Deacceleration { get; private set; }
+    [field: SerializeField] public float MaxSpeed { get; private set; }
+
 }
