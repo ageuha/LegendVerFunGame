@@ -7,7 +7,7 @@ namespace _02._Member.YDW.Script.PathFinder
     public class PathMovement : MonoBehaviour //, IComponent
     {
         [SerializeField] private PathAgent pathAgent;
-        [SerializeField] private int maxPathCount = 1000;
+        //[SerializeField] private int maxPathCount = 1000;
         [SerializeField] private Tilemap baseTileMap;
 
         private Vector3[] _path;
