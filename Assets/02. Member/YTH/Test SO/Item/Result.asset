@@ -15,4 +15,4 @@ MonoBehaviour:
   <ItemID>k__BackingField: 5
   <ItemName>k__BackingField: Result
   <ItemIcon>k__BackingField: {fileID: 0}
-  <MaxStackAmount>k__BackingField: 1
+  <MaxStackAmount>k__BackingField: 100
