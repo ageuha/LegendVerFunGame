@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _02._Member.YTH.Code.Item
+namespace YTH.Item
 {    
     [CreateAssetMenu(fileName = "ItemSO", menuName = "SO/Item")]
     public class ItemSO : ScriptableObject
