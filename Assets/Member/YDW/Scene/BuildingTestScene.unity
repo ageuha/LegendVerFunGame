@@ -302,7 +302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundMap: {fileID: 0}
   obstacleMap: {fileID: 0}
-  bakedData: {fileID: 0}
+  bakedData: {fileID: 11400000, guid: 5e26359174c96234a86a2a2f3e9ca8ab, type: 2}
   isDrawGizmo: 1
   isConnerCheck: 1
   nodeColor: {r: 0, g: 0, b: 0, a: 0}
