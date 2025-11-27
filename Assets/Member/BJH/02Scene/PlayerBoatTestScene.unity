@@ -215,8 +215,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 795496702}
-  - component: {fileID: 795496701}
-  - component: {fileID: 795496700}
   - component: {fileID: 795496699}
   - component: {fileID: 795496698}
   - component: {fileID: 795496697}
@@ -305,31 +303,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <InputReader>k__BackingField: {fileID: 11400000, guid: 777b456eb927283439da0b796da61433, type: 2}
---- !u!114 &795496700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 795496696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 618b9b31f67b4b84e889bebbe7ff1575, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <MoveData>k__BackingField: {fileID: 11400000, guid: 1da9dffc50b5a674c8a2ec5b786b8143, type: 2}
---- !u!114 &795496701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 795496696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35580c78639df4d43bcd8a362799dde9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &795496702
 Transform:
   m_ObjectHideFlags: 0
@@ -358,6 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2bb1f31a1bb3bc4dbd9d0116551a6a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boatSO: {fileID: 11400000, guid: 5ccbeca371475ef44bbca8c2baa7699d, type: 2}
 --- !u!1 &973437506
 GameObject:
   m_ObjectHideFlags: 0

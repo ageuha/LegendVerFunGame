@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff5424748267d8144854d915883cacfc, type: 3}
+  m_Name: RowBoat
+  m_EditorClassIdentifier: 
+  <IsAuto>k__BackingField: 0
+  <Acceleration>k__BackingField: 0
+  <Deacceleration>k__BackingField: 0
+  <MaxSpeed>k__BackingField: 5
+  <RowPower>k__BackingField: 5

@@ -20,5 +20,6 @@ namespace KJW.Code.Player
         {
             MoveCompo.SetMove(InputCompo.MoveDir);
         }
+        
     }
 }
