@@ -1,0 +1,16 @@
+{
+    "name": "Code.AI",
+    "rootNamespace": "",
+    "references": [
+        "GUID:bf29da5f74ca5614c85df8dec597a0ab"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
