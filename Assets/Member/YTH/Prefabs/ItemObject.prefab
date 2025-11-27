@@ -148,7 +148,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -162,7 +162,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.0001, y: 0.0001}
+  m_Size: {x: 5, y: 5}
   m_EdgeRadius: 0
 --- !u!114 &724235180653317779
 MonoBehaviour:
@@ -176,9 +176,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1cc3297033970e4ab5f9f352222a02a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody2D: {fileID: 4837945640928975551}
   spriteRenderer: {fileID: 1295839682076747344}
   itemData: {fileID: 0}
+  tweeningInfo: {fileID: 11400000, guid: 2e59f410410b43d4d9defdb5562f211f, type: 2}
 --- !u!1 &3448721879990001027
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,7 +256,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4, y: 4}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &2245527068294906537
 MonoBehaviour:
