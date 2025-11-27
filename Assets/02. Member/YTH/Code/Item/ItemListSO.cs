@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using _02._Member.YTH.Code.Item;
+using YTH.Item;
 using UnityEngine;
 
 namespace YTH.Item
