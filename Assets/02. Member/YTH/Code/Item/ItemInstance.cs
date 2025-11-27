@@ -1,6 +1,6 @@
 using System;
 
-namespace YTH.Item
+namespace _02._Member.YTH.Code.Item
 {    
     [Serializable]
     public class ItemInstance
