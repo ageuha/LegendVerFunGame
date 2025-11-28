@@ -1,0 +1,41 @@
+using System;
+using UnityEngine;
+
+namespace YTH.Code.Item
+{    
+    public class InventoryItem
+    {
+        public ItemDataSO itemData;
+        public int stackSize;
+
+        public bool IsFullStack => stackSize >= itemData.MaxStack;
+
+        public InventoryItem(ItemDataSO itemData, int initialStack)
+        {
+            this.itemData = itemData;
+            this.stackSize = initialStack;
+        }
+
+        public int AddStack(int amount)
+        {
+            int remainCount = 0;
+            stackSize += amount;
+            if (stackSize > itemData.MaxStack)
+            {
+                remainCount = stackSize - itemData.MaxStack;
+                stackSize = itemData.MaxStack;
+            }
+
+            return remainCount;
+        }
+
+        public void RemoveStack(int amount = 1)
+        {
+            stackSize -= amount;
+            if (stackSize < 0)
+            {
+                stackSize = 0;
+            }
+        }
+    }
+}

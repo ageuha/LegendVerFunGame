@@ -1,4 +1,4 @@
-using Unity.AppUI.UI;
+using KJW.Code.Player;
 using UnityEngine;
 using YTH.Code.Interface;
 
@@ -15,7 +15,10 @@ namespace YTH.Code.Item
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            m_itemObject.PickUp();
+            if(collision.TryGetComponent<Player>(out Player player))
+            {
+                m_itemObject.PickUp();
+            }
         }
     }
 }

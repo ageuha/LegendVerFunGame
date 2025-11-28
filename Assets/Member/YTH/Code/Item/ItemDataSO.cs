@@ -15,6 +15,34 @@ namespace YTH.Code.Item
 
         public virtual string GetDescription() => string.Empty;
 
+        public override bool Equals(object other)
+        {
+            if (ReferenceEquals(this, other)) return true;
+
+            if (other is not ItemDataSO otherItem) return false;
+
+            if (string.IsNullOrEmpty(ItemID) && string.IsNullOrEmpty(otherItem.ItemID)) return false;
+
+            return ItemID == otherItem.ItemID;
+        }
+
+        public override int GetHashCode()
+        {
+            return string.IsNullOrEmpty(ItemID) ? base.GetHashCode() : ItemID.GetHashCode();
+        }
+
+        public static bool operator ==(ItemDataSO lhs, ItemDataSO rhs)
+        {
+            if (ReferenceEquals(lhs, rhs)) return true;
+
+            if (lhs is null || rhs is null) return false;
+
+            return lhs.Equals(rhs);
+        }
+
+        public static bool operator !=(ItemDataSO lhs, ItemDataSO rhs) => !(lhs == rhs);
+
+
 #if UNITY_EDITOR
         protected virtual void OnValidate()
         {
