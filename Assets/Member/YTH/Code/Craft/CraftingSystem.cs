@@ -72,12 +72,12 @@ namespace YTH.Code.Craft
                 ItemDataSO requiredMaterial = currentRecipe.Materials[i];
                 InventoryItem currentItem = itemArray[i];
 
+
                 if (requiredMaterial == null)
                 {
-                    if (currentItem != null)
+                    if (currentItem.itemData != null)
                     {
-                        Logging.Log($"둘이 다름 {i+1}번 째1");
-                        Logging.Log($"{requiredMaterial.ItemName} , {currentItem.itemData.ItemName}");
+                        Logging.Log($"둘이 다름 {i+1}번 째 {requiredMaterial == null} {currentItem.itemData == null}");
                         return false;
                     }
                 }
@@ -85,8 +85,12 @@ namespace YTH.Code.Craft
                 {
                     if (currentItem == null || currentItem.itemData != requiredMaterial || currentItem.stackSize < 1)
                     {
-                        Logging.Log($"둘이 다름 {i+1}번 째");
+                        Logging.Log($"둘이 다름 {i+1}번 째\n{requiredMaterial.ItemID}\n{currentItem.itemData.ItemID}");
                         return false;
+                    }
+                    else
+                    {
+                        Logging.Log($"{i+1}번 째\n{requiredMaterial.ItemID}\n{currentItem.itemData.ItemID}");
                     }
                 }
             }

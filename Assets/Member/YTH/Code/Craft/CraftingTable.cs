@@ -11,18 +11,18 @@ namespace YTH.Code.Craft
         [SerializeField] private ItemDataSO[] defaultMaterials = new ItemDataSO[9];
         [SerializeField] private List<RecipeSO> recipeList;
 
+
+        private InventoryItem[] inventoryItems = new InventoryItem[9];
         private CraftingSystem craftingSystem = new();
 
-        [ContextMenu("Test")]
-        public void Test()
+
+        [ContextMenu("Test2")]
+        public void Test2()
         {
             for (int i = 0; i < defaultMaterials.Length; i++)
             {
-                if (defaultMaterials[i] != null)
-                {
-                    InventoryItem item = new InventoryItem(defaultMaterials[i], 1);
-                    craftingSystem.TryAddItem(item, i);
-                }
+                InventoryItem item = new InventoryItem(defaultMaterials[i], 1);
+                craftingSystem.SetItem(item, i);
             }
 
             var craftableRecipes = recipeList.Where(r => craftingSystem.CanMake(r));
