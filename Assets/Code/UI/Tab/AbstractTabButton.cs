@@ -13,7 +13,7 @@ namespace Code.UI.Tab {
         protected bool IsActive;
         protected bool IsInactive => !IsActive;
 
-        public int Index => transform.GetSiblingIndex() - 1;
+        public int Index => transform.GetSiblingIndex();
 
         protected virtual void Reset() {
             if (transform.parent.TryGetComponent<TabGroup>(out var group)) {
