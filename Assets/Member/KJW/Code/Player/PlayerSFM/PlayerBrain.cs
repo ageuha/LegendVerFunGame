@@ -22,10 +22,6 @@ namespace KJW.Code.Player
         private void Start()
         {
             _playerStateMachine.Init(PlayerStateType.Idle);
-            _player.InputCompo.InputReader.OnRolled += () =>
-            {
-                _playerStateMachine.UpdateState(PlayerStateType.Roll);
-            };
         }
 
         private void Update()
@@ -34,7 +30,7 @@ namespace KJW.Code.Player
             
             if (_playerStateMachine.CurrentStateType == PlayerStateType.Roll) return;
             
-            if (_player.InputCompo.MoveDir == Vector2.zero)
+            if (_player.MoveCompo.MoveDir == Vector2.zero)
             {
                 if (_playerStateMachine.CurrentStateType != PlayerStateType.Idle)
                 {
