@@ -22,17 +22,29 @@ namespace KJW.Code.Player
         private void Start()
         {
             _playerStateMachine.Init(PlayerStateType.Idle);
+            _player.InputCompo.InputReader.OnRolled += () =>
+            {
+                _playerStateMachine.UpdateState(PlayerStateType.Roll);
+            };
         }
 
         private void Update()
         {
             _playerStateMachine.CurrentState.Update();
             
+            if (_playerStateMachine.CurrentStateType == PlayerStateType.Roll) return;
+            
             if (_player.InputCompo.MoveDir == Vector2.zero)
             {
-                _playerStateMachine.UpdateState(PlayerStateType.Idle);
+                if (_playerStateMachine.CurrentStateType != PlayerStateType.Idle)
+                {
+                    _playerStateMachine.UpdateState(PlayerStateType.Idle);
+                    return;
+                }
                 return;
             }
+            
+            if (_playerStateMachine.CurrentStateType == PlayerStateType.Walk) return;
             
             _playerStateMachine.UpdateState(PlayerStateType.Walk);
         }

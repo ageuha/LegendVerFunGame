@@ -13,7 +13,8 @@ namespace Input
         public event Action OnAttacked;
         public event Action OnAttackReleased;
         public event Action OnRolled;
-        public event Action<Vector2> OnAimed;
+
+        public Vector2 MousePos { get; private set; }
 
         private void OnEnable()
         {
@@ -48,7 +49,7 @@ namespace Input
 
         public void OnOnAim(InputAction.CallbackContext context)
         {
-            OnAimed?.Invoke(context.ReadValue<Vector2>());
+            MousePos = context.ReadValue<Vector2>();
         }
     }
 }

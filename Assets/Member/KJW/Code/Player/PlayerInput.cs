@@ -18,5 +18,10 @@ namespace KJW.Code.Player
             InputReader.OnAttacked += () => OnAttacked?.Invoke();
             InputReader.OnAttackReleased += () => OnAttackReleased?.Invoke();
         }
+
+        public Vector2 GetMousePos()
+        {
+            return Camera.main.ScreenToWorldPoint(InputReader.MousePos);
+        }
     }
 }
