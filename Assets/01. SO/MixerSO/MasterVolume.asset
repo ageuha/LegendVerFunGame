@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 466baa381cbc43f6b6fa844a0b0d17ed, type: 3}
-  m_Name: InventoryTabButton
+  m_Script: {fileID: 11500000, guid: f7154c74ac4343d99a9a542062085480, type: 3}
+  m_Name: MasterVolume
   m_EditorClassIdentifier: 
-  <EasingType>k__BackingField: 12
-  <Position>k__BackingField: {x: 20, y: 0}
-  <Duration>k__BackingField: 0.2
+  <TargetMixer>k__BackingField: {fileID: 24100000, guid: cd06e027675aa8349a946f95bb5f0116, type: 2}
+  parameterName: Master

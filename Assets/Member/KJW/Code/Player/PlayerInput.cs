@@ -1,8 +1,7 @@
-using System;
 using _01._SO.Input;
 using UnityEngine;
 
-namespace _02._Member.KJW.Code.Player
+namespace Member.KJW.Code.Player
 {
     public class PlayerInput : MonoBehaviour
     {

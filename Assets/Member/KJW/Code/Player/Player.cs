@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace _02._Member.KJW.Code.Player
+namespace Member.KJW.Code.Player
 {
     public class Player : MonoBehaviour
     {
