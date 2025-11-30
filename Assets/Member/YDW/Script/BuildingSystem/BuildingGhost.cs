@@ -17,21 +17,16 @@ namespace Member.YDW.Script.BuildingSystem
         {
             _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             buildingGhostEventSO.OnEvent += HandleBuildingGhost;
-            inputReader.OnAimed += Aim;
             gameObject.SetActive(false);
         }
-
-        private void Aim(Vector2 obj)
-        {
-            _aim = Camera.main.ScreenToWorldPoint(obj);
-            _aim.z = 0;
-        }
+          
+        
 
         private void Update()
         {
             if (_isMouseTrack && _beforePos != _aim)
             {
-                transform.position = _aim;
+                transform.position = Camera.main.ScreenToWorldPoint(inputReader.MousePos);;
                 _beforePos = transform.position;
             }
         }
@@ -47,7 +42,6 @@ namespace Member.YDW.Script.BuildingSystem
         private void OnDestroy()
         {
             buildingGhostEventSO.OnEvent -= HandleBuildingGhost;
-            inputReader.OnAimed -= Aim;
         }
     }
 }
