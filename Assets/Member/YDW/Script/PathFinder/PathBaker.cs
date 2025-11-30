@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace _02._Member.YDW.Script.PathFinder
+namespace Member.YDW.Script.PathFinder
 {
     public class PathBaker : MonoBehaviour
     {
@@ -79,15 +79,7 @@ namespace _02._Member.YDW.Script.PathFinder
                     Vector3Int targetCell = new Vector3Int(x, y);
                     if (CanMovePosition(targetCell))
                     {
-                        if (bakedData.SetCanBuildPoints.Count > 0)
-                        {
                             AddPoint(targetCell);
-                        }
-                        else
-                        {
-                            AddPoint(targetCell);
-                        }
-                        
                     }
                 }
             }

@@ -2092,7 +2092,7 @@ Transform:
   m_GameObject: {fileID: 616665711}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.729753, y: -0.035129994, z: 0.008357437}
+  m_LocalPosition: {x: -3.729753, y: -0.035129994, z: -1.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2111,6 +2111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff40f85e7e04e47a076032bda73b599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputReader: {fileID: 11400000, guid: 777b456eb927283439da0b796da61433, type: 2}
   buildingGhostEventSO: {fileID: 11400000, guid: 6f61a38863c8e214287793b225d3ce60, type: 2}
 --- !u!1 &797421917
 GameObject:
@@ -2207,7 +2208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a73fc721ba3447cbbbdb583f48c4372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EventSO>k__BackingField: {fileID: 11400000, guid: 6f61a38863c8e214287793b225d3ce60, type: 2}
+  <EventSO>k__BackingField: {fileID: 11400000, guid: 4ebdd2a58545e3043aa495f4c9e5af72, type: 2}
   <Icon>k__BackingField: {fileID: 1309592179222711874, guid: 1846f6f20c0e47d4ab952dc4c2359f66, type: 3}
 --- !u!4 &966129723
 Transform:
@@ -2299,7 +2300,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
