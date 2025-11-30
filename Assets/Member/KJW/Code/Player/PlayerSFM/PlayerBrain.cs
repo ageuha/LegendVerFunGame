@@ -28,11 +28,19 @@ namespace KJW.Code.Player
         {
             _playerStateMachine.CurrentState.Update();
             
-            if (_player.InputCompo.MoveDir == Vector2.zero)
+            if (_playerStateMachine.CurrentStateType == PlayerStateType.Roll) return;
+            
+            if (_player.MoveCompo.MoveDir == Vector2.zero)
             {
-                _playerStateMachine.UpdateState(PlayerStateType.Idle);
+                if (_playerStateMachine.CurrentStateType != PlayerStateType.Idle)
+                {
+                    _playerStateMachine.UpdateState(PlayerStateType.Idle);
+                    return;
+                }
                 return;
             }
+            
+            if (_playerStateMachine.CurrentStateType == PlayerStateType.Walk) return;
             
             _playerStateMachine.UpdateState(PlayerStateType.Walk);
         }

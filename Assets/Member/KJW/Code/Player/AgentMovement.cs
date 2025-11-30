@@ -9,26 +9,26 @@ namespace KJW.Code.Player
     {
         [field: SerializeField] public MovementData MoveData { get; private set; }
 
-        private Rigidbody2D _rbCompo;
-        private Vector2 _moveDir;
-        private Vector2 _standDir;
+        public Rigidbody2D RbCompo {get; private set;}
+        public Vector2 MoveDir {get; private set;}
+        public Vector2 StandDir {get; private set;}
         private float _currentVelocity;
 
         private void Awake()
         {
-            _rbCompo = GetComponent<Rigidbody2D>();
+            RbCompo = GetComponent<Rigidbody2D>();
         }
 
         public void SetMove(Vector2 dir)
         {
-            _moveDir = dir;
-            _standDir = _moveDir != Vector2.zero ? _moveDir : _standDir;
-            _currentVelocity = CalculateSpeed(_moveDir);
+            MoveDir = dir;
+            StandDir = MoveDir != Vector2.zero ? MoveDir : StandDir;
+            _currentVelocity = CalculateSpeed(MoveDir);
         }
 
         private void Move()
         {
-            _rbCompo.linearVelocity = _moveDir * _currentVelocity;
+            RbCompo.linearVelocity = MoveDir * _currentVelocity;
         }
 
         private float CalculateSpeed(Vector2 moveDir)

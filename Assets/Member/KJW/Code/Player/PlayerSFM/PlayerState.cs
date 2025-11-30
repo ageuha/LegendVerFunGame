@@ -1,4 +1,6 @@
-﻿namespace KJW.Code.Player
+﻿using Code.Core.Utility;
+
+namespace KJW.Code.Player
 {
     public abstract class PlayerState
     {
@@ -13,17 +15,14 @@
         
         public virtual void Enter()
         {
-            
         }
 
         public virtual void Update()
         {
-            
         }
 
         public virtual void Exit()
         {
-            
         }
     }
 }
