@@ -77,25 +77,19 @@ namespace YTH.Code.Craft
                 {
                     if (currentItem.itemData != null)
                     {
-                        Logging.Log($"둘이 다름 {i+1}번 째 {requiredMaterial == null} {currentItem.itemData == null}");
                         return false;
                     }
                 }
+                
                 else
                 {
                     if (currentItem == null || currentItem.itemData != requiredMaterial || currentItem.stackSize < 1)
                     {
-                        Logging.Log($"둘이 다름 {i+1}번 째\n{requiredMaterial.ItemID}\n{currentItem.itemData.ItemID}");
                         return false;
-                    }
-                    else
-                    {
-                        Logging.Log($"{i+1}번 째\n{requiredMaterial.ItemID}\n{currentItem.itemData.ItemID}");
                     }
                 }
             }
 
-            Logging.Log("가능!");
             return true;
         }
 
