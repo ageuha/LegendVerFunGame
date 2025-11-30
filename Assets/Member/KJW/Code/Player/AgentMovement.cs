@@ -1,15 +1,17 @@
 using System;
+using System.Collections;
 using KJW.Code.Data;
 using UnityEngine;
 
 namespace KJW.Code.Player
 {
-    public class PlayerMovement : MonoBehaviour
+    public class AgentMovement : MonoBehaviour
     {
         [field: SerializeField] public MovementData MoveData { get; private set; }
 
         private Rigidbody2D _rbCompo;
         private Vector2 _moveDir;
+        private Vector2 _standDir;
         private float _currentVelocity;
 
         private void Awake()
@@ -17,9 +19,10 @@ namespace KJW.Code.Player
             _rbCompo = GetComponent<Rigidbody2D>();
         }
 
-        public void SetMove(Vector2 movementInput)
+        public void SetMove(Vector2 dir)
         {
-            _moveDir = movementInput;
+            _moveDir = dir;
+            _standDir = _moveDir != Vector2.zero ? _moveDir : _standDir;
             _currentVelocity = CalculateSpeed(_moveDir);
         }
 
