@@ -1,3 +1,16 @@
 {
-	"name": "BuildingSystem"
+    "name": "BuildingSystem",
+    "rootNamespace": "",
+    "references": [
+        "GUID:3d4c4eb5388bc8046a5402ecd26a2b4a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
