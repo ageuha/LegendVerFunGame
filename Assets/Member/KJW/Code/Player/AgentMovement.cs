@@ -12,6 +12,7 @@ namespace KJW.Code.Player
         private Rigidbody2D _rb;
         private Vector2 _moveDir;
         private float _currentVelocity;
+        public bool Stop { get; private set; }
 
         private void Awake()
         {
@@ -20,13 +21,25 @@ namespace KJW.Code.Player
 
         public void SetMove(Vector2 dir)
         {
+            Stop = false;
             _moveDir = dir;
             _currentVelocity = CalculateSpeed(_moveDir);
+        }
+        
+        public void StopMove()
+        {
+            Stop = true;
+            _moveDir = Vector2.zero;
         }
 
         private void Move()
         {
             _rb.linearVelocity = _moveDir * _currentVelocity;
+        }
+
+        public void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse)
+        {
+            _rb.AddForce(force, mode);
         }
 
         private float CalculateSpeed(Vector2 moveDir)
@@ -44,6 +57,7 @@ namespace KJW.Code.Player
 
         private void FixedUpdate()
         {
+            if (Stop) return;
             Move();
         }
     }
