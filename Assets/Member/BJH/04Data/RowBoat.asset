@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff5424748267d8144854d915883cacfc, type: 3}
   m_Name: RowBoat
   m_EditorClassIdentifier: 
-  <IsAuto>k__BackingField: 0
-  <Acceleration>k__BackingField: 0
-  <Deacceleration>k__BackingField: 0
+  <Acceleration>k__BackingField: 5
+  <Deacceleration>k__BackingField: 1
   <MaxSpeed>k__BackingField: 5
-  <RowPower>k__BackingField: 5
