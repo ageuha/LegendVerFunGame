@@ -393,6 +393,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35580c78639df4d43bcd8a362799dde9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <InputReader>k__BackingField: {fileID: 11400000, guid: 777b456eb927283439da0b796da61433, type: 2}
+  rollingData: {fileID: 0}
 --- !u!50 &1319592291
 Rigidbody2D:
   serializedVersion: 5
@@ -433,6 +435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <InputReader>k__BackingField: {fileID: 11400000, guid: 777b456eb927283439da0b796da61433, type: 2}
+  <MoveDir>k__BackingField: {x: 0, y: 0}
 --- !u!114 &1319592293
 MonoBehaviour:
   m_ObjectHideFlags: 0
