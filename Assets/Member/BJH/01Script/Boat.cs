@@ -43,17 +43,23 @@ public class Boat : MonoBehaviour, IRideable
     }
     public void Enter(GameObject target)
     {
+        if(target == null && !_isPlayerInBoat)
+        {
         _isPlayerInBoat = true;
         _target = target;
         _target.transform.position = gameObject.transform.position;
         _target.transform.parent = gameObject.transform;
+        }
     }
     public void Exit(GameObject target)
     {
+        if(target != null && _isPlayerInBoat)
+        {
         _target.transform.position = gameObject.transform.position + gameObject.transform.up;
         _target.transform.parent = null;
         _target = null;
         _isPlayerInBoat = false;
+        }
     }
 
     public bool CanEnter(GameObject target)
