@@ -10,7 +10,7 @@ public class BoatTrigger : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.TryGetComponent<Player>(out Player player))
+        if(collision.CompareTag("Player"))
         {
            rideable.SetNear(true,collision.gameObject);
         }

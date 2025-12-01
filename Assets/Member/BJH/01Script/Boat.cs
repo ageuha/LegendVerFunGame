@@ -1,5 +1,4 @@
-using Code.Core.Utility;
-using Input;
+using KJW.Code.Input;
 using UnityEngine;
 
 public class Boat : MonoBehaviour, IRideable
@@ -11,9 +10,19 @@ public class Boat : MonoBehaviour, IRideable
     private bool _isPlayerInBoat;
     private GameObject _target;
 
+    private Vector2 _moveDir;
+
     void Awake()
     {
         _boatMovement = GetComponent<BoatMovement>();
+        
+    }
+    void FixedUpdate()
+    {
+        if(_isPlayerInBoat)
+        {
+        _boatMovement.SetMove(inputReader.Dir);
+        }
     }
     void OnEnable()
     {
@@ -43,23 +52,17 @@ public class Boat : MonoBehaviour, IRideable
     }
     public void Enter(GameObject target)
     {
-        if(target == null && !_isPlayerInBoat)
-        {
         _isPlayerInBoat = true;
         _target = target;
         _target.transform.position = gameObject.transform.position;
         _target.transform.parent = gameObject.transform;
-        }
     }
     public void Exit(GameObject target)
     {
-        if(target != null && _isPlayerInBoat)
-        {
         _target.transform.position = gameObject.transform.position + gameObject.transform.up;
         _target.transform.parent = null;
         _target = null;
         _isPlayerInBoat = false;
-        }
     }
 
     public bool CanEnter(GameObject target)

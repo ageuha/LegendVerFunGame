@@ -4,7 +4,7 @@ public class BoatMovement : MonoBehaviour
 {
         private BoatSOScript boatSO;
         private Rigidbody2D _rigid;
-        public Vector2 MoveDir {get; private set;}
+        private Vector2 _moveDir;
         private float _currentVelocity;
 
         private void Awake()
@@ -15,13 +15,13 @@ public class BoatMovement : MonoBehaviour
 
         public void SetMove(Vector2 dir)
         {
-            MoveDir = dir;
-            _currentVelocity = CalculateSpeed(MoveDir);
+            _moveDir = dir;
+            _currentVelocity = CalculateSpeed(_moveDir);
         }
 
         private void Move()
         {
-            _rigid.linearVelocity = MoveDir * _currentVelocity;
+            _rigid.linearVelocity = _moveDir * _currentVelocity;
         }
 
         private float CalculateSpeed(Vector2 moveDir)
