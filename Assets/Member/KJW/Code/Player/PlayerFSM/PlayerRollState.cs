@@ -2,9 +2,9 @@
 
 namespace KJW.Code.Player
 {
-    public class PlayerWalkState : PlayerState
+    public class PlayerRollState : PlayerState
     {
-        public PlayerWalkState(Player player, PlayerStateMachine stateMachine) : base(player, stateMachine)
+        public PlayerRollState(Player player, PlayerStateMachine stateMachine) : base(player, stateMachine)
         {
         }
 
