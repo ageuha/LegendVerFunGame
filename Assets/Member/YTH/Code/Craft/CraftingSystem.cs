@@ -63,6 +63,27 @@ namespace YTH.Code.Craft
             }
         }
 
+        public bool TryRemove(InventoryItem item, int index)
+        {
+             if (IsEmpty(index))
+            {
+                SetItem(null, index);
+                return false;
+            }
+            else
+            {
+                if (item.itemData == GetItem(index).itemData)
+                {
+                    DecreaseItemStack(index);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
         public bool CanMake(RecipeSO currentRecipe)
         {
             if (currentRecipe == null) return false;
@@ -77,26 +98,44 @@ namespace YTH.Code.Craft
                 {
                     if (currentItem.itemData != null)
                     {
-                        Logging.Log($"둘이 다름 {i+1}번 째 {requiredMaterial == null} {currentItem.itemData == null}");
                         return false;
                     }
                 }
+                
                 else
                 {
                     if (currentItem == null || currentItem.itemData != requiredMaterial || currentItem.stackSize < 1)
                     {
-                        Logging.Log($"둘이 다름 {i+1}번 째\n{requiredMaterial.ItemID}\n{currentItem.itemData.ItemID}");
                         return false;
-                    }
-                    else
-                    {
-                        Logging.Log($"{i+1}번 째\n{requiredMaterial.ItemID}\n{currentItem.itemData.ItemID}");
                     }
                 }
             }
 
-            Logging.Log("가능!");
             return true;
+        }
+
+        public bool TryMake(RecipeSO currentRecipe)
+        {
+            if(CanMake(currentRecipe))
+            {
+                for (int i = 0; i < currentRecipe.Materials.Length; i++)
+                {
+                    InventoryItem item = new(currentRecipe.Materials[i], 1);
+                    if(!TryRemove(item, i))
+                    {
+                        Logging.LogWarning("제작을 할 수 없습니다.");
+                        return false;
+                    }
+                }
+
+                Logging.Log("제작을 했습니다.");
+                return true;
+            }
+            else
+            {
+                Logging.LogWarning("제작을 할 수 없습니다.");
+                return false;
+            }
         }
 
 

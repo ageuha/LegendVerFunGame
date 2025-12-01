@@ -1,8 +1,10 @@
 using System;
+using Code.Core.Utility;
 using UnityEngine;
 
 namespace YTH.Code.Item
 {    
+    [Serializable]
     public class InventoryItem
     {
         public ItemDataSO itemData;
