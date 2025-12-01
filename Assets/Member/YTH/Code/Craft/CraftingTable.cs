@@ -8,11 +8,11 @@ namespace YTH.Code.Craft
 {    
     public class CraftingTable : MonoBehaviour
     {
-        [SerializeField] private ItemDataSO[] defaultMaterials = new ItemDataSO[9];
+        [SerializeField] private InventoryItem[] defaultMaterials = new InventoryItem[9];
         [SerializeField] private List<RecipeSO> recipeList;
 
 
-        private InventoryItem[] inventoryItems = new InventoryItem[9];
+
         private CraftingSystem craftingSystem = new();
 
 
@@ -21,17 +21,19 @@ namespace YTH.Code.Craft
         {
             for (int i = 0; i < defaultMaterials.Length; i++)
             {
-                InventoryItem item = new InventoryItem(defaultMaterials[i], 1);
-                craftingSystem.SetItem(item, i);
+                craftingSystem.SetItem(defaultMaterials[i], i);
             }
 
             var craftableRecipes = recipeList.Where(r => craftingSystem.CanMake(r));
 
             foreach (var r in craftableRecipes)
             {
-                Logging.Log($"만들 수 있는 레시피: {r.Result.ItemName}");
+                if(craftingSystem.TryMake(r))
+                {
+                    Logging.Log($"만들 수 있는 레시피: {r.Result.ItemName}");
+                }
                 return;
-            }
+            }   
             
             Logging.LogWarning("만들 수 있는 제작법이 없습니다.");
 
