@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466baa381cbc43f6b6fa844a0b0d17ed, type: 3}
   m_Name: InventoryTabButton
   m_EditorClassIdentifier: 
-  <EasingType>k__BackingField: 0
-  <Position>k__BackingField: {x: 0, y: 0}
-  <Duration>k__BackingField: 0
+  <EasingType>k__BackingField: 12
+  <Position>k__BackingField: {x: 20, y: 0}
+  <Duration>k__BackingField: 0.2

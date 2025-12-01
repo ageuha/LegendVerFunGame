@@ -16,7 +16,6 @@ namespace KJW.Code.Player
         public override void Update()
         {
             base.Update();
-            _player.MoveCompo.SetMove(_player.InputCompo.MoveDir);
         }
 
         public override void Exit()

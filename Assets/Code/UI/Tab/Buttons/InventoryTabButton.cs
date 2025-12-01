@@ -1,6 +1,7 @@
 ﻿using Code.Core.GlobalSO;
 using Code.Core.GlobalStructs;
 using DG.Tweening;
+using Plugins.Demigiant.DOTween.Modules;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -17,30 +18,48 @@ namespace Code.UI.Tab.Buttons {
         }
 
         protected override void AfterInit() {
+            _originAnchorPos = visual.rectTransform.anchoredPosition;
         }
 
         protected override void OnActiveTab() {
             element.Value.EnableFor(Empty.New);
+            AnimateReversePositionTween();
         }
 
         protected override void OnDeactiveTab() {
             element.Value.Disable();
+            AnimatePositionToOrigin();
         }
 
         public override void OnPointerEnter(PointerEventData eventData) {
             base.OnPointerEnter(eventData);
             if (IsActive) return;
-            _originAnchorPos = visual.rectTransform.anchoredPosition;
+            AnimatePositionTween();
+        }
+
+        public override void OnPointerExit(PointerEventData eventData) {
+            base.OnPointerExit(eventData);
+            if (IsActive) return;
+            AnimatePositionToOrigin();
+        }
+
+        private void AnimatePositionTween() {
             _positionTween?.Kill();
             _positionTween =
                 visual.rectTransform.DOAnchorPos(_originAnchorPos + tweeningInfo.Position,
                         tweeningInfo.Duration)
                     .SetEase(tweeningInfo.EasingType);
         }
+        
+        private void AnimateReversePositionTween() {
+            _positionTween?.Kill();
+            _positionTween =
+                visual.rectTransform.DOAnchorPos(_originAnchorPos - tweeningInfo.Position,
+                        tweeningInfo.Duration)
+                    .SetEase(tweeningInfo.EasingType);
+        }
 
-        public override void OnPointerExit(PointerEventData eventData) {
-            base.OnPointerExit(eventData);
-            if (IsInactive) return;
+        private void AnimatePositionToOrigin() {
             _positionTween?.Kill();
             _positionTween =
                 visual.rectTransform.DOAnchorPos(_originAnchorPos, tweeningInfo.Duration)
