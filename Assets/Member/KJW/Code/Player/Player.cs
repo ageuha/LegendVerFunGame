@@ -12,21 +12,18 @@ namespace KJW.Code.Player
         public AgentMovement MoveCompo {get; private set;}
         public bool IsRolling { get; set; }
 
-        private Vector2 _standDir = Vector2.right;
-        public Vector2 StandDir
-        {
-            get
-            {
-                if (InputReader.Dir != Vector2.zero) _standDir = InputReader.Dir;
-                return _standDir;
-            }
-        }
+        public Vector2 StandDir { get; private set; } = Vector2.right;
         
         private void Awake()
         {
             MoveCompo = GetComponent<AgentMovement>();
 
             InputReader.OnRolled += Roll;
+        }
+
+        private void Update()
+        {
+            if (InputReader.Dir != Vector2.zero) StandDir = InputReader.Dir;
         }
 
         private void Roll()

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: TestRollingData
   m_EditorClassIdentifier: 
   <RollPower>k__BackingField: 20
-  <RollTime>k__BackingField: 0.1
+  <RollTime>k__BackingField: 0.2
+  <AfterDelayTime>k__BackingField: 0.2

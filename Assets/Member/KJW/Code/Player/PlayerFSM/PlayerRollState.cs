@@ -23,8 +23,14 @@ namespace KJW.Code.Player
         public override void Update()
         {
             base.Update();
-            if (_timer <= _player.RollingData.RollTime)
-                _timer += Time.deltaTime;
+            _timer += Time.deltaTime;
+            if (_timer <= _player.RollingData.RollTime + _player.RollingData.AfterDelayTime)
+            {
+                if (_timer >= _player.RollingData.RollTime)
+                {
+                    _player.MoveCompo.StopMove();
+                }
+            }
             else
             {
                 _stateMachine.UpdateState(PlayerStateType.Idle);
