@@ -1,6 +1,4 @@
 using System;
-using Code.Core.Utility;
-using UnityEngine;
 
 namespace YTH.Code.Item
 {    

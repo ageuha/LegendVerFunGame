@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace YTH.Code.Interface
 {    
     public interface IPickable
