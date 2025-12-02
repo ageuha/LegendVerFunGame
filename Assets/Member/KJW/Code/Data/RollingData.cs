@@ -7,5 +7,6 @@ namespace KJW.Code.Data
     {
         [field: SerializeField] public float RollPower { get; private set; }
         [field: SerializeField] public float RollTime { get; private set; }
+        [field: SerializeField] public float AfterDelayTime { get; private set; }
     }
 }

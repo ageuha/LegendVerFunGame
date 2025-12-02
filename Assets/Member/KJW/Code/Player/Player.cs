@@ -8,13 +8,27 @@ namespace KJW.Code.Player
     public class Player : MonoBehaviour
     {
         [field: SerializeField] public InputReader InputReader { get; private set; }
-        [SerializeField] private RollingData rollingData;
+        [field: SerializeField] public RollingData RollingData { get; private set; }
         public AgentMovement MoveCompo {get; private set;}
-        
+        public bool IsRolling { get; set; }
+
+        public Vector2 StandDir { get; private set; } = Vector2.right;
         
         private void Awake()
         {
             MoveCompo = GetComponent<AgentMovement>();
+
+            InputReader.OnRolled += Roll;
+        }
+
+        private void Update()
+        {
+            if (InputReader.Dir != Vector2.zero) StandDir = InputReader.Dir;
+        }
+
+        private void Roll()
+        {
+            IsRolling = true;
         }
     }
 }
