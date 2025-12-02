@@ -9,6 +9,7 @@ namespace KJW.Code.Player
     {
         [field: SerializeField] public InputReader InputReader { get; private set; }
         [field: SerializeField] public RollingData RollingData { get; private set; }
+        [field: SerializeField] public Interactor Interactor { get; private set; }
         public AgentMovement MoveCompo {get; private set;}
         public bool IsRolling { get; set; }
 
@@ -17,13 +18,21 @@ namespace KJW.Code.Player
         private void Awake()
         {
             MoveCompo = GetComponent<AgentMovement>();
+            Interactor = GetComponent<Interactor>();
 
             InputReader.OnRolled += Roll;
+            InputReader.OnInteracted += Interactor.Interact;
         }
 
         private void Update()
         {
             if (InputReader.Dir != Vector2.zero) StandDir = InputReader.Dir;
+        }
+
+        private void OnDisable()
+        {
+            InputReader.OnRolled -= Roll;
+            InputReader.OnInteracted -= Interactor.Interact;
         }
 
         private void Roll()
