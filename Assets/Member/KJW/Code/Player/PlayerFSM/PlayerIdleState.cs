@@ -16,6 +16,20 @@ namespace KJW.Code.Player
 
         public override void Update()
         {
+            if (_player.InputReader.Dir != Vector2.zero)
+            {
+                _stateMachine.UpdateState(PlayerStateType.Walk);
+                return;
+            }
+            
+            if (_player.IsRolling)
+            {
+                _stateMachine.UpdateState(PlayerStateType.Roll);
+                return;
+            }
+            
+            _player.MoveCompo.SetMove(Vector2.zero);
+            
             base.Update();
         }
 

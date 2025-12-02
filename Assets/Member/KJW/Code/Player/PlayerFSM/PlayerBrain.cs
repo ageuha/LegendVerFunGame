@@ -27,14 +27,6 @@ namespace KJW.Code.Player
         private void Update()
         {
             _playerStateMachine.CurrentState.Update();
-            if (_player.InputReader.Dir == Vector2.zero)
-            {
-                _playerStateMachine.UpdateState(PlayerStateType.Idle);
-            }
-            else
-            {
-                _playerStateMachine.UpdateState(PlayerStateType.Walk);
-            }
         }
     }
 }
