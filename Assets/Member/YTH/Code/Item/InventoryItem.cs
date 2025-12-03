@@ -1,6 +1,4 @@
 using System;
-using Code.Core.Utility;
-using UnityEngine;
 
 namespace YTH.Code.Item
 {    
@@ -11,6 +9,7 @@ namespace YTH.Code.Item
         public int stackSize;
 
         public bool IsFullStack => stackSize >= itemData.MaxStack;
+        public bool IsEmpty => stackSize <= 0;
 
         public InventoryItem(ItemDataSO itemData, int stackSize)
         {
@@ -30,6 +29,7 @@ namespace YTH.Code.Item
             }
 
             return remainCount;
+            //남는거 반환
         }
 
         public void RemoveStack(int amount = 1)
@@ -40,6 +40,12 @@ namespace YTH.Code.Item
             {
                 stackSize = 0;
             }
+        }
+
+        public int GetRemainAmount()
+        {
+            return itemData.MaxStack - stackSize;
+            //부족한거 반환
         }
     }
 }

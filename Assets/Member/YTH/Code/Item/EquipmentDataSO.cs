@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using YTH.Code.Stat;
@@ -11,7 +12,7 @@ namespace YTH.Code.Item
         [field:SerializeField] public List<Stat> Stats { get; private set; }
     }
     
-    
+    [Serializable]
     public class Stat
     {
         public StatBaseSO StatData;

@@ -1,8 +1,6 @@
-using Member.KJW.Code.Player;
-using Unity.IO.LowLevel.Unsafe;
+using KJW.Code.Player;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem.UI;
 
 namespace YTH.Code.Stat
 {    

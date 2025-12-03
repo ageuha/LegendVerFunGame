@@ -1,6 +1,5 @@
 using Code.Core.Utility;
-using DG.Tweening.Plugins;
-using Member.KJW.Code.Player;
+using KJW.Code.Player;
 using UnityEngine;
 
 namespace YTH.Code.Stat

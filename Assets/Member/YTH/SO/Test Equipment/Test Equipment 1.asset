@@ -17,3 +17,6 @@ MonoBehaviour:
   <ItemID>k__BackingField: 0456eb8b51c327840af7a1e171e34b65
   <MaxStack>k__BackingField: 1
   <EquipmentType>k__BackingField: 0
+  <Stats>k__BackingField:
+  - StatData: {fileID: 11400000, guid: 9be955361fa31964c9240a55d564efe7, type: 2}
+    Amount: 2
