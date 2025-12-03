@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: MovementData
   m_EditorClassIdentifier: 
   <Acceleration>k__BackingField: 10
-  <Deacceleration>k__BackingField: 1
-  <MaxSpeed>k__BackingField: 10
+  <Deacceleration>k__BackingField: 10
+  <MaxSpeed>k__BackingField: 8

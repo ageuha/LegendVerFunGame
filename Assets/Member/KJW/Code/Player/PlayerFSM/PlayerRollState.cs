@@ -1,13 +1,13 @@
 ﻿using Member.KJW.Code.Enum;
 using UnityEngine;
 
-namespace KJW.Code.Player
+namespace Member.KJW.Code.Player.PlayerFSM
 {
     public class PlayerRollState : PlayerState
     {
         private float _timer;
         
-        public PlayerRollState(Player player, PlayerStateMachine stateMachine) : base(player, stateMachine)
+        public PlayerRollState(Member.KJW.Code.Player.Player player, PlayerStateMachine stateMachine) : base(player, stateMachine)
         {
         }
 
@@ -23,6 +23,14 @@ namespace KJW.Code.Player
         public override void Update()
         {
             base.Update();
+
+            if (!_player.IsRolling)
+            {
+                _stateMachine.UpdateState(PlayerStateType.Idle);
+                _player.EndRoll();
+                return;
+            }
+            
             _timer += Time.deltaTime;
             if (_timer <= _player.RollingData.RollTime + _player.RollingData.AfterDelayTime)
             {
@@ -34,7 +42,7 @@ namespace KJW.Code.Player
             else
             {
                 _stateMachine.UpdateState(PlayerStateType.Idle);
-                _player.IsRolling = false;
+                _player.EndRoll();
             }
         }
 

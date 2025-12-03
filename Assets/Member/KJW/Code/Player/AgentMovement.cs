@@ -1,9 +1,7 @@
-using System;
-using System.Collections;
-using KJW.Code.Data;
+using Member.KJW.Code.Data;
 using UnityEngine;
 
-namespace KJW.Code.Player
+namespace Member.KJW.Code.Player
 {
     public class AgentMovement : MonoBehaviour
     {
@@ -12,7 +10,7 @@ namespace KJW.Code.Player
         private Rigidbody2D _rb;
         private Vector2 _moveDir;
         private float _currentVelocity;
-        public bool Stop { get; private set; }
+        public bool IsStop { get; private set; }
 
         private void Awake()
         {
@@ -21,14 +19,14 @@ namespace KJW.Code.Player
 
         public void SetMove(Vector2 dir)
         {
-            Stop = false;
+            IsStop = false;
             _moveDir = dir;
             _currentVelocity = CalculateSpeed(_moveDir);
         }
         
         public void StopMove()
         {
-            Stop = true;
+            IsStop = true;
             _moveDir = Vector2.zero;
             _rb.linearVelocity = _moveDir;
             _currentVelocity = 0;
@@ -59,7 +57,7 @@ namespace KJW.Code.Player
 
         private void FixedUpdate()
         {
-            if (Stop) return;
+            if (IsStop) return;
             Move();
         }
     }

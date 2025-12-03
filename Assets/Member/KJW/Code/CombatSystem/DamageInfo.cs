@@ -1,4 +1,4 @@
-﻿namespace KJW.Code.CombatSystem
+﻿namespace Member.KJW.Code.CombatSystem
 {
     public struct DamageInfo
     {

@@ -1,7 +1,7 @@
 using System.Collections;
 using Code.Core.Utility;
 using DG.Tweening;
-using KJW.Code.Player;
+using Member.KJW.Code.Player;
 using UnityEngine;
 using YTH.Code.Interface;
 

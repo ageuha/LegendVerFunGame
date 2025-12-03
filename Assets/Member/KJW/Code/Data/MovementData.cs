@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace KJW.Code.Data
+namespace Member.KJW.Code.Data
 {
     [CreateAssetMenu(fileName = "MovementData", menuName = "SO/MovementData")]
     public class MovementData : ScriptableObject
