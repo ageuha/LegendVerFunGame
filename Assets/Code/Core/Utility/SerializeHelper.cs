@@ -14,6 +14,10 @@ namespace Code.Core.Utility {
             set => _valueAsT = value;
         }
 
+        public void SetEditorValue(T tValue) {
+            value = tValue as MonoBehaviour;
+        }
+
         public static implicit operator T(SerializeHelper<T> value) => value.Value;
 
         public void OnBeforeSerialize() {
