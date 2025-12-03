@@ -1,18 +1,17 @@
-﻿using System;
-using Member.KJW.Code.Enum;
+﻿using Member.KJW.Code.Enum;
 using UnityEngine;
 
-namespace KJW.Code.Player
+namespace Member.KJW.Code.Player.PlayerFSM
 {
     public class PlayerBrain : MonoBehaviour
     {
         private PlayerStateMachine _playerStateMachine;
-        private Player _player;
+        private Member.KJW.Code.Player.Player _player;
 
         private void Awake()
         {
             _playerStateMachine = new PlayerStateMachine(this);
-            _player = GetComponent<Player>();
+            _player = GetComponent<Member.KJW.Code.Player.Player>();
             
             _playerStateMachine.AddState(PlayerStateType.Idle, new PlayerIdleState(_player, _playerStateMachine));
             _playerStateMachine.AddState(PlayerStateType.Walk, new PlayerWalkState(_player, _playerStateMachine));

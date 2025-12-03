@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using Code.Core.GlobalSO;
 using Code.Core.Utility;
 using DG.Tweening;
-using KJW.Code.Player;
+using Member.KJW.Code.Player;
 using UnityEngine;
 using UnityEngine.UIElements;
 using YTH.Code.Interface;

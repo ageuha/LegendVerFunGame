@@ -1,6 +1,4 @@
 using Code.Core.Utility;
-using KJW.Code.Input;
-using KJW.Code.Player;
 using UnityEngine;
 
 public class Interactor : MonoBehaviour

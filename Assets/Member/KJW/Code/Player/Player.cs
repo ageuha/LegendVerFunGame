@@ -1,19 +1,28 @@
-using System;
-using KJW.Code.Input;
-using KJW.Code.Data;
+using Member.KJW.Code.CombatSystem;
+using Member.KJW.Code.Data;
+using Member.KJW.Code.Input;
 using UnityEngine;
 
-namespace KJW.Code.Player
+namespace Member.KJW.Code.Player
 {
-    public class Player : MonoBehaviour
+    public class Player : MonoBehaviour, IDamageable
     {
         [field: SerializeField] public InputReader InputReader { get; private set; }
         [field: SerializeField] public RollingData RollingData { get; private set; }
-        [field: SerializeField] public Interactor Interactor { get; private set; }
+        public Interactor Interactor { get; private set; }
         public AgentMovement MoveCompo {get; private set;}
-        public bool IsRolling { get; set; }
+        public bool IsRolling { get; private set; }
 
         public Vector2 StandDir { get; private set; } = Vector2.right;
+        private bool _isInvincible = false;
+        private float _coolTimer = 0;
+        private int _remainRoll;
+
+        public int RemainRoll
+        {
+            get => _remainRoll;
+            private set => _remainRoll = Mathf.Clamp(value, 0, RollingData.MaxRoll);
+        }
         
         private void Awake()
         {
@@ -23,6 +32,28 @@ namespace KJW.Code.Player
             InputReader.OnRolled += Roll;
             InputReader.OnMoved += UpdateStandDir;
             InputReader.OnInteracted += Interactor.Interact;
+
+            RemainRoll = RollingData.MaxRoll;
+        }
+
+        private void Update()
+        {
+            if (RemainRoll == RollingData.MaxRoll) return;
+            
+            if (_coolTimer >= RollingData.StackCoolTime)
+            {
+                _coolTimer -= RollingData.StackCoolTime;
+                ++RemainRoll;
+            }
+        
+            _coolTimer += Time.deltaTime;
+        }
+
+        private void OnDestroy()
+        {
+            InputReader.OnRolled -= Roll;
+            InputReader.OnMoved -= UpdateStandDir;
+            InputReader.OnInteracted -= Interactor.Interact;
         }
 
         private void UpdateStandDir(Vector2 dir)
@@ -30,15 +61,24 @@ namespace KJW.Code.Player
             if (dir != Vector2.zero) StandDir = dir;
         }
 
-        private void OnDisable()
-        {
-            InputReader.OnRolled -= Roll;
-            InputReader.OnInteracted -= Interactor.Interact;
-        }
-
         private void Roll()
         {
+            if (RemainRoll == 0 || IsRolling) return;
+        
+            --RemainRoll;
             IsRolling = true;
+            _isInvincible = true;
+        }
+        
+        public void EndRoll()
+        {
+            IsRolling = false;
+            _isInvincible = false;
+        }
+
+        public void GetDamage(DamageInfo damageInfo)
+        {
+            if (_isInvincible) return;
         }
     }
 }
