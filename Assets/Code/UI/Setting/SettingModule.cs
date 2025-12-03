@@ -1,5 +1,5 @@
-using System;
 using Code.Core.Utility;
+using Code.UI.Setting.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,5 +32,7 @@ namespace Code.UI.Setting {
 
         protected virtual void AfterAwake() {
         }
+        
+        public abstract void SetSettingValue(T value);
     }
 }
