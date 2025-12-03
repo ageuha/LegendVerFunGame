@@ -63,6 +63,8 @@ namespace Member.YDW.Script.BuildingSystem
 
         private void CreateBuilding(BuildingEvent obj)
         {
+            if(obj.buildingData.BuildingWaitPrefab == null)
+                Logging.Log("BuildingData In Building");
             //풀 메니저 사용 예정
             IBuilding building =
                 Instantiate(obj.buildingData.BuildingPrefab, obj.buildNode.worldPosition, Quaternion.identity)

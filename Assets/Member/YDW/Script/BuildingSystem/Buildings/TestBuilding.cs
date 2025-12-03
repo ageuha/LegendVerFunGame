@@ -5,11 +5,11 @@ namespace Member.YDW.Script.BuildingSystem.Buildings
 {
     public class TestBuilding : PoolableObject, IBuilding
     {
-        public ICooldownBar CooldownBar { get; }
-        public BuildingDataSO BuildingData { get; }
+        public ICooldownBar CooldownBar { get; private set; }
+        public BuildingDataSO BuildingData { get; private set; }
         public void Initialize(BuildingDataSO buildingData)
         {
-            throw new System.NotImplementedException();
+            BuildingData = buildingData;
         }
     }
 }
