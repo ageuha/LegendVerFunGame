@@ -11,6 +11,7 @@ namespace Member.KJW.Code.Input
         private InputSystem_Actions _actions;
         public event Action<Vector2> OnMoved;
         public event Action OnAttacked;
+        public event Action OnAttackReleased;
         public event Action OnInteracted;
         public event Action OnRolled;
 
@@ -40,6 +41,8 @@ namespace Member.KJW.Code.Input
         {
             if (context.performed)
                 OnAttacked?.Invoke();
+            if (context.canceled)
+                OnAttackReleased?.Invoke();
         }
 
         public void OnRoll(InputAction.CallbackContext context)
