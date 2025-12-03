@@ -14,8 +14,8 @@ namespace Member.KJW.Code.Player
         public bool IsRolling { get; private set; }
 
         public Vector2 StandDir { get; private set; } = Vector2.right;
-        private bool _isInvincible = false;
-        private float _coolTimer = 0;
+        private bool _isInvincible;
+        private float _coolTimer;
         private int _remainRoll;
 
         public int RemainRoll
