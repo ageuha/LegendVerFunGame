@@ -176,5 +176,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1295839682076747344}
+  rb: {fileID: 4837945640928975551}
   itemData: {fileID: 0}
-  tweeningInfo: {fileID: 11400000, guid: 2e59f410410b43d4d9defdb5562f211f, type: 2}
