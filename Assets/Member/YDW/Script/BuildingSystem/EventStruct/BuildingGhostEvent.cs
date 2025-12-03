@@ -5,12 +5,12 @@ namespace Member.YDW.Script.BuildingSystem.EventStruct
     public struct BuildingGhostEvent
     {
         public bool OnOff;
-        public Sprite Image;
+        public BuildingDataSO buildingDataSO;
 
-        public BuildingGhostEvent(Sprite image, bool onOff)
+        public BuildingGhostEvent(BuildingDataSO dataSO, bool onOff)
         {
             OnOff = onOff;
-            Image = image;
+            buildingDataSO = dataSO;
         }
     }
 }

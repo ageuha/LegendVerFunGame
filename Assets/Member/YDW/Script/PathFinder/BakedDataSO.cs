@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Member.YDW.Script.RequestSystem;
-using Member.YDW.Script.RequestSystem.Values;
 using UnityEngine;
 
 namespace Member.YDW.Script.PathFinder
 {
     [CreateAssetMenu(fileName = "BakedDataSO", menuName = "PathFinder/Path/BakedData")]
-    public class BakedDataSO : ScriptableObject, IValueProvider<BakeDataSOValueM,NodeData>
+    public class BakedDataSO : ScriptableObject
     {
         public List<NodeData> points = new();
         private Dictionary<Vector3Int, NodeData> _pointDict;
@@ -50,19 +48,17 @@ namespace Member.YDW.Script.PathFinder
 
         public bool TryGetNode(Vector3 worldPosition, out NodeData nodeData)
         {
-            if (HasNode(worldPosition))
+            foreach (var data in _worldPointDict.Keys)
             {
-                nodeData = _worldPointDict[worldPosition];
-                return true;
+                if (Vector3.Distance(data, worldPosition) < 0.5f)
+                {
+                    nodeData = _worldPointDict[data];
+                    return true;
+                }
             }
             nodeData = default;
             return false;
-        }
 
-        public NodeData GetValue(BakeDataSOValueM requestValue)
-        {
-            TryGetNode(requestValue.worldPosition == default ? requestValue.cellPosition : requestValue.worldPosition ,out NodeData nodeData); 
-            return nodeData;
         }
     }
 }
