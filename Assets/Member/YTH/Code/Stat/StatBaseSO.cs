@@ -1,4 +1,4 @@
-using KJW.Code.Player;
+using Member.KJW.Code.Player;
 using UnityEditor;
 using UnityEngine;
 

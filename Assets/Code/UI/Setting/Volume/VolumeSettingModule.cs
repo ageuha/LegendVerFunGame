@@ -1,15 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Code.UI.Elements;
 using TMPro;
 using UnityEngine;
 
 namespace Code.UI.Setting.Volume {
     public class VolumeSettingModule : SettingModule<float> {
-        [SerializeField] private List<OnOffElement> elements;
+        [SerializeField] private List<ToggleElement> elements;
         [SerializeField] private TextMeshProUGUI tmp;
 
         private sbyte _idx;
-
+        
         protected override void AfterAwake() {
             base.AfterAwake();
             _idx = 0; // 나중에 세이브 시스템 구축하면 값 가져와야 함.
@@ -17,7 +18,18 @@ namespace Code.UI.Setting.Volume {
             InitializeElements();
         }
 
+        public override void SetSettingValue(float value) {
+            sbyte temp = (sbyte)Mathf.RoundToInt(value * elements.Count);
+            if (temp == _idx) return;
+            _idx = temp;
+            SettingValue.Value = value;
+
+            AfterInteract();
+            InitializeElements();
+        }
+
         private void InitializeElements() {
+            // 이름 비직관적. 초기화에 국한된 메서드 아님
             for (int i = 0; i < elements.Count; i++) {
                 elements[i].EnableFor(i <= _idx);
             }

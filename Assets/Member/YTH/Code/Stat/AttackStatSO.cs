@@ -1,5 +1,5 @@
 using Code.Core.Utility;
-using KJW.Code.Player;
+using Member.KJW.Code.Player;
 using UnityEngine;
 
 namespace YTH.Code.Stat

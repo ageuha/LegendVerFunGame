@@ -1,11 +1,11 @@
 ﻿using Member.KJW.Code.Enum;
 using UnityEngine;
 
-namespace KJW.Code.Player
+namespace Member.KJW.Code.Player.PlayerFSM
 {
     public class PlayerIdleState : PlayerState
     {
-        public PlayerIdleState(Player player, PlayerStateMachine stateMachine) : base(player, stateMachine)
+        public PlayerIdleState(Member.KJW.Code.Player.Player player, PlayerStateMachine stateMachine) : base(player, stateMachine)
         {
         }
 
