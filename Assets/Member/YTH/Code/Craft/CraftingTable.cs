@@ -15,24 +15,39 @@ namespace YTH.Code.Craft
 
         private CraftingSystem craftingSystem = new();
 
-
-        [ContextMenu("Test2")]
-        public void Test2()
+        [ContextMenu("Info")]
+        public void Info()
         {
             for (int i = 0; i < defaultMaterials.Length; i++)
             {
                 craftingSystem.SetItem(defaultMaterials[i], i);
             }
 
-            var craftableRecipes = recipeList.Where(r => craftingSystem.CanMake(r));
+            foreach (var r in recipeList)
+            {
+                if(craftingSystem.CanMake(r))
+                {
+                    Logging.Log($"만들 수 있는 레시피: {r.Result.ItemName}");
+                    return;
+                }
+            }   
+        }
 
-            foreach (var r in craftableRecipes)
+        [ContextMenu("Craft")]
+        public void Craft()
+        {
+            for (int i = 0; i < defaultMaterials.Length; i++)
+            {
+                craftingSystem.SetItem(defaultMaterials[i], i);
+            }
+
+            foreach (var r in recipeList)
             {
                 if(craftingSystem.TryMake(r))
                 {
                     Logging.Log($"만들 수 있는 레시피: {r.Result.ItemName}");
+                    return;
                 }
-                return;
             }   
             
             Logging.LogWarning("만들 수 있는 제작법이 없습니다.");

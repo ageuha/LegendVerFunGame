@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Runtime.InteropServices;
 using Code.Core.GlobalSO;
 using Code.Core.Utility;
 using DG.Tweening;
@@ -13,11 +14,12 @@ namespace YTH.Code.Item
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private ItemDataSO itemData;
-    [SerializeField] private TweeningInfoSO tweeningInfo;
 
     private bool m_isPickUp;
     private Transform m_target;
     private Coroutine m_followRoutine;
+    private const float speed = 5;
+    private const float minDistance = 0.01f;
 
     private void OnValidate()
     {
@@ -48,10 +50,6 @@ namespace YTH.Code.Item
 
     private IEnumerator FollowTargetCoroutine()
     {
-
-        float speed = 10;
-        float minDistance = 0.1f;
-
         while (!m_isPickUp && m_target != null)
         {
             Vector3 targetPos = m_target.position;
@@ -62,7 +60,6 @@ namespace YTH.Code.Item
             );
 
             float distance = Vector3.Distance(transform.position, targetPos);
-            
             float scale = Mathf.Clamp01(distance);
             transform.localScale = new Vector3(scale, scale, 1);
 

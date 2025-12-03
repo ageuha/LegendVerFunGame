@@ -23,7 +23,6 @@ namespace KJW.Code.Player
 
         public void UpdateState(PlayerStateType stateType)
         {
-            Logging.Log(stateType);
             CurrentState?.Exit();
             CurrentState = _stateDict[stateType];
             CurrentState?.Enter();
