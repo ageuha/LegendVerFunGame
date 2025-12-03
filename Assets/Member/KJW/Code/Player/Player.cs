@@ -19,11 +19,12 @@ namespace KJW.Code.Player
             MoveCompo = GetComponent<AgentMovement>();
 
             InputReader.OnRolled += Roll;
+            InputReader.OnMoved += UpdateStandDir;
         }
 
-        private void Update()
+        private void UpdateStandDir(Vector2 value)
         {
-            if (InputReader.Dir != Vector2.zero) StandDir = InputReader.Dir;
+            if (value != Vector2.zero) StandDir = value;
         }
 
         private void Roll()
