@@ -1,32 +1,54 @@
 using Code.Core.Utility;
+using Member.KJW.Code.Input;
 using Member.KJW.Code.Player;
 using UnityEngine;
 
 public class Boat : MonoBehaviour, IInteractable
 {
     [field: SerializeField] public BoatSOScript BoatSO { get; private set; }
+    [SerializeField] private InputReader inputreader;
     private BoatMovement _boatMovement;
     private bool _isPlayerInBoat;
+    private bool _isPlayerMousePressed;
     private GameObject _target;
     private Vector3 mouseWorldPos;
-    void Awake()
+    private void Awake()
     {
         _boatMovement = GetComponent<BoatMovement>();
     }
-    void FixedUpdate()
+    private void OnEnable()
+    {
+        inputreader.OnAttacked += PlayerPressMouse;
+        inputreader.OnAttackReleased += NoPlayerPressMouse;
+    }
+    private void OnDisable()
+    {
+        inputreader.OnAttacked -= PlayerPressMouse;
+        inputreader.OnAttackReleased -= NoPlayerPressMouse;
+    }
+
+    private void PlayerPressMouse()
+    {
+        _isPlayerMousePressed = true;
+    }
+    private void NoPlayerPressMouse()
+    {
+        _isPlayerMousePressed = false;
+    }
+    private void FixedUpdate()
     {
         if (_isPlayerInBoat)
         {
             Vector2 mousePos = _target.GetComponent<Player>().InputReader.MousePos;
-            Vector3 screenPos = new Vector3(mousePos.x,mousePos.y,-Camera.main.transform.position.z);
+            Vector3 screenPos = new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z);
             mouseWorldPos = Camera.main.ScreenToWorldPoint(screenPos);
 
-            _boatMovement.SetMove((mouseWorldPos-transform.position).normalized);
+            _boatMovement.SetMove(mouseWorldPos - transform.position,_isPlayerMousePressed);
             _target.transform.localPosition = Vector2.zero;
         }
         else
         {
-            _boatMovement.SetMove(Vector2.zero);
+            _boatMovement.SetMove(Vector2.zero,_isPlayerMousePressed);
         }
     }
     public void Enter(GameObject target)
@@ -45,6 +67,7 @@ public class Boat : MonoBehaviour, IInteractable
         _isPlayerInBoat = false;
         _target = null;
     }
+
 
     public void Interact(GameObject user)
     {
