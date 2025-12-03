@@ -1,4 +1,6 @@
 using Code.Core.Utility;
+using KJW.Code.Input;
+using KJW.Code.Player;
 using UnityEngine;
 
 public class Interactor : MonoBehaviour
@@ -6,35 +8,33 @@ public class Interactor : MonoBehaviour
     [SerializeField] private Transform _interactionPoint;
     [SerializeField] private float _interactionPointRadius;
     [SerializeField] private LayerMask _interactionMask;
-    private Collider2D[] _colliders = new Collider2D[3];
+    private Collider2D[] _colliders;
     private IInteractable _interactableThing;
 
     void FixedUpdate()
     {
-        _colliders = Physics2D.OverlapCircleAll(_interactionPoint.position, _interactionPointRadius,_interactionMask);
-        foreach (Collider2D item in _colliders)
-        {
-            if(item.TryGetComponent<IInteractable>(out IInteractable interactable))
-            {
-                _interactableThing = interactable;
-                Logging.Log(_interactableThing);
-            }
-            else
-            {
-                _interactableThing = null;
-            }
-        }
+        CheckInteract();
     }
 
-    private void Interacting()
+    private void CheckInteract()
     {
-        if(_interactableThing != null)
+        _colliders = Physics2D.OverlapCircleAll(_interactionPoint.position, _interactionPointRadius, _interactionMask);
+        
+        foreach (Collider2D c in _colliders)
         {
-            _interactableThing.Interact(gameObject);
+            if(c.TryGetComponent<IInteractable>(out _interactableThing))
+            {
+                return;
+            }
         }
     }
-    void OnDrawGizmos()
+    public void Interact()
     {
-        Gizmos.DrawWireSphere(_interactionPoint.position,_interactionPointRadius);
+        _interactableThing?.Interact(gameObject);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(_interactionPoint.position, _interactionPointRadius);
     }
 }

@@ -12,7 +12,7 @@ namespace KJW.Code.Input
         public event Action<Vector2> OnMoved;
         public event Action OnAttacked;
         public event Action OnAttackReleased;
-        public event Action OnIteracted;
+        public event Action OnInteracted;
         public event Action OnRolled;
 
         public Vector2 MousePos { get; private set; }
@@ -57,7 +57,7 @@ namespace KJW.Code.Input
 
         public void OnInteract(InputAction.CallbackContext context)
         {
-            OnIteracted?.Invoke();
+            OnInteracted?.Invoke();
         }
     }
 }

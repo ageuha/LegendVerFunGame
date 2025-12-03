@@ -31,6 +31,7 @@ namespace KJW.Code.Player
             Stop = true;
             _moveDir = Vector2.zero;
             _rb.linearVelocity = _moveDir;
+            _currentVelocity = 0;
         }
 
         private void Move()
