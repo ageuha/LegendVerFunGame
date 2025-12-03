@@ -551,7 +551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemDataSO: {fileID: 11400000, guid: f8bab177737b0e24f85cfd8c8717bbc0, type: 2}
-  amount: 17
+  amount: 30
   inventoryData: {fileID: 1296153229}
 --- !u!1 &579485801
 GameObject:

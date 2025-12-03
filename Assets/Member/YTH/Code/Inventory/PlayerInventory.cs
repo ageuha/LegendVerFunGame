@@ -33,6 +33,8 @@ namespace YTH.Code.Inventory
                 int count = Mathf.Min(added, remain);
                 int overflow = item.AddStack(count);
 
+                Logging.Log($"Added : {added}, Count : {count}, Overflow : {overflow}");
+
                 remain -= count;
                 remain += overflow;
                 
@@ -76,10 +78,10 @@ namespace YTH.Code.Inventory
                 if (item.IsFullStack) continue;
 
                 int free = item.GetRemainAmount();
+                Logging.Log($"Free : {free}");
                 if (remain <= free) return true;
 
                 remain -= free;
-                return remain <= 0;
             }
 
             remain -= GetRemainSlotCount() * itemData.MaxStack;
