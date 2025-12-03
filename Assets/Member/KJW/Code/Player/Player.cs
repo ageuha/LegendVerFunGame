@@ -21,12 +21,13 @@ namespace KJW.Code.Player
             Interactor = GetComponent<Interactor>();
 
             InputReader.OnRolled += Roll;
+            InputReader.OnMoved += UpdateStandDir;
             InputReader.OnInteracted += Interactor.Interact;
         }
 
-        private void Update()
+        private void UpdateStandDir(Vector2 dir)
         {
-            if (InputReader.Dir != Vector2.zero) StandDir = InputReader.Dir;
+            if (dir != Vector2.zero) StandDir = dir;
         }
 
         private void OnDisable()
