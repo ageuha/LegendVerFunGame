@@ -25,7 +25,7 @@ namespace Code.Core.GlobalSO {
                 return;
             }
             
-            Logging.Log("설정 값이 유효합니다.");
+            // Logging.Log("설정 값이 유효합니다.");
         }
 
         [Obsolete("웬만해선 이거 대신 SetNormalized쓰세요.")]
