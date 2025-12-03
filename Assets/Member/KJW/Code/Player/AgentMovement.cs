@@ -9,26 +9,39 @@ namespace KJW.Code.Player
     {
         [field: SerializeField] public MovementData MoveData { get; private set; }
 
-        public Rigidbody2D RbCompo {get; private set;}
-        public Vector2 MoveDir {get; private set;}
-        public Vector2 StandDir {get; private set;}
+        private Rigidbody2D _rb;
+        private Vector2 _moveDir;
         private float _currentVelocity;
+        public bool Stop { get; private set; }
 
         private void Awake()
         {
-            RbCompo = GetComponent<Rigidbody2D>();
+            _rb = GetComponent<Rigidbody2D>();
         }
 
         public void SetMove(Vector2 dir)
         {
-            MoveDir = dir;
-            StandDir = MoveDir != Vector2.zero ? MoveDir : StandDir;
-            _currentVelocity = CalculateSpeed(MoveDir);
+            Stop = false;
+            _moveDir = dir;
+            _currentVelocity = CalculateSpeed(_moveDir);
+        }
+        
+        public void StopMove()
+        {
+            Stop = true;
+            _moveDir = Vector2.zero;
+            _rb.linearVelocity = _moveDir;
+            _currentVelocity = 0;
         }
 
         private void Move()
         {
-            RbCompo.linearVelocity = MoveDir * _currentVelocity;
+            _rb.linearVelocity = _moveDir * _currentVelocity;
+        }
+
+        public void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse)
+        {
+            _rb.AddForce(force, mode);
         }
 
         private float CalculateSpeed(Vector2 moveDir)
@@ -46,6 +59,7 @@ namespace KJW.Code.Player
 
         private void FixedUpdate()
         {
+            if (Stop) return;
             Move();
         }
     }

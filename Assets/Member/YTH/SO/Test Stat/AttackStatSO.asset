@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff5424748267d8144854d915883cacfc, type: 3}
-  m_Name: RowBoat
+  m_Script: {fileID: 11500000, guid: cf581ac48257e8c4e9e6354e94148053, type: 3}
+  m_Name: AttackStatSO
   m_EditorClassIdentifier: 
-  <Acceleration>k__BackingField: 5
-  <Deacceleration>k__BackingField: 1
-  <MaxSpeed>k__BackingField: 5
+  <StatID>k__BackingField: 9be955361fa31964c9240a55d564efe7

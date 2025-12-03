@@ -1,8 +1,8 @@
 using System;
-using UnityEngine;
 
 namespace YTH.Code.Item
 {    
+    [Serializable]
     public class InventoryItem
     {
         public ItemDataSO itemData;
@@ -10,16 +10,17 @@ namespace YTH.Code.Item
 
         public bool IsFullStack => stackSize >= itemData.MaxStack;
 
-        public InventoryItem(ItemDataSO itemData, int initialStack)
+        public InventoryItem(ItemDataSO itemData, int stackSize)
         {
             this.itemData = itemData;
-            this.stackSize = initialStack;
+            this.stackSize = stackSize;
         }
 
         public int AddStack(int amount)
         {
             int remainCount = 0;
             stackSize += amount;
+
             if (stackSize > itemData.MaxStack)
             {
                 remainCount = stackSize - itemData.MaxStack;
@@ -32,6 +33,7 @@ namespace YTH.Code.Item
         public void RemoveStack(int amount = 1)
         {
             stackSize -= amount;
+
             if (stackSize < 0)
             {
                 stackSize = 0;

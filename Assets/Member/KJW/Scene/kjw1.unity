@@ -354,7 +354,6 @@ GameObject:
   - component: {fileID: 1319592289}
   - component: {fileID: 1319592290}
   - component: {fileID: 1319592293}
-  - component: {fileID: 1319592292}
   - component: {fileID: 1319592295}
   - component: {fileID: 1319592291}
   - component: {fileID: 1319592294}
@@ -393,6 +392,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35580c78639df4d43bcd8a362799dde9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <InputReader>k__BackingField: {fileID: 11400000, guid: 777b456eb927283439da0b796da61433, type: 2}
+  <RollingData>k__BackingField: {fileID: 11400000, guid: 870b15c39db4d2547bcd398c11b4be93, type: 2}
 --- !u!50 &1319592291
 Rigidbody2D:
   serializedVersion: 5
@@ -420,19 +421,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1319592292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1319592288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3738651e30d0df44e8f61f2b027da63c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <InputReader>k__BackingField: {fileID: 11400000, guid: 777b456eb927283439da0b796da61433, type: 2}
 --- !u!114 &1319592293
 MonoBehaviour:
   m_ObjectHideFlags: 0

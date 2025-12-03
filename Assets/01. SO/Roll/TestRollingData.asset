@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 466baa381cbc43f6b6fa844a0b0d17ed, type: 3}
-  m_Name: ItemObject TweeningInfo
+  m_Script: {fileID: 11500000, guid: 735ce3c950da49acb9bfb5c4a7cbea28, type: 3}
+  m_Name: TestRollingData
   m_EditorClassIdentifier: 
-  <EasingType>k__BackingField: 30
-  <Position>k__BackingField: {x: 0, y: 0}
-  <Duration>k__BackingField: 1.5
+  <RollPower>k__BackingField: 20
+  <RollTime>k__BackingField: 0.2
+  <AfterDelayTime>k__BackingField: 0.2

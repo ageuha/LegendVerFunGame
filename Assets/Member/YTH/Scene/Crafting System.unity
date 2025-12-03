@@ -164,15 +164,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultMaterials:
-  - {fileID: 11400000, guid: f8bab177737b0e24f85cfd8c8717bbc0, type: 2}
-  - {fileID: 11400000, guid: f8bab177737b0e24f85cfd8c8717bbc0, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 11400000, guid: ab7decbc0add4fe41880f8c396de8ce5, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 11400000, guid: c3498d198acd0164dae1fe3018e6e2d6, type: 2}
-  - {fileID: 11400000, guid: c3498d198acd0164dae1fe3018e6e2d6, type: 2}
+  - itemData: {fileID: 11400000, guid: f8bab177737b0e24f85cfd8c8717bbc0, type: 2}
+    stackSize: 2
+  - itemData: {fileID: 11400000, guid: f8bab177737b0e24f85cfd8c8717bbc0, type: 2}
+    stackSize: 3
+  - itemData: {fileID: 0}
+    stackSize: 0
+  - itemData: {fileID: 0}
+    stackSize: 0
+  - itemData: {fileID: 11400000, guid: f8bab177737b0e24f85cfd8c8717bbc0, type: 2}
+    stackSize: 1
+  - itemData: {fileID: 0}
+    stackSize: 0
+  - itemData: {fileID: 0}
+    stackSize: 0
+  - itemData: {fileID: 11400000, guid: c3498d198acd0164dae1fe3018e6e2d6, type: 2}
+    stackSize: 3
+  - itemData: {fileID: 11400000, guid: c3498d198acd0164dae1fe3018e6e2d6, type: 2}
+    stackSize: 4
   recipeList:
   - {fileID: 11400000, guid: 9a4aa26cd7b3d874eb648609e93ed88c, type: 2}
 --- !u!1 &1970006200
