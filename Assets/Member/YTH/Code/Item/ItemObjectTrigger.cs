@@ -2,7 +2,6 @@ using System;
 using Code.Core.Utility;
 using Member.KJW.Code.Player;
 using UnityEngine;
-using YTH.Code.Interface;
 
 namespace YTH.Code.Item
 {
