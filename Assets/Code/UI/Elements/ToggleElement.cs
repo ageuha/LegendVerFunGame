@@ -1,10 +1,8 @@
-using System;
-using Code.Core.Utility;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Code.UI.Elements {
-    [RequireComponent(typeof(Image))]
+    // [RequireComponent(typeof(Image))]
     public class ToggleElement : MonoBehaviour, IUIElement<bool> {
         [SerializeField] private Sprite onSprite;
         [SerializeField] private Sprite offSprite;
@@ -13,7 +11,11 @@ namespace Code.UI.Elements {
         private bool _isOn;
 
         private void OnValidate() {
-            visual ??= GetComponent<Image>();
+            visual ??= GetComponentInChildren<Image>();
+        }
+
+        private void Reset() {
+            visual ??= GetComponentInChildren<Image>();
         }
 
         private void Awake() {

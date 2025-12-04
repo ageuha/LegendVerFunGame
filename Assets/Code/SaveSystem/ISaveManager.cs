@@ -4,7 +4,7 @@
     /// </summary>
     /// <typeparam name="T">저장할 타입</typeparam>
     public interface ISaveManager<T> {
-        void SaveToJson(T data);
+        void SaveToFile(T data);
         T LoadSaveData();
         void DeleteSave();
     }

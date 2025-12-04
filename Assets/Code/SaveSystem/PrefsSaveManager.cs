@@ -4,7 +4,7 @@ namespace Code.SaveSystem {
     public class PrefsSaveManager<T> : SaveManagerBase<T> {
         protected override string Filepath { get; }
 
-        public override void SaveToJson(T data) {
+        public override void SaveToFile(T data) {
             string jsonData = JsonUtility.ToJson(data);
             PlayerPrefs.SetString(Filepath, jsonData);
         }
