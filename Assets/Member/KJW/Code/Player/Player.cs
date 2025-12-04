@@ -12,12 +12,10 @@ namespace Member.KJW.Code.Player
         public Interactor Interactor { get; private set; }
         public AgentMovement MoveCompo {get; private set;}
         public bool IsRolling { get; private set; }
-
         public Vector2 StandDir { get; private set; } = Vector2.right;
         private bool _isInvincible;
         private float _coolTimer;
         private int _remainRoll;
-
         public int RemainRoll
         {
             get => _remainRoll;
