@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Code.UI.Elements;
 using TMPro;
 using UnityEngine;
@@ -10,7 +9,7 @@ namespace Code.UI.Setting.Volume {
         [SerializeField] private TextMeshProUGUI tmp;
 
         private sbyte _idx;
-        
+
         protected override void AfterAwake() {
             base.AfterAwake();
             _idx = 0; // 나중에 세이브 시스템 구축하면 값 가져와야 함.

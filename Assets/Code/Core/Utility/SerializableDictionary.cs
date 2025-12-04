@@ -5,28 +5,28 @@ using UnityEngine;
 namespace Code.Core.Utility {
     /// <summary>
     /// 이거 진짜 Json직렬화 용이니까, Dictionary 대체로 쓰면 안됨.
-    /// <para>콘크리트 클래스 만드는 건 기본인 거 알지?</para>
+    /// <para>+ 콘크리트 클래스 만들어야 직렬화 가능</para>
     /// </summary>
     /// <typeparam name="TKey">Key타입</typeparam>
     /// <typeparam name="TValue">Value타입</typeparam>
     [Serializable]
-    public class SerializableDictionary<TKey, TValue> {
+    public abstract class SerializableDictionary<TKey, TValue> {
         [SerializeField] private List<TKey> keys;
         [SerializeField] private List<TValue> values;
 
         private Dictionary<TKey, TValue> _dict;
 
-        public SerializableDictionary() {
+        protected SerializableDictionary() {
             keys = new List<TKey>();
             values = new List<TValue>();
         }
 
-        public SerializableDictionary(int capacity) {
+        protected SerializableDictionary(int capacity) {
             keys = new List<TKey>(capacity);
             values = new List<TValue>(capacity);
         }
 
-        public SerializableDictionary(Dictionary<TKey, TValue> dict) {
+        protected SerializableDictionary(Dictionary<TKey, TValue> dict) {
             keys = new List<TKey>(dict.Keys);
             values = new List<TValue>(dict.Values);
         }

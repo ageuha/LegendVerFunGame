@@ -9,7 +9,6 @@ namespace Member.KJW.Code.Player
     {
         [field: SerializeField] public InputReader InputReader { get; private set; }
         [field: SerializeField] public RollingData RollingData { get; private set; }
-        public Interactor Interactor { get; private set; }
         public AgentMovement MoveCompo {get; private set;}
         public bool IsRolling { get; private set; }
         public Vector2 StandDir { get; private set; } = Vector2.right;
@@ -25,11 +24,9 @@ namespace Member.KJW.Code.Player
         private void Awake()
         {
             MoveCompo = GetComponent<AgentMovement>();
-            Interactor = GetComponent<Interactor>();
 
             InputReader.OnRolled += Roll;
             InputReader.OnMoved += UpdateStandDir;
-            InputReader.OnInteracted += Interactor.Interact;
 
             RemainRoll = RollingData.MaxRoll;
         }
@@ -51,7 +48,6 @@ namespace Member.KJW.Code.Player
         {
             InputReader.OnRolled -= Roll;
             InputReader.OnMoved -= UpdateStandDir;
-            InputReader.OnInteracted -= Interactor.Interact;
         }
 
         private void UpdateStandDir(Vector2 dir)
