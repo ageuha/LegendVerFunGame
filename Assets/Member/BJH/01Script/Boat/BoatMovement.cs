@@ -1,5 +1,3 @@
-using System;
-using Member.BJH._01Script.Boat;
 using UnityEngine;
 
 namespace Member.BJH._01Script.Boat

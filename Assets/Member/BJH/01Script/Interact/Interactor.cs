@@ -27,7 +27,7 @@ namespace Member.BJH._01Script.Interact
             _interactableThing?.Interaction(gameObject);
         }
 
-        private void OnDrawGizmos()
+        void OnDrawGizmosSelected()
         {
             Gizmos.DrawWireSphere(_interactionPoint.position, _interactionPointRadius);
         }

@@ -45,12 +45,9 @@ namespace Member.BJH._01Script.Boat
         {
             if (_isPlayerInBoat)
             {
-                Vector2 mousePos = _target.GetComponent<Player>().InputReader.MousePos;
-                Vector3 screenPos = new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z);
-                mouseWorldPos = Camera.main.ScreenToWorldPoint(screenPos);
+                mouseWorldPos = Camera.main.ScreenToWorldPoint(_target.GetComponent<Player>().InputReader.MousePos);
 
                 _boatMovement.SetMove(mouseWorldPos - transform.position, _isPlayerMousePressed);
-                _target.transform.localPosition = Vector2.zero;
             }
             else
             {
@@ -62,15 +59,15 @@ namespace Member.BJH._01Script.Boat
         {
             _target = target;
             _isPlayerInBoat = true;
-            _target.transform.parent = transform;
             _target.GetComponent<AgentMovement>().StopMove();
+            _target.transform.SetParent(transform);
             _target.transform.localPosition = Vector2.zero;
         }
         public void Exit()
         {
-            _target.GetComponent<AgentMovement>().SetMove(Vector2.zero);
+            _target.GetComponent<AgentMovement>().RestartMove();
             _target.transform.position = transform.position + transform.up;
-            _target.transform.parent = null;
+            _target.transform.SetParent(null);
             _isPlayerInBoat = false;
             _target = null;
             _isPlayerMousePressed = false;

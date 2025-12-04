@@ -62,7 +62,7 @@ namespace Member.KJW.Code.Player
 
         private void Roll()
         {
-            if (RemainRoll == 0 || IsRolling) return;
+            if (RemainRoll == 0 || IsRolling || MoveCompo.IsStop) return;
 
             --RemainRoll;
             IsRolling = true;
@@ -73,6 +73,7 @@ namespace Member.KJW.Code.Player
         {
             IsRolling = false;
             _isInvincible = false;
+            MoveCompo.RestartMove();
         }
 
         public void GetDamage(DamageInfo damageInfo)
