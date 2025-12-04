@@ -2144,6 +2144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <BuildingEventSO>k__BackingField: {fileID: 11400000, guid: fb892e74a82e7b541b8b69989e423a4d, type: 2}
+  IsDisable: 0
 --- !u!4 &720774214
 Transform:
   m_ObjectHideFlags: 0
@@ -2390,7 +2391,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <BakedDataSO>k__BackingField: {fileID: 11400000, guid: 5e26359174c96234a86a2a2f3e9ca8ab, type: 2}
-  <NodeDataManager>k__BackingField: {fileID: 1710434417}
 --- !u!4 &1349295556
 Transform:
   m_ObjectHideFlags: 0
