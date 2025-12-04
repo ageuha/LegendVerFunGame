@@ -4,10 +4,9 @@ using UnityEngine;
 
 namespace Member.JJW.Code.InteractableObject
 {
-    public abstract class InteractableObject : MonoBehaviour,IInteractable
+    public abstract class ResourcesObject : MonoBehaviour,IInteractable<float>
     {
-        public abstract int Hp { get; set; }
-        public abstract void Interaction(int  decreaseAmount);
         public abstract void SpawnItem();
+        public abstract void Interaction(float value);
     }
 }
