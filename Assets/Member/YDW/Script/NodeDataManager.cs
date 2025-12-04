@@ -10,7 +10,7 @@ namespace Member.YDW.Script
     public enum ObjectType
     {
         Building,
-        Resource,
+        Resource
     }
     public class NodeDataManager : MonoBehaviour
     {

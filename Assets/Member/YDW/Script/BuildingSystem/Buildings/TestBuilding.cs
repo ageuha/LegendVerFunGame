@@ -9,7 +9,6 @@ namespace Member.YDW.Script.BuildingSystem.Buildings
     public class TestBuilding : HealthSystem, IBuilding
     {
         //추후 스탯을 SO로 받아올 예정? 임.
-        public ICooldownBar CooldownBar { get; private set; }
         public List<NodeData> CurrentNodeData { get; private set; }
         public BuildingDataSO BuildingData { get; private set; }
         public void Initialize(BuildingDataSO buildingData, List<NodeData> currentNodeData)

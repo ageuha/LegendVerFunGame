@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Code.Core.Utility;
+using Member.YDW.Script.BuildingSystem.Buildings;
 using Member.YDW.Script.EventStruct;
 using Member.YDW.Script.PathFinder;
 using NUnit.Framework.Internal;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -13,9 +15,7 @@ namespace Member.YDW.Script.BuildingSystem
     public class BuildingBuilder : MonoBehaviour
     {
         [field: SerializeField] public BuildingEventSO BuildingEventSO { get; private set; }
-        [field: SerializeField] public BuildingManagerEventSO BuildingManagerEventSO { get; private set; }
-
-        private bool IsDisable;
+     private bool IsDisable;
         private void Awake()
         {
             BuildingEventSO.OnEvent += BuildBuilding;
@@ -47,23 +47,7 @@ namespace Member.YDW.Script.BuildingSystem
                 Logging.Log("정상적인 위치 노드 선택바람.");
                 return false;
             }
-            List<NodeData> nodeDatas = new();
-            nodeDatas.Add(obj.buildNode);
-            Vector2Int newSize = new Vector2Int(obj.buildingData.BuildingSize.x == 1 ? 0 : obj.buildingData.BuildingSize.x, obj.buildingData.BuildingSize.y == 1 ? 0 : obj.buildingData.BuildingSize.y);
-            for (float i = -newSize.y / 2f; i < newSize.y; i+= 0.5f)
-            {
-                for (float j = -newSize.x / 2f; j < newSize.x; j+= 0.5f)
-                {
-                    if (ValueProvider.Instance.BakedDataSO.TryGetNode(new Vector3(j, i), out NodeData nodeData))
-                    {
-                        if (!nodeDatas.Contains(nodeData))
-                        {
-                            nodeDatas.Add(nodeData);
-                        }
-                    }
-                    
-                }
-            } //건물이 설치되는 위치 노드를 저장.
+            List<NodeData> nodeDatas = GetBuildingSizeNodes(obj.buildNode, obj.buildingData);
 
             foreach (NodeData nodeData in nodeDatas)
             {
@@ -104,27 +88,11 @@ namespace Member.YDW.Script.BuildingSystem
         {
             if(obj.buildingData.BuildingWaitPrefab == null)
                 Logging.Log("BuildingData In Building");
-            List<NodeData> nodeDatas = new();
-            nodeDatas.Add(obj.buildNode);
-            Vector2Int newSize = new Vector2Int(obj.buildingData.BuildingSize.x == 1 ? 0 : obj.buildingData.BuildingSize.x, obj.buildingData.BuildingSize.y == 1 ? 0 : obj.buildingData.BuildingSize.y);
-            for (float i = -newSize.y / 2f; i < newSize.y; i+= 0.5f)
-            {
-                for (float j = -newSize.x / 2f; j < newSize.x; j+= 0.5f)
-                {
-                    if (ValueProvider.Instance.BakedDataSO.TryGetNode(new Vector3(j, i), out NodeData nodeData))
-                    {
-                        if (!nodeDatas.Contains(nodeData))
-                        {
-                            nodeDatas.Add(nodeData);
-                        }
-                    }
-                    
-                }
-            } //건물이 설치되는 위치 노드를 저장.
-            /*foreach (NodeData nodeData in nodeDatas)
+            List<NodeData> nodeDatas = GetBuildingSizeNodes(obj.buildNode, obj.buildingData);
+            foreach (NodeData nodeData in nodeDatas)
             {
                 Logging.Log($"최종 세팅 노드들 : {nodeData.worldPosition}");
-            }*/
+            }
             //풀 메니저 사용 예정
             IBuilding building =
                 Instantiate(obj.buildingData.BuildingPrefab, obj.buildNode.worldPosition, Quaternion.identity)
@@ -132,16 +100,44 @@ namespace Member.YDW.Script.BuildingSystem
             building.Initialize(obj.buildingData, nodeDatas);
             ValueProvider.Instance.NodeDataManager.eventSO.Raise(new NodeDataManagerEvent(NodeDataManagerEventType.Add,
                 ObjectType.Building,building,nodeDatas));
-            BuildingManagerEventSO.Raise(new BuildingManagerEvent(BuildingManagerEventType.AddBuilding,nodeDatas,obj.buildingData,building));
-            
-            
         }
 
         private void CreateWaiteBuilding(BuildingEvent obj)
         {
             //풀 메니저 사용 예정
-            ICooldownBar bar = Instantiate(obj.buildingData.BuildingWaitPrefab,obj.buildNode.worldPosition,Quaternion.identity).GetComponentInChildren<ICooldownBar>();
-            bar.SetActiveBar(Time.unscaledTime, obj.buildingData.BuildTime);
+            CreateWaitBuilding building = Instantiate(obj.buildingData.BuildingWaitPrefab, obj.buildNode.worldPosition,
+                Quaternion.identity).GetComponentInChildren<CreateWaitBuilding>();
+            List<NodeData>  nodeDatas = GetBuildingSizeNodes(obj.buildNode, obj.buildingData);
+            ValueProvider.Instance.NodeDataManager.eventSO.Raise(new NodeDataManagerEvent(NodeDataManagerEventType.Add,
+                ObjectType.Building,building,nodeDatas));
+            building.Initialize(obj.buildingData,nodeDatas);
+           building.CooldownBar.Value.SetActiveBar(Time.unscaledTime, obj.buildingData.BuildTime);
+           foreach (NodeData nodeData in nodeDatas)
+           {
+               Logging.Log($"최종 세팅 노드들 (건설현장) : {nodeData.worldPosition}");
+           }
+        }
+        private List<NodeData> GetBuildingSizeNodes(NodeData buildingNode, BuildingDataSO buildingData)
+        {
+            List<NodeData> nodeDatas = new();
+            nodeDatas.Add(buildingNode);
+            for (float i = -buildingData.BuildingSize.y / 2f; i <= buildingData.BuildingSize.y; i+= 0.5f)
+            {
+                for (float j = -buildingData.BuildingSize.x / 2f; j <= buildingData.BuildingSize.x; j+= 0.5f)
+                {
+                    if (ValueProvider.Instance.BakedDataSO.TryGetNode(new Vector3(Mathf.Approximately(j, 1f) && buildingData.BuildingSize.x == 1 ? 0 : j
+                            ,Mathf.Approximately(i, 1f) && buildingData.BuildingSize.y == 1 ? 0 : i), out NodeData nodeData))
+                    {
+                        Logging.Log($"가져온 노드 데이터 : {nodeData.worldPosition}");
+                        if (!nodeDatas.Contains(nodeData))
+                        {
+                            nodeDatas.Add(nodeData);
+                        }
+                    }
+                    
+                }
+            }
+            return nodeDatas;
         }
 
         private void OnDisable()
