@@ -1,4 +1,5 @@
 ﻿using Code.Events;
+using Member.YDW.Script.EventStruct;
 using UnityEngine;
 
 namespace Member.YDW.Script

@@ -1,4 +1,6 @@
-﻿namespace Member.YDW.Script.BuildingSystem.EventStruct
+﻿using Member.YDW.Script.BuildingSystem;
+
+namespace Member.YDW.Script.EventStruct
 {
     public struct BuildingCooldownEvent
     {

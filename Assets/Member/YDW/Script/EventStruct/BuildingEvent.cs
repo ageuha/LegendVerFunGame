@@ -1,6 +1,7 @@
-﻿using Member.YDW.Script.PathFinder;
+﻿using Member.YDW.Script.BuildingSystem;
+using Member.YDW.Script.PathFinder;
 
-namespace Member.YDW.Script.BuildingSystem.EventStruct
+namespace Member.YDW.Script.EventStruct
 {
     public struct BuildingEvent
     {

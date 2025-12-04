@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
+using Member.YDW.Script.BuildingSystem;
 using Member.YDW.Script.PathFinder;
-using UnityEditor.Experimental.GraphView;
-using UnityEngine;
 
-namespace Member.YDW.Script.BuildingSystem.EventStruct
+namespace Member.YDW.Script.EventStruct
 {
     public enum BuildingManagerEventType
     {

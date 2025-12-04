@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Code.Core.Utility;
-using Member.YDW.Script.BuildingSystem.EventStruct;
+using Member.YDW.Script.EventStruct;
 using Member.YDW.Script.PathFinder;
 using NUnit.Framework.Internal;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Member.YDW.Script.BuildingSystem
 {
@@ -46,6 +47,34 @@ namespace Member.YDW.Script.BuildingSystem
                 Logging.Log("정상적인 위치 노드 선택바람.");
                 return false;
             }
+            List<NodeData> nodeDatas = new();
+            nodeDatas.Add(obj.buildNode);
+            Vector2Int newSize = new Vector2Int(obj.buildingData.BuildingSize.x == 1 ? 0 : obj.buildingData.BuildingSize.x, obj.buildingData.BuildingSize.y == 1 ? 0 : obj.buildingData.BuildingSize.y);
+            for (float i = -newSize.y / 2f; i < newSize.y; i+= 0.5f)
+            {
+                for (float j = -newSize.x / 2f; j < newSize.x; j+= 0.5f)
+                {
+                    if (ValueProvider.Instance.BakedDataSO.TryGetNode(new Vector3(j, i), out NodeData nodeData))
+                    {
+                        if (!nodeDatas.Contains(nodeData))
+                        {
+                            nodeDatas.Add(nodeData);
+                        }
+                    }
+                    
+                }
+            } //건물이 설치되는 위치 노드를 저장.
+
+            foreach (NodeData nodeData in nodeDatas)
+            {
+                if (ValueProvider.Instance.NodeDataManager.HasObject(nodeData))
+                {
+                    Logging.Log("건물을 겹치게 설치할 수 없습니다.");
+                    //재화 페이백 실행.
+                    return false;
+                }
+                    
+            }
 
             Collider2D obstacle = Physics2D.OverlapBox(new Vector3(obj.buildNode.worldPosition.x,obj.buildNode.worldPosition.y - obj.buildingData.BuildingSize.y/3f),
                 new Vector3(obj.buildingData.BuildingSize.x,obj.buildingData.BuildingSize.y/3f,0), 0); //어떻게 될진 모르겠으나, 따로 장애물을 레이어로 나누던가 뭔가 필터링 조취를 취해야 할듯.
@@ -54,7 +83,6 @@ namespace Member.YDW.Script.BuildingSystem
                 Logging.LogWarning("장애물이 존재합니다."); 
                 return false;
             }
-            
             //이미 건물이 존재합니다.
             //재화 체크는 여기서 필요하면 해줌.
             //추후 최대 한번에 생성 가능한 건물 대기열 수 같은게 생기면 추가로 조건 넣어야 할듯.
@@ -83,7 +111,7 @@ namespace Member.YDW.Script.BuildingSystem
             {
                 for (float j = -newSize.x / 2f; j < newSize.x; j+= 0.5f)
                 {
-                    if (ValueProvider.Instance._bakedDataSO.TryGetNode(new Vector3(j, i), out NodeData nodeData))
+                    if (ValueProvider.Instance.BakedDataSO.TryGetNode(new Vector3(j, i), out NodeData nodeData))
                     {
                         if (!nodeDatas.Contains(nodeData))
                         {
@@ -93,7 +121,6 @@ namespace Member.YDW.Script.BuildingSystem
                     
                 }
             } //건물이 설치되는 위치 노드를 저장.
-
             /*foreach (NodeData nodeData in nodeDatas)
             {
                 Logging.Log($"최종 세팅 노드들 : {nodeData.worldPosition}");
@@ -103,7 +130,8 @@ namespace Member.YDW.Script.BuildingSystem
                 Instantiate(obj.buildingData.BuildingPrefab, obj.buildNode.worldPosition, Quaternion.identity)
                     .GetComponent<IBuilding>();
             building.Initialize(obj.buildingData, nodeDatas);
-            
+            ValueProvider.Instance.NodeDataManager.eventSO.Raise(new NodeDataManagerEvent(NodeDataManagerEventType.Add,
+                ObjectType.Building,building,nodeDatas));
             BuildingManagerEventSO.Raise(new BuildingManagerEvent(BuildingManagerEventType.AddBuilding,nodeDatas,obj.buildingData,building));
             
             

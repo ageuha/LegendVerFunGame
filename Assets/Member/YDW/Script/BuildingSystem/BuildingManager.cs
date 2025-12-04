@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Member.YDW.Script.BuildingSystem.EventStruct;
+using Member.YDW.Script.EventStruct;
 using Member.YDW.Script.PathFinder;
 using UnityEngine;
 

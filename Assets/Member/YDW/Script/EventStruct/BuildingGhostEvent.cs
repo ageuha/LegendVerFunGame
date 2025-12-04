@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using Member.YDW.Script.BuildingSystem;
 
-namespace Member.YDW.Script.BuildingSystem.EventStruct
+namespace Member.YDW.Script.EventStruct
 {
     public struct BuildingGhostEvent
     {

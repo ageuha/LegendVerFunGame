@@ -2,7 +2,7 @@
 using Member.YDW.Script.BuildingSystem;
 using Member.YDW.Script.PathFinder;
 
-namespace Member.YDW.Script
+namespace Member.YDW.Script.EventStruct
 {
     public enum NodeDataManagerEventType
     {
@@ -15,7 +15,7 @@ namespace Member.YDW.Script
         public ObjectType objectType;
         public IBuilding building;
         public IInteractable interactable;
-        public List<NodeData> nodeData;
+        public List<NodeData> nodeDatas;
 
         public NodeDataManagerEvent(NodeDataManagerEventType eventType, ObjectType objectType,IBuilding building,List<NodeData> points)
         {
@@ -23,7 +23,7 @@ namespace Member.YDW.Script
             this.objectType = objectType;
             this.building = building;
             interactable = null;
-            nodeData = points;
+            nodeDatas = points;
         }
         public NodeDataManagerEvent(NodeDataManagerEventType eventType, ObjectType objectType,IInteractable interactable,List<NodeData> points)
         {
@@ -31,7 +31,7 @@ namespace Member.YDW.Script
             this.objectType = objectType;
             building = null;
             this.interactable = interactable;
-            nodeData = points;
+            nodeDatas = points;
         }
 
         
