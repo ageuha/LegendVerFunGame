@@ -20,7 +20,7 @@ namespace Code.Core.Pool {
             for (var i = 0; i < prefabs.Count; i++)
             {
                 var prefab = prefabs[i];
-                if (prefab == null) continue;
+                if (!prefab) continue;
                 if (prefab is IPoolable)
                     continue;
                 if (prefab.TryGetComponent(out IPoolable poolable))
