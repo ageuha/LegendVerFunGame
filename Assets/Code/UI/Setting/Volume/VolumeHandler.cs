@@ -6,8 +6,15 @@ namespace Code.UI.Setting.Volume {
     public class VolumeHandler : MonoBehaviour, ISettingValueHandler<float> {
         [SerializeField] private AudioMixerSO mixerSO;
 
+        private SettingType _settingType;
+
+        public void Initialize(SettingType settingType) {
+            _settingType = settingType;
+        }
+
         public void OnValueChanged(float prev, float current) {
             mixerSO.SetNormalized(current);
+            SettingSaveManager.Instance.SetFloat(_settingType, current);
         }
     }
 }
