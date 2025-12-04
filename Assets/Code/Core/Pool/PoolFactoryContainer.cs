@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace Code.Core.Pool {
-    public static class PoolFactoryContainer<T> where T : PoolableObject {
+    public static class PoolFactoryContainer<T> where T : MonoBehaviour, IPoolable {
         private static PoolFactory<T> _factory;
 
         public static void InitializeFactory(T prefab, int initialCapacity) {
