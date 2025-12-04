@@ -1,7 +1,7 @@
 ﻿namespace Member.JJW.Code.Interface
 {
-    public interface IInteractable
+    public interface IInteractable<T>
     {
-        public void Interaction(int  decreaseAmount);
+        public void Interaction(T value);
     }
 }
