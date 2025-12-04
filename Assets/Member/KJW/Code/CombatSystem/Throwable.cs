@@ -1,9 +1,10 @@
 ﻿using System;
+using Code.Core.Pool;
 using UnityEngine;
 
 namespace Member.KJW.Code.CombatSystem
 {
-    public class Throwable : MonoBehaviour
+    public class Throwable : MonoBehaviour, IPoolable
     {
         private Rigidbody2D _rb;
         private SpriteRenderer _renderer;
@@ -32,6 +33,15 @@ namespace Member.KJW.Code.CombatSystem
             {
                 id.GetDamage(_damageInfo);
             }
+        }
+
+        public GameObject GameObject => gameObject;
+        public void OnPopFromPool()
+        {
+        }
+
+        public void OnReturnToPool()
+        {
         }
     }
 }

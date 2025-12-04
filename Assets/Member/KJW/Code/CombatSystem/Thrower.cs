@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Code.Core.Pool;
 using UnityEngine;
 
 namespace Member.KJW.Code.CombatSystem
@@ -7,6 +9,11 @@ namespace Member.KJW.Code.CombatSystem
     {
         [SerializeField] private Transform throwPos;
         [SerializeField] private GameObject throwPrefab;
+
+        private void Awake()
+        {
+            Throwable th = PoolManager.Instance.Factory<Throwable>().Pop();
+        }
 
         public void Throw(DamageInfo damageInfo, Vector2 dir, float throwSpeed)
         {
