@@ -5,16 +5,23 @@ namespace Member.KJW.Code.CombatSystem
 {
     public class Throwable : MonoBehaviour
     {
-        [SerializeField] private Rigidbody2D rb;
+        private Rigidbody2D _rb;
+        private SpriteRenderer _renderer;
 
-        private void Reset()
+        private void Awake()
         {
-            rb ??= GetComponent<Rigidbody2D>();
+            _rb  = GetComponent<Rigidbody2D>();
+            _renderer = GetComponentInChildren<SpriteRenderer>();
+        }
+
+        public void Init()
+        {
+            
         }
 
         public void Throw(Vector2 dir, float speed)
         {
-            rb.linearVelocity = dir * speed;
+            _rb.linearVelocity = dir * speed;
         }
     }
 }
