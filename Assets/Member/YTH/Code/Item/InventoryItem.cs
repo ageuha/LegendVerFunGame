@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace YTH.Code.Item
 {    
@@ -6,46 +7,32 @@ namespace YTH.Code.Item
     public class InventoryItem
     {
         public ItemDataSO itemData;
-        public int stackSize;
+        public int Count;
+        public Vector2Int inventoryIndex;
 
-        public bool IsFullStack => stackSize >= itemData.MaxStack;
-        public bool IsEmpty => stackSize <= 0;
+        public bool IsFullStack => Count >= itemData.MaxStack;
+        public bool IsEmpty => Count <= 0;
 
-        public InventoryItem(ItemDataSO itemData, int stackSize)
+        public InventoryItem(ItemDataSO itemData, int stackSize, Vector2Int index)
         {
             this.itemData = itemData;
-            this.stackSize = stackSize;
+            this.Count = stackSize;
+            this.inventoryIndex = index;
         }
 
-        public int AddStack(int amount)
+        public void AddStack(int amount)
         {
-            int remainCount = 0;
-            stackSize += amount;
-
-            if (stackSize > itemData.MaxStack)
-            {
-                remainCount = stackSize - itemData.MaxStack;
-                stackSize = itemData.MaxStack;
-            }
-
-            return remainCount;
-            //남는거 반환
+            Count += amount;
         }
 
         public void RemoveStack(int amount = 1)
         {
-            stackSize -= amount;
+            Count -= amount;
 
-            if (stackSize < 0)
+            if (Count < 0)
             {
-                stackSize = 0;
+                Count = 0;
             }
-        }
-
-        public int GetRemainAmount()
-        {
-            return itemData.MaxStack - stackSize;
-            //부족한거 반환
         }
     }
 }

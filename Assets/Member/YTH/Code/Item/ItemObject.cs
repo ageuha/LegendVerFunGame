@@ -1,3 +1,4 @@
+using System;
 using Code.Core.Utility;
 using Member.KJW.Code.Player;
 using UnityEngine;
@@ -7,11 +8,11 @@ namespace YTH.Code.Item
 {
     public class ItemObject : MonoBehaviour, IPickable
     {
-        [SerializeField] private InventoryEventChannel inventoryEventChannel;
+        [SerializeField] private ItemObjectTrigger itemObjectTrigger;
+        [SerializeField] private InventoryAddEventChannel inventoryAddEventChannel;
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Rigidbody2D rb;
         [SerializeField] private ItemDataSO itemData;
-        [SerializeField] private ItemObjectTrigger itemObjectTrigger;
         [SerializeField] private float speed = 5;
         [SerializeField] private int amount = 1;
 
@@ -81,11 +82,11 @@ namespace YTH.Code.Item
 
         public void PickUp()
         {
-            Logging.Log($"Picked up item: {itemData.ItemName}");
-            inventoryEventChannel.Raise(new InventoryItem(itemData, amount));
+            for (int i = 0; i < amount; i++)
+            {
+                inventoryAddEventChannel.Raise(itemData);
+            }
             Destroy(gameObject);
-            
-
         }
     }
 
