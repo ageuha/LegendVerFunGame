@@ -7,11 +7,11 @@ namespace YTH.Code.Item
 {
     public class ItemObject : MonoBehaviour, IPickable
     {
+        [SerializeField] private ItemObjectTrigger itemObjectTrigger;
         [SerializeField] private InventoryEventChannel inventoryEventChannel;
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Rigidbody2D rb;
         [SerializeField] private ItemDataSO itemData;
-        [SerializeField] private ItemObjectTrigger itemObjectTrigger;
         [SerializeField] private float speed = 5;
         [SerializeField] private int amount = 1;
 
