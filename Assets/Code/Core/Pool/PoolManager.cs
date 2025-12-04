@@ -17,12 +17,13 @@ namespace Code.Core.Pool {
         }
 
         private void InitializeDictionary() {
-            _itemDictionary = items.Prefabs.ToDictionary(poolable => poolable.GetType());
+            _itemDictionary ??= items.Prefabs.ToDictionary(poolable => poolable.GetType());
         }
 
         public PoolFactory<T> Factory<T>() where T : MonoBehaviour, IPoolable {
+            if (_itemDictionary == null) InitializeDictionary();
             if (PoolFactoryContainer<T>.Factory == null) {
-                if (!_itemDictionary.TryGetValue(typeof(T), out var prefab)) {
+                if (!_itemDictionary!.TryGetValue(typeof(T), out var prefab)) {
                     Logging.LogError($"No prefab of type {typeof(T)}");
                     return null;
                 }
