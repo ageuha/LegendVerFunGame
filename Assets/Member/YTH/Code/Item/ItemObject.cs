@@ -1,9 +1,8 @@
-using System.Collections;
 using Code.Core.Utility;
-using DG.Tweening;
 using Member.KJW.Code.Player;
 using UnityEngine;
 using YTH.Code.Interface;
+using YTH.Code.Inventory;
 
 namespace YTH.Code.Item
 {
@@ -16,7 +15,7 @@ namespace YTH.Code.Item
         [SerializeField] private float speed = 5;
 
         private bool m_isLoockOn;
-        private Transform m_target;
+        private Player m_player;
 
         private void OnValidate()
         {
@@ -46,7 +45,7 @@ namespace YTH.Code.Item
             if(m_isLoockOn)
             {    
                 Logging.Log("Move");
-                Vector3 targetPos = m_target.position;
+                Vector3 targetPos = m_player.transform.position;
                 rb.AddForce((targetPos - transform.position).normalized * speed * Time.deltaTime, ForceMode2D.Impulse);
 
                 float distance = Vector3.Distance(transform.position, targetPos);
@@ -59,7 +58,7 @@ namespace YTH.Code.Item
         {
             Logging.Log("LockOn");
             
-            m_target = player.transform;
+            m_player = player;
             m_isLoockOn = true;
         }
 
@@ -86,6 +85,7 @@ namespace YTH.Code.Item
         {
             Logging.Log($"Picked up item: {itemData.ItemName}");
             Destroy(gameObject);
+            m_player.GetComponent<PlayerInventory>().AddItem(itemData);
 
         }
     }
