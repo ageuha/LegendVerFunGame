@@ -220,7 +220,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 724235180653317779, guid: 209d5b700103ce44891453d41c3b74f8, type: 3}
       propertyPath: amount
-      value: 5
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 724235180653317779, guid: 209d5b700103ce44891453d41c3b74f8, type: 3}
       propertyPath: itemData
@@ -292,7 +292,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 797428457}
-  - component: {fileID: 797428456}
+  - component: {fileID: 797428458}
   m_Layer: 0
   m_Name: Player Inventory
   m_TagString: Untagged
@@ -300,21 +300,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &797428456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 797428455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69e9376b8d1650d4388904a04aec414a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventorySize: 36
-  inventory: []
-  inventoryEventChannel: {fileID: 11400000, guid: 3a9a2f82ac5f0e942987e26d903f9764, type: 2}
 --- !u!4 &797428457
 Transform:
   m_ObjectHideFlags: 0
@@ -330,6 +315,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &797428458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797428455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fd64b208f9b0f9468b7c73e4c6e038c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryAddEventChannel: {fileID: 11400000, guid: 3a9a2f82ac5f0e942987e26d903f9764, type: 2}
+  inventoryRemoveEventChannel: {fileID: 11400000, guid: 324f0225ee6b41c4a9f62e92eda6508f, type: 2}
 --- !u!1001 &1193654098
 PrefabInstance:
   m_ObjectHideFlags: 0
