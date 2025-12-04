@@ -12,7 +12,7 @@ namespace YTH.Code.Test
 
         public void Testing()
         {
-            inventoryData.AddItem(itemDataSO, amount);
+            inventoryData.AddItem(new InventoryItem(itemDataSO, amount));
         }
     }
 }
