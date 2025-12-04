@@ -1,3 +1,5 @@
+using System;
+using Code.EntityScripts;
 using Member.BJH._01Script.Interact;
 using Member.KJW.Code.CombatSystem;
 using Member.KJW.Code.Data;
@@ -10,11 +12,16 @@ namespace Member.KJW.Code.Player
     {
         [field: SerializeField] public InputReader InputReader { get; private set; }
         [field: SerializeField] public RollingData RollingData { get; private set; }
+        
         public AgentMovement MoveCompo { get; private set; }
+        public HealthSystem HealthCompo { get; private set; }
         public Interactor Interactor { get; private set; }
+        
         public bool IsRolling { get; private set; }
         public Vector2 StandDir { get; private set; } = Vector2.right;
+        
         private bool _isInvincible;
+        
         private float _coolTimer;
         private int _remainRoll;
         public int RemainRoll
@@ -22,17 +29,23 @@ namespace Member.KJW.Code.Player
             get => _remainRoll;
             private set => _remainRoll = Mathf.Clamp(value, 0, RollingData.MaxRoll);
         }
-
+        
+        
+        
         private void Awake()
         {
             MoveCompo = GetComponent<AgentMovement>();
+            HealthCompo = GetComponent<HealthSystem>();
             Interactor = GetComponent<Interactor>();
 
+            RemainRoll = RollingData.MaxRoll;
+        }
+
+        private void OnEnable()
+        {
             InputReader.OnInteracted += Interactor.Interact;
             InputReader.OnRolled += Roll;
             InputReader.OnMoved += UpdateStandDir;
-
-            RemainRoll = RollingData.MaxRoll;
         }
 
         private void Update()
@@ -48,7 +61,7 @@ namespace Member.KJW.Code.Player
             _coolTimer += Time.deltaTime;
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             InputReader.OnInteracted -= Interactor.Interact;
             InputReader.OnRolled -= Roll;
@@ -79,6 +92,7 @@ namespace Member.KJW.Code.Player
         public void GetDamage(DamageInfo damageInfo)
         {
             if (_isInvincible) return;
+            HealthCompo.ApplyDamage(damageInfo.Damage);
         }
     }
 }
