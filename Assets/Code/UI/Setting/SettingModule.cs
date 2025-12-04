@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 namespace Code.UI.Setting {
     public abstract class SettingModule<T> : MonoBehaviour where T : struct {
+        [field: SerializeField] public SettingType SettingType { get; private set; }
+
         [SerializeField] protected Button leftButton;
         [SerializeField] protected Button rightButton;
         [SerializeField] protected SerializeHelper<ISettingValueHandler<T>> valueHandler;
@@ -16,6 +18,7 @@ namespace Code.UI.Setting {
             leftButton.onClick.AddListener(OnLeftButtonClicked);
             rightButton.onClick.AddListener(OnRightButtonClicked);
             SettingValue = new NotifyValue<T>();
+            valueHandler.Value.Initialize(SettingType);
             SettingValue.OnValueChanged += valueHandler.Value.OnValueChanged;
             AfterAwake();
         }
@@ -32,7 +35,7 @@ namespace Code.UI.Setting {
 
         protected virtual void AfterAwake() {
         }
-        
+
         public abstract void SetSettingValue(T value);
     }
 }

@@ -15,13 +15,13 @@ namespace Code.UI.Setting {
         }
 
         private void LoadSetting() {
-            _saveData = _saveManager.LoadSaveData();
+            _saveData.LoadSaveData(_saveManager, capacity: 6);
             _floatData = _saveData.floatSetting.ToDictionary();
         }
 
         public void SaveSetting() {
-            // _saveData.floatSetting = new FloatSettingDict(_floatData);
-            _saveManager.SaveToJson(_saveData);
+            _saveData.floatSetting = new FloatSettingDict(_floatData);
+            _saveManager.SaveToFile(_saveData);
         }
 
         public void SetFloat(SettingType type, float value) {

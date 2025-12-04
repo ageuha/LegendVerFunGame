@@ -35,12 +35,11 @@ namespace Code.UI.Setting.Volume {
             if (eventData.button != PointerEventData.InputButton.Left) return;
             if (!Mathf.Approximately(settingModule.Value.ExposedValue.Value,
                     transform.GetSiblingIndex() * ReciprocalOfSiblingCount + ReciprocalOfSiblingCount)) {
-                settingModule.Value.SetSettingValue(transform.GetSiblingIndex() * ReciprocalOfSiblingCount);
+                settingModule.Value.SetSettingValue((transform.GetSiblingIndex() + 1) * ReciprocalOfSiblingCount);
                 Logging.Log("1번");
             }
             else {
-                settingModule.Value.SetSettingValue(transform.GetSiblingIndex() * ReciprocalOfSiblingCount -
-                                                    ReciprocalOfSiblingCount);
+                settingModule.Value.SetSettingValue(transform.GetSiblingIndex() * ReciprocalOfSiblingCount);
                 Logging.Log("2번");
             }
         }
