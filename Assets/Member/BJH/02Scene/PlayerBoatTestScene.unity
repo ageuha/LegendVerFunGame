@@ -277,7 +277,7 @@ MonoBehaviour:
   _interactionPointRadius: 3
   _interactionMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 256
 --- !u!1 &925887473
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,7 +557,7 @@ GameObject:
   - component: {fileID: 1683633030}
   - component: {fileID: 1683633031}
   - component: {fileID: 1683633032}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Boat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
