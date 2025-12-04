@@ -283,11 +283,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1cc3297033970e4ab5f9f352222a02a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryEventChannel: {fileID: 11400000, guid: 3a9a2f82ac5f0e942987e26d903f9764, type: 2}
   spriteRenderer: {fileID: 1295839682076747344}
   rb: {fileID: 4837945640928975551}
   itemData: {fileID: 0}
   itemObjectTrigger: {fileID: 2972269379391930811}
-  speed: 15
+  speed: 20
+  amount: 1
 --- !u!1 &1775467302103644444
 GameObject:
   m_ObjectHideFlags: 0

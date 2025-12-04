@@ -8,26 +8,33 @@ namespace YTH.Code.Inventory
 {
     public class PlayerInventory : InventoryData
     {
+        [SerializeField] private InventoryEventChannel inventoryEventChannel;
         protected override void Awake()
         {
             base.Awake();
+            inventoryEventChannel.OnEvent += AddItem;
         }
 
-        public override void AddItem(ItemDataSO itemData, int amount = 1)
+        private void OnDestroy()
         {
-            if (!CanAddItem(itemData, amount)) return;
+            inventoryEventChannel.OnEvent -= AddItem;
+        }
 
-            int remain = amount;
+        public override void AddItem(InventoryItem inventoryItem)
+        {
+            if (!CanAddItem(inventoryItem)) return;
+
+            int remain = inventoryItem.stackSize;
 
             for (int i = 0; i < inventory.Count; i++)
             {
                 var item = inventory[i];
                 if (item == null) continue;
                 if (item.IsEmpty) continue;
-                if (item.itemData != itemData) continue;
+                if (item.itemData != inventoryItem.itemData) continue;
                 if (item.IsFullStack) continue;
 
-                item.itemData ??= itemData;
+                item.itemData ??= inventoryItem.itemData;
 
                 int added = item.GetRemainAmount();
                 int count = Mathf.Min(added, remain);
@@ -45,8 +52,8 @@ namespace YTH.Code.Inventory
             {
                 var item = GetEmptySlot();
 
-                item ??= new(itemData, 0);
-                item.itemData ??= itemData;
+                item ??= new(inventoryItem.itemData, 0);
+                item.itemData ??= inventoryItem.itemData;
 
                 int added = item.GetRemainAmount();
                 int count = Mathf.Min(added, remain);
@@ -60,35 +67,34 @@ namespace YTH.Code.Inventory
         
         }
 
-        public override bool CanAddItem(ItemDataSO itemData, int amount)
+        public override bool CanAddItem(InventoryItem inventoryItem)
         {
-            if (itemData == null || amount <= 0) 
+            if (inventoryItem.itemData == null || inventoryItem.stackSize <= 0) 
             {
                 Logging.LogWarning("공간이 존재하지 않거나, 넣을 아이템이 존재하지 않습니다.");
                 return false;
             }
 
-            int remain = amount;
+            int remain = inventoryItem.stackSize;
             for (int i = 0; i < inventory.Count; i++)
             {
                 var item = inventory[i];
                 if (item == null) continue;
                 if (item.IsEmpty) continue;
-                if (item.itemData != itemData) continue;
+                if (item.itemData != inventoryItem.itemData) continue;
                 if (item.IsFullStack) continue;
 
                 int free = item.GetRemainAmount();
-                Logging.Log($"Free : {free}");
                 if (remain <= free) return true;
 
                 remain -= free;
             }
 
-            remain -= GetRemainSlotCount() * itemData.MaxStack;
+            remain -= GetRemainSlotCount() * inventoryItem.itemData.MaxStack;
             return remain <= 0;
         }
 
-        public override void RemoveItem(ItemDataSO itemData, int amount)
+        public override void RemoveItem(InventoryItem inventoryItem)
         {
         }
 

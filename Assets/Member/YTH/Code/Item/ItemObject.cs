@@ -2,20 +2,21 @@ using Code.Core.Utility;
 using Member.KJW.Code.Player;
 using UnityEngine;
 using YTH.Code.Interface;
-using YTH.Code.Inventory;
 
 namespace YTH.Code.Item
 {
     public class ItemObject : MonoBehaviour, IPickable
     {
+        [SerializeField] private InventoryEventChannel inventoryEventChannel;
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Rigidbody2D rb;
         [SerializeField] private ItemDataSO itemData;
         [SerializeField] private ItemObjectTrigger itemObjectTrigger;
         [SerializeField] private float speed = 5;
+        [SerializeField] private int amount = 1;
 
         private bool m_isLoockOn;
-        private Player m_player;
+        private Transform m_target;
 
         private void OnValidate()
         {
@@ -44,11 +45,9 @@ namespace YTH.Code.Item
         {
             if(m_isLoockOn)
             {    
-                Logging.Log("Move");
-                Vector3 targetPos = m_player.transform.position;
-                rb.AddForce((targetPos - transform.position).normalized * speed * Time.deltaTime, ForceMode2D.Impulse);
+                rb.AddForce((m_target.position - transform.position).normalized * speed * Time.deltaTime, ForceMode2D.Impulse);
 
-                float distance = Vector3.Distance(transform.position, targetPos);
+                float distance = Vector3.Distance(transform.position, m_target.position);
                 float scale = Mathf.Clamp01(distance);
                 transform.localScale = new Vector3(scale, scale, 1);
             }
@@ -56,10 +55,8 @@ namespace YTH.Code.Item
 
         private void OnLockOn(Player player)
         {
-            Logging.Log("LockOn");
-            
-            m_player = player;
             m_isLoockOn = true;
+            m_target = player.transform;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -74,8 +71,9 @@ namespace YTH.Code.Item
         }
 
 
-        public void SetItemData(ItemDataSO newData)
+        public void SetItemData(ItemDataSO newData, int amount = 1)
         {
+            this.amount = amount;
             itemData = newData;
             spriteRenderer.sprite = itemData.Icon;
             gameObject.name = $"ItemObject_{itemData.ItemName}";
@@ -84,8 +82,9 @@ namespace YTH.Code.Item
         public void PickUp()
         {
             Logging.Log($"Picked up item: {itemData.ItemName}");
+            inventoryEventChannel.Raise(new InventoryItem(itemData, amount));
             Destroy(gameObject);
-            m_player.GetComponent<PlayerInventory>().AddItem(itemData);
+            
 
         }
     }

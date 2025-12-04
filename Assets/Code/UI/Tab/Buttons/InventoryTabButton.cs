@@ -1,7 +1,6 @@
 ﻿using Code.Core.GlobalSO;
 using Code.Core.GlobalStructs;
 using DG.Tweening;
-using Plugins.Demigiant.DOTween.Modules;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
