@@ -480,9 +480,12 @@ MonoBehaviour:
   transformEventChannel: {fileID: 11400000, guid: 71c26be25ef186541993fc243d58423d, type: 2}
   itemDetectionRadius: 2
   mask:
-    serializedVersion: 2
     m_Bits: 384
   damage: 10
+  _isCanInteract: 0
+  _moveDir: {x: 0, y: 0}
+  _rb: {fileID: 0}
+  _isClicked: 0
 --- !u!58 &307393408
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -876,10 +879,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d14568078c4446fa82bdc4b2006a9f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectableObject: {fileID: 106806446}
-  spawnItemCount: 5
-  itemSpawnRadius: 1.36
+  itemPrefab: {fileID: 0}
+  itemDataSO: {fileID: 0}
   hp: 100
+  spawnItemCount: 5
+  itemSpawnRadius: 2
 --- !u!61 &1405600313
 BoxCollider2D:
   m_ObjectHideFlags: 0
