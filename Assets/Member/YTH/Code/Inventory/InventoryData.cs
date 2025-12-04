@@ -57,9 +57,9 @@ namespace YTH.Code.Inventory
             return null;
         }
 
-        public abstract void AddItem(ItemDataSO itemData, int amount = 1);
-        public abstract void RemoveItem(ItemDataSO itemData, int amount);
-        public abstract bool CanAddItem(ItemDataSO itemData, int amount);
+        public abstract void AddItem(InventoryItem inventoryItem);
+        public abstract void RemoveItem(InventoryItem inventoryItem);
+        public abstract bool CanAddItem(InventoryItem inventoryItem);
         public abstract int GetRemainSlotCount();
     }
 }
