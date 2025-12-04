@@ -1,20 +1,18 @@
-﻿using System;
-using Code.EntityScripts;
+﻿using Code.EntityScripts;
 using Member.JJW.Code.Interface;
 using UnityEngine;
-using UnityEngine.Serialization;
 using YTH.Code.Interface;
 using YTH.Code.Item;
 using Random = UnityEngine.Random;
 
-namespace Member.JJW.Code.InteractableObject
+namespace Member.JJW.Code.ResourceObject
 {
-    public class Tree :  ResourcesObject
+    public class Resource : MonoBehaviour,IInteractable<float>
     {
         [SerializeField] private GameObject itemPrefab;
         [SerializeField] private ItemDataSO itemDataSO;
-        [SerializeField] private float hp;
-        [SerializeField] private int spawnItemCount =1;
+        [SerializeField] private float hp = 100;
+        [SerializeField] private int spawnItemAmount =1;
         [SerializeField] private float itemSpawnRadius = 1f;
         
         private HealthSystem _hp;
@@ -26,21 +24,21 @@ namespace Member.JJW.Code.InteractableObject
             _hp.OnDead += SpawnItem;
         }
 
-        public override void SpawnItem()
+        private void SpawnItem()
         {
-            for (int i = 0; i < spawnItemCount; i++)
+            for (int i = 0; i < spawnItemAmount; i++)
             {
                 Vector2 randomPos = (Vector2)transform.position + Random.insideUnitCircle;
-                GameObject item = Instantiate(itemPrefab,transform.position,Quaternion.identity);
-                if (item.TryGetComponent<IPickable>(out IPickable pickable))
+                GameObject item = Instantiate(itemPrefab,randomPos,Quaternion.identity);
+                if (item.TryGetComponent<ItemObject>(out ItemObject itemObject))
                 {
-                    //초기화
+                    itemObject.SetItemData(itemDataSO,spawnItemAmount);
                 }
             }
             Destroy(gameObject);
         }
 
-        public override void Interaction(float value)
+        public void Interaction(float value)
         {
             _hp.ApplyDamage(value);
         }

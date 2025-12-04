@@ -1,8 +1,7 @@
 ﻿using Member.JJW.Code.Interface;
-using Member.JJW.Code.SO;
 using UnityEngine;
 
-namespace Member.JJW.Code.InteractableObject
+namespace Member.JJW.Code.ResourceObject
 {
     public abstract class ResourcesObject : MonoBehaviour,IInteractable<float>
     {
