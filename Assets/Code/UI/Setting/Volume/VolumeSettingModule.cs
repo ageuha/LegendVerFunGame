@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Code.UI.Setting.Volume {
     public class VolumeSettingModule : SettingModule<float> {
-        [SerializeField] private List<OnOffElement> elements;
+        [SerializeField] private List<ToggleElement> elements;
         [SerializeField] private TextMeshProUGUI tmp;
 
         private sbyte _idx;
@@ -17,7 +17,18 @@ namespace Code.UI.Setting.Volume {
             InitializeElements();
         }
 
+        public override void SetSettingValue(float value) {
+            sbyte temp = (sbyte)Mathf.RoundToInt(value * elements.Count);
+            if (temp == _idx) return;
+            _idx = temp;
+            SettingValue.Value = value;
+
+            AfterInteract();
+            InitializeElements();
+        }
+
         private void InitializeElements() {
+            // 이름 비직관적. 초기화에 국한된 메서드 아님
             for (int i = 0; i < elements.Count; i++) {
                 elements[i].EnableFor(i <= _idx);
             }

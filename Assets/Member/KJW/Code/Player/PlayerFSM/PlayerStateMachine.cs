@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using Code.Core.Utility;
 using Member.KJW.Code.Enum;
 
-namespace KJW.Code.Player
+namespace Member.KJW.Code.Player.PlayerFSM
 {
     public class PlayerStateMachine
     {

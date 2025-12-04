@@ -1,29 +1,54 @@
 using Code.Core.Utility;
-using KJW.Code.Player;
+using Member.KJW.Code.Input;
+using Member.KJW.Code.Player;
 using UnityEngine;
 
-public class Boat : MonoBehaviour,IInteractable
+public class Boat : MonoBehaviour, IInteractable
 {
     [field: SerializeField] public BoatSOScript BoatSO { get; private set; }
+    [SerializeField] private InputReader inputreader;
     private BoatMovement _boatMovement;
     private bool _isPlayerInBoat;
+    private bool _isPlayerMousePressed;
     private GameObject _target;
-
-    void Awake()
+    private Vector3 mouseWorldPos;
+    private void Awake()
     {
         _boatMovement = GetComponent<BoatMovement>();
-
     }
-    void FixedUpdate()
+    private void OnEnable()
+    {
+        inputreader.OnAttacked += PlayerPressMouse;
+        inputreader.OnAttackReleased += NoPlayerPressMouse;
+    }
+    private void OnDisable()
+    {
+        inputreader.OnAttacked -= PlayerPressMouse;
+        inputreader.OnAttackReleased -= NoPlayerPressMouse;
+    }
+
+    private void PlayerPressMouse()
+    {
+        _isPlayerMousePressed = true;
+    }
+    private void NoPlayerPressMouse()
+    {
+        _isPlayerMousePressed = false;
+    }
+    private void FixedUpdate()
     {
         if (_isPlayerInBoat)
         {
-            _boatMovement.SetMove(_target.GetComponent<Player>().InputReader.Dir);
+            Vector2 mousePos = _target.GetComponent<Player>().InputReader.MousePos;
+            Vector3 screenPos = new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z);
+            mouseWorldPos = Camera.main.ScreenToWorldPoint(screenPos);
+
+            _boatMovement.SetMove(mouseWorldPos - transform.position,_isPlayerMousePressed);
             _target.transform.localPosition = Vector2.zero;
         }
         else
         {
-            _boatMovement.SetMove(Vector2.zero);
+            _boatMovement.SetMove(Vector2.zero,_isPlayerMousePressed);
         }
     }
     public void Enter(GameObject target)
@@ -35,7 +60,7 @@ public class Boat : MonoBehaviour,IInteractable
         _target.transform.localPosition = Vector2.zero;
     }
     public void Exit()
-    { 
+    {
         _target.GetComponent<AgentMovement>().SetMove(Vector2.zero);
         _target.transform.position = transform.position + transform.up;
         _target.transform.parent = null;
@@ -43,9 +68,10 @@ public class Boat : MonoBehaviour,IInteractable
         _target = null;
     }
 
+
     public void Interact(GameObject user)
     {
-        if(!_isPlayerInBoat)
+        if (!_isPlayerInBoat)
         {
             Enter(user);
         }

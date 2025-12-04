@@ -218,6 +218,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""0306596b-5ef3-4513-98f8-f1a34b110072"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Roll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""7120f5f3-03b7-46b7-b0df-4c44b5336c59"",
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",

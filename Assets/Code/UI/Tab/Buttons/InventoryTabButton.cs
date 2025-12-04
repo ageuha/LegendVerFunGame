@@ -46,7 +46,7 @@ namespace Code.UI.Tab.Buttons {
         private void AnimatePositionTween() {
             _positionTween?.Kill();
             _positionTween =
-                visual.rectTransform.DOAnchorPos(_originAnchorPos + tweeningInfo.Position,
+                visual.rectTransform.DOAnchorPos(_originAnchorPos + (Vector2)tweeningInfo.Position,
                         tweeningInfo.Duration)
                     .SetEase(tweeningInfo.EasingType);
         }
@@ -54,7 +54,7 @@ namespace Code.UI.Tab.Buttons {
         private void AnimateReversePositionTween() {
             _positionTween?.Kill();
             _positionTween =
-                visual.rectTransform.DOAnchorPos(_originAnchorPos - tweeningInfo.Position,
+                visual.rectTransform.DOAnchorPos(_originAnchorPos - (Vector2)tweeningInfo.Position,
                         tweeningInfo.Duration)
                     .SetEase(tweeningInfo.EasingType);
         }
