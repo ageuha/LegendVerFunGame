@@ -7,20 +7,17 @@ namespace Code.SaveSystem {
 
         public override void SaveToJson(T data) {
             string jsonData = JsonUtility.ToJson(data);
-            string path = Path.Combine(Application.persistentDataPath, Filepath);
-            File.WriteAllText(path, jsonData);
+            File.WriteAllText(Filepath, jsonData);
         }
 
         public override T LoadSaveData() {
-            string path = Path.Combine(Application.persistentDataPath, Filepath);
-            if (!File.Exists(path)) return default;
-            return JsonUtility.FromJson<T>(File.ReadAllText(path));
+            if (!File.Exists(Filepath)) return default;
+            return JsonUtility.FromJson<T>(File.ReadAllText(Filepath));
         }
 
         public override void DeleteSave() {
-            string path = Path.Combine(Application.persistentDataPath, Filepath);
-            if (!File.Exists(path)) return;
-            File.Delete(path);
+            if (!File.Exists(Filepath)) return;
+            File.Delete(Filepath);
         }
 
         public JsonSaveManager(string filename) : base(filename) {
