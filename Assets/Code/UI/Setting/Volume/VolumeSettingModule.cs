@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Code.UI.Elements;
 using TMPro;
 using UnityEngine;
@@ -10,22 +9,35 @@ namespace Code.UI.Setting.Volume {
         [SerializeField] private TextMeshProUGUI tmp;
 
         private sbyte _idx;
-        
+
         protected override void AfterAwake() {
             base.AfterAwake();
-            _idx = 0; // 나중에 세이브 시스템 구축하면 값 가져와야 함.
+            // _idx = 0; // 나중에 세이브 시스템 구축하면 값 가져와야 함.
+            if (SettingSaveManager.Instance.TryGetFloat(SettingType, out var value)) {
+                // 그래서 가져옴.
+                SetIndexByFloat(value);
+            }
+            else {
+                _idx = 0;
+            }
+
             AfterInteract();
             InitializeElements();
         }
 
         public override void SetSettingValue(float value) {
-            sbyte temp = (sbyte)Mathf.RoundToInt(value * elements.Count);
-            if (temp == _idx) return;
-            _idx = temp;
+            if (!SetIndexByFloat(value)) return;
             SettingValue.Value = value;
 
             AfterInteract();
             InitializeElements();
+        }
+
+        private bool SetIndexByFloat(float value) {
+            sbyte temp = (sbyte)Mathf.RoundToInt(value * elements.Count - 1);
+            if (temp == _idx) return false;
+            _idx = temp;
+            return true;
         }
 
         private void InitializeElements() {

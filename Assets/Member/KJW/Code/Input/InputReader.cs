@@ -1,4 +1,5 @@
 using System;
+using Code.Core.Utility;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static InputSystem_Actions;
@@ -12,8 +13,13 @@ namespace Member.KJW.Code.Input
         public event Action<Vector2> OnMoved;
         public event Action OnAttacked;
         public event Action OnAttackReleased;
+        public event Action OnThrew;
+        public event Action OnThrewReleased;
+        public event Action OnPlaced;
+        public event Action OnPlaceReleased;
         public event Action OnInteracted;
         public event Action OnRolled;
+        public event Action<float> OnScrolled;
 
         public Vector2 MousePos { get; private set; }
         public Vector2 Dir { get; private set; }
@@ -58,6 +64,27 @@ namespace Member.KJW.Code.Input
         public void OnInteract(InputAction.CallbackContext context)
         {
             OnInteracted?.Invoke();
+        }
+
+        public void OnThrow(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+                OnThrew?.Invoke();
+            if (context.canceled)
+                OnThrewReleased?.Invoke();
+        }
+
+        public void OnPlace(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+                OnPlaced?.Invoke();
+            if (context.canceled)
+                OnPlaceReleased?.Invoke();
+        }
+
+        public void OnScroll(InputAction.CallbackContext context)
+        {
+            OnScrolled?.Invoke(context.ReadValue<float>());
         }
     }
 }
