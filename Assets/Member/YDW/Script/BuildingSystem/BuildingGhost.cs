@@ -38,7 +38,7 @@ namespace Member.YDW.Script.BuildingSystem
             if (_isMouseTrack && (Vector2)_beforePos != _aim)
             {
                 Vector2 pos = Camera.main.ScreenToWorldPoint(_aim);
-                if (SOProvider.Instance._bakedDataSO.TryGetNode(pos, out NodeData nodeData))
+                if (ValueProvider.Instance._bakedDataSO.TryGetNode(pos, out NodeData nodeData))
                 {
                     _currentNode = nodeData;
                     transform.position = nodeData.worldPosition;

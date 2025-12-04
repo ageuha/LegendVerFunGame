@@ -1,14 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using Member.YDW.Script.PathFinder;
 using UnityEngine;
 
 namespace Member.YDW.Script
 {
-    public class SOProvider : MonoBehaviour
+    public class ValueProvider : MonoBehaviour
     {
         [field:SerializeField] public BakedDataSO _bakedDataSO { get; private set; }
         
-        public static SOProvider Instance;
+        public static ValueProvider Instance;
 
         private void Awake()
         {

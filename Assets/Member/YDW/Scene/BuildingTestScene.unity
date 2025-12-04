@@ -2264,6 +2264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7b27cf02c474d0bb3264c9f5b1fa45b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bakeEventSO: {fileID: 11400000, guid: c47c81e55e105f945b252dc6c485ff59, type: 2}
   groundMap: {fileID: 86509518}
   obstacleMap: {fileID: 1946948189}
   bakedData: {fileID: 11400000, guid: 5e26359174c96234a86a2a2f3e9ca8ab, type: 2}
@@ -2271,6 +2272,7 @@ MonoBehaviour:
   isConnerCheck: 1
   nodeColor: {r: 0, g: 0, b: 0, a: 1}
   edgeColor: {r: 0, g: 0.30383253, b: 1, a: 1}
+  BuildingPosList: []
 --- !u!1 &966129721
 GameObject:
   m_ObjectHideFlags: 0

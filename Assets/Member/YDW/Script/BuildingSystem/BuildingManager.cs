@@ -9,7 +9,7 @@ namespace Member.YDW.Script.BuildingSystem
     public class BuildingManager : MonoBehaviour
     {
         [SerializeField] private BuildingManagerEventSO buildingManagerEventSO;
-        private Dictionary<NodeData, IBuilding> _buildings = new();
+        private Dictionary<IBuilding,List<NodeData>> _buildings = new(); //빌딩들의 노드 리스트.
 
         private void Awake()
         {
@@ -19,6 +19,11 @@ namespace Member.YDW.Script.BuildingSystem
         private void HandleBuildingManagerEvent(BuildingManagerEvent obj)
         {
             
+        }
+
+        private void OnDestroy()
+        {
+            buildingManagerEventSO.OnEvent -= HandleBuildingManagerEvent;
         }
     }
 }
