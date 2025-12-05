@@ -6,8 +6,7 @@ using UnityEngine;
 
 namespace Code.Core.Pool {
     public class PoolManager : MonoSingleton<PoolManager> {
-        [SerializeField] private PoolItemList items;
-        [SerializeField] private int initialCapacity = 10;
+        [SerializeField] private List<PoolItemList> itemLists;
 
         private Dictionary<Type, IPoolable> _itemDictionary;
 
@@ -17,7 +16,18 @@ namespace Code.Core.Pool {
         }
 
         private void InitializeDictionary() {
-            _itemDictionary ??= items.Prefabs.ToDictionary(poolable => poolable.GetType());
+            int totalCount = 0;
+            foreach (var list in itemLists) {
+                totalCount += list.Prefabs.Count;
+            }
+
+            List<IPoolable> poolables = new List<IPoolable>(totalCount);
+
+            foreach (var list in itemLists) {
+                poolables.AddRange(list.Prefabs);
+            }
+
+            _itemDictionary ??= poolables.ToDictionary(poolable => poolable.GetType());
         }
 
         public PoolFactory<T> Factory<T>() where T : MonoBehaviour, IPoolable {
@@ -28,7 +38,7 @@ namespace Code.Core.Pool {
                     return null;
                 }
 
-                PoolFactoryContainer<T>.InitializeFactory(prefab as T, initialCapacity);
+                PoolFactoryContainer<T>.InitializeFactory(prefab as T, prefab.InitialCapacity);
             }
 
             return PoolFactoryContainer<T>.Factory;
