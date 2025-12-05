@@ -12,10 +12,12 @@ namespace Code.Core.Pool {
 
         protected override void Awake() {
             base.Awake();
+            DontDestroyOnLoad(this);
             InitializeDictionary();
         }
 
         private void InitializeDictionary() {
+            if (_itemDictionary != null) return;
             int totalCount = 0;
             foreach (var list in itemLists) {
                 totalCount += list.Prefabs.Count;
@@ -27,7 +29,7 @@ namespace Code.Core.Pool {
                 poolables.AddRange(list.Prefabs);
             }
 
-            _itemDictionary ??= poolables.ToDictionary(poolable => poolable.GetType());
+            _itemDictionary = poolables.ToDictionary(poolable => poolable.GetType());
         }
 
         public PoolFactory<T> Factory<T>() where T : MonoBehaviour, IPoolable {
@@ -38,7 +40,9 @@ namespace Code.Core.Pool {
                     return null;
                 }
 
-                PoolFactoryContainer<T>.InitializeFactory(prefab as T, prefab.InitialCapacity);
+                var factoryObj = new GameObject(typeof(T).Name + "Factory");
+                factoryObj.transform.SetParent(transform);
+                PoolFactoryContainer<T>.InitializeFactory(prefab as T, prefab.InitialCapacity, factoryObj.transform);
             }
 
             return PoolFactoryContainer<T>.Factory;

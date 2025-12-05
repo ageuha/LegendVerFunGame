@@ -1,32 +1,40 @@
 using System.Collections.Generic;
 using Code.Core.Utility;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Code.Core.Pool {
     public class PoolFactory<T> where T : MonoBehaviour, IPoolable {
         private readonly T _prefab;
-
+        private readonly Transform _parent;
         private readonly Stack<T> _pool;
 
-        public PoolFactory(T prefab, int initialCapacity) {
+        public PoolFactory(T prefab, int initialCapacity, Transform parent) {
             _prefab = prefab;
+            _parent = parent;
             _pool = new Stack<T>(initialCapacity);
         }
 
-        public T Pop() {
+        public T Pop(Transform parent = null) {
+            T obj;
             if (_pool.Count > 0) {
-                var obj = _pool.Pop();
-                obj.GameObject.SetActive(true);
-                obj.OnPopFromPool();
-                // obj.YouOut += Push;
-                return obj;
+                obj = _pool.Pop();
+                obj.gameObject.SetActive(true);
             }
             else {
-                var obj = Object.Instantiate(_prefab);
-                obj.OnPopFromPool();
-                // obj.YouOut += Push;
-                return obj;
+                obj = Object.Instantiate(_prefab);
             }
+
+            SetObjectParent(parent, obj);
+            obj.OnPopFromPool();
+            // obj.YouOut += Push;
+            return obj;
+        }
+
+        private static void SetObjectParent(Transform parent, T obj) {
+            obj.transform.SetParent(parent);
+            if (!parent)
+                SceneManager.MoveGameObjectToScene(obj.gameObject, SceneManager.GetActiveScene());
         }
 
         public void Push(T item) {
@@ -38,7 +46,8 @@ namespace Code.Core.Pool {
             // obj.YouOut -= Push;
             _pool.Push(item);
             item.OnReturnToPool();
-            item.GameObject.SetActive(false);
+            item.gameObject.SetActive(false);
+            item.transform.SetParent(_parent);
         }
     }
 }
