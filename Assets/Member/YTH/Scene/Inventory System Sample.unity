@@ -483,6 +483,7 @@ GameObject:
   - component: {fileID: 408710344}
   - component: {fileID: 408710343}
   - component: {fileID: 408710342}
+  - component: {fileID: 408710345}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -607,6 +608,19 @@ MonoBehaviour:
   m_Spacing: {x: 25, y: 100}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &408710345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408710340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd6bff8015bd9346a85ef85041eca3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryChangeEventChannel: {fileID: 11400000, guid: 2a2f8f735b6f2e74db2eb46dcd6f4f23, type: 2}
 --- !u!1 &448605864
 GameObject:
   m_ObjectHideFlags: 0
@@ -1788,6 +1802,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryAddEventChannel: {fileID: 11400000, guid: 3a9a2f82ac5f0e942987e26d903f9764, type: 2}
   inventoryRemoveEventChannel: {fileID: 11400000, guid: 324f0225ee6b41c4a9f62e92eda6508f, type: 2}
+  inventoryChangeEventChannel: {fileID: 11400000, guid: 2a2f8f735b6f2e74db2eb46dcd6f4f23, type: 2}
 --- !u!1 &1304009093
 GameObject:
   m_ObjectHideFlags: 0
