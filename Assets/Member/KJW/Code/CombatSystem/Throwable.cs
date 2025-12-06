@@ -1,20 +1,40 @@
 ﻿using System;
+using Code.Core.Pool;
 using UnityEngine;
 
-namespace Member.KJW.Code.CombatSystem
-{
-    public class Throwable : MonoBehaviour
-    {
-        [SerializeField] private Rigidbody2D rb;
+namespace Member.KJW.Code.CombatSystem {
+    public class Throwable : MonoBehaviour, IPoolable {
+        private Rigidbody2D _rb;
+        private SpriteRenderer _renderer;
+        private DamageInfo _damageInfo;
 
-        private void Reset()
-        {
-            rb ??= GetComponent<Rigidbody2D>();
+        private void Awake() {
+            _rb = GetComponent<Rigidbody2D>();
+            _renderer = GetComponentInChildren<SpriteRenderer>();
         }
 
-        public void Throw(Vector2 dir, float speed)
-        {
-            rb.linearVelocity = dir * speed;
+        public Throwable Init(DamageInfo damageInfo) {
+            _damageInfo = damageInfo;
+            return this;
+        }
+
+        public void Throw(Vector2 dir, float speed) {
+            _rb.linearVelocity = dir * speed;
+        }
+
+        private void OnTriggerExit2D(Collider2D other) {
+            if (other.TryGetComponent(out IDamageable id)) {
+                id.GetDamage(_damageInfo);
+            }
+        }
+
+        public GameObject GameObject => gameObject;
+        public int InitialCapacity => 5;
+
+        public void OnPopFromPool() {
+        }
+
+        public void OnReturnToPool() {
         }
     }
 }

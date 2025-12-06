@@ -4,27 +4,22 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Code.UI.Tab {
-    [RequireComponent(typeof(Button))]
-    public abstract class AbstractTabButton<T> : MonoBehaviour, ITabButton, IPointerEnterHandler, IPointerExitHandler {
+    public abstract class AbstractTabButton<T> : Selectable, ITabButton, IPointerClickHandler, ISubmitHandler {
         [SerializeField] protected TabGroup tabGroup;
         [SerializeField] protected SerializeHelper<IUIElement<T>> element;
 
-        protected Button Button;
-        protected bool IsActive;
-        protected bool IsInactive => !IsActive;
+        protected bool IsSelected;
 
         public int Index => transform.GetSiblingIndex();
 
-        protected virtual void Reset() {
+        protected override void Reset() {
             if (transform.parent.TryGetComponent<TabGroup>(out var group)) {
                 tabGroup = group;
             }
         }
 
-        private void Awake() {
+        protected override void Awake() {
             tabGroup.ResisterTab(this);
-            Button = GetComponent<Button>();
-            Button.onClick.AddListener(OnTabClicked);
             AfterInit();
         }
 
@@ -42,21 +37,23 @@ namespace Code.UI.Tab {
         protected abstract void OnDeactiveTab();
 
         public void ActivateTab() {
-            if (IsActive) return;
-            IsActive = true;
+            if (IsSelected) return;
+            IsSelected = true;
             OnActiveTab();
         }
 
         public void DeactivateTab() {
-            if (!IsActive) return;
-            IsActive = false;
+            if (!IsSelected) return;
+            IsSelected = false;
             OnDeactiveTab();
         }
 
-        public virtual void OnPointerEnter(PointerEventData eventData) {
+        public void OnPointerClick(PointerEventData eventData) {
+            OnTabClicked();
         }
 
-        public virtual void OnPointerExit(PointerEventData eventData) {
+        public void OnSubmit(BaseEventData eventData) {
+            OnTabClicked();
         }
     }
 }
