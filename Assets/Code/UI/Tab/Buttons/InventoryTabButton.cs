@@ -11,13 +11,22 @@ namespace Code.UI.Tab.Buttons {
         [SerializeField] private TweeningInfoSO tweeningInfo;
 
         private Vector2 _originAnchorPos;
-        private Tween _positionTween;
+        private Tweener _positionTween;
 
         protected override void AfterTabClicked() {
         }
 
         protected override void AfterInit() {
             _originAnchorPos = visual.rectTransform.anchoredPosition;
+
+            _positionTween =
+                visual.rectTransform.DOAnchorPosX(_originAnchorPos.x, tweeningInfo.Duration).SetAutoKill(false)
+                    .SetEase(tweeningInfo.EasingType).Pause();
+        }
+
+        protected override void OnDestroy() {
+            base.OnDestroy();
+            _positionTween?.Kill();
         }
 
         protected override void OnActiveTab() {
@@ -55,26 +64,21 @@ namespace Code.UI.Tab.Buttons {
         }
 
         private void AnimatePositionTween() {
-            _positionTween?.Kill();
-            _positionTween =
-                visual.rectTransform.DOAnchorPos(_originAnchorPos + (Vector2)tweeningInfo.Position,
-                        tweeningInfo.Duration)
-                    .SetEase(tweeningInfo.EasingType);
+            _positionTween.Pause();
+            _positionTween.ChangeValues(visual.rectTransform.anchoredPosition,
+                _originAnchorPos + (Vector2)tweeningInfo.Position).Restart();
         }
 
         private void AnimateReversePositionTween() {
-            _positionTween?.Kill();
-            _positionTween =
-                visual.rectTransform.DOAnchorPos(_originAnchorPos - (Vector2)tweeningInfo.Position,
-                        tweeningInfo.Duration)
-                    .SetEase(tweeningInfo.EasingType);
+            _positionTween.Pause();
+            _positionTween.ChangeValues(visual.rectTransform.anchoredPosition,
+                _originAnchorPos - (Vector2)tweeningInfo.Position).Restart();
         }
 
         private void AnimatePositionToOrigin() {
-            _positionTween?.Kill();
-            _positionTween =
-                visual.rectTransform.DOAnchorPos(_originAnchorPos, tweeningInfo.Duration)
-                    .SetEase(tweeningInfo.EasingType);
+            _positionTween.Pause();
+            _positionTween.ChangeValues(visual.rectTransform.anchoredPosition,
+                _originAnchorPos).Restart();
         }
     }
 }

@@ -7,23 +7,32 @@ namespace Code.UI.SimpleFeedback {
         [SerializeField] private TweeningInfoSO infoSO;
         [SerializeField] private RectTransform rectTransform;
 
-        private Tween _tween;
+        private Tweener _forwardTween;
+        private Tweener _reverseTween;
+
+        private void Awake() {
+            _forwardTween =
+                rectTransform.DOAnchorPos(rectTransform.anchoredPosition + (Vector2)infoSO.Position, infoSO.Duration)
+                    .SetEase(infoSO.EasingType).SetLoops(2, LoopType.Yoyo).SetAutoKill(false).Pause();
+            _reverseTween = rectTransform
+                .DOAnchorPos(rectTransform.anchoredPosition - (Vector2)infoSO.Position, infoSO.Duration)
+                .SetEase(infoSO.EasingType).SetLoops(2, LoopType.Yoyo).SetAutoKill(false).Pause();
+        }
 
         public void PerformTween(bool resetAfterPerform = false) {
-            // 이거 매개변수 이름이 이상한데 그 유니티 이벤트에서 싹 다 빠질까봐 무서워서 못 바꾸는 중. 그냥 봐
-            _tween?.Complete();
-            _tween =
-                rectTransform.DOAnchorPos(rectTransform.anchoredPosition + (Vector2)infoSO.Position, infoSO.Duration)
-                    .SetEase(infoSO.EasingType);
-            if (resetAfterPerform) _tween.SetLoops(2, LoopType.Yoyo);
+            // 이거 매개변수 필요 없는데
+            _reverseTween.Pause();
+            _forwardTween.Restart();
         }
 
         public void PerformReverseTween(bool resetAfterPerform = false) {
-            _tween?.Complete();
-            _tween =
-                rectTransform.DOAnchorPos(rectTransform.anchoredPosition - (Vector2)infoSO.Position, infoSO.Duration)
-                    .SetEase(infoSO.EasingType);
-            if (resetAfterPerform) _tween.SetLoops(2, LoopType.Yoyo);
+            _forwardTween.Pause();
+            _reverseTween.Restart();
+        }
+
+        private void OnDestroy() {
+            _forwardTween.Kill();
+            _reverseTween.Kill();
         }
 
         private void Reset() {
