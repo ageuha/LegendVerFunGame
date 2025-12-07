@@ -10,6 +10,7 @@ namespace YTH.Code.Inventory
     {
         [SerializeField] private InventoryAddEventChannel inventoryAddEventChannel;
         [SerializeField] private InventoryRemoveEventChannel inventoryRemoveEventChannel;
+        [SerializeField] private InventoryChangeEventChannel inventoryChangeEventChannel;
         private Dictionary<ItemDataSO,InventoryItem> m_itemDictionary;
         public InventoryItem[,] Inventory { get; private set; }
 
@@ -67,6 +68,8 @@ namespace YTH.Code.Inventory
 
         private void UpdateEmptyIndex()
         {
+            inventoryChangeEventChannel.Raise(Inventory);
+            
             for (int i = 0; i < m_size.x; i++)
             {
                 for (int j = 0; j < m_size.y; j++)
@@ -93,6 +96,8 @@ namespace YTH.Code.Inventory
                 }
             }
         }
+
+
 
     }
 }
