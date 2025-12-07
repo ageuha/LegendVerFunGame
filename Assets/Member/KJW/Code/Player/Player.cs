@@ -17,6 +17,7 @@ namespace Member.KJW.Code.Player
         public AgentMovement MoveCompo { get; private set; }
         public HealthSystem HealthCompo { get; private set; }
         public Interactor Interactor { get; private set; }
+        public Thrower Thrower { get; private set; }
         
         public bool IsRolling { get; private set; }
         public Vector2 StandDir { get; private set; } = Vector2.right;
@@ -30,8 +31,6 @@ namespace Member.KJW.Code.Player
             get => _remainRoll;
             private set => _remainRoll = Mathf.Clamp(value, 0, RollingData.MaxRoll);
         }
-
-        
         
         
         private void Awake()
@@ -39,6 +38,7 @@ namespace Member.KJW.Code.Player
             MoveCompo = GetComponent<AgentMovement>();
             HealthCompo = GetComponent<HealthSystem>();
             Interactor = GetComponent<Interactor>();
+            Thrower = GetComponent<Thrower>();
 
             RemainRoll = RollingData.MaxRoll;
         }
@@ -48,6 +48,7 @@ namespace Member.KJW.Code.Player
             InputReader.OnInteracted += Interactor.Interact;
             InputReader.OnRolled += Roll;
             InputReader.OnMoved += UpdateStandDir;
+            
         }
 
         private void Update()
@@ -68,6 +69,11 @@ namespace Member.KJW.Code.Player
             InputReader.OnInteracted -= Interactor.Interact;
             InputReader.OnRolled -= Roll;
             InputReader.OnMoved -= UpdateStandDir;
+        }
+
+        public void HandleThrow()
+        {
+            
         }
 
         private void UpdateStandDir(Vector2 dir)

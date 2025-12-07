@@ -37,7 +37,11 @@ namespace Member.KJW.Code.Player
             _moveDir = Vector2.zero;
             _rb.linearVelocity = _moveDir;
             _currentVelocity = 0;
-            _rb.bodyType = RigidbodyType2D.Kinematic;
+        }
+
+        public void SetKinematic(bool isKinematic)
+        {
+            _rb.bodyType = isKinematic ?  RigidbodyType2D.Kinematic : RigidbodyType2D.Dynamic;
         }
 
         private void Move()
