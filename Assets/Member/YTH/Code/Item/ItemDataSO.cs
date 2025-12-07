@@ -1,6 +1,5 @@
-using System;
 using System.Text;
-using Code.Core.Utility;
+using Member.KJW.Code.Data;
 using UnityEngine;
 
 namespace YTH.Code.Item
@@ -15,6 +14,7 @@ namespace YTH.Code.Item
 
         [field:Header("Throw Settings")]
         [field:SerializeField] public float ThrowSpeed { get; private set; }
+        [field:SerializeField] public DamageInfoData ThrowDataInfo { get; private set; }
 
 
 
