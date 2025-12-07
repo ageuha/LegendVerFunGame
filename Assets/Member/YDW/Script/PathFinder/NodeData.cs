@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace _02._Member.YDW.Script.PathFinder
+namespace Member.YDW.Script.PathFinder
 {
     [Serializable]
     public struct NodeData 

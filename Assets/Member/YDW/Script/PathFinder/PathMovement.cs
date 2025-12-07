@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace _02._Member.YDW.Script.PathFinder
+namespace Member.YDW.Script.PathFinder
 {
     [RequireComponent(typeof(PathAgent))]
     public class PathMovement : MonoBehaviour //, IComponent

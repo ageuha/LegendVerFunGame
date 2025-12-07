@@ -67,5 +67,6 @@ namespace Code.EntityScripts {
         }
 
         // 수정 사항 있으면 말하렴 도원아
+        // 나 도원인데, 역시 윤담이다. 완벽하네.
     }
 }

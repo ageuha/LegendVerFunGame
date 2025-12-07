@@ -5,6 +5,7 @@ using Member.KJW.Code.CombatSystem;
 using Member.KJW.Code.Data;
 using Member.KJW.Code.Input;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Member.KJW.Code.Player
 {
@@ -29,6 +30,7 @@ namespace Member.KJW.Code.Player
             get => _remainRoll;
             private set => _remainRoll = Mathf.Clamp(value, 0, RollingData.MaxRoll);
         }
+
         
         
         
