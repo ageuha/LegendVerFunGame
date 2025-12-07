@@ -3,15 +3,27 @@ using Member.KJW.Code.Input;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using YTH.Code.Item;
 
 namespace YTH.Code.TempInventory
 {
     public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
-        public Image itemIcon;
+        [SerializeField] private Image itemIcon;
         [SerializeField] private InputReader inputReader;
-
         [HideInInspector] public Transform parentAfterDrag;
+        private ItemDataSO m_itemDataSO;
+
+        public void SetItemData(ItemDataSO itemDataSO)
+        {
+            this.m_itemDataSO = itemDataSO;
+            UpdateUI();
+        }
+
+        private void UpdateUI()
+        {
+            if (m_itemDataSO != null) itemIcon.sprite = m_itemDataSO.Icon;
+        }
 
         public void OnBeginDrag(PointerEventData eventData)
         {

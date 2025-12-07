@@ -5156,6 +5156,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Item
       objectReference: {fileID: 0}
+    - target: {fileID: 3744825125347306723, guid: 763ab45b781f6d841ad26e32d8639423, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 12c618c54c46a86419f545b188ba7670, type: 3}
     - target: {fileID: 5363765085970122029, guid: 763ab45b781f6d841ad26e32d8639423, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
