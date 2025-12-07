@@ -20,8 +20,9 @@ namespace Code.GridSystem.Map {
 
         private GridChunk GetOrCreateChunk(Vector2Int chunkPos) {
             if (!_chunks.ContainsKey(chunkPos)) {
-                _chunks[chunkPos] = new GridChunk(_chunkSize);
+                _chunks[chunkPos] = new GridChunk(_chunkSize, this, chunkPos);
             }
+
             return _chunks[chunkPos];
         }
 
@@ -30,7 +31,7 @@ namespace Code.GridSystem.Map {
         public GridObject GetObjectsAt(Vector2Int worldCell) {
             var chunkPos = WorldToChunk(worldCell);
             var localCell = WorldToLocal(worldCell);
-            
+
             if (!_chunks.TryGetValue(chunkPos, out var chunk)) return null;
             return chunk.GetObjectsAt(localCell);
         }
@@ -38,7 +39,7 @@ namespace Code.GridSystem.Map {
         public T GetObjectAt<T>(Vector2Int worldCell) where T : GridObject {
             var chunkPos = WorldToChunk(worldCell);
             var localCell = WorldToLocal(worldCell);
-            
+
             if (!_chunks.TryGetValue(chunkPos, out var chunk)) return null;
             return chunk.GetObjectAt<T>(localCell);
         }
@@ -50,24 +51,24 @@ namespace Code.GridSystem.Map {
         public bool TryGetObjectsAt(Vector2Int worldCell, out GridObject gridObject) {
             var chunkPos = WorldToChunk(worldCell);
             var localCell = WorldToLocal(worldCell);
-            
+
             if (!_chunks.TryGetValue(chunkPos, out var chunk)) {
                 gridObject = null;
                 return false;
             }
-            
+
             return chunk.TryGetObjectsAt(localCell, out gridObject);
         }
 
         public bool TryGetObjectAt<T>(Vector2Int worldCell, out T output) where T : GridObject {
             var chunkPos = WorldToChunk(worldCell);
             var localCell = WorldToLocal(worldCell);
-            
+
             if (!_chunks.TryGetValue(chunkPos, out var chunk)) {
                 output = null;
                 return false;
             }
-            
+
             return chunk.TryGetObjectAt(localCell, out output);
         }
 
@@ -75,10 +76,18 @@ namespace Code.GridSystem.Map {
 
         #region Delete
 
+        internal void DeleteCellInternal(Vector2Int worldCell) {
+            var chunkPos = WorldToChunk(worldCell);
+            var localCell = WorldToLocal(worldCell);
+
+            var chunk = GetOrCreateChunk(chunkPos);
+            chunk.DeleteCellInternal(localCell);
+        }
+
         public void DeleteCell(Vector2Int worldCell) {
             var chunkPos = WorldToChunk(worldCell);
             var localCell = WorldToLocal(worldCell);
-            
+
             if (!_chunks.TryGetValue(chunkPos, out var chunk)) return;
             chunk.DeleteCell(localCell);
         }
@@ -86,7 +95,7 @@ namespace Code.GridSystem.Map {
         public bool TryDeleteCell(Vector2Int worldCell) {
             var chunkPos = WorldToChunk(worldCell);
             var localCell = WorldToLocal(worldCell);
-            
+
             if (!_chunks.TryGetValue(chunkPos, out var chunk)) return true; // 없으면 삭제된 것으로 간주
             return chunk.TryDeleteCell(localCell);
         }
@@ -98,7 +107,7 @@ namespace Code.GridSystem.Map {
         public bool HasObjectAt(Vector2Int worldCell) {
             var chunkPos = WorldToChunk(worldCell);
             var localCell = WorldToLocal(worldCell);
-            
+
             if (!_chunks.TryGetValue(chunkPos, out var chunk)) return false;
             return chunk.HasObjectAt(localCell);
         }
@@ -110,9 +119,17 @@ namespace Code.GridSystem.Map {
         public void SetCellObject(Vector2Int worldCell, GridObject obj) {
             var chunkPos = WorldToChunk(worldCell);
             var localCell = WorldToLocal(worldCell);
-            
+
             var chunk = GetOrCreateChunk(chunkPos);
             chunk.SetCellObject(localCell, obj);
+        }
+
+        internal void SetCellObjectInternal(Vector2Int worldCell, GridObject obj) {
+            var chunkPos = WorldToChunk(worldCell);
+            var localCell = WorldToLocal(worldCell);
+
+            var chunk = GetOrCreateChunk(chunkPos);
+            chunk.SetCellObjectInternal(localCell, obj);
         }
 
         #endregion
@@ -122,7 +139,7 @@ namespace Code.GridSystem.Map {
         public bool TrySetCellObject(Vector2Int worldCell, GridObject obj) {
             var chunkPos = WorldToChunk(worldCell);
             var localCell = WorldToLocal(worldCell);
-            
+
             var chunk = GetOrCreateChunk(chunkPos);
             return chunk.TrySetCellObject(localCell, obj);
         }

@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b05111a695bf4939b354d032470c9344, type: 3}
   m_Name: YDPrefabList
   m_EditorClassIdentifier: 
-  prefabs:
-  - {fileID: 7209452255931041832, guid: a4bb753dae49beb42a7ef26ee462d9d4, type: 3}
+  prefabs: []

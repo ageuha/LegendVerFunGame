@@ -1,13 +1,18 @@
-﻿using System.Collections.Generic;
-using Code.GridSystem.Objects;
+﻿using Code.GridSystem.Objects;
 using UnityEngine;
 
 namespace Code.GridSystem.Map {
     public class GridChunk {
         private readonly GridObject[,] _cells;
+        private readonly int _chunkSize;
+        private readonly GridMap _map;
+        private readonly Vector2Int _chunkPos;
 
-        public GridChunk(int chunkSize) {
+        public GridChunk(int chunkSize, GridMap map, Vector2Int chunkPos) {
             _cells = new GridObject[chunkSize, chunkSize];
+            _chunkSize = chunkSize;
+            _map = map;
+            _chunkPos = chunkPos;
         }
 
         #region Get
@@ -44,8 +49,13 @@ namespace Code.GridSystem.Map {
 
         #region Delete
 
-        public void DeleteCell(Vector2Int localCell) {
+        internal void DeleteCellInternal(Vector2Int localCell) {
             _cells[localCell.x, localCell.y] = null;
+        }
+
+        public void DeleteCell(Vector2Int localCell) {
+            var obj = _cells[localCell.x, localCell.y];
+            obj.DestroyFromGrid();
         }
 
         public bool TryDeleteCell(Vector2Int localCell) {
@@ -53,7 +63,7 @@ namespace Code.GridSystem.Map {
                 return false;
             }
 
-            _cells[localCell.x, localCell.y] = null;
+            _cells[localCell.x, localCell.y].DestroyFromGrid();
             return true;
         }
 
@@ -68,6 +78,10 @@ namespace Code.GridSystem.Map {
         #region Set
 
         public void SetCellObject(Vector2Int localCell, GridObject obj) {
+            obj.SetCellObject(LocalToWorld(localCell), _map);
+        }
+
+        internal void SetCellObjectInternal(Vector2Int localCell, GridObject obj) {
             _cells[localCell.x, localCell.y] = obj;
         }
 
@@ -76,13 +90,20 @@ namespace Code.GridSystem.Map {
         #region TrySet
 
         public bool TrySetCellObject(Vector2Int localCell, GridObject obj) {
-            if (HasObjectAt(localCell)) {
-                return false;
+            if (obj.TrySetCellObject(LocalToWorld(localCell), _map)) {
+                _cells[localCell.x, localCell.y] = obj;
+                return true;
             }
 
-            _cells[localCell.x, localCell.y] = obj;
-            return true;
+            return false;
         }
+
+        #endregion
+
+        #region Utility
+
+        private Vector2Int LocalToWorld(Vector2Int localPos)
+            => _chunkPos * _chunkSize + localPos;
 
         #endregion
     }

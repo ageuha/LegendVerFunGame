@@ -6,19 +6,14 @@ using YTH.Code.Item;
 namespace YTH.Code.Inventory
 {    
     public class TempInventorySlot : MonoBehaviour
-    {        
-        private Image m_icon;
-        private TextMeshProUGUI m_countText;
+    {
+        [SerializeField] private Image m_icon;
+        [SerializeField] private TextMeshProUGUI m_countText;
         private ItemDataSO m_itemDataSO;
         private int m_count;
 
         private void Awake()
         {
-            m_icon ??= GetComponent<Image>();
-            m_countText ??= GetComponentInChildren<TextMeshProUGUI>();
-
-            m_countText.text = string.Empty;
-
             UpdateUI();
         }
         
@@ -29,9 +24,21 @@ namespace YTH.Code.Inventory
             UpdateUI();
         }
 
+        public void Reset()
+        {
+            this.m_itemDataSO = null;
+            this.m_count = 0;
+            UpdateUI();
+        }
+
         public void UpdateUI()
         {
-            if (m_itemDataSO == null) return;
+            if (m_itemDataSO == null)
+            {
+                m_icon.sprite = null;
+                m_countText.text = string.Empty;
+                return;
+            }
 
             if (m_count <= 0 || m_itemDataSO.Icon == null)
             {
