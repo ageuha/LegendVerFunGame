@@ -13,6 +13,11 @@ namespace Member.KJW.Code.CombatSystem
         private void Awake()
         {
             Throwable th = PoolManager.Instance.Factory<Throwable>().Pop();
+            Throwable th1 = PoolManager.Instance.Factory<Throwable>().Pop();
+            Throwable th2 = PoolManager.Instance.Factory<Throwable>().Pop();
+            Throwable th3 = PoolManager.Instance.Factory<Throwable>().Pop();
+            Throwable th4 = PoolManager.Instance.Factory<Throwable>().Pop();
+            Throwable th5 = PoolManager.Instance.Factory<Throwable>().Pop();
         }
 
         public void Throw(DamageInfo damageInfo, Vector2 dir, float throwSpeed)
