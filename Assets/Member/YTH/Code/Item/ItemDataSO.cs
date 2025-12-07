@@ -7,10 +7,16 @@ namespace YTH.Code.Item
 {
     public class ItemDataSO : ScriptableObject
     {
-        [field: SerializeField] public string ItemName { get; private set; }
-        [field: SerializeField] public Sprite Icon { get; private set; }
-        [field: SerializeField] public int ItemID { get; private set; }
-        [field: SerializeField] public int MaxStack { get; private set; }
+        [field:Header("Item Settings")]
+        [field:SerializeField] public string ItemName { get; private set; }
+        [field:SerializeField] public Sprite Icon { get; private set; }
+        [field:SerializeField] public int ItemID { get; private set; }
+        [field:SerializeField] public int MaxStack { get; private set; }
+
+        [field:Header("Throw Settings")]
+        [field:SerializeField] public float ThrowSpeed { get; private set; }
+
+
 
         protected StringBuilder _stringBuilder = new StringBuilder();
 
