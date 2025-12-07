@@ -17,6 +17,8 @@ namespace YTH.Code.Inventory
             m_icon ??= GetComponent<Image>();
             m_countText ??= GetComponentInChildren<TextMeshProUGUI>();
 
+            m_countText.text = string.Empty;
+
             UpdateUI();
         }
         
@@ -29,10 +31,16 @@ namespace YTH.Code.Inventory
 
         public void UpdateUI()
         {
+            if (m_itemDataSO == null) return;
+
+            if (m_count <= 0 || m_itemDataSO.Icon == null)
+            {
+                m_icon.sprite = null;
+                m_countText.text = string.Empty;
+                return;
+            } 
+
             m_icon.sprite = m_itemDataSO.Icon;
-
-            if (m_count <= 0) m_countText.text = string.Empty;
-
             m_countText.text = $"{m_count}개";
 
         }
