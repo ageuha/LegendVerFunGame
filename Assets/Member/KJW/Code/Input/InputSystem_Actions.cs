@@ -244,6 +244,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""InventoryOnOff"",
+                    ""type"": ""Button"",
+                    ""id"": ""73e33c99-73c9-4835-a6d1-5e9bf3716a5f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -488,6 +497,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""action"": ""FiveKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e09106ca-6ca6-456b-bb58-1fdacf265870"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InventoryOnOff"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -574,6 +594,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_SevenKey = m_Player.FindAction("SevenKey", throwIfNotFound: true);
         m_Player_EightKey = m_Player.FindAction("EightKey", throwIfNotFound: true);
         m_Player_NineKey = m_Player.FindAction("NineKey", throwIfNotFound: true);
+        m_Player_InventoryOnOff = m_Player.FindAction("InventoryOnOff", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -671,6 +692,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SevenKey;
     private readonly InputAction m_Player_EightKey;
     private readonly InputAction m_Player_NineKey;
+    private readonly InputAction m_Player_InventoryOnOff;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -751,6 +773,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @NineKey => m_Wrapper.m_Player_NineKey;
         /// <summary>
+        /// Provides access to the underlying input action "Player/InventoryOnOff".
+        /// </summary>
+        public InputAction @InventoryOnOff => m_Wrapper.m_Player_InventoryOnOff;
+        /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -827,6 +853,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @NineKey.started += instance.OnNineKey;
             @NineKey.performed += instance.OnNineKey;
             @NineKey.canceled += instance.OnNineKey;
+            @InventoryOnOff.started += instance.OnInventoryOnOff;
+            @InventoryOnOff.performed += instance.OnInventoryOnOff;
+            @InventoryOnOff.canceled += instance.OnInventoryOnOff;
         }
 
         /// <summary>
@@ -889,6 +918,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @NineKey.started -= instance.OnNineKey;
             @NineKey.performed -= instance.OnNineKey;
             @NineKey.canceled -= instance.OnNineKey;
+            @InventoryOnOff.started -= instance.OnInventoryOnOff;
+            @InventoryOnOff.performed -= instance.OnInventoryOnOff;
+            @InventoryOnOff.canceled -= instance.OnInventoryOnOff;
         }
 
         /// <summary>
@@ -1113,5 +1145,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnNineKey(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "InventoryOnOff" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInventoryOnOff(InputAction.CallbackContext context);
     }
 }
