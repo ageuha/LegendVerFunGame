@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemObjectTrigger: {fileID: 2972269379391930811}
-  inventoryAddEventChannel: {fileID: 11400000, guid: 3a9a2f82ac5f0e942987e26d903f9764, type: 2}
+  inventoryAddEventChannel: {fileID: 11400000, guid: 6269dbfef8d129044ba3df4966552367, type: 2}
   spriteRenderer: {fileID: 1295839682076747344}
   rb: {fileID: 4837945640928975551}
   itemData: {fileID: 0}
