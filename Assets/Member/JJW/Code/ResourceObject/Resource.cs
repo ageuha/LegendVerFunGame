@@ -1,4 +1,5 @@
-﻿using Code.EntityScripts;
+﻿using System;
+using Code.EntityScripts;
 using Member.JJW.Code.Interface;
 using UnityEngine;
 using YTH.Code.Interface;
@@ -9,20 +10,21 @@ namespace Member.JJW.Code.ResourceObject
 {
     public class Resource : MonoBehaviour,IInteractable<float>
     {
+        [field:SerializeField] public float MaxHp {get; private set; }
+        [field:SerializeField] public HealthSystem CurrentHp {get; private set; }
+        
         [SerializeField] private GameObject itemPrefab;
         [SerializeField] private ItemDataSO itemDataSO;
-        [SerializeField] private float hp = 100;
         [SerializeField] private int spawnItemAmount =1;
         [SerializeField] private float itemSpawnRadius = 1f;
-        
-        private HealthSystem _hp;
 
         private void Awake()
         {
-            _hp = GetComponent<HealthSystem>();
-            _hp.Initialize(hp);
-            _hp.OnDead += SpawnItem;
+            CurrentHp.Initialize(MaxHp);
+            CurrentHp.OnDead += SpawnItem;
         }
+
+        
 
         private void SpawnItem()
         {
@@ -40,12 +42,12 @@ namespace Member.JJW.Code.ResourceObject
 
         public void Interaction(float value)
         {
-            _hp.ApplyDamage(value);
+            CurrentHp.ApplyDamage(value);
         }
 
         private void OnDestroy()
         {
-            _hp.OnDead -= SpawnItem;
+            CurrentHp.OnDead -= SpawnItem;
         }
 
         private void OnDrawGizmos()

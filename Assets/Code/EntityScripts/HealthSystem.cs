@@ -17,6 +17,7 @@ namespace Code.EntityScripts {
                 Logging.LogError($"유효하지 않은 최대 체력입니다: {maxHp}");
             }
 
+            _hp ??= new NotifyValue<float>();
             _initialized = true;
 
             _maxHp = maxHp;
