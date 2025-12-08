@@ -20,9 +20,9 @@ namespace Member.KJW.Code.Player
         public Thrower Thrower { get; private set; }
         
         public bool IsRolling { get; private set; }
-        public Vector2 StandDir { get; private set; } = Vector2.right;
-        
         private bool _isInvincible;
+        
+        public Vector2 StandDir { get; private set; } = Vector2.right;
         
         private float _coolTimer;
         private int _remainRoll;
@@ -31,7 +31,6 @@ namespace Member.KJW.Code.Player
             get => _remainRoll;
             private set => _remainRoll = Mathf.Clamp(value, 0, RollingData.MaxRoll);
         }
-        
         
         private void Awake()
         {
