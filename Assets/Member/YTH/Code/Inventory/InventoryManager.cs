@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using Code.Core.GlobalStructs;
+using Code.Core.Utility;
 using Member.KJW.Code.Input;
 using UnityEngine;
 using UnityEngine.InputSystem.iOS;
+using UnityEngine.PlayerLoop;
 using YTH.Code.Item;
 
 namespace YTH.Code.Inventory
@@ -19,7 +21,7 @@ namespace YTH.Code.Inventory
         [SerializeField] private InputReader inputReader;
 
         private int m_SelectedSlot = -1;
-        private bool m_Open;
+        private bool m_Open = true;
 
         private void Start()
         {
@@ -27,11 +29,14 @@ namespace YTH.Code.Inventory
             {
                 slot.Initialize(this);
             }
+            MainInventory();
             
             inventoryAddEventChannel.OnEvent += AddItem;
             inventoryItemPickUpEventChannel.OnEvent += PickUp;
             inventoryItemPickDownEventChannel.OnEvent += PickDown;
             inputReader.OnNumKeyPressed += ChangeSelectedSlot;
+            inputReader.OnInventory += MainInventory;
+            inputReader.OnScrolled += ChangeSelectedSlotScroll;
         }
 
         private void OnDestroy()
@@ -40,12 +45,38 @@ namespace YTH.Code.Inventory
             inventoryItemPickUpEventChannel.OnEvent -= PickUp;
             inventoryItemPickDownEventChannel.OnEvent -= PickDown;
             inputReader.OnNumKeyPressed -= ChangeSelectedSlot;
+            inputReader.OnInventory -= MainInventory;
+            inputReader.OnScrolled -= ChangeSelectedSlotScroll;
         }
 
         private void MainInventory()
         {
             m_Open = !m_Open;
             mainInventory.SetActive(m_Open);
+        }
+
+        private void ChangeSelectedSlotScroll(float value)
+        {
+            if(value == 0) return;
+
+            if (value > 0)
+            {
+                if (m_SelectedSlot >= 0)
+                {
+                    inventorySlots[m_SelectedSlot].UnSelect();
+                }
+                m_SelectedSlot++;
+                inventorySlots[m_SelectedSlot].Select();
+            }
+            else
+            {
+                if (m_SelectedSlot >= 0)
+                {
+                    inventorySlots[m_SelectedSlot].UnSelect();
+                }
+                m_SelectedSlot--;
+                inventorySlots[m_SelectedSlot].Select();
+            }
         }
 
         private void ChangeSelectedSlot(int value)
