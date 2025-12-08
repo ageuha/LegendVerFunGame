@@ -70,7 +70,7 @@ namespace Member.KJW.Code.Player
             {
                 _currentVelocity -= MoveData.Deacceleration * Time.deltaTime;
             }
-            return Mathf.Clamp(_currentVelocity, 0, MoveData.MaxSpeed);
+            return Mathf.Clamp(_currentVelocity, 0, MoveData.MaxSpeed * SpeedMultiplyValue);
         }
 
         private void FixedUpdate()
