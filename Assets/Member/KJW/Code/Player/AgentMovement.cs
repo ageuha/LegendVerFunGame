@@ -1,4 +1,4 @@
-using Member.KJW.Code.Data;
+ using Member.KJW.Code.Data;
 using UnityEngine;
 
 namespace Member.KJW.Code.Player
@@ -11,6 +11,7 @@ namespace Member.KJW.Code.Player
         private Vector2 _moveDir;
         private float _currentVelocity;
         public bool IsStop { get; private set; }
+        public float SpeedMultiplyValue { get; private set; } = 1;
 
         private void Awake()
         {
@@ -39,6 +40,11 @@ namespace Member.KJW.Code.Player
             _currentVelocity = 0;
         }
 
+        public void SetMultiValue(float value)
+        {
+            SpeedMultiplyValue = value;
+        }
+
         public void SetKinematic(bool isKinematic)
         {
             _rb.bodyType = isKinematic ?  RigidbodyType2D.Kinematic : RigidbodyType2D.Dynamic;
@@ -46,7 +52,7 @@ namespace Member.KJW.Code.Player
 
         private void Move()
         {
-            _rb.linearVelocity = _moveDir * _currentVelocity;
+            _rb.linearVelocity = _moveDir * (_currentVelocity * SpeedMultiplyValue);
         }
 
         public void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse)
@@ -64,7 +70,7 @@ namespace Member.KJW.Code.Player
             {
                 _currentVelocity -= MoveData.Deacceleration * Time.deltaTime;
             }
-            return Mathf.Clamp(_currentVelocity, 0, MoveData.MaxSpeed);
+            return Mathf.Clamp(_currentVelocity, 0, MoveData.MaxSpeed * SpeedMultiplyValue);
         }
 
         private void FixedUpdate()
