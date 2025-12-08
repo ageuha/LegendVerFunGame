@@ -12,7 +12,6 @@ namespace YTH.Code.Item
         {
             if (collision.TryGetComponent<Player>(out Player player))
             {
-                Logging.Log("Trigger");
                 Trigger?.Invoke(player);
             }
         }

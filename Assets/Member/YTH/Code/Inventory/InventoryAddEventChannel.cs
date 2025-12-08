@@ -2,8 +2,11 @@ using Code.Events;
 using UnityEngine;
 using YTH.Code.Item;
 
-[CreateAssetMenu(fileName = "InventoryAddEventChannel", menuName = "EventChannel/InventoryAddEventChannel", order = 1)]
-public class InventoryAddEventChannel : EventChannel<ItemDataSO>
-{
-    
+namespace YTH.Code.Inventory
+{    
+    [CreateAssetMenu(fileName = "InventoryAddEventChannel", menuName = "EventChannel/InventoryAddEventChannel")]
+    public class InventoryAddEventChannel : EventChannel<ItemDataSO>
+    {
+        
+    }
 }
