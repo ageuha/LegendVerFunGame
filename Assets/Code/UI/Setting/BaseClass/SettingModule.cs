@@ -1,22 +1,16 @@
-using Code.Core.Utility;
+﻿using Code.Core.Utility;
+using Code.UI.Setting.Enums;
 using Code.UI.Setting.Interfaces;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace Code.UI.Setting {
+namespace Code.UI.Setting.BaseClass {
     public abstract class SettingModule<T> : MonoBehaviour where T : struct {
-        [field: SerializeField] public SettingType SettingType { get; private set; }
-
-        [SerializeField] protected Button leftButton;
-        [SerializeField] protected Button rightButton;
         [SerializeField] protected SerializeHelper<ISettingValueHandler<T>> valueHandler;
-
         protected NotifyValue<T> SettingValue;
+        [field: SerializeField] public SettingType SettingType { get; private set; }
         public IReadOnlyNotifyValue<T> ExposedValue => SettingValue;
 
-        private void Awake() {
-            leftButton.onClick.AddListener(OnLeftButtonClicked);
-            rightButton.onClick.AddListener(OnRightButtonClicked);
+        protected virtual void Awake() {
             SettingValue = new NotifyValue<T>();
             valueHandler.Value.Initialize(SettingType);
             SettingValue.OnValueChanged += valueHandler.Value.OnValueChanged;
@@ -25,12 +19,6 @@ namespace Code.UI.Setting {
 
         private void OnDestroy() {
             SettingValue.OnValueChanged -= valueHandler.Value.OnValueChanged;
-        }
-
-        protected virtual void OnLeftButtonClicked() {
-        }
-
-        protected virtual void OnRightButtonClicked() {
         }
 
         protected virtual void AfterAwake() {

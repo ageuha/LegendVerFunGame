@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Code.UI.Setting {
+﻿namespace Code.UI.Setting.Enums {
     public enum SettingType {
         MasterVolume,
         BGMVolume,
@@ -8,5 +6,7 @@ namespace Code.UI.Setting {
         EnvironmentVolume,
         CreatureVolume,
         UIVolume,
+        Resolution,
+        Fullscreen
     }
 }

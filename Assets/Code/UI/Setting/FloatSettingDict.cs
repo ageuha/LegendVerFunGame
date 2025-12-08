@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Code.Core.Utility;
+using Code.UI.Setting.Enums;
 
 namespace Code.UI.Setting {
     [Serializable]

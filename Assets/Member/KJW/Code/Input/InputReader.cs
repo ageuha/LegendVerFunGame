@@ -1,5 +1,4 @@
 using System;
-using Code.Core.Utility;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static InputSystem_Actions;
@@ -9,7 +8,7 @@ namespace Member.KJW.Code.Input
     [CreateAssetMenu(fileName = "InputReader", menuName = "SO/InputReader")]
     public class InputReader : ScriptableObject, IPlayerActions
     {
-        private InputSystem_Actions _actions;
+        public InputSystem_Actions Actions { get; private set; }
         public event Action<Vector2> OnMoved;
         public event Action OnAttacked;
         public event Action OnAttackReleased;
@@ -26,15 +25,15 @@ namespace Member.KJW.Code.Input
 
         private void OnEnable()
         {
-            _actions ??= new InputSystem_Actions();
+            Actions ??= new InputSystem_Actions();
             
-            _actions.Player.SetCallbacks(this);
-            _actions.Enable();
+            Actions.Player.SetCallbacks(this);
+            Actions.Enable();
         }
         
         private void OnDisable()
         {
-            _actions.Disable();
+            Actions.Disable();
         }
 
         public void OnMove(InputAction.CallbackContext context)
