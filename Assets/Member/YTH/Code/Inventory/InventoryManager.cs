@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Code.Core.GlobalStructs;
+using Member.KJW.Code.Input;
 using UnityEngine;
 using YTH.Code.Item;
 
@@ -14,6 +15,7 @@ namespace YTH.Code.Inventory
         [SerializeField] private InventoryAddEventChannel inventoryAddEventChannel;
         [SerializeField] private InventoryItemPickUpEventChannel inventoryItemPickUpEventChannel;
         [SerializeField] private InventoryItemPickDownEventChannel inventoryItemPickDownEventChannel;
+        [SerializeField] private InputReader inputReader;
 
         private int m_SelectedSlot = -1;
 
@@ -23,22 +25,24 @@ namespace YTH.Code.Inventory
             {
                 slot.Initialize(this);
             }
-
-            ChangeSelectedSlot(0);
             
             inventoryAddEventChannel.OnEvent += AddItem;
             inventoryItemPickUpEventChannel.OnEvent += PickUp;
             inventoryItemPickDownEventChannel.OnEvent += PickDown;
+            inputReader.OnNumKeyPressed += ChangeSelectedSlot;
         }
 
         private void OnDestroy()
         {
             inventoryAddEventChannel.OnEvent -= AddItem;
             inventoryItemPickUpEventChannel.OnEvent -= PickUp;
+            inventoryItemPickDownEventChannel.OnEvent -= PickDown;
+            inputReader.OnNumKeyPressed -= ChangeSelectedSlot;
         }
 
         private void ChangeSelectedSlot(int value)
         {
+            value--;
             if (m_SelectedSlot >= 0)
             {
                 inventorySlots[m_SelectedSlot].UnSelect();
