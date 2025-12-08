@@ -1,8 +1,10 @@
+using YTH.Code.Struct;
+
 namespace YTH.Code.Interface
 { 
     public interface IUseable
     {
-        public void Use();
+        public void Use(UseInfo useInfo);
     }
 
 }
