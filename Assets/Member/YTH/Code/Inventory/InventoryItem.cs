@@ -1,6 +1,7 @@
 using System.Security.Cryptography;
 using Member.KJW.Code.Input;
 using TMPro;
+using TreeEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -79,6 +80,7 @@ namespace YTH.Code.Inventory
             m_IsHold = false;
             itemIcon.raycastTarget = true;
             transform.SetParent(parentAfterDrag);
+            transform.localPosition = Vector2.zero;
         }
 
         public void OnPointerClick(PointerEventData eventData)
