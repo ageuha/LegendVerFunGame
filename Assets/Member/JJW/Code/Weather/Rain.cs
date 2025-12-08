@@ -9,6 +9,7 @@ namespace Member.JJW.Code.Weather
     {
         public override void OnStart()
         {
+            
         }
 
         public override void OnStop()
