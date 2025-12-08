@@ -1,4 +1,5 @@
 using System;
+using Code.Core.Utility;
 using Code.EntityScripts;
 using Member.BJH._01Script.Interact;
 using Member.KJW.Code.CombatSystem;
@@ -47,7 +48,6 @@ namespace Member.KJW.Code.Player
             InputReader.OnInteracted += Interactor.Interact;
             InputReader.OnRolled += Roll;
             InputReader.OnMoved += UpdateStandDir;
-            
         }
 
         private void Update()
