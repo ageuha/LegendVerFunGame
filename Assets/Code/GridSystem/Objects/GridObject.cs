@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Code.GridSystem.Objects {
     public abstract class GridObject : MonoBehaviour {
         internal abstract bool IsBoundsObject { get; }
-        private protected abstract Vector2Int Size { get; }
+        protected abstract Vector2Int Size { get; }
         protected Vector2Int WorldPos;
         protected GridMap Map;
         protected bool IsSet => Map != null;

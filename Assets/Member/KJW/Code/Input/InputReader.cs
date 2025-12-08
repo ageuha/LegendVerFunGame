@@ -19,6 +19,7 @@ namespace Member.KJW.Code.Input
         public event Action OnInteracted;
         public event Action OnRolled;
         public event Action<float> OnScrolled;
+        public event Action<int> OnNumKeyPressed;
 
         public Vector2 MousePos { get; private set; }
         public Vector2 Dir { get; private set; }
@@ -84,6 +85,60 @@ namespace Member.KJW.Code.Input
         public void OnScroll(InputAction.CallbackContext context)
         {
             OnScrolled?.Invoke(context.ReadValue<float>());
+        }
+
+        public void OnOneKey(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+                OnNumKeyPressed?.Invoke(1);
+        }
+
+        public void OnTwoKey(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+                OnNumKeyPressed?.Invoke(2);
+        }
+
+        public void OnThreeKey(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+                OnNumKeyPressed?.Invoke(3);
+        }
+
+        public void OnFourKey(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+                OnNumKeyPressed?.Invoke(4);
+        }
+
+        public void OnFiveKey(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+                OnNumKeyPressed?.Invoke(5);
+        }
+
+        public void OnSixKey(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+                OnNumKeyPressed?.Invoke(6);
+        }
+
+        public void OnSevenKey(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+                OnNumKeyPressed?.Invoke(7);
+        }
+
+        public void OnEightKey(InputAction.CallbackContext context)
+        {   
+            if (context.performed)
+                OnNumKeyPressed?.Invoke(8);
+        }
+
+        public void OnNineKey(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+                OnNumKeyPressed?.Invoke(9);
         }
     }
 }

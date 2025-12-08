@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Code.GridSystem.Objects {
     public abstract class GridUnitObject : GridObject {
         internal override bool IsBoundsObject => false;
-        private protected override Vector2Int Size => default;
+        protected override Vector2Int Size => default;
 
         internal sealed override void SetCellObject(Vector2Int worldPos, GridMap map) {
             Map = map;
