@@ -32,6 +32,7 @@ namespace Member.KJW.Code.CombatSystem
         public void Throw(Vector2 dir)
         {
             _rb.linearVelocity = dir * _speed;
+            _rb.AddTorque(100, ForceMode2D.Impulse);
         }
 
         private void Push()

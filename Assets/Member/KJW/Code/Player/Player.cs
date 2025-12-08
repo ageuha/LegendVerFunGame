@@ -7,6 +7,7 @@ using Member.KJW.Code.Data;
 using Member.KJW.Code.Input;
 using UnityEngine;
 using UnityEngine.Events;
+using YTH.Code.Inventory;
 
 namespace Member.KJW.Code.Player
 {
@@ -21,6 +22,7 @@ namespace Member.KJW.Code.Player
         public Thrower Thrower { get; private set; }
         public Arm Arm { get; private set; }
         public Weapon Weapon { get; private set; }
+        public InventoryManager Inventory { get; private set; }
         
         public bool IsRolling { get; private set; }
         private bool _isInvincible;
@@ -43,6 +45,7 @@ namespace Member.KJW.Code.Player
             Thrower = GetComponent<Thrower>();
             Arm = GetComponentInChildren<Arm>();
             Weapon = GetComponentInChildren<Weapon>();
+            Inventory = GetComponentInChildren<InventoryManager>();
 
             RemainRoll = RollingData.MaxRoll;
         }
@@ -52,6 +55,7 @@ namespace Member.KJW.Code.Player
             InputReader.OnInteracted += Interactor.Interact;
             InputReader.OnRolled += Roll;
             InputReader.OnMoved += UpdateStandDir;
+            InputReader.OnThrew += HandleThrow;
         }
 
         private void Update()
@@ -72,11 +76,12 @@ namespace Member.KJW.Code.Player
             InputReader.OnInteracted -= Interactor.Interact;
             InputReader.OnRolled -= Roll;
             InputReader.OnMoved -= UpdateStandDir;
+            InputReader.OnThrew -= HandleThrow;
         }
 
-        public void HandleThrow()
+        private void HandleThrow()
         {
-            
+            Thrower.Throw(Inventory.GetSelectedItem(true).ThrowDataInfo.ToStruct(), Camera.main!.ScreenToWorldPoint(InputReader.MousePos) - transform.position);
         }
 
         private void UpdateStandDir(Vector2 dir)
