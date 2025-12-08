@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Code.Core.GlobalStructs;
 using Member.KJW.Code.Input;
 using UnityEngine;
+using UnityEngine.InputSystem.iOS;
 using YTH.Code.Item;
 
 namespace YTH.Code.Inventory
@@ -10,7 +11,7 @@ namespace YTH.Code.Inventory
     {
         [field:SerializeField] public InventoryItem HoldItem { get; private set; }
         public List<InventorySlot> inventorySlots;
-
+        [SerializeField] private GameObject mainInventory;
         [SerializeField] private InventoryItem inventoryItemPrefab;
         [SerializeField] private InventoryAddEventChannel inventoryAddEventChannel;
         [SerializeField] private InventoryItemPickUpEventChannel inventoryItemPickUpEventChannel;
@@ -18,6 +19,7 @@ namespace YTH.Code.Inventory
         [SerializeField] private InputReader inputReader;
 
         private int m_SelectedSlot = -1;
+        private bool m_Open;
 
         private void Start()
         {
@@ -38,6 +40,12 @@ namespace YTH.Code.Inventory
             inventoryItemPickUpEventChannel.OnEvent -= PickUp;
             inventoryItemPickDownEventChannel.OnEvent -= PickDown;
             inputReader.OnNumKeyPressed -= ChangeSelectedSlot;
+        }
+
+        private void MainInventory()
+        {
+            m_Open = !m_Open;
+            mainInventory.SetActive(m_Open);
         }
 
         private void ChangeSelectedSlot(int value)

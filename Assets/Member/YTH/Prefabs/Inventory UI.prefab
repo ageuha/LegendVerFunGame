@@ -390,10 +390,12 @@ MonoBehaviour:
   - {fileID: 2905587685177164586}
   - {fileID: 3305600336184610259}
   - {fileID: 1886090997948662518}
+  mainInventory: {fileID: 8988528462607779027}
   inventoryItemPrefab: {fileID: 7769497490189935627, guid: 763ab45b781f6d841ad26e32d8639423, type: 3}
   inventoryAddEventChannel: {fileID: 11400000, guid: 6269dbfef8d129044ba3df4966552367, type: 2}
   inventoryItemPickUpEventChannel: {fileID: 11400000, guid: 20b87e897a4ed46418837e330a188f3b, type: 2}
   inventoryItemPickDownEventChannel: {fileID: 11400000, guid: 8014b59b7e9492a4a8cb7aa15f9beabe, type: 2}
+  inputReader: {fileID: 11400000, guid: 777b456eb927283439da0b796da61433, type: 2}
 --- !u!1001 &158812337565253453
 PrefabInstance:
   m_ObjectHideFlags: 0
