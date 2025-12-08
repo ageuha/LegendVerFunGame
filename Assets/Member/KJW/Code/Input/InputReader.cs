@@ -9,7 +9,7 @@ namespace Member.KJW.Code.Input
     [CreateAssetMenu(fileName = "InputReader", menuName = "SO/InputReader")]
     public class InputReader : ScriptableObject, IPlayerActions
     {
-        private InputSystem_Actions _actions;
+        public InputSystem_Actions Actions { get; private set; }
         public event Action<Vector2> OnMoved;
         public event Action OnAttacked;
         public event Action OnAttackReleased;
@@ -20,21 +20,22 @@ namespace Member.KJW.Code.Input
         public event Action OnInteracted;
         public event Action OnRolled;
         public event Action<float> OnScrolled;
+        public event Action<int> OnNumKeyPressed;
 
         public Vector2 MousePos { get; private set; }
         public Vector2 Dir { get; private set; }
 
         private void OnEnable()
         {
-            _actions ??= new InputSystem_Actions();
+            Actions ??= new InputSystem_Actions();
             
-            _actions.Player.SetCallbacks(this);
-            _actions.Enable();
+            Actions.Player.SetCallbacks(this);
+            Actions.Enable();
         }
         
         private void OnDisable()
         {
-            _actions.Disable();
+            Actions.Disable();
         }
 
         public void OnMove(InputAction.CallbackContext context)
@@ -85,6 +86,60 @@ namespace Member.KJW.Code.Input
         public void OnScroll(InputAction.CallbackContext context)
         {
             OnScrolled?.Invoke(context.ReadValue<float>());
+        }
+
+        public void OnOneKey(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+                OnNumKeyPressed?.Invoke(1);
+        }
+
+        public void OnTwoKey(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+                OnNumKeyPressed?.Invoke(2);
+        }
+
+        public void OnThreeKey(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+                OnNumKeyPressed?.Invoke(3);
+        }
+
+        public void OnFourKey(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+                OnNumKeyPressed?.Invoke(4);
+        }
+
+        public void OnFiveKey(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+                OnNumKeyPressed?.Invoke(5);
+        }
+
+        public void OnSixKey(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+                OnNumKeyPressed?.Invoke(6);
+        }
+
+        public void OnSevenKey(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+                OnNumKeyPressed?.Invoke(7);
+        }
+
+        public void OnEightKey(InputAction.CallbackContext context)
+        {   
+            if (context.performed)
+                OnNumKeyPressed?.Invoke(8);
+        }
+
+        public void OnNineKey(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+                OnNumKeyPressed?.Invoke(9);
         }
     }
 }

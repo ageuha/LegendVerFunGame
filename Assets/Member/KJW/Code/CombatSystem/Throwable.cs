@@ -10,7 +10,7 @@ namespace Member.KJW.Code.CombatSystem
         private Rigidbody2D _rb;
         private SpriteRenderer _renderer;
         private DamageInfo _damageInfo;
-        private float speed;
+        private float _speed;
 
         private void Awake()
         {
@@ -31,7 +31,7 @@ namespace Member.KJW.Code.CombatSystem
 
         public void Throw(Vector2 dir)
         {
-            _rb.linearVelocity = dir * speed;
+            _rb.linearVelocity = dir * _speed;
         }
 
         private void Push()
