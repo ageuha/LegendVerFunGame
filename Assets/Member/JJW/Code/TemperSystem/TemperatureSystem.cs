@@ -2,6 +2,7 @@
 using Code.EntityScripts;
 using Member.JJW.Code.Weather;
 using Member.JJW.EventChannel;
+using Member.KJW.Code.Player;
 using UnityEngine;
 
 namespace Member.JJW.Code.TemperSystem
@@ -9,6 +10,7 @@ namespace Member.JJW.Code.TemperSystem
     public class TemperatureSystem : MonoBehaviour
     {
         [SerializeField] private FloatEventChannel floatEventChannel;
+        private AgentMovement _agentMovement;
         private float _damagePercent;
         private HealthSystem _playerHealth;
         private float _currentTemperature;
@@ -16,6 +18,7 @@ namespace Member.JJW.Code.TemperSystem
         private void Awake()
         {
             _playerHealth = GetComponent<HealthSystem>();
+            _agentMovement = GetComponent<AgentMovement>();
             CurrentTemperature = 36.5f;
         }
 
@@ -33,15 +36,15 @@ namespace Member.JJW.Code.TemperSystem
         {
             if (WeatherManager.Instance.CurrentState == WeatherState.Rain)
             {
-                CurrentTemperature -= Time.deltaTime * 0.3f;
+                CurrentTemperature -= Time.deltaTime * 0.05f;
             }
             else if(WeatherManager.Instance.CurrentState == WeatherState.HeavyRain)
             {
-                CurrentTemperature -= Time.deltaTime * 0.5f;
+                CurrentTemperature -= Time.deltaTime * 0.1f;
             }
             else if(WeatherManager.Instance.CurrentState == WeatherState.Hot)
             {
-                CurrentTemperature += Time.deltaTime * 0.4f;
+                CurrentTemperature += Time.deltaTime * 0.05f;
             }
 
             if (_damagePercent > 0)
@@ -58,18 +61,18 @@ namespace Member.JJW.Code.TemperSystem
 
             else if (temperature <= 35) //이동속도 감소
             {
-                
+                _agentMovement.SetMultiValue(0.7f);
             }
             
             else if (temperature <= 37.5) //정상체온
             {
-                Debug.Log("정상체온");
                 _damagePercent = 0;
+                _agentMovement.SetMultiValue(1f);
             }
             
             else if (temperature <= 40) //이동속도 감소
             {
-                
+                _agentMovement.SetMultiValue(0.7f);
             }
             
             else if (temperature <= 42) //체력감소

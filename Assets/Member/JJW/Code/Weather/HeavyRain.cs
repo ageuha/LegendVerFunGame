@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace Member.JJW.Code.Weather
 {
@@ -6,12 +8,11 @@ namespace Member.JJW.Code.Weather
     {
         public override void OnStart()
         {
-            throw new System.NotImplementedException();
         }
 
         public override void OnStop()
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }
