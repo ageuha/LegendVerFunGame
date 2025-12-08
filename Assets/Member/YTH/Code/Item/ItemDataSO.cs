@@ -1,55 +1,48 @@
 using System.Text;
-using UnityEditor;
+using Member.KJW.Code.Data;
 using UnityEngine;
 
 namespace YTH.Code.Item
-{    
+{
     public class ItemDataSO : ScriptableObject
     {
+        [field:Header("Item Settings")]
         [field:SerializeField] public string ItemName { get; private set; }
         [field:SerializeField] public Sprite Icon { get; private set; }
-        [field:SerializeField] public string ItemID { get; private set; }
+        [field:SerializeField] public int ItemID { get; private set; }
         [field:SerializeField] public int MaxStack { get; private set; }
+
+        [field:Header("Throw Settings")]
+        [field:SerializeField] public float ThrowSpeed { get; private set; }
+        [field:SerializeField] public DamageInfoData ThrowDataInfo { get; private set; }
+
+
 
         protected StringBuilder _stringBuilder = new StringBuilder();
 
         public virtual string GetDescription() => string.Empty;
+        public override string ToString() => ItemName;
+        public override int GetHashCode() => ItemID;
 
-        public override bool Equals(object other)
+        public override bool Equals(object obj)
         {
-            if (ReferenceEquals(this, other)) return true;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj is not ItemDataSO other) return false;
 
-            if (other is not ItemDataSO otherItem) return false;
-
-            if (string.IsNullOrEmpty(ItemID) && string.IsNullOrEmpty(otherItem.ItemID)) return false;
-
-            return ItemID == otherItem.ItemID;
-        }
-
-        public override int GetHashCode()
-        {
-            return string.IsNullOrEmpty(ItemID) ? base.GetHashCode() : ItemID.GetHashCode();
+            return ItemID == other.ItemID;
         }
 
         public static bool operator ==(ItemDataSO lhs, ItemDataSO rhs)
         {
             if (ReferenceEquals(lhs, rhs)) return true;
+            if (ReferenceEquals(lhs, null) || ReferenceEquals(rhs, null)) return false;
 
-            if (lhs is null || rhs is null) return false;
-
-            return lhs.Equals(rhs);
+            return lhs.ItemID == rhs.ItemID;
         }
 
-        public static bool operator !=(ItemDataSO lhs, ItemDataSO rhs) => !(lhs == rhs);
-
-
-#if UNITY_EDITOR
-        protected virtual void OnValidate()
+        public static bool operator !=(ItemDataSO lhs, ItemDataSO rhs)
         {
-            string path = AssetDatabase.GetAssetPath(this);
-            ItemID = AssetDatabase.AssetPathToGUID(path);
+            return !(lhs == rhs);
         }
-#endif
-
     }
 }

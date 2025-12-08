@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace _02._Member.YDW.Script.PathFinder
+namespace Member.YDW.Script.PathFinder
 {
     public class AstarNode : IComparable<AstarNode>
     {

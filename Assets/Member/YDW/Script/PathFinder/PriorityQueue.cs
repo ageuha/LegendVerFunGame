@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace _02._Member.YDW.Script.PathFinder
+namespace Member.YDW.Script.PathFinder
 {
     public class PriorityQueue<T> where T : IComparable<T>
     { 

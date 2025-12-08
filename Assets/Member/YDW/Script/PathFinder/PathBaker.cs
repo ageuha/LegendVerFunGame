@@ -1,11 +1,15 @@
-﻿using UnityEditor;
+﻿using System;
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace _02._Member.YDW.Script.PathFinder
+namespace Member.YDW.Script.PathFinder
 {
     public class PathBaker : MonoBehaviour
     {
+        
+        [SerializeField] private PathBakeEventSO bakeEventSO;
         [SerializeField] private Tilemap groundMap;
         [SerializeField] private Tilemap obstacleMap;
         [SerializeField] private BakedDataSO bakedData;
@@ -13,11 +17,21 @@ namespace _02._Member.YDW.Script.PathFinder
         [SerializeField] private bool isDrawGizmo = true;
         [SerializeField] private bool isConnerCheck = true;
         [SerializeField] private Color nodeColor, edgeColor;
-
-       
+        
+        [SerializeField] private List<NodeData> BuildingPosList = new(); //빌딩 위치 리스트
 
         [ContextMenu("Bake map Data")]
+        private void Awake()
+        {
+            bakeEventSO.OnEvent += BakeMapDataRunning;
+        }
 
+        private void BakeMapDataRunning(List<NodeData> obj)
+        {
+            
+        }
+
+        //런타임 베이크 필요.
         private void BakeMapData()
         {
             Debug.Assert(groundMap != null && obstacleMap != null, "Target tilemap are null or empty");
@@ -79,15 +93,7 @@ namespace _02._Member.YDW.Script.PathFinder
                     Vector3Int targetCell = new Vector3Int(x, y);
                     if (CanMovePosition(targetCell))
                     {
-                        if (bakedData.SetCanBuildPoints.Count > 0)
-                        {
                             AddPoint(targetCell);
-                        }
-                        else
-                        {
-                            AddPoint(targetCell);
-                        }
-                        
                     }
                 }
             }

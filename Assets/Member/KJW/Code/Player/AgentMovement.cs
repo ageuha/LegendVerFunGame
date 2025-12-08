@@ -19,9 +19,16 @@ namespace Member.KJW.Code.Player
 
         public void SetMove(Vector2 dir)
         {
-            IsStop = false;
+            if (IsStop) return;
+
             _moveDir = dir;
             _currentVelocity = CalculateSpeed(_moveDir);
+        }
+
+        public void RestartMove()
+        {
+            IsStop = false;
+            _rb.bodyType = RigidbodyType2D.Dynamic;
         }
         
         public void StopMove()
@@ -30,6 +37,11 @@ namespace Member.KJW.Code.Player
             _moveDir = Vector2.zero;
             _rb.linearVelocity = _moveDir;
             _currentVelocity = 0;
+        }
+
+        public void SetKinematic(bool isKinematic)
+        {
+            _rb.bodyType = isKinematic ?  RigidbodyType2D.Kinematic : RigidbodyType2D.Dynamic;
         }
 
         private void Move()
