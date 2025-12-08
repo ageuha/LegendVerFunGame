@@ -12,7 +12,6 @@ namespace Member.JJW.Code.TemperSystem
         [SerializeField] private FloatEventChannel floatEventChannel;
         private AgentMovement _agentMovement;
         private float _damagePercent;
-        private float _speedPercent = 1;
         private HealthSystem _playerHealth;
         private float _currentTemperature;
 
@@ -51,7 +50,6 @@ namespace Member.JJW.Code.TemperSystem
             if (_damagePercent > 0)
             {
                 _playerHealth.ApplyDamage(Time.deltaTime * _damagePercent);
-                
             }
         }
         private void CheckTemperature(float temperature)
@@ -63,17 +61,18 @@ namespace Member.JJW.Code.TemperSystem
 
             else if (temperature <= 35) //이동속도 감소
             {
-                _speedPercent = 0.7f;
+                _agentMovement.SetMultiValue(0.7f);
             }
             
             else if (temperature <= 37.5) //정상체온
             {
                 _damagePercent = 0;
+                _agentMovement.SetMultiValue(1f);
             }
             
             else if (temperature <= 40) //이동속도 감소
             {
-                _speedPercent = 0.7f;
+                _agentMovement.SetMultiValue(0.7f);
             }
             
             else if (temperature <= 42) //체력감소
