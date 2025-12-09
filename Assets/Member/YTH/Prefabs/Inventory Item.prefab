@@ -94,6 +94,7 @@ MonoBehaviour:
   inputReader: {fileID: 11400000, guid: 777b456eb927283439da0b796da61433, type: 2}
   parentAfterDrag: {fileID: 0}
   inventoryItemPickUpEventChannel: {fileID: 11400000, guid: 20b87e897a4ed46418837e330a188f3b, type: 2}
+  inventoryItemPickDownEventChannel: {fileID: 11400000, guid: 8014b59b7e9492a4a8cb7aa15f9beabe, type: 2}
   <Item>k__BackingField: {fileID: 11400000, guid: 0456eb8b51c327840af7a1e171e34b65, type: 2}
   <Count>k__BackingField: 1
 --- !u!1 &3462681820624524849

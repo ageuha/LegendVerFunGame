@@ -1,14 +1,17 @@
 using System.Collections.Generic;
 using Code.Core.Utility;
 using UnityEngine;
+using YTH.Code.Inventory;
 using YTH.Code.Item;
 
 namespace YTH.Code.Craft
 {    
     public class CraftingTable : MonoBehaviour
     {
-        [SerializeField] private InventoryItem[] defaultMaterials = new InventoryItem[9];
+        [SerializeField] private List<InventorySlot> defaultMaterials = new List<InventorySlot>(gridSize);
         [SerializeField] private List<RecipeSO> recipeList;
+
+        private const int gridSize = 9;
 
 
 
@@ -17,9 +20,9 @@ namespace YTH.Code.Craft
         [ContextMenu("Info")]
         public void Info()
         {
-            for (int i = 0; i < defaultMaterials.Length; i++)
+            for (int i = 0; i < gridSize; i++)
             {
-                craftingSystem.SetItem(defaultMaterials[i], i);
+                craftingSystem.SetItem(defaultMaterials[i].GetInventoryItem(), i);
             }
 
             foreach (var r in recipeList)
@@ -35,9 +38,9 @@ namespace YTH.Code.Craft
         [ContextMenu("Craft")]
         public void Craft()
         {
-            for (int i = 0; i < defaultMaterials.Length; i++)
+            for (int i = 0; i < gridSize; i++)
             {
-                craftingSystem.SetItem(defaultMaterials[i], i);
+                craftingSystem.SetItem(defaultMaterials[i].GetInventoryItem(), i);
             }
 
             foreach (var r in recipeList)
