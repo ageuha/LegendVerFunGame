@@ -102,7 +102,7 @@ namespace YTH.Code.Inventory
             for (int i = 0; i < inventorySlots.Count; i++)
             {
                 InventorySlot slot = inventorySlots[i];
-                InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+                InventoryItem itemInSlot = slot.GetInventoryItem();
                 if (itemInSlot != null && itemInSlot.Item == item && itemInSlot.Count < item.MaxStack)
                 {
                     itemInSlot.AddStack();
@@ -113,7 +113,7 @@ namespace YTH.Code.Inventory
             for (int i = 0; i < inventorySlots.Count; i++)
             {
                 InventorySlot slot = inventorySlots[i];
-                InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+                InventoryItem itemInSlot = slot.GetInventoryItem();
                 if (itemInSlot == null)
                 {
                     SpawnNewItem(item, slot);
@@ -132,18 +132,28 @@ namespace YTH.Code.Inventory
             newItem.Initialize(this, item);
         }
 
-        public ItemDataSO GetSelectedItem(bool use)
+        public ItemDataSO GetSelectedItem()
         {
             InventorySlot slot = inventorySlots[m_SelectedSlot];
-            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+            InventoryItem itemInSlot = slot.GetInventoryItem();
             if (itemInSlot != null)
             {
-                if (use) itemInSlot.RemoveStack();
-
                 return itemInSlot.Item;
             }
 
             return null;
+        }
+
+        public bool UseSelectedItem()
+        {
+            InventorySlot slot = inventorySlots[m_SelectedSlot];
+            InventoryItem itemInSlot = slot.GetInventoryItem();
+            if (itemInSlot != null)
+            {
+                itemInSlot.RemoveStack();
+                return true;
+            }
+            return false;
         }
 
     }
