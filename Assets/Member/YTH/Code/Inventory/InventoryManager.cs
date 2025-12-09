@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Code.Core.GlobalStructs;
+using Code.Core.Pool;
 using Code.Core.Utility;
 using Member.KJW.Code.Input;
 using UnityEngine;
@@ -14,7 +15,6 @@ namespace YTH.Code.Inventory
         [field:SerializeField] public InventoryItem HoldItem { get; private set; }
         public List<InventorySlot> inventorySlots;
         [SerializeField] private GameObject mainInventory;
-        [SerializeField] private InventoryItem inventoryItemPrefab;
         [SerializeField] private InventoryAddEventChannel inventoryAddEventChannel;
         [SerializeField] private InventoryItemPickUpEventChannel inventoryItemPickUpEventChannel;
         [SerializeField] private InventoryItemPickDownEventChannel inventoryItemPickDownEventChannel;
@@ -126,7 +126,9 @@ namespace YTH.Code.Inventory
 
         private void SpawnNewItem(ItemDataSO item, InventorySlot slot)
         {
-            InventoryItem newItem = Instantiate(inventoryItemPrefab, slot.transform);
+            InventoryItem newItem  = PoolManager.Instance.Factory<InventoryItem>().Pop(slot.transform);
+            newItem.transform.localScale = Vector3.one;
+            newItem.transform.localPosition = Vector3.zero;
             newItem.Initialize(this, item);
         }
 
