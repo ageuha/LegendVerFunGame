@@ -82,12 +82,12 @@ namespace Member.KJW.Code.Player
 
         private void HandleThrow()
         {
-            ItemDataSO curItem = Inventory.GetSelectedItem(false);
+            ItemDataSO curItem = Inventory.GetSelectedItem();
             Logging.Log(curItem);
             if (curItem == null) return;
             
             Thrower.Throw(curItem.ThrowDataInfo.ToStruct(), curItem.Icon, Camera.main!.ScreenToWorldPoint(InputReader.MousePos) - transform.position, curItem.ThrowSpeed);
-            Inventory.GetSelectedItem(true);
+            Inventory.UseSelectedItem();
         }
 
         private void UpdateStandDir(Vector2 dir)
