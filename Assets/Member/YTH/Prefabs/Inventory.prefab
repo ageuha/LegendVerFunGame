@@ -478,6 +478,7 @@ MonoBehaviour:
   inventoryAddEventChannel: {fileID: 11400000, guid: 6269dbfef8d129044ba3df4966552367, type: 2}
   inventoryItemPickUpEventChannel: {fileID: 11400000, guid: 20b87e897a4ed46418837e330a188f3b, type: 2}
   inventoryItemPickDownEventChannel: {fileID: 11400000, guid: 8014b59b7e9492a4a8cb7aa15f9beabe, type: 2}
+  inventoryManagerEventChannel: {fileID: 11400000, guid: fb6f9fa11354ee140bf4d4a28a3935cc, type: 2}
   inputReader: {fileID: 11400000, guid: 777b456eb927283439da0b796da61433, type: 2}
 --- !u!1001 &51837049662814475
 PrefabInstance:

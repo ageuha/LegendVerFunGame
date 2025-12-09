@@ -4,7 +4,6 @@ using Code.Core.Pool;
 using Code.Core.Utility;
 using Member.KJW.Code.Input;
 using UnityEngine;
-using UnityEngine.InputSystem.iOS;
 using UnityEngine.PlayerLoop;
 using YTH.Code.Item;
 
@@ -18,10 +17,21 @@ namespace YTH.Code.Inventory
         [SerializeField] private InventoryAddEventChannel inventoryAddEventChannel;
         [SerializeField] private InventoryItemPickUpEventChannel inventoryItemPickUpEventChannel;
         [SerializeField] private InventoryItemPickDownEventChannel inventoryItemPickDownEventChannel;
+        [SerializeField] private InventoryManagerEventChannel inventoryManagerEventChannel;
         [SerializeField] private InputReader inputReader;
 
         private int m_SelectedSlot = 1;
         private bool m_Open = true;
+
+        private void Awake()
+        {
+            inventoryAddEventChannel.OnEvent += AddItem;
+            inventoryItemPickUpEventChannel.OnEvent += PickUp;
+            inventoryItemPickDownEventChannel.OnEvent += PickDown;
+            inputReader.OnNumKeyPressed += ChangeSelectedSlot;
+            inputReader.OnInventory += MainInventory;
+            inputReader.OnScrolled += ChangeSelectedSlotScroll;
+        }
 
         private void Start()
         {
@@ -31,13 +41,8 @@ namespace YTH.Code.Inventory
             }
             MainInventory();
             ChangeSelectedSlot(1);
-            
-            inventoryAddEventChannel.OnEvent += AddItem;
-            inventoryItemPickUpEventChannel.OnEvent += PickUp;
-            inventoryItemPickDownEventChannel.OnEvent += PickDown;
-            inputReader.OnNumKeyPressed += ChangeSelectedSlot;
-            inputReader.OnInventory += MainInventory;
-            inputReader.OnScrolled += ChangeSelectedSlotScroll;
+        
+            inventoryManagerEventChannel.Raise(this);   
         }
 
         private void OnDestroy()
@@ -72,7 +77,6 @@ namespace YTH.Code.Inventory
             {
                 m_SelectedSlot += (int)value;
             }
-            Logging.Log(m_SelectedSlot);
             ChangeSelectedSlot(m_SelectedSlot);
         }
 

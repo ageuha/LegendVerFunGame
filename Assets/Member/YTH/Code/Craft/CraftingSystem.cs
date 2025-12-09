@@ -1,5 +1,5 @@
+using System.Collections.Generic;
 using Code.Core.Utility;
-using UnityEngine;
 using YTH.Code.Inventory;
 using YTH.Code.Item;
 
@@ -8,39 +8,39 @@ namespace YTH.Code.Craft
     public class CraftingSystem
     {
         private const int gridSize = 9;
-        private InventoryItem[] itemArray;
+        private InventoryItem[] m_ItemArray;
 
         public CraftingSystem()
         {
-            itemArray = new InventoryItem[gridSize];
+            m_ItemArray = new InventoryItem[gridSize];
         }
 
         public bool IsEmpty(int index)
         {
-            return itemArray[index] == null;
+            return m_ItemArray[index] == null;
         }
         
         public InventoryItem GetItem(int index)
         {
-            return itemArray[index];
+            return m_ItemArray[index];
         }
 
         public void SetItem(InventoryItem item, int index)
         {
-            itemArray[index] = item;
+            m_ItemArray[index] = item;
         }
 
 
         private void IncreaseItemStack(int index)
         {
             if (IsEmpty(index)) return;
-            itemArray[index].AddStack();
+            m_ItemArray[index].AddStack();
         }
 
         private void DecreaseItemStack(int index)
         {
             if (IsEmpty(index)) return;
-            itemArray[index].RemoveStack();
+            m_ItemArray[index].RemoveStack();
         }
 
         public bool TryAddItem(InventoryItem item,int index)
@@ -92,20 +92,24 @@ namespace YTH.Code.Craft
             for (int i = 0; i < gridSize; i++)
             {
                 ItemDataSO requiredMaterial = currentRecipe.Materials[i];
-                InventoryItem currentItem = itemArray[i];
+                InventoryItem currentItem = m_ItemArray[i];
 
 
-                if (requiredMaterial == null)
+                if (currentItem != null && currentItem.Item != null)
                 {
-                    if (currentItem.Item != null)
+                    if (currentItem.Item == requiredMaterial)
+                    {
+                        continue;
+                    }
+                    if (requiredMaterial == null)
                     {
                         return false;
                     }
                 }
-                
-                else
+
+                if (currentItem == null)
                 {
-                    if (currentItem == null || currentItem.Item != requiredMaterial || currentItem.Count < 1)
+                    if (requiredMaterial != null)
                     {
                         return false;
                     }
@@ -121,11 +125,13 @@ namespace YTH.Code.Craft
             {
                 for (int i = 0; i < currentRecipe.Materials.Length; i++)
                 {
-
-                    if(!TryRemove(itemArray[i], i))
-                    {
-                        Logging.LogWarning("제작을 할 수 없습니다.");
-                        return false;
+                    if(m_ItemArray[i] != null && currentRecipe.Materials[i] != null)
+                    {    
+                        if(!TryRemove(m_ItemArray[i], i))
+                        {
+                            Logging.LogWarning("제작을 할 수 없습니다.");
+                            return false;
+                        }
                     }
                 }
 
