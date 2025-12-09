@@ -1,12 +1,12 @@
-using System;
-using Code.Core.Utility;
 using Code.EntityScripts;
+using Code.GridSystem.Objects;
 using Member.BJH._01Script.Interact;
 using Member.KJW.Code.CombatSystem;
 using Member.KJW.Code.Data;
 using Member.KJW.Code.Input;
+using Member.YDW.Script;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using YTH.Code.Inventory;
 using YTH.Code.Item;
 
@@ -16,6 +16,8 @@ namespace Member.KJW.Code.Player
     {
         [field: SerializeField] public InputReader InputReader { get; private set; }
         [field: SerializeField] public RollingData RollingData { get; private set; }
+        [SerializeField] private float maxHp;
+        
         
         public AgentMovement MoveCompo { get; private set; }
         public HealthSystem HealthCompo { get; private set; }
@@ -29,6 +31,7 @@ namespace Member.KJW.Code.Player
         private bool _isInvincible;
         
         public Vector2 StandDir { get; private set; } = Vector2.right;
+        public Vector2 MouseWorldPos => Camera.main!.ScreenToWorldPoint(InputReader.MousePos);
         
         private float _coolTimer;
         private int _remainRoll;
@@ -40,15 +43,16 @@ namespace Member.KJW.Code.Player
         
         private void Awake()
         {
-            MoveCompo = GetComponent<AgentMovement>();
-            HealthCompo = GetComponent<HealthSystem>();
-            Interactor = GetComponent<Interactor>();
-            Thrower = GetComponent<Thrower>();
-            Arm = GetComponentInChildren<Arm>();
-            Weapon = GetComponentInChildren<Weapon>();
-            Inventory = GetComponentInChildren<InventoryManager>();
+            MoveCompo = GetComponentInChildren<AgentMovement>();
+            HealthCompo = GetComponentInChildren<HealthSystem>();
+            Interactor = GetComponentInChildren<Interactor>();
+            Thrower = GetComponentInChildren<Thrower>();
+            Arm = GetComponentInChildren<Arm>(true);
+            Weapon = GetComponentInChildren<Weapon>(true);
+            Inventory = GetComponentInChildren<InventoryManager>(true);
 
             RemainRoll = RollingData.MaxRoll;
+            HealthCompo.Initialize(maxHp);
         }
 
         private void OnEnable()
@@ -56,7 +60,8 @@ namespace Member.KJW.Code.Player
             InputReader.OnInteracted += Interactor.Interact;
             InputReader.OnRolled += Roll;
             InputReader.OnMoved += UpdateStandDir;
-            InputReader.OnThrew += HandleThrow;
+            InputReader.OnThrew += Throw;
+            InputReader.OnAttacked += Click;
         }
 
         private void Update()
@@ -77,16 +82,48 @@ namespace Member.KJW.Code.Player
             InputReader.OnInteracted -= Interactor.Interact;
             InputReader.OnRolled -= Roll;
             InputReader.OnMoved -= UpdateStandDir;
-            InputReader.OnThrew -= HandleThrow;
+            InputReader.OnThrew -= Throw;
+            InputReader.OnAttacked -= Click;
         }
 
-        private void HandleThrow()
+        private void Click()
         {
             ItemDataSO curItem = Inventory.GetSelectedItem();
-            Logging.Log(curItem);
+            
+            if (curItem == null || EventSystem.current.IsPointerOverGameObject()) return;
+            
+            if (curItem is WeaponDataSO weaponData)
+            {
+                Attack(weaponData);
+                return;
+            }
+
+            Break(curItem);
+        }
+
+        private void Place(ItemDataSO item)
+        {
+            
+        }
+
+        private void Break(ItemDataSO item)
+        {
+            
+        }
+
+        private void Attack(WeaponDataSO weaponData)
+        {
+            Vector2 dir = MouseWorldPos - (Vector2)transform.position;
+            Weapon.Init(weaponData);
+            Arm.Init(Mathf.Rad2Deg * Mathf.Atan2(dir.y, dir.x)).Swing();
+        }
+
+        private void Throw()
+        {
+            ItemDataSO curItem = Inventory.GetSelectedItem();
             if (curItem == null) return;
             
-            Thrower.Throw(curItem.ThrowDataInfo.ToStruct(), curItem.Icon, Camera.main!.ScreenToWorldPoint(InputReader.MousePos) - transform.position, curItem.ThrowSpeed);
+            Thrower.Throw(curItem.ThrowDataInfo.ToStruct(), curItem.Icon, MouseWorldPos - (Vector2)transform.position, curItem.ThrowSpeed);
             Inventory.UseSelectedItem();
         }
 

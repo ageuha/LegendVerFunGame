@@ -6,10 +6,12 @@ using YTH.Code.Stat;
 namespace YTH.Code.Item
 {    
     [CreateAssetMenu(fileName = "EquipmentDataSO", menuName = "SO/Item/Equipment")]
-    public class EquipmentDataSO : ItemDataSO
+    public class WeaponDataSO : ItemDataSO
     {
         [field:SerializeField] public EquipmentType EquipmentType { get; private set; }
         [field:SerializeField] public List<Stat> Stats { get; private set; }
+        [field:SerializeField] public Vector2 HitBoxOffset { get; private set; }
+        [field:SerializeField] public Vector2 HitBoxSize { get; private set; }
     }
     
     [Serializable]

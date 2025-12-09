@@ -6,7 +6,7 @@ namespace Member.KJW.Code.CombatSystem
 {
     public class Throwable : MonoBehaviour, IPoolable
     {
-        [SerializeField] private float lifeTime;
+        private float _lifeTime;
         private Rigidbody2D _rb;
         private SpriteRenderer _renderer;
         private DamageInfo _damageInfo;
@@ -20,7 +20,7 @@ namespace Member.KJW.Code.CombatSystem
 
         private void OnEnable()
         {
-            Invoke(nameof(Push), lifeTime);
+            Invoke(nameof(Push), _lifeTime);
         }
 
         public Throwable Init(DamageInfo damageInfo, Sprite sprite, float speed)
