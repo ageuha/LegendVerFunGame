@@ -47,8 +47,7 @@ namespace Member.KJW.Code.CombatSystem
                 PoolManager.Instance.Factory<Throwable>().Push(this);
             }
         }
-
-        public GameObject GameObject => gameObject;
+        
         public int InitialCapacity => 5;
 
         public void OnPopFromPool()

@@ -19,6 +19,8 @@ namespace Member.KJW.Code.Player
         public HealthSystem HealthCompo { get; private set; }
         public Interactor Interactor { get; private set; }
         public Thrower Thrower { get; private set; }
+        public Arm Arm { get; private set; }
+        public Weapon Weapon { get; private set; }
         
         public bool IsRolling { get; private set; }
         private bool _isInvincible;
@@ -39,6 +41,8 @@ namespace Member.KJW.Code.Player
             HealthCompo = GetComponent<HealthSystem>();
             Interactor = GetComponent<Interactor>();
             Thrower = GetComponent<Thrower>();
+            Arm = GetComponentInChildren<Arm>();
+            Weapon = GetComponentInChildren<Weapon>();
 
             RemainRoll = RollingData.MaxRoll;
         }

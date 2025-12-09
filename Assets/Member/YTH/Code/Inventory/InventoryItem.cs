@@ -1,4 +1,6 @@
-using System.Security.Cryptography;
+using Code.Core.GlobalStructs;
+using Code.Core.Pool;
+using Code.Core.Utility;
 using Member.KJW.Code.Input;
 using TMPro;
 using UnityEngine;
@@ -8,13 +10,15 @@ using YTH.Code.Item;
 
 namespace YTH.Code.Inventory
 {
-    public class InventoryItem : MonoBehaviour, IPointerClickHandler
+    public class InventoryItem : MonoBehaviour, IPointerClickHandler, IPoolable
     {
+        public int InitialCapacity => 60;
         [SerializeField] private Image itemIcon;
         [SerializeField] private TextMeshProUGUI countText;
         [SerializeField] private InputReader inputReader;
         [HideInInspector] public Transform parentAfterDrag;
         [SerializeField] private InventoryItemPickUpEventChannel inventoryItemPickUpEventChannel;
+        [SerializeField] private InventoryItemPickDownEventChannel inventoryItemPickDownEventChannel;
         [field:SerializeField] public ItemDataSO Item { get; private set; }
         [field:SerializeField] public int Count { get; private set; }
 
@@ -25,6 +29,12 @@ namespace YTH.Code.Inventory
         {
             this.m_InventoryManager = inventoryManager;      
             SetItemData(itemDataSO); 
+        }
+
+        public void Initialize(InventoryManager inventoryManager, ItemDataSO itemDataSO, int count)
+        {
+            this.m_InventoryManager = inventoryManager;      
+            SetItemData(itemDataSO,count); 
         }
 
         public void SetItemData(ItemDataSO itemDataSO)
@@ -57,7 +67,7 @@ namespace YTH.Code.Inventory
             Count -= count;
             if (Count <= 0)
             {
-                Destroy(gameObject);
+                PoolManager.Instance.Factory<InventoryItem>().Push(this);
             }
             else
             {
@@ -79,6 +89,16 @@ namespace YTH.Code.Inventory
             m_IsHold = false;
             itemIcon.raycastTarget = true;
             transform.SetParent(parentAfterDrag);
+            transform.localPosition = Vector2.zero;
+        }
+
+        public void PickUp()
+        {
+            m_IsHold = true;
+            itemIcon.raycastTarget = false;
+            parentAfterDrag = transform.parent;
+            transform.SetParent(transform.root);
+            inventoryItemPickUpEventChannel.Raise(this);
         }
 
         public void OnPointerClick(PointerEventData eventData)
@@ -87,13 +107,66 @@ namespace YTH.Code.Inventory
             {       
                 if (!m_IsHold)
                 {
-                    m_IsHold = true;
-                    itemIcon.raycastTarget = false;
-                    parentAfterDrag = transform.parent;
-                    transform.SetParent(transform.root);
-                    inventoryItemPickUpEventChannel.Raise(this);
+                    if(eventData.button == PointerEventData.InputButton.Left)
+                    {
+                        PickUp();
+                    }
+                    else if(eventData.button == PointerEventData.InputButton.Right)
+                    {
+                        int splitCount = Split();
+                        if (splitCount <= 0) return;
+                        RemoveStack(splitCount);
+
+                        InventoryItem newItem  = PoolManager.Instance.Factory<InventoryItem>().Pop(transform.root);
+                        newItem.transform.localScale = Vector3.one;
+                        newItem.transform.localPosition = Vector3.zero;
+                        newItem.Initialize(m_InventoryManager, Item, splitCount);
+                        newItem.PickUp();
+                    }
                 }
             }
+            else
+            {
+                var HoldItem = m_InventoryManager.HoldItem;
+                if (HoldItem.Item == Item)
+                {
+                    if (Count + HoldItem.Count <= Item.MaxStack)
+                    {    
+                        AddStack(HoldItem.Count);
+                        PoolManager.Instance.Factory<InventoryItem>().Push(HoldItem);
+                        inventoryItemPickDownEventChannel.Raise(new Empty());
+                    }
+                    else
+                    {
+                        int remainCount = Item.MaxStack - Count;
+                        AddStack(remainCount);
+                        HoldItem.RemoveStack(remainCount);
+
+                    }
+                }
+            }
+        }
+
+        private int Split()
+        {
+            int SplitCount = 0;
+
+            if (Count > 1)
+            {
+                SplitCount = Count / 2;
+            }
+
+            return SplitCount;
+        }
+
+        public void OnPopFromPool()
+        {
+            
+        }
+
+        public void OnReturnToPool()
+        {
+            
         }
     }
 }

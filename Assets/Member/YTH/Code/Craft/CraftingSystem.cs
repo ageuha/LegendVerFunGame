@@ -1,5 +1,6 @@
 using Code.Core.Utility;
 using UnityEngine;
+using YTH.Code.Inventory;
 using YTH.Code.Item;
 
 namespace YTH.Code.Craft
@@ -33,13 +34,13 @@ namespace YTH.Code.Craft
         private void IncreaseItemStack(int index)
         {
             if (IsEmpty(index)) return;
-            itemArray[index].AddStack(1);
+            itemArray[index].AddStack();
         }
 
         private void DecreaseItemStack(int index)
         {
             if (IsEmpty(index)) return;
-            itemArray[index].RemoveStack(1);
+            itemArray[index].RemoveStack();
         }
 
         public bool TryAddItem(InventoryItem item,int index)
@@ -51,7 +52,7 @@ namespace YTH.Code.Craft
             }
             else
             {
-                if (item.itemData == GetItem(index).itemData)
+                if (item.Item == GetItem(index).Item)
                 {
                     IncreaseItemStack(index);
                     return true;
@@ -72,7 +73,7 @@ namespace YTH.Code.Craft
             }
             else
             {
-                if (item.itemData == GetItem(index).itemData)
+                if (item.Item == GetItem(index).Item)
                 {
                     DecreaseItemStack(index);
                     return true;
@@ -96,7 +97,7 @@ namespace YTH.Code.Craft
 
                 if (requiredMaterial == null)
                 {
-                    if (currentItem.itemData != null)
+                    if (currentItem.Item != null)
                     {
                         return false;
                     }
@@ -104,7 +105,7 @@ namespace YTH.Code.Craft
                 
                 else
                 {
-                    if (currentItem == null || currentItem.itemData != requiredMaterial || currentItem.Count < 1)
+                    if (currentItem == null || currentItem.Item != requiredMaterial || currentItem.Count < 1)
                     {
                         return false;
                     }
@@ -120,8 +121,8 @@ namespace YTH.Code.Craft
             {
                 for (int i = 0; i < currentRecipe.Materials.Length; i++)
                 {
-                    InventoryItem item = new(currentRecipe.Materials[i], 1, Vector2Int.zero);
-                    if(!TryRemove(item, i))
+
+                    if(!TryRemove(itemArray[i], i))
                     {
                         Logging.LogWarning("제작을 할 수 없습니다.");
                         return false;

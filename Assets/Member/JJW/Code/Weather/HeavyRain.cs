@@ -1,17 +1,23 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace Member.JJW.Code.Weather
 {
     public class HeavyRain : Weather
     {
+        [SerializeField] private ParticleSystem heavyRainParticles;
         public override void OnStart()
         {
-            throw new System.NotImplementedException();
+            ChangeVolumeWeight(0.6f);
+            FadeToTargetColor(targetColor);
+            heavyRainParticles.Play();
         }
 
         public override void OnStop()
         {
-            throw new System.NotImplementedException();
+            heavyRainParticles.Stop();
+            ChangeVolumeWeight(0);
         }
     }
 }

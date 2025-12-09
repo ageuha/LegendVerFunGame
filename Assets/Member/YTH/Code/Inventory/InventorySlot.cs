@@ -1,4 +1,6 @@
 using Code.Core.GlobalStructs;
+using Code.Core.Pool;
+using Code.Core.Utility;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -32,15 +34,20 @@ namespace YTH.Code.Inventory
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (transform.childCount == 0)
+            if (m_InventoryManager.HoldItem != null)
             {
-                if(m_InventoryManager.HoldItem != null)
-                {    
+                if (transform.childCount == 0)
+                {
                     m_InventoryManager.HoldItem.parentAfterDrag = transform;
                     m_InventoryManager.HoldItem.PickDown();
                     inventoryItemPickDownEventChannel.Raise(new Empty());
                 }
             }
+        }
+
+        public InventoryItem GetInventoryItem()
+        {
+            return GetComponentInChildren<InventoryItem>();
         }
     }
 }

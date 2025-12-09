@@ -4,14 +4,16 @@ namespace Member.JJW.Code.Weather
 {
     public class Foggy : Weather
     {
+        [SerializeField] private ParticleSystem foggyParticles;
         public override void OnStart()
         {
-            throw new System.NotImplementedException();
+            foggyParticles.Play();
+            FadeToTargetColor(targetColor);
         }
 
         public override void OnStop()
         {
-            throw new System.NotImplementedException();
+            foggyParticles.Stop();
         }
     }
 }

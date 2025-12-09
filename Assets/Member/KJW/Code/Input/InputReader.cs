@@ -20,6 +20,7 @@ namespace Member.KJW.Code.Input
         public event Action OnRolled;
         public event Action<float> OnScrolled;
         public event Action<int> OnNumKeyPressed;
+        public event Action OnInventory;
 
         public Vector2 MousePos { get; private set; }
         public Vector2 Dir { get; private set; }
@@ -84,7 +85,8 @@ namespace Member.KJW.Code.Input
 
         public void OnScroll(InputAction.CallbackContext context)
         {
-            OnScrolled?.Invoke(context.ReadValue<float>());
+            if (context.performed)
+                OnScrolled?.Invoke(context.ReadValue<float>());
         }
 
         public void OnOneKey(InputAction.CallbackContext context)
@@ -139,6 +141,12 @@ namespace Member.KJW.Code.Input
         {
             if (context.performed)
                 OnNumKeyPressed?.Invoke(9);
+        }
+
+        public void OnInventoryOnOff(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+                OnInventory?.Invoke();
         }
     }
 }

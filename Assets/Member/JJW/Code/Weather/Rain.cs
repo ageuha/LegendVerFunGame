@@ -1,30 +1,27 @@
 ﻿using System;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 namespace Member.JJW.Code.Weather
 {
     public class Rain : Weather
     {
-        [SerializeField] private GameObject rainPanel;
-        private Image _rainPanelImage;
-
-        private void Awake()
-        {
-            _rainPanelImage = rainPanel.GetComponent<Image>();
-        }
-
+        [SerializeField] private ParticleSystem rainParticle;
+        
         public override void OnStart()
         {
-            _rainPanelImage.DOFade(0.5f, 1);
-            //파티클 시작
+            rainParticle.Play();
+            FadeToTargetColor(targetColor);
+            ChangeVolumeWeight(0.4f);
         }
 
         public override void OnStop()
         {
-            _rainPanelImage.DOFade(0, 1);
-            //파티클 끝
+            rainParticle.Stop();
+            ChangeVolumeWeight(0);
         }
     }
 }

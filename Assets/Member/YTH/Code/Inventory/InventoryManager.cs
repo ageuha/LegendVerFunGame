@@ -1,6 +1,11 @@
 using System.Collections.Generic;
 using Code.Core.GlobalStructs;
+using Code.Core.Pool;
+using Code.Core.Utility;
+using Member.KJW.Code.Input;
 using UnityEngine;
+using UnityEngine.InputSystem.iOS;
+using UnityEngine.PlayerLoop;
 using YTH.Code.Item;
 
 namespace YTH.Code.Inventory
@@ -9,13 +14,14 @@ namespace YTH.Code.Inventory
     {
         [field:SerializeField] public InventoryItem HoldItem { get; private set; }
         public List<InventorySlot> inventorySlots;
-
-        [SerializeField] private InventoryItem inventoryItemPrefab;
+        [SerializeField] private GameObject mainInventory;
         [SerializeField] private InventoryAddEventChannel inventoryAddEventChannel;
         [SerializeField] private InventoryItemPickUpEventChannel inventoryItemPickUpEventChannel;
         [SerializeField] private InventoryItemPickDownEventChannel inventoryItemPickDownEventChannel;
+        [SerializeField] private InputReader inputReader;
 
-        private int m_SelectedSlot = -1;
+        private int m_SelectedSlot = 1;
+        private bool m_Open = true;
 
         private void Start()
         {
@@ -23,28 +29,61 @@ namespace YTH.Code.Inventory
             {
                 slot.Initialize(this);
             }
-
-            ChangeSelectedSlot(0);
+            MainInventory();
+            ChangeSelectedSlot(1);
             
             inventoryAddEventChannel.OnEvent += AddItem;
             inventoryItemPickUpEventChannel.OnEvent += PickUp;
             inventoryItemPickDownEventChannel.OnEvent += PickDown;
+            inputReader.OnNumKeyPressed += ChangeSelectedSlot;
+            inputReader.OnInventory += MainInventory;
+            inputReader.OnScrolled += ChangeSelectedSlotScroll;
         }
 
         private void OnDestroy()
         {
             inventoryAddEventChannel.OnEvent -= AddItem;
             inventoryItemPickUpEventChannel.OnEvent -= PickUp;
+            inventoryItemPickDownEventChannel.OnEvent -= PickDown;
+            inputReader.OnNumKeyPressed -= ChangeSelectedSlot;
+            inputReader.OnInventory -= MainInventory;
+            inputReader.OnScrolled -= ChangeSelectedSlotScroll;
+        }
+
+        private void MainInventory()
+        {
+            m_Open = !m_Open;
+            mainInventory.SetActive(m_Open);
+        }
+
+        private void ChangeSelectedSlotScroll(float value)
+        {
+            if(value == 0) return;
+
+            if(m_SelectedSlot + value <= 0)
+            {
+                m_SelectedSlot = 9;
+            }
+            else if (m_SelectedSlot + value >= 10)
+            {
+                m_SelectedSlot = 1;
+            }
+            else
+            {
+                m_SelectedSlot += (int)value;
+            }
+            Logging.Log(m_SelectedSlot);
+            ChangeSelectedSlot(m_SelectedSlot);
         }
 
         private void ChangeSelectedSlot(int value)
         {
-            if (m_SelectedSlot >= 0)
+            for (int i = 0; i < 9; i++)
             {
-                inventorySlots[m_SelectedSlot].UnSelect();
+                inventorySlots[i].UnSelect();
             }
 
-            inventorySlots[value].Select();
+            inventorySlots[value - 1].Select();
             m_SelectedSlot = value;
         }
 
@@ -63,7 +102,7 @@ namespace YTH.Code.Inventory
             for (int i = 0; i < inventorySlots.Count; i++)
             {
                 InventorySlot slot = inventorySlots[i];
-                InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+                InventoryItem itemInSlot = slot.GetInventoryItem();
                 if (itemInSlot != null && itemInSlot.Item == item && itemInSlot.Count < item.MaxStack)
                 {
                     itemInSlot.AddStack();
@@ -74,7 +113,7 @@ namespace YTH.Code.Inventory
             for (int i = 0; i < inventorySlots.Count; i++)
             {
                 InventorySlot slot = inventorySlots[i];
-                InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+                InventoryItem itemInSlot = slot.GetInventoryItem();
                 if (itemInSlot == null)
                 {
                     SpawnNewItem(item, slot);
@@ -87,23 +126,34 @@ namespace YTH.Code.Inventory
 
         private void SpawnNewItem(ItemDataSO item, InventorySlot slot)
         {
-            InventoryItem newItem = Instantiate(inventoryItemPrefab, slot.transform);
+            InventoryItem newItem  = PoolManager.Instance.Factory<InventoryItem>().Pop(slot.transform);
+            newItem.transform.localScale = Vector3.one;
+            newItem.transform.localPosition = Vector3.zero;
             newItem.Initialize(this, item);
         }
 
-        public ItemDataSO GetSelectedItem(bool use)
+        public ItemDataSO GetSelectedItem()
         {
-            InventorySlot slot = inventorySlots[m_SelectedSlot];
-            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+            InventorySlot slot = inventorySlots[m_SelectedSlot-1];
+            InventoryItem itemInSlot = slot.GetInventoryItem();
             if (itemInSlot != null)
             {
-                if (use) itemInSlot.RemoveStack();
-
                 return itemInSlot.Item;
             }
 
             return null;
         }
 
+        public bool UseSelectedItem()
+        {
+            InventorySlot slot = inventorySlots[m_SelectedSlot-1];
+            InventoryItem itemInSlot = slot.GetInventoryItem();
+            if (itemInSlot != null)
+            {
+                itemInSlot.RemoveStack();
+                return true;
+            }
+            return false;
+        }
     }
 }
