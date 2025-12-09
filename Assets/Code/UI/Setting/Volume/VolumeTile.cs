@@ -1,5 +1,6 @@
 ﻿using Code.Core.GlobalInterfaces;
 using Code.Core.Utility;
+using Code.UI.Setting.BaseClass;
 using Code.UI.SimpleFeedback;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,7 +9,7 @@ namespace Code.UI.Setting.Volume {
     public class VolumeTile : MonoBehaviour, IPointerClickHandler {
         [SerializeField] private SerializeHelper<ISubscribable<bool>> toggleEvent;
         [SerializeField] private TweenPlayer tweenPlayer;
-        [SerializeField] private SerializeHelper<SettingModule<float>> settingModule;
+        [SerializeField] private SerializeHelper<ButtonSettingModule<float>> settingModule;
 
         private float ReciprocalOfSiblingCount => 1f / transform.parent.childCount;
 

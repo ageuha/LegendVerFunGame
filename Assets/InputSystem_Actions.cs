@@ -163,6 +163,87 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""OneKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""a0746a4b-7028-4e11-9783-8b208d35d5fd"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TwoKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""82850020-4fee-4965-934c-680d328bc29f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ThreeKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""ac11184b-f18f-4e5f-812b-72fbae649b88"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FourKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""35f027cf-4ca5-4269-b090-f5abcd53ff6c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FiveKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""f33507bf-76f6-416f-b1cd-ecb6fd8f3526"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SixKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""9d306988-b723-4202-8438-57f99a094864"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SevenKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""0d528aba-9ecd-4777-8133-363cfb50a2af"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EightKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""d1e00f4e-1231-4d2f-af85-c28534f103d4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NineKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""b36f0a0a-512b-4d4f-86f4-104936335a86"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -227,7 +308,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -238,7 +319,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Roll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -249,7 +330,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Roll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -260,7 +341,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -271,7 +352,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -282,7 +363,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Throw"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -293,7 +374,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Place"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -304,8 +385,107 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/scroll/y"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Scroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fb1eb0ad-7c3d-448f-be91-c9bd890dba1c"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""OneKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f7caf73d-89cd-4bd8-809c-a30a67f0bc89"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""TwoKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ab14a898-ef62-452b-b492-5b782692780c"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""ThreeKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3c923729-a51a-4e74-bfa5-da9d607ca237"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""FourKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""628c267a-8100-4dde-a777-0631ac76530d"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""SixKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""55266817-6364-43e4-8a47-f16830cfea58"",
+                    ""path"": ""<Keyboard>/7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""SevenKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b4d6dd82-5304-47e0-a81c-b6422cf4afe2"",
+                    ""path"": ""<Keyboard>/8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""EightKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ac419e92-7229-46b9-bb75-a8adc192c72a"",
+                    ""path"": ""<Keyboard>/9"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""NineKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7c7725ee-fff0-4a42-9bce-5e5c3ef9666e"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""FiveKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -385,6 +565,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_Throw = m_Player.FindAction("Throw", throwIfNotFound: true);
         m_Player_Place = m_Player.FindAction("Place", throwIfNotFound: true);
         m_Player_Scroll = m_Player.FindAction("Scroll", throwIfNotFound: true);
+        m_Player_OneKey = m_Player.FindAction("OneKey", throwIfNotFound: true);
+        m_Player_TwoKey = m_Player.FindAction("TwoKey", throwIfNotFound: true);
+        m_Player_ThreeKey = m_Player.FindAction("ThreeKey", throwIfNotFound: true);
+        m_Player_FourKey = m_Player.FindAction("FourKey", throwIfNotFound: true);
+        m_Player_FiveKey = m_Player.FindAction("FiveKey", throwIfNotFound: true);
+        m_Player_SixKey = m_Player.FindAction("SixKey", throwIfNotFound: true);
+        m_Player_SevenKey = m_Player.FindAction("SevenKey", throwIfNotFound: true);
+        m_Player_EightKey = m_Player.FindAction("EightKey", throwIfNotFound: true);
+        m_Player_NineKey = m_Player.FindAction("NineKey", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -473,6 +662,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Throw;
     private readonly InputAction m_Player_Place;
     private readonly InputAction m_Player_Scroll;
+    private readonly InputAction m_Player_OneKey;
+    private readonly InputAction m_Player_TwoKey;
+    private readonly InputAction m_Player_ThreeKey;
+    private readonly InputAction m_Player_FourKey;
+    private readonly InputAction m_Player_FiveKey;
+    private readonly InputAction m_Player_SixKey;
+    private readonly InputAction m_Player_SevenKey;
+    private readonly InputAction m_Player_EightKey;
+    private readonly InputAction m_Player_NineKey;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -516,6 +714,42 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Scroll".
         /// </summary>
         public InputAction @Scroll => m_Wrapper.m_Player_Scroll;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/OneKey".
+        /// </summary>
+        public InputAction @OneKey => m_Wrapper.m_Player_OneKey;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/TwoKey".
+        /// </summary>
+        public InputAction @TwoKey => m_Wrapper.m_Player_TwoKey;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/ThreeKey".
+        /// </summary>
+        public InputAction @ThreeKey => m_Wrapper.m_Player_ThreeKey;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/FourKey".
+        /// </summary>
+        public InputAction @FourKey => m_Wrapper.m_Player_FourKey;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/FiveKey".
+        /// </summary>
+        public InputAction @FiveKey => m_Wrapper.m_Player_FiveKey;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/SixKey".
+        /// </summary>
+        public InputAction @SixKey => m_Wrapper.m_Player_SixKey;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/SevenKey".
+        /// </summary>
+        public InputAction @SevenKey => m_Wrapper.m_Player_SevenKey;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/EightKey".
+        /// </summary>
+        public InputAction @EightKey => m_Wrapper.m_Player_EightKey;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/NineKey".
+        /// </summary>
+        public InputAction @NineKey => m_Wrapper.m_Player_NineKey;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -566,6 +800,33 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Scroll.started += instance.OnScroll;
             @Scroll.performed += instance.OnScroll;
             @Scroll.canceled += instance.OnScroll;
+            @OneKey.started += instance.OnOneKey;
+            @OneKey.performed += instance.OnOneKey;
+            @OneKey.canceled += instance.OnOneKey;
+            @TwoKey.started += instance.OnTwoKey;
+            @TwoKey.performed += instance.OnTwoKey;
+            @TwoKey.canceled += instance.OnTwoKey;
+            @ThreeKey.started += instance.OnThreeKey;
+            @ThreeKey.performed += instance.OnThreeKey;
+            @ThreeKey.canceled += instance.OnThreeKey;
+            @FourKey.started += instance.OnFourKey;
+            @FourKey.performed += instance.OnFourKey;
+            @FourKey.canceled += instance.OnFourKey;
+            @FiveKey.started += instance.OnFiveKey;
+            @FiveKey.performed += instance.OnFiveKey;
+            @FiveKey.canceled += instance.OnFiveKey;
+            @SixKey.started += instance.OnSixKey;
+            @SixKey.performed += instance.OnSixKey;
+            @SixKey.canceled += instance.OnSixKey;
+            @SevenKey.started += instance.OnSevenKey;
+            @SevenKey.performed += instance.OnSevenKey;
+            @SevenKey.canceled += instance.OnSevenKey;
+            @EightKey.started += instance.OnEightKey;
+            @EightKey.performed += instance.OnEightKey;
+            @EightKey.canceled += instance.OnEightKey;
+            @NineKey.started += instance.OnNineKey;
+            @NineKey.performed += instance.OnNineKey;
+            @NineKey.canceled += instance.OnNineKey;
         }
 
         /// <summary>
@@ -601,6 +862,33 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Scroll.started -= instance.OnScroll;
             @Scroll.performed -= instance.OnScroll;
             @Scroll.canceled -= instance.OnScroll;
+            @OneKey.started -= instance.OnOneKey;
+            @OneKey.performed -= instance.OnOneKey;
+            @OneKey.canceled -= instance.OnOneKey;
+            @TwoKey.started -= instance.OnTwoKey;
+            @TwoKey.performed -= instance.OnTwoKey;
+            @TwoKey.canceled -= instance.OnTwoKey;
+            @ThreeKey.started -= instance.OnThreeKey;
+            @ThreeKey.performed -= instance.OnThreeKey;
+            @ThreeKey.canceled -= instance.OnThreeKey;
+            @FourKey.started -= instance.OnFourKey;
+            @FourKey.performed -= instance.OnFourKey;
+            @FourKey.canceled -= instance.OnFourKey;
+            @FiveKey.started -= instance.OnFiveKey;
+            @FiveKey.performed -= instance.OnFiveKey;
+            @FiveKey.canceled -= instance.OnFiveKey;
+            @SixKey.started -= instance.OnSixKey;
+            @SixKey.performed -= instance.OnSixKey;
+            @SixKey.canceled -= instance.OnSixKey;
+            @SevenKey.started -= instance.OnSevenKey;
+            @SevenKey.performed -= instance.OnSevenKey;
+            @SevenKey.canceled -= instance.OnSevenKey;
+            @EightKey.started -= instance.OnEightKey;
+            @EightKey.performed -= instance.OnEightKey;
+            @EightKey.canceled -= instance.OnEightKey;
+            @NineKey.started -= instance.OnNineKey;
+            @NineKey.performed -= instance.OnNineKey;
+            @NineKey.canceled -= instance.OnNineKey;
         }
 
         /// <summary>
@@ -762,5 +1050,68 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnScroll(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "OneKey" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnOneKey(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "TwoKey" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTwoKey(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ThreeKey" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnThreeKey(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "FourKey" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFourKey(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "FiveKey" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFiveKey(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SixKey" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSixKey(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SevenKey" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSevenKey(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "EightKey" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnEightKey(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "NineKey" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNineKey(InputAction.CallbackContext context);
     }
 }

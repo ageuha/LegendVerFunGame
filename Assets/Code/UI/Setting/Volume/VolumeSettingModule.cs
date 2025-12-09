@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using Code.UI.Elements;
+using Code.UI.Setting.BaseClass;
 using TMPro;
 using UnityEngine;
 
 namespace Code.UI.Setting.Volume {
-    public class VolumeSettingModule : SettingModule<float> {
+    public class VolumeSettingModule : ButtonSettingModule<float> {
         [SerializeField] private List<ToggleElement> elements;
         [SerializeField] private TextMeshProUGUI tmp;
 

@@ -1,4 +1,5 @@
 using System;
+using Code.Core.Utility;
 using Code.EntityScripts;
 using Member.BJH._01Script.Interact;
 using Member.KJW.Code.CombatSystem;
@@ -18,11 +19,13 @@ namespace Member.KJW.Code.Player
         public HealthSystem HealthCompo { get; private set; }
         public Interactor Interactor { get; private set; }
         public Thrower Thrower { get; private set; }
+        public Arm Arm { get; private set; }
+        public Weapon Weapon { get; private set; }
         
         public bool IsRolling { get; private set; }
-        public Vector2 StandDir { get; private set; } = Vector2.right;
-        
         private bool _isInvincible;
+        
+        public Vector2 StandDir { get; private set; } = Vector2.right;
         
         private float _coolTimer;
         private int _remainRoll;
@@ -32,13 +35,14 @@ namespace Member.KJW.Code.Player
             private set => _remainRoll = Mathf.Clamp(value, 0, RollingData.MaxRoll);
         }
         
-        
         private void Awake()
         {
             MoveCompo = GetComponent<AgentMovement>();
             HealthCompo = GetComponent<HealthSystem>();
             Interactor = GetComponent<Interactor>();
             Thrower = GetComponent<Thrower>();
+            Arm = GetComponentInChildren<Arm>();
+            Weapon = GetComponentInChildren<Weapon>();
 
             RemainRoll = RollingData.MaxRoll;
         }
@@ -48,7 +52,6 @@ namespace Member.KJW.Code.Player
             InputReader.OnInteracted += Interactor.Interact;
             InputReader.OnRolled += Roll;
             InputReader.OnMoved += UpdateStandDir;
-            
         }
 
         private void Update()

@@ -12,11 +12,14 @@ namespace Code.UI.Tab {
 
         public int Index => transform.GetSiblingIndex();
 
+#if UNITY_EDITOR
         protected override void Reset() {
             if (transform.parent.TryGetComponent<TabGroup>(out var group)) {
                 tabGroup = group;
             }
         }
+        
+#endif
 
         protected override void Awake() {
             tabGroup.ResisterTab(this);

@@ -1,9 +1,10 @@
 ﻿using System;
 using Code.Core.Utility;
+using Code.EntityScripts.Interface;
 using UnityEngine;
 
 namespace Code.EntityScripts {
-    public class HealthSystem : MonoBehaviour {
+    public class HealthSystem : MonoBehaviour, IHealthSystem {
         public IReadOnlyNotifyValue<float> Hp => _hp;
         public event Action OnDead;
 
@@ -17,6 +18,7 @@ namespace Code.EntityScripts {
                 Logging.LogError($"유효하지 않은 최대 체력입니다: {maxHp}");
             }
 
+            _hp ??= new NotifyValue<float>();
             _initialized = true;
 
             _maxHp = maxHp;
