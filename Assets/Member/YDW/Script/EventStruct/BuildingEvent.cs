@@ -1,17 +1,20 @@
-﻿using Member.YDW.Script.BuildingSystem;
-using Member.YDW.Script.PathFinder;
+﻿using Code.GridSystem.Objects;
+using UnityEngine;
+using Member.YDW.Script.BuildingSystem;
 
 namespace Member.YDW.Script.EventStruct
 {
     public struct BuildingEvent
     {
-        public NodeData buildNode;
-        public BuildingDataSO buildingData;
+        public Vector2Int buildCellPosition;
+        public Vector2 buildingWorldPosition;
+        public GridObject gridObject;
 
-        public BuildingEvent(NodeData buildNode, BuildingDataSO buildingData)
+        public BuildingEvent(Vector2Int buildCellPosition,Vector2 buildingWorldPosition, GridObject gridObject)
         {
-            this.buildNode = buildNode;
-            this.buildingData = buildingData;
+            this.buildCellPosition = buildCellPosition;
+            this.buildingWorldPosition = buildingWorldPosition;
+            this.gridObject = gridObject;
         }
     }
 }

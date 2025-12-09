@@ -24,16 +24,12 @@ namespace Member.YDW.Script.BuildingSystem
             
         }
 
-        public void SetActiveBar(float startTime,float time)
+        public void SetFillAmount(float normalizedTime)
         {
-            if(_currentCoroutine != null)
-                StopCoroutine(_currentCoroutine);
-            gameObject.SetActive(true);
-            
-            _currentCoroutine = StartCoroutine(StartCoolDown(startTime, time));
+            fillTransform.localScale = new Vector3(normalizedTime,1, 1f);
         }
 
-        private IEnumerator StartCoolDown(float startTime, float duration)
+        /*private IEnumerator StartCoolDown(float startTime, float duration)
         {
             float endTime = startTime + duration;
 
@@ -62,9 +58,9 @@ namespace Member.YDW.Script.BuildingSystem
                 fillTransform.localScale = new Vector3(0, 1, 0);
             }
             _currentCoroutine = null;
-            Destroy(transform.parent.gameObject);
+            gameObject.SetActive(false);
             //이후 풀 메니저 사용.
-        }
+        }*/
 
     }
 }

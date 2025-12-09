@@ -1,4 +1,5 @@
-﻿using Code.GridSystem.Objects;
+﻿using Code.Core.Utility;
+using Code.GridSystem.Objects;
 using UnityEngine;
 
 namespace Code.GridSystem.Map {
@@ -18,7 +19,10 @@ namespace Code.GridSystem.Map {
         #region Get
 
         public GridObject GetObjectsAt(Vector2Int localCell)
-            => _cells[localCell.x, localCell.y];
+        {
+            Logging.Log(localCell);
+            return _cells[localCell.x, localCell.y];
+        }
 
         public T GetObjectAt<T>(Vector2Int localCell) where T : GridObject {
             if (_cells[localCell.x, localCell.y] is T t) return t;
@@ -59,7 +63,7 @@ namespace Code.GridSystem.Map {
         }
 
         public bool TryDeleteCell(Vector2Int localCell) {
-            if (HasObjectAt(localCell)) {
+            if (!HasObjectAt(localCell)) {
                 return false;
             }
 
@@ -71,7 +75,7 @@ namespace Code.GridSystem.Map {
 
         #region Check
 
-        public bool HasObjectAt(Vector2Int localCell) => !GetObjectsAt(localCell);
+        public bool HasObjectAt(Vector2Int localCell) =>  null != GetObjectsAt(localCell);
 
         #endregion
 
@@ -102,8 +106,19 @@ namespace Code.GridSystem.Map {
 
         #region Utility
 
-        private Vector2Int LocalToWorld(Vector2Int localPos)
+        internal Vector2Int LocalToWorld(Vector2Int localPos)
             => _chunkPos * _chunkSize + localPos;
+
+        public void LogTiles()
+        {
+            for (int i = 0; i < _chunkSize; i++)
+            {
+                for (int j = 0; j < _chunkSize; j++)
+                {
+                    Logging.Log(_cells[i, j]);
+                }
+            }
+        }
 
         #endregion
     }

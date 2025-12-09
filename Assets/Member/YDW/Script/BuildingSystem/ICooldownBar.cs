@@ -2,6 +2,6 @@
 {
     public interface ICooldownBar
     {
-        public void SetActiveBar(float startTime,float time);
+        public void SetFillAmount(float normalizedTime);
     }
 }
