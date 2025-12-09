@@ -23,16 +23,18 @@ namespace Member.KJW.Code.CombatSystem
             Invoke(nameof(Push), lifeTime);
         }
 
-        public Throwable Init(DamageInfo damageInfo)
+        public Throwable Init(DamageInfo damageInfo, Sprite sprite, float speed)
         {
             _damageInfo = damageInfo;
+            _renderer.sprite = sprite;
+            _speed = speed;
             return this;
         }
 
         public void Throw(Vector2 dir)
         {
             _rb.linearVelocity = dir * _speed;
-            _rb.AddTorque(100, ForceMode2D.Impulse);
+            _rb.AddTorque(1, ForceMode2D.Impulse);
         }
 
         private void Push()

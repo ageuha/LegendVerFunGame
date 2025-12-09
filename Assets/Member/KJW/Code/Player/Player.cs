@@ -8,6 +8,7 @@ using Member.KJW.Code.Input;
 using UnityEngine;
 using UnityEngine.Events;
 using YTH.Code.Inventory;
+using YTH.Code.Item;
 
 namespace Member.KJW.Code.Player
 {
@@ -81,7 +82,11 @@ namespace Member.KJW.Code.Player
 
         private void HandleThrow()
         {
-            Thrower.Throw(Inventory.GetSelectedItem(true).ThrowDataInfo.ToStruct(), Camera.main!.ScreenToWorldPoint(InputReader.MousePos) - transform.position);
+            ItemDataSO curItem = Inventory.GetSelectedItem(false);
+            if (!curItem) return;
+            
+            Thrower.Throw(curItem.ThrowDataInfo.ToStruct(), curItem.Icon, Camera.main!.ScreenToWorldPoint(InputReader.MousePos) - transform.position, curItem.ThrowSpeed);
+            Inventory.GetSelectedItem(true);
         }
 
         private void UpdateStandDir(Vector2 dir)
