@@ -73,7 +73,6 @@ namespace YTH.Code.Inventory
             Count -= count;
             if (Count <= 0)
             {
-                Logging.Log("삭제");
                 if (this == m_InventoryManager.HoldItem)
                 {
                     inventoryItemPickDownEventChannel.Raise(new Empty());

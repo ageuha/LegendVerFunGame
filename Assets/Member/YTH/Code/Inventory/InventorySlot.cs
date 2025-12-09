@@ -46,7 +46,6 @@ namespace YTH.Code.Inventory
                     }
                     else if(eventData.button == PointerEventData.InputButton.Right)
                     {
-                        Logging.Log("InventorySlot 1 PickDown Right Click");
                         InventoryItem newItem  = PoolManager.Instance.Factory<InventoryItem>().Pop(transform);
                         newItem.Initialize(m_InventoryManager, m_InventoryManager.HoldItem.Item, 1);
                         newItem.transform.localScale = Vector3.one;
