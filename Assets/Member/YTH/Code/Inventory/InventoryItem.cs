@@ -1,4 +1,5 @@
 using System.Security.Cryptography;
+using Code.Core.Pool;
 using Member.KJW.Code.Input;
 using TMPro;
 using TreeEditor;
@@ -9,8 +10,9 @@ using YTH.Code.Item;
 
 namespace YTH.Code.Inventory
 {
-    public class InventoryItem : MonoBehaviour, IPointerClickHandler
+    public class InventoryItem : MonoBehaviour, IPointerClickHandler, IPoolable
     {
+        public int InitialCapacity => 60;
         [SerializeField] private Image itemIcon;
         [SerializeField] private TextMeshProUGUI countText;
         [SerializeField] private InputReader inputReader;
@@ -96,6 +98,16 @@ namespace YTH.Code.Inventory
                     inventoryItemPickUpEventChannel.Raise(this);
                 }
             }
+        }
+
+        public void OnPopFromPool()
+        {
+            
+        }
+
+        public void OnReturnToPool()
+        {
+            
         }
     }
 }

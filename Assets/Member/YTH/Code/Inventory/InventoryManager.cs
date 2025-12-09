@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Code.Core.GlobalStructs;
+using Code.Core.Pool;
 using Code.Core.Utility;
 using Member.KJW.Code.Input;
 using UnityEngine;
@@ -14,13 +15,12 @@ namespace YTH.Code.Inventory
         [field:SerializeField] public InventoryItem HoldItem { get; private set; }
         public List<InventorySlot> inventorySlots;
         [SerializeField] private GameObject mainInventory;
-        [SerializeField] private InventoryItem inventoryItemPrefab;
         [SerializeField] private InventoryAddEventChannel inventoryAddEventChannel;
         [SerializeField] private InventoryItemPickUpEventChannel inventoryItemPickUpEventChannel;
         [SerializeField] private InventoryItemPickDownEventChannel inventoryItemPickDownEventChannel;
         [SerializeField] private InputReader inputReader;
 
-        private int m_SelectedSlot = -1;
+        private int m_SelectedSlot = 1;
         private bool m_Open = true;
 
         private void Start()
@@ -30,6 +30,7 @@ namespace YTH.Code.Inventory
                 slot.Initialize(this);
             }
             MainInventory();
+            ChangeSelectedSlot(1);
             
             inventoryAddEventChannel.OnEvent += AddItem;
             inventoryItemPickUpEventChannel.OnEvent += PickUp;
@@ -59,35 +60,30 @@ namespace YTH.Code.Inventory
         {
             if(value == 0) return;
 
-            if (value > 0)
+            if(m_SelectedSlot + value <= 0)
             {
-                if (m_SelectedSlot >= 0)
-                {
-                    inventorySlots[m_SelectedSlot].UnSelect();
-                }
-                m_SelectedSlot++;
-                inventorySlots[m_SelectedSlot].Select();
+                m_SelectedSlot = 9;
+            }
+            else if (m_SelectedSlot + value >= 10)
+            {
+                m_SelectedSlot = 1;
             }
             else
             {
-                if (m_SelectedSlot >= 0)
-                {
-                    inventorySlots[m_SelectedSlot].UnSelect();
-                }
-                m_SelectedSlot--;
-                inventorySlots[m_SelectedSlot].Select();
+                m_SelectedSlot += (int)value;
             }
+            Logging.Log(m_SelectedSlot);
+            ChangeSelectedSlot(m_SelectedSlot);
         }
 
         private void ChangeSelectedSlot(int value)
         {
-            value--;
-            if (m_SelectedSlot >= 0)
+            for (int i = 0; i < 9; i++)
             {
-                inventorySlots[m_SelectedSlot].UnSelect();
+                inventorySlots[i].UnSelect();
             }
 
-            inventorySlots[value].Select();
+            inventorySlots[value - 1].Select();
             m_SelectedSlot = value;
         }
 
@@ -130,7 +126,9 @@ namespace YTH.Code.Inventory
 
         private void SpawnNewItem(ItemDataSO item, InventorySlot slot)
         {
-            InventoryItem newItem = Instantiate(inventoryItemPrefab, slot.transform);
+            InventoryItem newItem  = PoolManager.Instance.Factory<InventoryItem>().Pop(slot.transform);
+            newItem.transform.localScale = Vector3.one;
+            newItem.transform.localPosition = Vector3.zero;
             newItem.Initialize(this, item);
         }
 
