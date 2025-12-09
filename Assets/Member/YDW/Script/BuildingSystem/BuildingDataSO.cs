@@ -11,8 +11,9 @@ namespace Member.YDW.Script.BuildingSystem
     [CreateAssetMenu(fileName = "BuildingData", menuName = "BuildingSystem/BuildingData", order = 0)]
     public class BuildingDataSO : ScriptableObject
     {
-        [field: SerializeField] public Sprite Image { get; private set; }
         [field: SerializeField] public float BuildTime { get; private set; }
+        [field: SerializeField] public float MaxHealth { get; private set; }
+        [field: SerializeField] public Sprite Image { get; private set; }
         [field: SerializeField] public GridObject Building { get; private set; }
         [field: SerializeField] public Type RealType {get; private set;}
         [field: SerializeField] public Vector2Int BuildingSize { get; private set; }

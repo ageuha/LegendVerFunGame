@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &59931863461277059
+--- !u!1 &1061734956230401543
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1250192936883092435}
-  - component: {fileID: 2343214635510890782}
+  - component: {fileID: 8474008796111647159}
+  - component: {fileID: 3438408116733700390}
   m_Layer: 0
   m_Name: HealthSystem
   m_TagString: Untagged
@@ -17,13 +17,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1250192936883092435
+--- !u!4 &8474008796111647159
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 59931863461277059}
+  m_GameObject: {fileID: 1061734956230401543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,13 +32,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1529565311580391268}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2343214635510890782
+--- !u!114 &3438408116733700390
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 59931863461277059}
+  m_GameObject: {fileID: 1061734956230401543}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b18f8c68c2b24a218c9b3af5ba9e09d8, type: 3}
@@ -53,9 +53,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1529565311580391268}
-  - component: {fileID: -873759972388378480}
+  - component: {fileID: 4384790919096290647}
   m_Layer: 0
-  m_Name: TestBoundsBuilding
+  m_Name: TestUnitBuilding
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,10 +75,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7023952484611516371}
-  - {fileID: 1250192936883092435}
+  - {fileID: 8474008796111647159}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-873759972388378480
+--- !u!114 &4384790919096290647
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5254048650503917822}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d328c1d334094e95963acc618a924fd1, type: 3}
+  m_Script: {fileID: 11500000, guid: 54f162cd31cf4ca5be1cf16e6fcda7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &9082023874954281249

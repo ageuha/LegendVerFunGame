@@ -13,6 +13,11 @@ namespace Member.YDW.Script.NewBuildingSystem
         private Component _currentBuildingComponent;
         public int InitialCapacity { get; }
         
+        public void Initialize(float maxHealth)
+        {
+            _healthSystem.Initialize(maxHealth);
+            _healthSystem.ResetHealth();
+        }
         private void HandleIDead()
         {
             //아마 추후 이곳에서 아이템 다시 드랍해줄 듯.
@@ -34,12 +39,21 @@ namespace Member.YDW.Script.NewBuildingSystem
         public void OnPopFromPool()
         {
             _healthSystem ??= gameObject.GetComponentInChildren<HealthSystem>();
-            _healthSystem.ResetHealth();
+            _healthSystem.OnDead += HandleIDead;
             
         }
 
         public void OnReturnToPool()
         {
+            
+        }
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.blue;
+           
+            Gizmos.DrawWireCube(new Vector3(WorldPos.x + 0.5f, WorldPos.y + 0.5f),Vector3.one); 
+                
+            
             
         }
     }

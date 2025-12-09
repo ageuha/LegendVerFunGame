@@ -33,7 +33,6 @@ namespace Code.GridSystem.Objects {
                 for (int j = 0; j < Size.y; j++) {
                     Vector2Int cellPos = worldPos + new Vector2Int(i, j);
                     Logging.Log($"CheckIntersect : {cellPos.x} , {cellPos.y}");
-                    if (map.HasObjectAt(cellPos)) Logging.LogError($"Has Object : {cellPos.x} , {cellPos.y}");
                     if (map.HasObjectAt(cellPos)) return true;
                 }
             }

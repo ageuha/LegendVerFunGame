@@ -2161,7 +2161,7 @@ MonoBehaviour:
   inputReader: {fileID: 11400000, guid: 777b456eb927283439da0b796da61433, type: 2}
   buildingGhostEventSO: {fileID: 11400000, guid: 6f61a38863c8e214287793b225d3ce60, type: 2}
   buildingEventSO: {fileID: 11400000, guid: fb892e74a82e7b541b8b69989e423a4d, type: 2}
-  _buildingData: {fileID: 11400000, guid: 17cf49b142400cd42aedf58b7191ffda, type: 2}
+  buildingData: {fileID: 11400000, guid: 17cf49b142400cd42aedf58b7191ffda, type: 2}
 --- !u!1 &797421917
 GameObject:
   m_ObjectHideFlags: 0
