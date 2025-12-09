@@ -23,18 +23,24 @@ namespace YTH.Code.Inventory
         [field:SerializeField] public int Count { get; private set; }
 
         private InventoryManager m_InventoryManager;
-        private bool m_IsHold;
+        [SerializeField] private bool m_IsHold;
 
         public void Initialize(InventoryManager inventoryManager, ItemDataSO itemDataSO)
         {
-            this.m_InventoryManager = inventoryManager;      
+            this.m_InventoryManager = inventoryManager;
             SetItemData(itemDataSO); 
+            m_IsHold = false;
+            itemIcon.raycastTarget = true;   
+            transform.localPosition = Vector2.zero;   
         }
 
         public void Initialize(InventoryManager inventoryManager, ItemDataSO itemDataSO, int count)
         {
             this.m_InventoryManager = inventoryManager;      
             SetItemData(itemDataSO,count); 
+            m_IsHold = false;
+            itemIcon.raycastTarget = true;   
+            transform.localPosition = Vector2.zero;  
         }
 
         public void SetItemData(ItemDataSO itemDataSO)
@@ -67,6 +73,11 @@ namespace YTH.Code.Inventory
             Count -= count;
             if (Count <= 0)
             {
+                Logging.Log("삭제");
+                if (this == m_InventoryManager.HoldItem)
+                {
+                    inventoryItemPickDownEventChannel.Raise(new Empty());
+                }
                 PoolManager.Instance.Factory<InventoryItem>().Push(this);
             }
             else
@@ -130,18 +141,28 @@ namespace YTH.Code.Inventory
                 var HoldItem = m_InventoryManager.HoldItem;
                 if (HoldItem.Item == Item)
                 {
-                    if (Count + HoldItem.Count <= Item.MaxStack)
-                    {    
-                        AddStack(HoldItem.Count);
-                        PoolManager.Instance.Factory<InventoryItem>().Push(HoldItem);
-                        inventoryItemPickDownEventChannel.Raise(new Empty());
-                    }
-                    else
+                    if(eventData.button == PointerEventData.InputButton.Left)
                     {
-                        int remainCount = Item.MaxStack - Count;
-                        AddStack(remainCount);
-                        HoldItem.RemoveStack(remainCount);
+                        if (Count + HoldItem.Count <= Item.MaxStack)
+                        {   
+                            AddStack(HoldItem.Count);
+                            HoldItem.RemoveStack(HoldItem.Count);
+                        }
+                        else
+                        {
+                            int remainCount = Item.MaxStack - Count;
+                            AddStack(remainCount);
+                            HoldItem.RemoveStack(remainCount);
 
+                        }
+                    }
+                    else if(eventData.button == PointerEventData.InputButton.Right)
+                    {
+                        if (Count + 1 <= Item.MaxStack)
+                        {    
+                            AddStack(1);
+                            HoldItem.RemoveStack(1);
+                        }
                     }
                 }
             }

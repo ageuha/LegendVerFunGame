@@ -38,9 +38,21 @@ namespace YTH.Code.Inventory
             {
                 if (transform.childCount == 0)
                 {
-                    m_InventoryManager.HoldItem.parentAfterDrag = transform;
-                    m_InventoryManager.HoldItem.PickDown();
-                    inventoryItemPickDownEventChannel.Raise(new Empty());
+                    if(eventData.button == PointerEventData.InputButton.Left)
+                    {    
+                        m_InventoryManager.HoldItem.parentAfterDrag = transform;
+                        m_InventoryManager.HoldItem.PickDown();
+                        inventoryItemPickDownEventChannel.Raise(new Empty());
+                    }
+                    else if(eventData.button == PointerEventData.InputButton.Right)
+                    {
+                        Logging.Log("InventorySlot 1 PickDown Right Click");
+                        InventoryItem newItem  = PoolManager.Instance.Factory<InventoryItem>().Pop(transform);
+                        newItem.Initialize(m_InventoryManager, m_InventoryManager.HoldItem.Item, 1);
+                        newItem.transform.localScale = Vector3.one;
+                        newItem.transform.localPosition = Vector3.zero;
+                        m_InventoryManager.HoldItem.RemoveStack(1);
+                    }
                 }
             }
         }
