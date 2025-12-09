@@ -13,20 +13,32 @@ namespace Code.GridSystem.Objects {
                 for (int j = 0; j < Size.y; j++) {
                     Vector2Int cellPos = worldPos + new Vector2Int(i, j);
                     map.SetCellObjectInternal(cellPos, this);
+                    Logging.Log($"Setting pos :  {cellPos.x} , {cellPos.y}");
                 }
             }
+            OnSetCellObject(worldPos, map);
         }
 
         internal override bool TrySetCellObject(Vector2Int worldPos, GridMap map) {
+            if(CheckIntersect(worldPos, map)) return false;
+
+            SetCellObject(worldPos, map);
+            OnSetCellObject(worldPos, map);
+            return true;
+        }
+
+        public bool CheckIntersect(Vector2Int worldPos, GridMap map)
+        {
             for (int i = 0; i < Size.x; i++) {
                 for (int j = 0; j < Size.y; j++) {
                     Vector2Int cellPos = worldPos + new Vector2Int(i, j);
-                    if (map.HasObjectAt(cellPos)) return false;
+                    Logging.Log($"CheckIntersect : {cellPos.x} , {cellPos.y}");
+                    if (map.HasObjectAt(cellPos)) Logging.LogError($"Has Object : {cellPos.x} , {cellPos.y}");
+                    if (map.HasObjectAt(cellPos)) return true;
                 }
             }
 
-            SetCellObject(worldPos, map);
-            return true;
+            return false;
         }
 
         public override void DestroyFromGrid() {
@@ -38,12 +50,12 @@ namespace Code.GridSystem.Objects {
             for (int i = 0; i < Size.x; i++) {
                 for (int j = 0; j < Size.y; j++) {
                     Vector2Int cellPos = WorldPos + new Vector2Int(i, j);
-                    if (Map.GetObjectsAt(cellPos) == this) continue;
+                    if (Map.GetObjectsAt(cellPos) != this) continue;
                     Map.DeleteCellInternal(cellPos);
                 }
             }
-
-            Map.DeleteCellInternal(WorldPos);
+            
+            OnDestroyedCellObject(WorldPos);
             Map = null;
         }
     }
