@@ -1216,23 +1216,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Graph: {fileID: -9072009615551862152, guid: 71b46f52590d5184ebc955255fa1527a, type: 2}
-  m_BlackboardVariableOverridesList:
-  - rid: 1402868189251240250
+  m_Graph: {fileID: 0}
+  m_BlackboardVariableOverridesList: []
   m_OriginalGraph: {fileID: 0}
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
     version: 2
-    RefIds:
-    - rid: 1402868189251240250
-      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 1
-          m_Value1: 0
-        Name: Self
-        m_Value: {fileID: 881399495}
+    RefIds: []
 --- !u!50 &881399501
 Rigidbody2D:
   serializedVersion: 5
