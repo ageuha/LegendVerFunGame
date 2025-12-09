@@ -7,6 +7,8 @@
         CreatureVolume,
         UIVolume,
         Resolution,
-        Fullscreen
+        Fullscreen,
+        VSync,
+        TargetFrame
     }
 }
