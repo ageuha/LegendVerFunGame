@@ -45,12 +45,12 @@ namespace Code.UI.Setting.Display {
                 if (r.width == Screen.width && r.height == Screen.height) {
                     currentResolutionIndex = _resolutions.Count - 1;
                 }
-
-                dropdown.ClearOptions();
-                dropdown.AddOptions(optionStrings);
-                dropdown.value = currentResolutionIndex;
-                dropdown.RefreshShownValue();
             }
+
+            dropdown.ClearOptions();
+            dropdown.AddOptions(optionStrings);
+            dropdown.value = currentResolutionIndex;
+            dropdown.RefreshShownValue();
         }
 
         protected override void OnDropdownValueChanged(int index) {
