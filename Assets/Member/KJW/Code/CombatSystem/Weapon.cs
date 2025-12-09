@@ -22,7 +22,7 @@ namespace Member.KJW.Code.CombatSystem
             _spriteRenderer.sprite = weapon.Icon;
             _collider.size = weapon.HitBoxSize;
             transform.localPosition = weapon.HitBoxOffset;
-            _damageInfo = weapon.ThrowDataInfo.ToStruct();
+            _damageInfo = weapon.DamageInfoData.ToStruct();
         }
         
         private void OnTriggerEnter2D(Collider2D other)

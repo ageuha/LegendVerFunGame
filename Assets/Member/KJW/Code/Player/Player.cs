@@ -123,7 +123,7 @@ namespace Member.KJW.Code.Player
             ItemDataSO curItem = Inventory.GetSelectedItem();
             if (curItem == null) return;
             
-            Thrower.Throw(curItem.ThrowDataInfo.ToStruct(), curItem.Icon, MouseWorldPos - (Vector2)transform.position, curItem.ThrowSpeed);
+            Thrower.Throw(curItem.DamageInfoData.ToStruct(), curItem.Icon, MouseWorldPos - (Vector2)transform.position, curItem.ThrowSpeed);
             Inventory.UseSelectedItem();
         }
 
