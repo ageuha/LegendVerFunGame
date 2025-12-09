@@ -16,20 +16,22 @@ namespace YTH.Code.Inventory
     {
         [field:SerializeField] public ItemDataSO Item { get; private set; }
         [field:SerializeField] public int Count { get; private set; }
+        public RectTransform RectTransform => m_RectTransform ??= transform as RectTransform;
         public int InitialCapacity => 60;
+        
+        [HideInInspector] public Transform parentAfterDrag;
+
         [SerializeField] private Image itemIcon;
         [SerializeField] private TextMeshProUGUI countText;
         [SerializeField] private InputReader inputReader;
-        [HideInInspector] public Transform parentAfterDrag;
         [SerializeField] private InventoryItemPickUpEventChannel inventoryItemPickUpEventChannel;
         [SerializeField] private InventoryItemPickDownEventChannel inventoryItemPickDownEventChannel;
         [SerializeField] private TooltipChannel tooltipEventChannel;
         [SerializeField] private Vector3 tooltipOffset;
+        [SerializeField] private bool m_IsHold;
 
-        public RectTransform RectTransform => m_RectTransform ??= transform as RectTransform;
 
         private InventoryManager m_InventoryManager;
-        [SerializeField] private bool m_IsHold;
         private RectTransform m_RectTransform;
 
         public void Initialize(InventoryManager inventoryManager, ItemDataSO itemDataSO)

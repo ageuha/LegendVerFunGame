@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1c032bafb028b845988dae6e6675c5f, type: 3}
+  m_Name: Test Totem
+  m_EditorClassIdentifier: 
+  <ItemName>k__BackingField: Totem
+  <Description>k__BackingField: "\u3139\u3148\u3137 \uD1A0\uD15C"
+  <Icon>k__BackingField: {fileID: 7559310168953562152, guid: dea866b22d027ff42a7a1ca7ca2c3a99, type: 3}
+  <ItemID>k__BackingField: 1000012
+  <MaxStack>k__BackingField: 1
+  <ThrowSpeed>k__BackingField: 5
+  <ThrowDataInfo>k__BackingField: {fileID: 11400000, guid: 23ed14e7c6f3cbe48ad18b9c64b4188a, type: 2}

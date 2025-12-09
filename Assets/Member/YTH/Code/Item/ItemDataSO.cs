@@ -15,7 +15,7 @@ namespace YTH.Code.Item
 
         [field:Header("Throw Settings")]
         [field:SerializeField] public float ThrowSpeed { get; private set; }
-        [field:SerializeField] public DamageInfoData ThrowDataInfo { get; private set; }
+        [field:SerializeField] public DamageInfoData DamageInfoData { get; private set; }
 
 
 
