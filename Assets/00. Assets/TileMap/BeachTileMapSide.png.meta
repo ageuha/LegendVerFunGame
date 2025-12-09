@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5f750bafc9b04ed4c8f8299e2bda5070
+guid: f4622dd8067746e4caa00b27acd30324
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5629372615036235299
-    second: Windmill_0
+      213: 3908811318041348228
+    second: BeachTileMapSide_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Windmill_0
+      name: BeachTileMapSide_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 48
-        height: 80
+        width: 64
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 32eeb83519c8f1e40800000000000000
-      internalID: 5629372615036235299
+      spriteID: 48881e91f23ee3630800000000000000
+      internalID: 3908811318041348228
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8704e86661b0fb04c9bd729e1e3e8ce2
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Windmill_0: 5629372615036235299
+      BeachTileMapSide_0: 3908811318041348228
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
