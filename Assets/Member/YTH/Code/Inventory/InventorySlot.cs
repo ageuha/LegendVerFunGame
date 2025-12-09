@@ -13,9 +13,9 @@ namespace YTH.Code.Inventory
         [SerializeField] private Image image;
         [SerializeField] private Color selectedColor;
         [SerializeField] private Color unSelectedColor;
-        private InventoryManager m_InventoryManager;
+        protected InventoryManager m_InventoryManager;
 
-        public void Initialize(InventoryManager inventoryManager)
+        public virtual void Initialize(InventoryManager inventoryManager)
         {
             this.m_InventoryManager = inventoryManager;
             UnSelect();
@@ -32,15 +32,26 @@ namespace YTH.Code.Inventory
         }
 
 
-        public void OnPointerClick(PointerEventData eventData)
+        public virtual void OnPointerClick(PointerEventData eventData)
         {
             if (m_InventoryManager.HoldItem != null)
             {
                 if (transform.childCount == 0)
                 {
-                    m_InventoryManager.HoldItem.parentAfterDrag = transform;
-                    m_InventoryManager.HoldItem.PickDown();
-                    inventoryItemPickDownEventChannel.Raise(new Empty());
+                    if(eventData.button == PointerEventData.InputButton.Left)
+                    {    
+                        m_InventoryManager.HoldItem.parentAfterDrag = transform;
+                        m_InventoryManager.HoldItem.PickDown();
+                        inventoryItemPickDownEventChannel.Raise(new Empty());
+                    }
+                    else if(eventData.button == PointerEventData.InputButton.Right)
+                    {
+                        InventoryItem newItem  = PoolManager.Instance.Factory<InventoryItem>().Pop(transform);
+                        newItem.Initialize(m_InventoryManager, m_InventoryManager.HoldItem.Item, 1);
+                        newItem.transform.localScale = Vector3.one;
+                        newItem.transform.localPosition = Vector3.zero;
+                        m_InventoryManager.HoldItem.RemoveStack(1);
+                    }
                 }
             }
         }

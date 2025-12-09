@@ -11,12 +11,14 @@ namespace Code.GridSystem.Objects {
             Map = map;
             WorldPos = worldPos;
             map.SetCellObjectInternal(worldPos, this);
+            OnSetCellObject(worldPos, map);
         }
 
         internal override bool TrySetCellObject(Vector2Int worldPos, GridMap map) {
             if (map.HasObjectAt(worldPos)) return false;
             Map = map;
             map.SetCellObjectInternal(worldPos, this);
+            OnSetCellObject(worldPos, map);
             return true;
         }
 
@@ -27,6 +29,7 @@ namespace Code.GridSystem.Objects {
             }
 
             Map.DeleteCellInternal(WorldPos);
+            OnDestroyedCellObject(WorldPos);
             Map = null;
         }
     }

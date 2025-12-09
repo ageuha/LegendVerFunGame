@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Code.Core.Utility;
 using Code.GridSystem.Objects;
 using UnityEngine;
 
@@ -11,12 +12,29 @@ namespace Code.GridSystem.Map {
             _chunkSize = chunkSize;
             _chunks = new Dictionary<Vector2Int, GridChunk>();
         }
+        private static int FloorDiv(int value, int size)
+        {
+            return value >= 0
+                ? value / size
+                : (value - size + 1) / size;
+        }
 
         private Vector2Int WorldToChunk(Vector2Int cellPos)
-            => new(cellPos.x / _chunkSize, cellPos.y / _chunkSize);
+        {
+            return new Vector2Int(
+                FloorDiv(cellPos.x, _chunkSize),
+                FloorDiv(cellPos.y, _chunkSize)
+            );
+        }
 
         private Vector2Int WorldToLocal(Vector2Int cellPos)
-            => new(cellPos.x % _chunkSize, cellPos.y % _chunkSize);
+        {
+            var x = cellPos.x % _chunkSize;
+            var y = cellPos.y % _chunkSize;
+            if (x < 0) x += _chunkSize;
+            if (y < 0) y += _chunkSize;
+            return new Vector2Int(x, y);
+        }
 
         private GridChunk GetOrCreateChunk(Vector2Int chunkPos) {
             if (!_chunks.ContainsKey(chunkPos)) {
@@ -31,6 +49,9 @@ namespace Code.GridSystem.Map {
         public GridObject GetObjectsAt(Vector2Int worldCell) {
             var chunkPos = WorldToChunk(worldCell);
             var localCell = WorldToLocal(worldCell);
+            
+            Logging.Log(chunkPos);
+            Logging.Log(localCell);
 
             if (!_chunks.TryGetValue(chunkPos, out var chunk)) return null;
             return chunk.GetObjectsAt(localCell);
@@ -108,6 +129,9 @@ namespace Code.GridSystem.Map {
             var chunkPos = WorldToChunk(worldCell);
             var localCell = WorldToLocal(worldCell);
 
+            Logging.Log(chunkPos);
+            Logging.Log(localCell);
+            
             if (!_chunks.TryGetValue(chunkPos, out var chunk)) return false;
             return chunk.HasObjectAt(localCell);
         }
@@ -142,6 +166,30 @@ namespace Code.GridSystem.Map {
 
             var chunk = GetOrCreateChunk(chunkPos);
             return chunk.TrySetCellObject(localCell, obj);
+        }
+
+        #endregion
+
+        #region Utility
+
+        public void LogChunk(Vector2Int worldCell)
+        {
+            var chunkPos = WorldToChunk(worldCell);
+            
+            var chunk = GetOrCreateChunk(chunkPos);
+            chunk.LogTiles();
+        }
+
+        public void DrawChunkOutline()
+        {
+            Gizmos.color = Color.green;
+            foreach (var chunk in _chunks.Values)
+            {
+                var bottomLeft = chunk.LocalToWorld(default);
+                var middle = bottomLeft + new Vector2(_chunkSize / 2f, _chunkSize / 2f);
+                
+                Gizmos.DrawWireCube(middle, Vector3.one * _chunkSize);
+            }
         }
 
         #endregion

@@ -2161,6 +2161,7 @@ MonoBehaviour:
   inputReader: {fileID: 11400000, guid: 777b456eb927283439da0b796da61433, type: 2}
   buildingGhostEventSO: {fileID: 11400000, guid: 6f61a38863c8e214287793b225d3ce60, type: 2}
   buildingEventSO: {fileID: 11400000, guid: fb892e74a82e7b541b8b69989e423a4d, type: 2}
+  _buildingData: {fileID: 11400000, guid: 17cf49b142400cd42aedf58b7191ffda, type: 2}
 --- !u!1 &797421917
 GameObject:
   m_ObjectHideFlags: 0
@@ -2171,7 +2172,6 @@ GameObject:
   m_Component:
   - component: {fileID: 797421919}
   - component: {fileID: 797421918}
-  - component: {fileID: 797421920}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -2208,27 +2208,52 @@ Transform:
   - {fileID: 1946948187}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &797421920
+--- !u!1 &1024342033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1024342035}
+  - component: {fileID: 1024342034}
+  m_Layer: 0
+  m_Name: GridManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1024342034
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 797421917}
+  m_GameObject: {fileID: 1024342033}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7b27cf02c474d0bb3264c9f5b1fa45b, type: 3}
+  m_Script: {fileID: 11500000, guid: 00d91812b4e040d5842fbbe2ca4dd97d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bakeEventSO: {fileID: 11400000, guid: c47c81e55e105f945b252dc6c485ff59, type: 2}
-  groundMap: {fileID: 86509518}
-  obstacleMap: {fileID: 1946948189}
-  bakedData: {fileID: 11400000, guid: 5e26359174c96234a86a2a2f3e9ca8ab, type: 2}
-  isDrawGizmo: 1
-  isConnerCheck: 1
-  nodeColor: {r: 0, g: 0, b: 0, a: 1}
-  edgeColor: {r: 0, g: 0.30383253, b: 1, a: 1}
-  BuildingPosList: []
+  groundTilemap: {fileID: 86509518}
+  gridSize: 10
+--- !u!4 &1024342035
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024342033}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.245874, y: -0.9119284, z: 0.022887543}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1167070842
 GameObject:
   m_ObjectHideFlags: 0
@@ -2304,7 +2329,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2345,7 +2370,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd9b5fa35b1fdbd45a23529daf903e59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemLists: []
+  itemLists:
+  - {fileID: 11400000, guid: 5b08f8aa27218884eac621025fa54f12, type: 2}
 --- !u!4 &1197661917
 Transform:
   m_ObjectHideFlags: 0
@@ -5570,3 +5596,4 @@ SceneRoots:
   - {fileID: 616665712}
   - {fileID: 1197661917}
   - {fileID: 536675468}
+  - {fileID: 1024342035}

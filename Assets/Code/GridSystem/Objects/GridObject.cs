@@ -17,6 +17,8 @@ namespace Code.GridSystem.Objects {
         internal abstract void SetCellObject(Vector2Int worldPos, GridMap map);
 
         internal abstract bool TrySetCellObject(Vector2Int worldPos, GridMap map);
+        protected virtual void OnSetCellObject(Vector2Int worldPos, GridMap map){}
+        protected virtual void OnDestroyedCellObject(Vector2Int worldPos){}
 
         public abstract void DestroyFromGrid();
     }
