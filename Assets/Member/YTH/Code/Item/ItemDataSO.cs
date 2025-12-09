@@ -8,6 +8,7 @@ namespace YTH.Code.Item
     {
         [field:Header("Item Settings")]
         [field:SerializeField] public string ItemName { get; private set; }
+        [field:SerializeField] public string Description { get; private set; }
         [field:SerializeField] public Sprite Icon { get; private set; }
         [field:SerializeField] public int ItemID { get; private set; }
         [field:SerializeField] public int MaxStack { get; private set; }
@@ -20,7 +21,7 @@ namespace YTH.Code.Item
 
         protected StringBuilder _stringBuilder = new StringBuilder();
 
-        public virtual string GetDescription() => string.Empty;
+        public virtual string GetDescription() => Description;
         public override string ToString() => ItemName;
         public override int GetHashCode() => ItemID;
 
