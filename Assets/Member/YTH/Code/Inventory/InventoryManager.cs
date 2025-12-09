@@ -134,7 +134,7 @@ namespace YTH.Code.Inventory
 
         public ItemDataSO GetSelectedItem()
         {
-            InventorySlot slot = inventorySlots[m_SelectedSlot];
+            InventorySlot slot = inventorySlots[m_SelectedSlot-1];
             InventoryItem itemInSlot = slot.GetInventoryItem();
             if (itemInSlot != null)
             {
@@ -146,7 +146,7 @@ namespace YTH.Code.Inventory
 
         public bool UseSelectedItem()
         {
-            InventorySlot slot = inventorySlots[m_SelectedSlot];
+            InventorySlot slot = inventorySlots[m_SelectedSlot-1];
             InventoryItem itemInSlot = slot.GetInventoryItem();
             if (itemInSlot != null)
             {
@@ -155,6 +155,5 @@ namespace YTH.Code.Inventory
             }
             return false;
         }
-
     }
 }
