@@ -83,7 +83,8 @@ namespace Member.KJW.Code.Player
         private void HandleThrow()
         {
             ItemDataSO curItem = Inventory.GetSelectedItem(false);
-            if (!curItem) return;
+            Logging.Log(curItem);
+            if (curItem == null) return;
             
             Thrower.Throw(curItem.ThrowDataInfo.ToStruct(), curItem.Icon, Camera.main!.ScreenToWorldPoint(InputReader.MousePos) - transform.position, curItem.ThrowSpeed);
             Inventory.GetSelectedItem(true);
