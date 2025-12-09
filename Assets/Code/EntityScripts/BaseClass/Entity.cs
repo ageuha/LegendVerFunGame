@@ -8,6 +8,8 @@ namespace Code.EntityScripts.BaseClass {
     public abstract class Entity : MonoBehaviour {
         private Dictionary<Type, IEntityModule> _moduleDict;
 
+        [field: SerializeField] public EntityDataSO Data { get; private set; }
+
         public abstract bool IsDead { get; }
 
         protected virtual void Awake() {
