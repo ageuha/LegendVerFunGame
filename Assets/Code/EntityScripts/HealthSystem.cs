@@ -1,9 +1,10 @@
 ﻿using System;
 using Code.Core.Utility;
+using Code.EntityScripts.Interface;
 using UnityEngine;
 
 namespace Code.EntityScripts {
-    public class HealthSystem : MonoBehaviour {
+    public class HealthSystem : MonoBehaviour, IHealthSystem {
         public IReadOnlyNotifyValue<float> Hp => _hp;
         public event Action OnDead;
 
