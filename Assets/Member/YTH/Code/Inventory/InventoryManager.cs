@@ -20,7 +20,7 @@ namespace YTH.Code.Inventory
         [SerializeField] private InventoryItemPickDownEventChannel inventoryItemPickDownEventChannel;
         [SerializeField] private InputReader inputReader;
 
-        private int m_SelectedSlot = -1;
+        private int m_SelectedSlot = 1;
         private bool m_Open = true;
 
         private void Start()
@@ -30,6 +30,7 @@ namespace YTH.Code.Inventory
                 slot.Initialize(this);
             }
             MainInventory();
+            ChangeSelectedSlot(1);
             
             inventoryAddEventChannel.OnEvent += AddItem;
             inventoryItemPickUpEventChannel.OnEvent += PickUp;
@@ -59,35 +60,30 @@ namespace YTH.Code.Inventory
         {
             if(value == 0) return;
 
-            if (value > 0)
+            if(m_SelectedSlot + value <= 0)
             {
-                if (m_SelectedSlot >= 0)
-                {
-                    inventorySlots[m_SelectedSlot].UnSelect();
-                }
-                m_SelectedSlot++;
-                inventorySlots[m_SelectedSlot].Select();
+                m_SelectedSlot = 9;
+            }
+            else if (m_SelectedSlot + value >= 10)
+            {
+                m_SelectedSlot = 1;
             }
             else
             {
-                if (m_SelectedSlot >= 0)
-                {
-                    inventorySlots[m_SelectedSlot].UnSelect();
-                }
-                m_SelectedSlot--;
-                inventorySlots[m_SelectedSlot].Select();
+                m_SelectedSlot += (int)value;
             }
+            Logging.Log(m_SelectedSlot);
+            ChangeSelectedSlot(m_SelectedSlot);
         }
 
         private void ChangeSelectedSlot(int value)
         {
-            value--;
-            if (m_SelectedSlot >= 0)
+            for (int i = 0; i < 9; i++)
             {
-                inventorySlots[m_SelectedSlot].UnSelect();
+                inventorySlots[i].UnSelect();
             }
 
-            inventorySlots[value].Select();
+            inventorySlots[value - 1].Select();
             m_SelectedSlot = value;
         }
 
