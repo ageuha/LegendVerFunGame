@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 735ce3c950da49acb9bfb5c4a7cbea28, type: 3}
   m_Name: TestRollingData
   m_EditorClassIdentifier: 
-  <RollPower>k__BackingField: 20
-  <RollTime>k__BackingField: 0.2
-  <AfterDelayTime>k__BackingField: 0.2
+  <RollPower>k__BackingField: 30
+  <RollTime>k__BackingField: 0.1
+  <AfterDelayTime>k__BackingField: 0.1
   <MaxRoll>k__BackingField: 3
   <StackCoolTime>k__BackingField: 1

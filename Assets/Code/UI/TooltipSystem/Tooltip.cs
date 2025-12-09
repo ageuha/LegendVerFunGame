@@ -32,7 +32,7 @@ namespace Code.UI.TooltipSystem {
             background.color = item.BackgroundColor;
             border.color = item.BorderColor;
             outline.color = item.OutlineColor;
-            _rectTransform.anchoredPosition = item.Position;
+            _rectTransform.position = item.Position;
 
             // _followMouse = item.FollowMouse;
             // _rectTransform.anchoredPosition = item.FollowMouse switch {

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b05111a695bf4939b354d032470c9344, type: 3}
-  m_Name: ThrowableList
+  m_Name: KJWPrefabList
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 7385960097371176375, guid: a83977976ff739148b385bb809776121, type: 3}
