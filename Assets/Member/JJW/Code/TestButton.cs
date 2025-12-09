@@ -9,7 +9,11 @@ public class TestButton : MonoBehaviour
 
     public void Test1()
     {
-        resource.Interaction(10);
         temperatureSystem.CurrentTemperature += Random.Range(-0.1f, 0.1f);
+    }
+
+    public void Test2()
+    {
+        resource.Interaction(10);
     }
 }
