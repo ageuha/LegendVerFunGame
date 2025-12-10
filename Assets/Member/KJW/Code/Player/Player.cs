@@ -1,10 +1,13 @@
 using System;
+using Code.Core.GlobalStructs;
 using Code.Core.Utility;
 using Code.EntityScripts;
 using Code.GridSystem.Objects;
 using Member.BJH._01Script.Interact;
+using Member.JJW.Code.Interface;
 using Member.KJW.Code.CombatSystem;
 using Member.KJW.Code.Data;
+using Member.KJW.Code.EventChannel;
 using Member.KJW.Code.Input;
 using Member.YDW.Script;
 using Member.YDW.Script.BuildingSystem;
@@ -29,11 +32,15 @@ namespace Member.KJW.Code.Player
         public Thrower Thrower { get; private set; }
         public Arm Arm { get; private set; }
         public Weapon Weapon { get; private set; }
+        
         [field: SerializeField] public InventoryManagerEventChannel InventoryChannel { get; private set; }
-        [field: SerializeField] public BuildingGhostEventSO BuildingGhostEvent { get; private set; }
+        [field: SerializeField] public InventorySelectedSlotChangeEventChannel InventorySelectedSlotChangeChannel { get; private set; }
+        [field: SerializeField] public BuildingGhostEventSO BuildingGhostChannel { get; private set; }
+        [SerializeField] private BuildingGhostFlagEventChannel buildingGhostFlagEventChannel;
         
         public bool IsRolling { get; private set; }
         private bool _isInvincible;
+        private bool _isBuilding;
         
         public Vector2 StandDir { get; private set; } = Vector2.right;
         public Vector2 MouseWorldPos => Camera.main!.ScreenToWorldPoint(InputReader.MousePos);
@@ -45,24 +52,7 @@ namespace Member.KJW.Code.Player
             get => _remainRoll;
             private set => _remainRoll = Mathf.Clamp(value, 0, RollingData.MaxRoll);
         }
-
-        private ItemDataSO _prevItem;
-        // private ItemDataSO _curItem;
-
         private ItemDataSO CurItem => _inventoryManager.GetSelectedItem();
-        // {
-        //     get
-        //     {
-        //         _prevItem = _curItem;
-        //         _curItem = _inventoryManager.GetSelectedItem();
-        //         if (_prevItem != _curItem)
-        //         {
-        //             Logging.Log("Item changed");
-        //             BuildingGhostEvent.Raise(new BuildingGhostEvent(null, false));
-        //         }
-        //         return _curItem;
-        //     }
-        // }
         private InventoryManager _inventoryManager;
         
         [SerializeField] private float maxHp;
@@ -78,7 +68,10 @@ namespace Member.KJW.Code.Player
 
             RemainRoll = RollingData.MaxRoll;
             HealthCompo.Initialize(maxHp);
+            
             InventoryChannel.OnEvent += InitInventory;
+            InventorySelectedSlotChangeChannel.OnEvent += CancelPlace;
+            buildingGhostFlagEventChannel.OnEvent += SetIsBuilding;
         }
 
         private void OnEnable()
@@ -88,6 +81,16 @@ namespace Member.KJW.Code.Player
             InputReader.OnMoved += UpdateStandDir;
             InputReader.OnThrew += Throw;
             InputReader.OnAttacked += Click;
+        }
+
+        private void SetIsBuilding(bool value)
+        {
+            _isBuilding = value;
+        }
+
+        private void CancelPlace(Empty e)
+        {
+            BuildingGhostChannel.Raise(new BuildingGhostEvent(null, false));
         }
 
         private void InitInventory(InventoryManager inventoryManager)
@@ -134,36 +137,26 @@ namespace Member.KJW.Code.Player
             
             if (CurItem is PlaceableItemData placeableItemData)
             {
-                BuildingGhostEvent.Raise(new BuildingGhostEvent(placeableItemData.BuildingData, true));
+                BuildingGhostChannel.Raise(new BuildingGhostEvent(placeableItemData.BuildingData, true));
                 return;
             }
 
             Break();
         }
 
-        private void Place(PlaceableItemData placeableItemData)
+        private void Break()
         {
-            // GridManager.Instance.GridMap.SetCellObject(
-            //     GridManager.Instance.GetWorldToCellPosition(MouseWorldPos),
-            //     placeableItemData.BuildingData.Building);
             
-            BuildingGhostEvent.Raise(new BuildingGhostEvent(placeableItemData.BuildingData, true));
-
-            // Logging.Log(
-            //     GridManager.Instance.GridMap.GetObjectsAt(GridManager.Instance.GetWorldToCellPosition(MouseWorldPos)));
-            //
-            // Logging.Log(GridManager.Instance.GetWorldToCellPosition(MouseWorldPos));
-            
-            // BuildingGhostEvent.Raise();
-
-            // if (GridManager.Instance.GridMap.TrySetCellObject(
-            //         GridManager.Instance.GetWorldToCellPosition(MouseWorldPos), placeableItemData.BuildingData.Building))
-            // {
-            // _inventoryManager.UseSelectedItem();
-            // }
         }
 
-        private void Break()
+        private void RClick()
+        {
+            if (CurItem == null || _isBuilding || EventSystem.current.IsPointerOverGameObject()) return;
+            
+            
+        }
+
+        private void Place(PlaceableItemData placeableItemData)
         {
             
         }
