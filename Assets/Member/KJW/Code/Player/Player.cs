@@ -1,4 +1,5 @@
 using System;
+using Code.Core.Utility;
 using Code.EntityScripts;
 using Code.GridSystem.Objects;
 using Member.BJH._01Script.Interact;
@@ -6,6 +7,9 @@ using Member.KJW.Code.CombatSystem;
 using Member.KJW.Code.Data;
 using Member.KJW.Code.Input;
 using Member.YDW.Script;
+using Member.YDW.Script.BuildingSystem;
+using Member.YDW.Script.EventStruct;
+using Member.YDW.Script.NewBuildingSystem;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using YTH.Code.Inventory;
@@ -17,7 +21,6 @@ namespace Member.KJW.Code.Player
     {
         [field: SerializeField] public InputReader InputReader { get; private set; }
         [field: SerializeField] public RollingData RollingData { get; private set; }
-        [SerializeField] private float maxHp;
         
         
         public AgentMovement MoveCompo { get; private set; }
@@ -27,6 +30,7 @@ namespace Member.KJW.Code.Player
         public Arm Arm { get; private set; }
         public Weapon Weapon { get; private set; }
         [field: SerializeField] public InventoryManagerEventChannel InventoryChannel { get; private set; }
+        [field: SerializeField] public BuildingGhostEventSO BuildingGhostEvent { get; private set; }
         
         public bool IsRolling { get; private set; }
         private bool _isInvincible;
@@ -41,6 +45,7 @@ namespace Member.KJW.Code.Player
             get => _remainRoll;
             private set => _remainRoll = Mathf.Clamp(value, 0, RollingData.MaxRoll);
         }
+        [SerializeField] private float maxHp;
 
         private ItemDataSO CurItem => _inventoryManager.GetSelectedItem();
         private InventoryManager _inventoryManager;
@@ -66,6 +71,7 @@ namespace Member.KJW.Code.Player
             InputReader.OnMoved += UpdateStandDir;
             InputReader.OnThrew += Throw;
             InputReader.OnAttacked += Click;
+            InputReader.OnInteracted += Interact;
         }
 
         private void InitInventory(InventoryManager inventoryManager)
@@ -93,13 +99,14 @@ namespace Member.KJW.Code.Player
             InputReader.OnMoved -= UpdateStandDir;
             InputReader.OnThrew -= Throw;
             InputReader.OnAttacked -= Click;
+            InputReader.OnInteracted -= Interact;
         }
 
         private void OnDestroy()
         {
             InventoryChannel.OnEvent -= InitInventory;
         }
-
+        
         private void Click()
         {
             if (CurItem == null || EventSystem.current.IsPointerOverGameObject()) return;
@@ -109,16 +116,46 @@ namespace Member.KJW.Code.Player
                 Attack(weaponData);
                 return;
             }
-
-            Break(CurItem);
-        }
-
-        private void Place(ItemDataSO item)
-        {
             
+            
+
+            Break();
         }
 
-        private void Break(ItemDataSO item)
+        private void Interact()
+        {
+            if (CurItem == null || EventSystem.current.IsPointerOverGameObject()) return;
+            
+            if (CurItem is PlaceableItemData placeableItemData)
+            {
+                BuildingGhostEvent.Raise(new BuildingGhostEvent(placeableItemData.BuildingData, true));
+                return;
+            }
+        }
+
+        private void Place(PlaceableItemData placeableItemData)
+        {
+            // GridManager.Instance.GridMap.SetCellObject(
+            //     GridManager.Instance.GetWorldToCellPosition(MouseWorldPos),
+            //     placeableItemData.BuildingData.Building);
+            
+            BuildingGhostEvent.Raise(new BuildingGhostEvent(placeableItemData.BuildingData, true));
+
+            // Logging.Log(
+            //     GridManager.Instance.GridMap.GetObjectsAt(GridManager.Instance.GetWorldToCellPosition(MouseWorldPos)));
+            //
+            // Logging.Log(GridManager.Instance.GetWorldToCellPosition(MouseWorldPos));
+            
+            // BuildingGhostEvent.Raise();
+
+            // if (GridManager.Instance.GridMap.TrySetCellObject(
+            //         GridManager.Instance.GetWorldToCellPosition(MouseWorldPos), placeableItemData.BuildingData.Building))
+            // {
+            //     // _inventoryManager.UseSelectedItem();
+            // }
+        }
+
+        private void Break()
         {
             
         }

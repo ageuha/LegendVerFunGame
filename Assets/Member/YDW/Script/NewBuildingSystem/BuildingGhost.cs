@@ -35,10 +35,16 @@ namespace Member.YDW.Script.NewBuildingSystem
             buildingGhostEventSO.OnEvent += HandleBuildingGhost;
             //gameObject.SetActive(false);
         }
-        
-        
-          
-        
+
+        private void OnEnable()
+        {
+            inputReader.OnPlaced += CreateBuilding;
+        }
+
+        private void OnDisable()
+        {
+            inputReader.OnPlaced -= CreateBuilding;
+        }
 
         private void Update()
         {

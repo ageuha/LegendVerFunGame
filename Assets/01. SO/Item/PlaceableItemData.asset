@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97152a8e22e844ba8b8d291f8ff1a037, type: 3}
+  m_Name: PlaceableItemData
+  m_EditorClassIdentifier: 
+  <ItemName>k__BackingField: TestPlaceable
+  <Description>k__BackingField: pppp
+  <Icon>k__BackingField: {fileID: -4119334708683220384, guid: 713430fc68f036044a7129813ebd5fb9, type: 3}
+  <ItemID>k__BackingField: 5009
+  <MaxStack>k__BackingField: 16
+  <ItemType>k__BackingField: 0
+  <ThrowSpeed>k__BackingField: 4
+  <DamageInfoData>k__BackingField: {fileID: 11400000, guid: 23ed14e7c6f3cbe48ad18b9c64b4188a, type: 2}
+  <BuildingData>k__BackingField: {fileID: 11400000, guid: 17cf49b142400cd42aedf58b7191ffda, type: 2}
