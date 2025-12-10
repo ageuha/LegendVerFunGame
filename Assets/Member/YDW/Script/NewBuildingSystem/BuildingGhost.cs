@@ -35,10 +35,16 @@ namespace Member.YDW.Script.NewBuildingSystem
             buildingGhostEventSO.OnEvent += HandleBuildingGhost;
             //gameObject.SetActive(false);
         }
-        
-        
-          
-        
+
+        private void OnEnable()
+        {
+            inputReader.OnPlaced += CreateBuilding;
+        }
+
+        private void OnDisable()
+        {
+            inputReader.OnPlaced -= CreateBuilding;
+        }
 
         private void Update()
         {
@@ -56,7 +62,9 @@ namespace Member.YDW.Script.NewBuildingSystem
                 HandleBuildingGhost(new  BuildingGhostEvent(buildingData,true));
                 _currentBuildingData = buildingData;
             }
-                
+            
+            if (_eventFlag)
+                OnBuildingGhostEvent();
 
             #endregion
         }
@@ -67,26 +75,29 @@ namespace Member.YDW.Script.NewBuildingSystem
             if (obj.OnOff &&  !_eventFlag)
             {
                 _eventFlag = true;
-                inputReader.OnAttacked += OnBuildingGhostEvent;
+                // gameObject.SetActive(true);
+                // inputReader.OnAttacked += OnBuildingGhostEvent;
                 _currentBuildingData =  obj.buildingDataSO;
                 _size = obj.buildingDataSO.BuildingSize;
             }
             else
             {
                 _eventFlag = false;
-                inputReader.OnAttacked -= OnBuildingGhostEvent;
+                // gameObject.SetActive(false);
+                // inputReader.OnAttacked -= OnBuildingGhostEvent;
                 _spriteRenderer.sprite = null;
                 _currentBuildingData = null;
                 _size = Vector2Int.zero;
             }
-                
-           
         }
 
         private void OnBuildingGhostEvent() //미리보기 켜기 (특정 노드에 마우스 좌클릭 시.)
         {
             gameObject.SetActive(true);
             _spriteRenderer.sprite =  _currentBuildingData.Image;
+            
+            if (_selectPos == GridManager.Instance.GetWorldToCellPosition(Camera.main.ScreenToWorldPoint(_aim))) return;
+            
             _selectPos = GridManager.Instance.GetWorldToCellPosition(Camera.main.ScreenToWorldPoint(_aim));
             
             //Logging.Log($"Has Object : {CheckIntersect(_selectPos, GridManager.Instance.GridMap)}, SelectPos : {_selectPos}");

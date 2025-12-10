@@ -14,6 +14,6 @@ public class TestButton : MonoBehaviour
 
     public void Test2()
     {
-        resource.Interaction(10);
+        resource.CurrentHp.ApplyDamage(10);
     }
 }

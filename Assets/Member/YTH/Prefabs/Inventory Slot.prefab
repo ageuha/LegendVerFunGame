@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryItemPickDownEventChannel: {fileID: 11400000, guid: 8014b59b7e9492a4a8cb7aa15f9beabe, type: 2}
+  inventoryChangeEventChannel: {fileID: 11400000, guid: 4aea8ae936534c94ca9bab6e29e2c17b, type: 2}
   image: {fileID: 2220553138450863851}
   selectedColor: {r: 0.49803922, g: 0.54901963, b: 0.5529412, a: 1}
   unSelectedColor: {r: 0.7411765, g: 0.7647059, b: 0.78039217, a: 1}
