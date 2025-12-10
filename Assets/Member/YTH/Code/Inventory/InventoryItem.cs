@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using Code.Core.GlobalStructs;
 using Code.Core.Pool;
 using Code.Core.Utility;
@@ -69,7 +70,18 @@ namespace YTH.Code.Inventory
         private void UpdateUI()
         {
             if (Item != null) itemIcon.sprite = Item.Icon;
-            if (countText != null) countText.text = Count.ToString();
+            if (countText != null)
+            {
+                if (Count == 1)
+                {
+                    countText.gameObject.SetActive(false);
+                }
+                else
+                {
+                    countText.gameObject.SetActive(true);  
+                    countText.text = Count.ToString();
+                }
+            }
         }
 
         public void AddStack(int count = 1)

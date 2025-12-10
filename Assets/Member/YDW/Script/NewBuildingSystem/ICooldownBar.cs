@@ -1,4 +1,4 @@
-﻿namespace Member.YDW.Script.BuildingSystem
+﻿namespace Member.YDW.Script.NewBuildingSystem
 {
     public interface ICooldownBar
     {
