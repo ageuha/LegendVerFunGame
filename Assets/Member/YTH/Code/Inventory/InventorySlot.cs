@@ -9,11 +9,18 @@ namespace YTH.Code.Inventory
 {
     public class InventorySlot : MonoBehaviour, IPointerClickHandler
     {
+        [field:SerializeField] public InventoryItem InventoryItem { get; private set; }
         [SerializeField] protected InventoryItemPickDownEventChannel inventoryItemPickDownEventChannel;
+        [SerializeField] private InventoryChangeEventChannel inventoryChangeEventChannel;
         [SerializeField] private Image image;
         [SerializeField] private Color selectedColor;
         [SerializeField] private Color unSelectedColor;
         protected InventoryManager m_InventoryManager;
+
+        private void OnTransformChildrenChanged()
+        {
+            InventoryItem = GetComponentInChildren<InventoryItem>();
+        }
 
         public virtual void Initialize(InventoryManager inventoryManager)
         {
@@ -52,13 +59,9 @@ namespace YTH.Code.Inventory
                         newItem.transform.localPosition = Vector3.zero;
                         m_InventoryManager.HoldItem.RemoveStack(1);
                     }
+                    inventoryChangeEventChannel.Raise(new Empty());
                 }
             }
-        }
-
-        public InventoryItem GetInventoryItem()
-        {
-            return GetComponentInChildren<InventoryItem>();
         }
     }
 }
