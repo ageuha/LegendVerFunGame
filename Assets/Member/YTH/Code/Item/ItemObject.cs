@@ -13,7 +13,7 @@ namespace YTH.Code.Item
         [SerializeField] private Rigidbody2D rb;
         [SerializeField] private ItemDataSO itemData;
         [SerializeField] private float speed = 5;
-        [SerializeField] private int amount = 1;
+        [SerializeField] private int count = 1;
 
         private bool m_isLoockOn;
         private Transform m_target;
@@ -71,9 +71,9 @@ namespace YTH.Code.Item
         }
 
 
-        public void SetItemData(ItemDataSO newData, int amount = 1)
+        public void SetItemData(ItemDataSO newData, int count = 1)
         {
-            this.amount = amount;
+            this.count = count;
             itemData = newData;
             spriteRenderer.sprite = itemData.Icon;
             gameObject.name = $"ItemObject_{itemData.ItemName}";
@@ -81,8 +81,7 @@ namespace YTH.Code.Item
 
         public void PickUp()
         {
-            inventoryAddEventChannel.Raise(itemData);
-            m_isLoockOn = false;
+            inventoryAddEventChannel.Raise(new ItemData(itemData, count));
             Destroy(gameObject);
         }
     }
