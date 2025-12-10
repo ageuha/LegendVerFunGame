@@ -9,13 +9,13 @@ namespace YTH.Code.Inventory
 {
     public class InventorySlot : MonoBehaviour, IPointerClickHandler
     {
-        [SerializeField] private InventoryItemPickDownEventChannel inventoryItemPickDownEventChannel;
+        [SerializeField] protected InventoryItemPickDownEventChannel inventoryItemPickDownEventChannel;
         [SerializeField] private Image image;
         [SerializeField] private Color selectedColor;
         [SerializeField] private Color unSelectedColor;
-        private InventoryManager m_InventoryManager;
+        protected InventoryManager m_InventoryManager;
 
-        public void Initialize(InventoryManager inventoryManager)
+        public virtual void Initialize(InventoryManager inventoryManager)
         {
             this.m_InventoryManager = inventoryManager;
             UnSelect();
@@ -32,7 +32,7 @@ namespace YTH.Code.Inventory
         }
 
 
-        public void OnPointerClick(PointerEventData eventData)
+        public virtual void OnPointerClick(PointerEventData eventData)
         {
             if (m_InventoryManager.HoldItem != null)
             {

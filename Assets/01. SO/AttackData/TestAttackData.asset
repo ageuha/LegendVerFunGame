@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b05111a695bf4939b354d032470c9344, type: 3}
-  m_Name: ThrowableList
+  m_Script: {fileID: 11500000, guid: 38d00da447b646f5b400c993e4c3a728, type: 3}
+  m_Name: TestAttackData
   m_EditorClassIdentifier: 
-  prefabs:
-  - {fileID: 7385960097371176375, guid: a83977976ff739148b385bb809776121, type: 3}
+  <DamageInfoData>k__BackingField: {fileID: 11400000, guid: 23ed14e7c6f3cbe48ad18b9c64b4188a, type: 2}
+  <AttackSpeed>k__BackingField: 0.2

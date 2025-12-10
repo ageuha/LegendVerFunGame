@@ -14,7 +14,7 @@ TagManager:
   - Player
   - CollectableObject
   - InteractableObject
-  - 
+  - ThrowableObject
   - 
   - 
   - 

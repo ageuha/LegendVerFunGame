@@ -1,6 +1,7 @@
 using System.Text;
 using Member.KJW.Code.Data;
 using UnityEngine;
+using YTH.Code.Enum;
 
 namespace YTH.Code.Item
 {
@@ -8,19 +9,21 @@ namespace YTH.Code.Item
     {
         [field:Header("Item Settings")]
         [field:SerializeField] public string ItemName { get; private set; }
+        [field:SerializeField] public string Description { get; private set; }
         [field:SerializeField] public Sprite Icon { get; private set; }
         [field:SerializeField] public int ItemID { get; private set; }
         [field:SerializeField] public int MaxStack { get; private set; }
+        [field:SerializeField] public ItemType ItemType { get; private set; }
 
         [field:Header("Throw Settings")]
         [field:SerializeField] public float ThrowSpeed { get; private set; }
-        [field:SerializeField] public DamageInfoData ThrowDataInfo { get; private set; }
+        [field:SerializeField] public DamageInfoData DamageInfoData { get; private set; }
 
 
 
         protected StringBuilder _stringBuilder = new StringBuilder();
 
-        public virtual string GetDescription() => string.Empty;
+        public virtual string GetDescription() => Description;
         public override string ToString() => ItemName;
         public override int GetHashCode() => ItemID;
 

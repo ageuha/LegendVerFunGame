@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Test1
   m_EditorClassIdentifier: 
   <ItemName>k__BackingField: Test1
+  <Description>k__BackingField: 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
   <Icon>k__BackingField: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   <ItemID>k__BackingField: 100001
   <MaxStack>k__BackingField: 64
+  <ItemType>k__BackingField: 0
+  <ThrowSpeed>k__BackingField: 0
+  <DamageInfoData>k__BackingField: {fileID: 11400000, guid: 23ed14e7c6f3cbe48ad18b9c64b4188a, type: 2}
