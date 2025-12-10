@@ -5,6 +5,6 @@ namespace YTH.Code.Interface
 {    
     public interface IExtension
     {
-        public bool CheckCondition(InventorySlot inventorySlot);
+        public bool CheckCondition(InventoryItem inventoryItem);
     }
 }

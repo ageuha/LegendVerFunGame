@@ -9,7 +9,7 @@ namespace YTH.Code.Inventory
 {
     public class InventorySlot : MonoBehaviour, IPointerClickHandler
     {
-        [SerializeField] private InventoryItemPickDownEventChannel inventoryItemPickDownEventChannel;
+        [SerializeField] protected InventoryItemPickDownEventChannel inventoryItemPickDownEventChannel;
         [SerializeField] private Image image;
         [SerializeField] private Color selectedColor;
         [SerializeField] private Color unSelectedColor;
