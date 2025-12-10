@@ -13,6 +13,7 @@ namespace YTH.Code.Inventory
     {
         [field:SerializeField] public InventoryItem HoldItem { get; private set; }
         public List<InventorySlot> inventorySlots;
+        public InventoryTotemSlot totemSlots;
         [SerializeField] private GameObject mainInventory;
         [SerializeField] private InventoryAddEventChannel inventoryAddEventChannel;
         [SerializeField] private InventoryItemPickUpEventChannel inventoryItemPickUpEventChannel;
@@ -39,6 +40,9 @@ namespace YTH.Code.Inventory
             {
                 slot.Initialize(this);
             }
+            
+            totemSlots.Initialize(this);
+
             MainInventory();
             ChangeSelectedSlot(1);
         

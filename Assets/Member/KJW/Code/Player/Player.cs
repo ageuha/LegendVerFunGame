@@ -90,7 +90,7 @@ namespace Member.KJW.Code.Player
         {
             ItemDataSO curItem = Inventory.GetSelectedItem();
             
-            if (curItem == null || EventSystem.current.IsPointerOverGameObject()) return;
+            //if (curItem == null || EventSystem.current.IsPointerOverGameObject()) return;
             
             if (curItem is WeaponDataSO weaponData)
             {

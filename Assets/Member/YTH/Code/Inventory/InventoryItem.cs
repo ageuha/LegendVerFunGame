@@ -115,11 +115,13 @@ namespace YTH.Code.Inventory
 
         public void PickUp()
         {
+            Logging.Log("PickUp");
             m_IsHold = true;
             itemIcon.raycastTarget = false;
             parentAfterDrag = transform.parent;
             transform.SetParent(transform.root);
             inventoryItemPickUpEventChannel.Raise(this);
+            Logging.Log(transform.parent);
         }
 
         public void OnPointerClick(PointerEventData eventData)

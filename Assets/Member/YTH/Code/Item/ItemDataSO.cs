@@ -1,6 +1,7 @@
 using System.Text;
 using Member.KJW.Code.Data;
 using UnityEngine;
+using YTH.Code.Enum;
 
 namespace YTH.Code.Item
 {
@@ -12,6 +13,7 @@ namespace YTH.Code.Item
         [field:SerializeField] public Sprite Icon { get; private set; }
         [field:SerializeField] public int ItemID { get; private set; }
         [field:SerializeField] public int MaxStack { get; private set; }
+        [field:SerializeField] public ItemType ItemType { get; private set; }
 
         [field:Header("Throw Settings")]
         [field:SerializeField] public float ThrowSpeed { get; private set; }
