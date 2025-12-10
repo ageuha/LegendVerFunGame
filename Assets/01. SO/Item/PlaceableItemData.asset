@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ItemName>k__BackingField: TestPlaceable
   <Description>k__BackingField: pppp
-  <Icon>k__BackingField: {fileID: -4119334708683220384, guid: 713430fc68f036044a7129813ebd5fb9, type: 3}
+  <Icon>k__BackingField: {fileID: 1309592179222711874, guid: 1846f6f20c0e47d4ab952dc4c2359f66, type: 3}
   <ItemID>k__BackingField: 5009
   <MaxStack>k__BackingField: 16
   <ItemType>k__BackingField: 0

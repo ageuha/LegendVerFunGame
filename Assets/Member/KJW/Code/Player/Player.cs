@@ -45,10 +45,27 @@ namespace Member.KJW.Code.Player
             get => _remainRoll;
             private set => _remainRoll = Mathf.Clamp(value, 0, RollingData.MaxRoll);
         }
-        [SerializeField] private float maxHp;
+
+        private ItemDataSO _prevItem;
+        // private ItemDataSO _curItem;
 
         private ItemDataSO CurItem => _inventoryManager.GetSelectedItem();
+        // {
+        //     get
+        //     {
+        //         _prevItem = _curItem;
+        //         _curItem = _inventoryManager.GetSelectedItem();
+        //         if (_prevItem != _curItem)
+        //         {
+        //             Logging.Log("Item changed");
+        //             BuildingGhostEvent.Raise(new BuildingGhostEvent(null, false));
+        //         }
+        //         return _curItem;
+        //     }
+        // }
         private InventoryManager _inventoryManager;
+        
+        [SerializeField] private float maxHp;
         
         private void Awake()
         {
@@ -71,7 +88,6 @@ namespace Member.KJW.Code.Player
             InputReader.OnMoved += UpdateStandDir;
             InputReader.OnThrew += Throw;
             InputReader.OnAttacked += Click;
-            InputReader.OnInteracted += Interact;
         }
 
         private void InitInventory(InventoryManager inventoryManager)
@@ -99,7 +115,6 @@ namespace Member.KJW.Code.Player
             InputReader.OnMoved -= UpdateStandDir;
             InputReader.OnThrew -= Throw;
             InputReader.OnAttacked -= Click;
-            InputReader.OnInteracted -= Interact;
         }
 
         private void OnDestroy()
@@ -117,20 +132,13 @@ namespace Member.KJW.Code.Player
                 return;
             }
             
-            
-
-            Break();
-        }
-
-        private void Interact()
-        {
-            if (CurItem == null || EventSystem.current.IsPointerOverGameObject()) return;
-            
             if (CurItem is PlaceableItemData placeableItemData)
             {
                 BuildingGhostEvent.Raise(new BuildingGhostEvent(placeableItemData.BuildingData, true));
                 return;
             }
+
+            Break();
         }
 
         private void Place(PlaceableItemData placeableItemData)
@@ -151,7 +159,7 @@ namespace Member.KJW.Code.Player
             // if (GridManager.Instance.GridMap.TrySetCellObject(
             //         GridManager.Instance.GetWorldToCellPosition(MouseWorldPos), placeableItemData.BuildingData.Building))
             // {
-            //     // _inventoryManager.UseSelectedItem();
+            // _inventoryManager.UseSelectedItem();
             // }
         }
 
