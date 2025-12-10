@@ -1,5 +1,6 @@
 using Code.Core.GlobalStructs;
 using Code.Core.Pool;
+using Code.Core.Utility;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using YTH.Code.Enum;
@@ -38,9 +39,7 @@ namespace YTH.Code.Inventory
         }
         public bool CheckCondition(InventoryItem inventoryItem)
         {
-            var item = GetInventoryItem();
-            if(item == null) return false;
-            return ItemType.Totem == item.Item.ItemType;
+            return ItemType.Totem == m_InventoryManager.HoldItem.Item.ItemType;
         }
     }
 }
