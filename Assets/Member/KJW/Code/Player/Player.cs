@@ -132,9 +132,9 @@ namespace Member.KJW.Code.Player
 
         private void Throw()
         {
-            if (CurItem == null) return;
+            if (CurItem == null || CurItem is not WeaponDataSO w) return;
             
-            Thrower.Throw(CurItem.DamageInfoData.ToStruct(), CurItem.Icon, MouseWorldPos - (Vector2)transform.position, CurItem.ThrowSpeed);
+            Thrower.Throw(w, MouseWorldPos - (Vector2)transform.position);
             _inventoryManager.UseSelectedItem();
         }
 

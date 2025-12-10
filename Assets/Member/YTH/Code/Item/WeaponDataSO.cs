@@ -14,6 +14,7 @@ namespace YTH.Code.Item
         [field:SerializeField] public List<Stat> Stats { get; private set; }
         [field:SerializeField] public Vector2 HitBoxOffset { get; private set; }
         [field:SerializeField] public Vector2 HitBoxSize { get; private set; }
+        [field:SerializeField] public float ThrowLifeTime { get; private set; }
     }
     
     [Serializable]

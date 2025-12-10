@@ -17,6 +17,7 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: 21300000, guid: 12c618c54c46a86419f545b188ba7670, type: 3}
   <ItemID>k__BackingField: 456
   <MaxStack>k__BackingField: 1
+  <ItemType>k__BackingField: 0
   <ThrowSpeed>k__BackingField: 5
   <DamageInfoData>k__BackingField: {fileID: 11400000, guid: 23ed14e7c6f3cbe48ad18b9c64b4188a, type: 2}
   <EquipmentType>k__BackingField: 0
@@ -24,5 +25,6 @@ MonoBehaviour:
   <Stats>k__BackingField:
   - StatData: {fileID: 11400000, guid: 9be955361fa31964c9240a55d564efe7, type: 2}
     Amount: 2
-  <HitBoxOffset>k__BackingField: {x: 2.5, y: 0}
+  <HitBoxOffset>k__BackingField: {x: 5, y: 0}
   <HitBoxSize>k__BackingField: {x: 5, y: 5}
+  <ThrowLifeTime>k__BackingField: 5

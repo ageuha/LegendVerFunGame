@@ -7,21 +7,17 @@ namespace Member.KJW.Code.CombatSystem
     public class Weapon : MonoBehaviour
     {
         private SpriteRenderer _spriteRenderer;
+        public SpriteRenderer SpriteRenderer => _spriteRenderer ??= GetComponent<SpriteRenderer>();
+
         private BoxCollider2D _collider;
+        public BoxCollider2D Collider => _collider ??= GetComponent<BoxCollider2D>();
+
         private DamageInfo _damageInfo;
-
-        private void Awake()
-        {
-            _spriteRenderer = GetComponentInChildren<SpriteRenderer>(true);
-            _collider = GetComponentInChildren<BoxCollider2D>(true);
-        }
-
+        
         public void Init(WeaponDataSO weapon)
         {
-            _spriteRenderer ??= GetComponentInChildren<SpriteRenderer>(true);
-            _collider ??= GetComponentInChildren<BoxCollider2D>(true);
-            _spriteRenderer.sprite = weapon.Icon;
-            _collider.size = weapon.HitBoxSize;
+            SpriteRenderer.sprite = weapon.Icon;
+            Collider.size = weapon.HitBoxSize;
             transform.localPosition = weapon.HitBoxOffset;
             _damageInfo = weapon.DamageInfoData.ToStruct();
         }
