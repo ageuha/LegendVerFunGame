@@ -18,6 +18,9 @@ namespace Code.BT.Actions.AnimationAction {
 
         protected override Status OnStart() {
             if (Prev.Value) {
+                if (Prev.Value == Current.Value) {
+                    return Status.Success;
+                }
                 Animator.Value.SetValue(Prev.Value, false);
             }
 
