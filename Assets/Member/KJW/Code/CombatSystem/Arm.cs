@@ -32,10 +32,11 @@ namespace Member.KJW.Code.CombatSystem
             gameObject.SetActive(false);
         }
 
-        public Arm Init(float angle)
+        public Arm Init(float angle, float speed)
         {
             if (gameObject.activeSelf) return this;
             _angle = angle;
+            time = speed;
             return this;
         }
 

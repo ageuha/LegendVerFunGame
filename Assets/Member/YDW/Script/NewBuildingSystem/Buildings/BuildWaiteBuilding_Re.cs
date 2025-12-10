@@ -40,7 +40,7 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings
                 _canceled = false;
                 yield break;
             }
-            BuildingEventSO.Raise(new BuildingEvent(WorldPos,transform.position,buildingData.Building)); //생성
+            //BuildingEventSO.Raise(new BuildingEvent(WorldPos,transform.position,buildingData.Building)); //생성
             PoolManager.Instance.Factory<BuildWaiteBuilding_Re>().Push(this);
         }
 

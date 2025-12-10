@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f1c84303f947b28891bd861fed0147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parent: {fileID: 3116744463969940936}
   fillTransform: {fileID: 8102570750232265810}
 --- !u!1 &1349805443619449422
 GameObject:
@@ -55,9 +56,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3116744463969940936}
-  - component: {fileID: 7614878019503595716}
   m_Layer: 0
-  m_Name: CreatingBuilding
+  m_Name: CooldownBuilding
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,20 +80,6 @@ Transform:
   - {fileID: 7647399122157625112}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7614878019503595716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1349805443619449422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1ad91cea86e4bb98defd9db9b5a260c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <CooldownBar>k__BackingField:
-    value: {fileID: 3210570140941276997}
 --- !u!1 &3105528860819504764
 GameObject:
   m_ObjectHideFlags: 0

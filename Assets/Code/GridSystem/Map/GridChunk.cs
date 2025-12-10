@@ -20,7 +20,6 @@ namespace Code.GridSystem.Map {
 
         public GridObject GetObjectsAt(Vector2Int localCell)
         {
-            Logging.Log(localCell);
             return _cells[localCell.x, localCell.y];
         }
 

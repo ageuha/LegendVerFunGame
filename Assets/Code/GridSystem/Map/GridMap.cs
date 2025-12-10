@@ -129,11 +129,21 @@ namespace Code.GridSystem.Map {
             var chunkPos = WorldToChunk(worldCell);
             var localCell = WorldToLocal(worldCell);
 
-            Logging.Log(chunkPos);
-            Logging.Log(localCell);
-            
             if (!_chunks.TryGetValue(chunkPos, out var chunk)) return false;
             return chunk.HasObjectAt(localCell);
+        }
+
+        public bool HasObjectInBounds(Vector2Int worldCell, Vector2Int size)
+        {
+            for (int i = 0; i < size.x; i++) {
+                for (int j = 0; j < size.y; j++) {
+                    Vector2Int cellPos = worldCell + new Vector2Int(i, j);
+                    Logging.Log($"CheckIntersect : {cellPos.x} , {cellPos.y}");
+                    if (HasObjectAt(cellPos)) return true;
+                }
+            }
+
+            return false;
         }
 
         #endregion

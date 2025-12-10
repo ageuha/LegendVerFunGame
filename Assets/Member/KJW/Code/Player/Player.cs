@@ -1,3 +1,4 @@
+using System;
 using Code.EntityScripts;
 using Code.GridSystem.Objects;
 using Member.BJH._01Script.Interact;
@@ -25,7 +26,7 @@ namespace Member.KJW.Code.Player
         public Thrower Thrower { get; private set; }
         public Arm Arm { get; private set; }
         public Weapon Weapon { get; private set; }
-        public InventoryManager Inventory { get; private set; }
+        [field: SerializeField] public InventoryManagerEventChannel InventoryChannel { get; private set; }
         
         public bool IsRolling { get; private set; }
         private bool _isInvincible;
@@ -40,6 +41,9 @@ namespace Member.KJW.Code.Player
             get => _remainRoll;
             private set => _remainRoll = Mathf.Clamp(value, 0, RollingData.MaxRoll);
         }
+
+        private ItemDataSO CurItem => _inventoryManager.GetSelectedItem();
+        private InventoryManager _inventoryManager;
         
         private void Awake()
         {
@@ -49,10 +53,10 @@ namespace Member.KJW.Code.Player
             Thrower = GetComponentInChildren<Thrower>();
             Arm = GetComponentInChildren<Arm>(true);
             Weapon = GetComponentInChildren<Weapon>(true);
-            Inventory = GetComponentInChildren<InventoryManager>(true);
 
             RemainRoll = RollingData.MaxRoll;
             HealthCompo.Initialize(maxHp);
+            InventoryChannel.OnEvent += InitInventory;
         }
 
         private void OnEnable()
@@ -62,6 +66,11 @@ namespace Member.KJW.Code.Player
             InputReader.OnMoved += UpdateStandDir;
             InputReader.OnThrew += Throw;
             InputReader.OnAttacked += Click;
+        }
+
+        private void InitInventory(InventoryManager inventoryManager)
+        {
+            _inventoryManager = inventoryManager;
         }
 
         private void Update()
@@ -86,19 +95,22 @@ namespace Member.KJW.Code.Player
             InputReader.OnAttacked -= Click;
         }
 
+        private void OnDestroy()
+        {
+            InventoryChannel.OnEvent -= InitInventory;
+        }
+
         private void Click()
         {
-            ItemDataSO curItem = Inventory.GetSelectedItem();
+            if (CurItem == null || EventSystem.current.IsPointerOverGameObject()) return;
             
-            if (curItem == null || EventSystem.current.IsPointerOverGameObject()) return;
-            
-            if (curItem is WeaponDataSO weaponData)
+            if (CurItem is WeaponDataSO weaponData)
             {
                 Attack(weaponData);
                 return;
             }
 
-            Break(curItem);
+            Break(CurItem);
         }
 
         private void Place(ItemDataSO item)
@@ -115,16 +127,15 @@ namespace Member.KJW.Code.Player
         {
             Vector2 dir = MouseWorldPos - (Vector2)transform.position;
             Weapon.Init(weaponData);
-            Arm.Init(Mathf.Rad2Deg * Mathf.Atan2(dir.y, dir.x)).Swing();
+            Arm.Init(Mathf.Rad2Deg * Mathf.Atan2(dir.y, dir.x), weaponData.AttackData.AttackSpeed).Swing();
         }
 
         private void Throw()
         {
-            ItemDataSO curItem = Inventory.GetSelectedItem();
-            if (curItem == null) return;
+            if (CurItem == null || CurItem is not WeaponDataSO w) return;
             
-            Thrower.Throw(curItem.DamageInfoData.ToStruct(), curItem.Icon, MouseWorldPos - (Vector2)transform.position, curItem.ThrowSpeed);
-            Inventory.UseSelectedItem();
+            Thrower.Throw(w, MouseWorldPos - (Vector2)transform.position);
+            _inventoryManager.UseSelectedItem();
         }
 
         private void UpdateStandDir(Vector2 dir)

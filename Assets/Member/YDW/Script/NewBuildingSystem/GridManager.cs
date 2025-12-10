@@ -52,19 +52,7 @@ namespace Member.YDW.Script.NewBuildingSystem
 
         public bool CheckHasNodeBound(Vector2Int position, Vector2Int size)
         {
-            bool HasObjectFlag = false;
-            for (int i = 0; i < size.x; i++) 
-            {
-                for (int j = 0; j < size.y; j++) 
-                { 
-                    Vector2Int cellPos = position + new Vector2Int(i, j);
-                    if(GridMap.HasObjectAt(cellPos))
-                        HasObjectFlag = true;
-                        
-                        
-                }
-            }
-            return HasObjectFlag;
+            return GridMap.HasObjectInBounds(position, size);
         }
     }
 }

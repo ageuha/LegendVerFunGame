@@ -1,6 +1,8 @@
 ﻿using System;
 using Code.Core.Pool;
+using Code.Core.Utility;
 using UnityEngine;
+using YTH.Code.Item;
 
 namespace Member.KJW.Code.CombatSystem
 {
@@ -8,33 +10,29 @@ namespace Member.KJW.Code.CombatSystem
     {
         private float _lifeTime;
         private Rigidbody2D _rb;
+        public Rigidbody2D Rb => _rb ??= GetComponent<Rigidbody2D>();
         private SpriteRenderer _renderer;
+        public SpriteRenderer Renderer => _renderer ??= GetComponent<SpriteRenderer>();
         private DamageInfo _damageInfo;
         private float _speed;
+        private BoxCollider2D _collider;
+        public BoxCollider2D Collider => _collider ??= GetComponent<BoxCollider2D>();
 
-        private void Awake()
+        public Throwable Init(WeaponDataSO weaponData)
         {
-            _rb = GetComponent<Rigidbody2D>();
-            _renderer = GetComponentInChildren<SpriteRenderer>();
-        }
-
-        private void OnEnable()
-        {
-            Invoke(nameof(Push), _lifeTime);
-        }
-
-        public Throwable Init(DamageInfo damageInfo, Sprite sprite, float speed)
-        {
-            _damageInfo = damageInfo;
-            _renderer.sprite = sprite;
-            _speed = speed;
+            _damageInfo = weaponData.DamageInfoData.ToStruct();
+            Renderer.sprite = weaponData.Icon;
+            _speed = weaponData.ThrowSpeed;
+            Collider.size = weaponData.HitBoxSize;
+            _lifeTime = weaponData.ThrowLifeTime;
             return this;
         }
 
         public void Throw(Vector2 dir)
         {
-            _rb.linearVelocity = dir * _speed;
-            _rb.AddTorque(1, ForceMode2D.Impulse);
+            Rb.linearVelocity = dir * _speed;
+            Rb.AddTorque(1, ForceMode2D.Impulse);
+            Invoke(nameof(Push), _lifeTime);
         }
 
         private void Push()
