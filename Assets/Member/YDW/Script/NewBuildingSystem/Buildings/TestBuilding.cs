@@ -8,6 +8,7 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings
 {
     public class TestBuilding : MonoBehaviour, IBuilding
     {
+        public bool IsActive { get; }
         public BuildingDataSO BuildingData { get; private set; }
         private SpriteRenderer _spriteRenderer;
         public void Initialize(BuildingDataSO buildingData)
@@ -16,18 +17,6 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings
             _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             _spriteRenderer.sprite = BuildingData.Image;
         }
-
-        public  void DestroyedBuilding()
-        {
-            
-        }
-
         
-        
-           
-          
-            
-        
-
     }
 }

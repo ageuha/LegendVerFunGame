@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
-using Member.YDW.Script.PathFinder;
+﻿using Member.YDW.Script.BuildingSystem;
 
-namespace Member.YDW.Script.BuildingSystem
+namespace Member.YDW.Script.NewBuildingSystem
 {
     public interface IBuilding
     {
+        public bool IsActive { get; }
         public BuildingDataSO BuildingData { get; }
 
         public void Initialize(BuildingDataSO buildingData);
-
-        public void DestroyedBuilding();
     }
 }

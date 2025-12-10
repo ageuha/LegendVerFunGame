@@ -68,7 +68,6 @@ namespace Member.YDW.Script.NewBuildingSystem
             {
                 _eventFlag = true;
                 inputReader.OnAttacked += OnBuildingGhostEvent;
-                _spriteRenderer.sprite =  obj.buildingDataSO.Image;
                 _currentBuildingData =  obj.buildingDataSO;
                 _size = obj.buildingDataSO.BuildingSize;
             }
@@ -87,6 +86,7 @@ namespace Member.YDW.Script.NewBuildingSystem
         private void OnBuildingGhostEvent() //미리보기 켜기 (특정 노드에 마우스 좌클릭 시.)
         {
             gameObject.SetActive(true);
+            _spriteRenderer.sprite =  _currentBuildingData.Image;
             _selectPos = GridManager.Instance.GetWorldToCellPosition(Camera.main.ScreenToWorldPoint(_aim));
             
             //Logging.Log($"Has Object : {CheckIntersect(_selectPos, GridManager.Instance.GridMap)}, SelectPos : {_selectPos}");
@@ -131,8 +131,8 @@ namespace Member.YDW.Script.NewBuildingSystem
                         buildCompo.Initialize(_currentBuildingData);
                     }
                     building.SettingChildComponent(compo);
+                    building.Initialize(_currentBuildingData.BuildingSize,compo,_currentBuildingData.MaxHealth,_currentBuildingData.BuildTime);
                 }
-                building.Initialize(_currentBuildingData.BuildingSize,_currentBuildingData.MaxHealth);
                 GridManager.Instance.GridMap.SetCellObject(_selectPos, building);
                 
             }
@@ -148,10 +148,10 @@ namespace Member.YDW.Script.NewBuildingSystem
                         buildCompo.Initialize(_currentBuildingData);
                     }
                     building.SettingChildComponent(compo);
+                    building.Initialize(compo,_currentBuildingData.MaxHealth,_currentBuildingData.BuildTime);
                 }
                 //building.Initialize(_currentBuildingData.BuildingSize); 추후 필요하면 추가.
                 GridManager.Instance.GridMap.SetCellObject(_selectPos, building);
-                building.Initialize(_currentBuildingData.MaxHealth);
             }
             else
             {

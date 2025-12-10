@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TestBuildingDataSO
   m_EditorClassIdentifier: 
   <BuildTime>k__BackingField: 2
-  <MaxHealth>k__BackingField: 100
+  <MaxHealth>k__BackingField: 1
   <Image>k__BackingField: {fileID: 1309592179222711874, guid: 1846f6f20c0e47d4ab952dc4c2359f66, type: 3}
   <Building>k__BackingField: {fileID: 7051405046897650709, guid: 451c5b2e9ef1b5d478912d4f5e248928, type: 3}
   <BuildingSize>k__BackingField: {x: 1, y: 1}

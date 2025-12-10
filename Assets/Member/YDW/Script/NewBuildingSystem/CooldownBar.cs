@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections;
-using Code.Core.Utility;
+﻿using Code.Core.Utility;
 using UnityEngine;
 
-namespace Member.YDW.Script.BuildingSystem
+namespace Member.YDW.Script.NewBuildingSystem
 {
     public class CooldownBar : MonoBehaviour , ICooldownBar
     {
+        [SerializeField] private Transform parent;
         [SerializeField] private Transform fillTransform;
         private Coroutine _currentCoroutine;
 
@@ -24,8 +23,21 @@ namespace Member.YDW.Script.BuildingSystem
             
         }
 
+        public void SetBuildingSize(Vector2Int size)
+        {
+            parent.transform.localScale = new Vector3(size.x, size.y, 1f);
+        }
+
         public void SetFillAmount(float normalizedTime)
         {
+            if (normalizedTime < 0.01f)
+            {
+                parent.gameObject.SetActive(false);
+            }
+            else if (!parent.gameObject.activeSelf)
+            {
+                parent.gameObject.SetActive(true);
+            }
             fillTransform.localScale = new Vector3(normalizedTime,1, 1f);
         }
 

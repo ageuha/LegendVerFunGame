@@ -14,14 +14,26 @@ namespace Member.YDW.Script.NewBuildingSystem
         private Vector2Int _size;
         protected override Vector2Int Size => _size;
         private HealthSystem  _healthSystem;
-        protected Component currentBuildingComponent; //자식에서 Init할때 세팅.
+        private Component _currentBuildingComponent; 
+        private CooldownBar _cooldownBar;
+        private BuildingTimer _timer;
+        private BoxCollider2D _collider;
         public int InitialCapacity { get; protected set; }
 
-        public void Initialize(Vector2Int size, float maxHealth)
+        public void Initialize(Vector2Int size,Component currentBuilding, float maxHealth, float timerTime)
         {
             _size = size;
             _healthSystem.Initialize(maxHealth);
             _healthSystem.ResetHealth();
+            _currentBuildingComponent = currentBuilding;
+            _timer ??= new BuildingTimer();
+            IWaitable obj = GetComponentInChildren<IWaitable>();
+            _cooldownBar ??= GetComponentInChildren<CooldownBar>();
+            _collider ??= GetComponent<BoxCollider2D>();
+            _collider.size = size;
+            _timer.StartTimer(obj,_cooldownBar,timerTime,this);
+            
+
         }
        
         protected virtual void HandleIDead()
@@ -29,7 +41,7 @@ namespace Member.YDW.Script.NewBuildingSystem
             //아마 추후 이곳에서 아이템 다시 드랍해줄 듯.
             GridManager.Instance.DeleteBuildingObject(WorldPos);
            
-            BuildingManager.Instance.DestroyBuilding(new BuildingEvent(WorldPos,transform.position,this)); //자신의 셀 위치와 월드 위치, 그리고 객체를 넘김.
+            BuildingManager.Instance.DestroyBuilding(new BuildingEvent(WorldPos,this)); //자신의 셀 위치와 월드 위치, 그리고 객체를 넘김.
             _healthSystem.OnDead -= HandleIDead;
         }
 
@@ -39,11 +51,12 @@ namespace Member.YDW.Script.NewBuildingSystem
             Logging.Log($"건물 세팅됨. 위치 : {worldPos}");
             transform.position = GridManager.Instance.GetCellToWorldPosition(worldPos);
             transform.position += new Vector3(0.5f, 0.5f, 0);
+            BuildingManager.Instance.SettingBuilding(new BuildingEvent(WorldPos, this));
         }
 
         public void SettingChildComponent(Component c)
         {
-            currentBuildingComponent = c;
+            _currentBuildingComponent = c;
         }
         public virtual void OnPopFromPool()
         {
@@ -53,8 +66,8 @@ namespace Member.YDW.Script.NewBuildingSystem
 
         public virtual void OnReturnToPool()
         {
-            Destroy(currentBuildingComponent);
-            GridManager.Instance.DeleteBuildingObject(WorldPos);
+            if(_currentBuildingComponent != null)
+                Destroy(_currentBuildingComponent);
         }
 
         private void OnDrawGizmos()

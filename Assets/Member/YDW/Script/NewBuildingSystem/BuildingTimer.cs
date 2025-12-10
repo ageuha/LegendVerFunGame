@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using Member.YDW.Script.BuildingSystem;
+using Code.Core.Utility;
 using UnityEngine;
 
 namespace Member.YDW.Script.NewBuildingSystem
@@ -14,13 +14,15 @@ namespace Member.YDW.Script.NewBuildingSystem
         {
             _target = target;
             _time = time;
+            _cooldownBar = cooldownBar;
             mono.StartCoroutine(OnBuildingWaiteBuilding());
+            Logging.Log($"Start Timer");
         }
         
         private IEnumerator OnBuildingWaiteBuilding() //본인 또한 세팅이 되어야 함.
         {
             _target.SetWaiting(true);
-            float endTime = Time.time + _time;
+            float endTime = Time.unscaledTime + _time;
 
             while (Time.unscaledTime < endTime)
             {
@@ -35,10 +37,6 @@ namespace Member.YDW.Script.NewBuildingSystem
                 
             }
             _target.SetWaiting(false);
-
-
-
-
         }
         
 
