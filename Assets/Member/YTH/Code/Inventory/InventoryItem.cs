@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.InteropServices;
 using Code.Core.GlobalStructs;
 using Code.Core.Pool;
@@ -27,8 +28,9 @@ namespace YTH.Code.Inventory
         [SerializeField] private InputReader inputReader;
         [SerializeField] private InventoryItemPickUpEventChannel inventoryItemPickUpEventChannel;
         [SerializeField] private InventoryItemPickDownEventChannel inventoryItemPickDownEventChannel;
+        [SerializeField] private InventoryChangeEventChannel inventoryChangeEventChannel;
         [SerializeField] private TooltipChannel tooltipEventChannel;
-        [SerializeField] private Vector3 tooltipOffset;
+        [SerializeField] private TooltipContextDataSO tooltipContextData;
         [SerializeField] private bool m_IsHold;
 
 
@@ -42,7 +44,7 @@ namespace YTH.Code.Inventory
             m_IsHold = false;
             Count = 1;
             itemIcon.raycastTarget = true;   
-            transform.localPosition = Vector2.zero;   
+            transform.localPosition = Vector2.zero; 
         }
 
         public void Initialize(InventoryManager inventoryManager, ItemDataSO itemDataSO, int count)
@@ -127,13 +129,11 @@ namespace YTH.Code.Inventory
 
         public void PickUp()
         {
-            Logging.Log("PickUp");
             m_IsHold = true;
             itemIcon.raycastTarget = false;
             parentAfterDrag = transform.parent;
             transform.SetParent(transform.root);
             inventoryItemPickUpEventChannel.Raise(this);
-            Logging.Log(transform.parent);
         }
 
         public void OnPointerClick(PointerEventData eventData)
@@ -177,8 +177,8 @@ namespace YTH.Code.Inventory
                             int remainCount = Item.MaxStack - Count;
                             AddStack(remainCount);
                             HoldItem.RemoveStack(remainCount);
-
                         }
+                        inventoryChangeEventChannel.Raise(new Empty());
                     }
                     else if(eventData.button == PointerEventData.InputButton.Right)
                     {
@@ -187,6 +187,7 @@ namespace YTH.Code.Inventory
                             AddStack(1);
                             HoldItem.RemoveStack(1);
                         }
+                        inventoryChangeEventChannel.Raise(new Empty());
                     }
                 }
             }
@@ -222,15 +223,15 @@ namespace YTH.Code.Inventory
 
                 tooltip.Active = true;
 
-                tooltip.BackgroundColor = new Color32(236, 240, 241, 255);
-                tooltip.BorderColor = new Color32(44, 62, 80, 255);
-                tooltip.DescriptionColor = new Color32(26, 188, 156, 255);
-                tooltip.OutlineColor = new Color32(26, 188, 156, 255);
-                tooltip.TitleColor = new Color32(41, 128, 185, 255);
+                tooltip.BackgroundColor = tooltipContextData.BackgroundColor;
+                tooltip.BorderColor = tooltipContextData.BorderColor;
+                tooltip.DescriptionColor = tooltipContextData.DescriptionColor;
+                tooltip.OutlineColor = tooltipContextData.OutlineColor;
+                tooltip.TitleColor = tooltipContextData.TitleColor;
 
                 tooltip.TitleText = Item.ToString();
                 tooltip.DescriptionText = Item.GetDescription();
-                tooltip.Position = RectTransform.position + tooltipOffset;
+                tooltip.Position = (Vector2)RectTransform.position + tooltipContextData.Offset;
 
                 tooltipEventChannel.Raise(tooltip);
             }

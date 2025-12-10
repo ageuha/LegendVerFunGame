@@ -41,15 +41,15 @@ namespace YTH.Code.Item
             itemObjectTrigger.Trigger += OnLockOn;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if(m_isLoockOn)
             {    
                 rb.AddForce((m_target.position - transform.position).normalized * speed * Time.deltaTime, ForceMode2D.Impulse);
 
-                float distance = Vector3.Distance(transform.position, m_target.position);
-                float scale = Mathf.Clamp01(distance);
-                transform.localScale = new Vector3(scale, scale, 1);
+                //float distance = Vector3.Distance(transform.position, m_target.position);
+                //float scale = Mathf.Clamp01(distance);
+                //transform.localScale = new Vector3(scale, scale, 1);
             }
         }
 
@@ -81,10 +81,8 @@ namespace YTH.Code.Item
 
         public void PickUp()
         {
-            for (int i = 0; i < amount; i++)
-            {
-                inventoryAddEventChannel.Raise(itemData);
-            }
+            inventoryAddEventChannel.Raise(itemData);
+            m_isLoockOn = false;
             Destroy(gameObject);
         }
     }
