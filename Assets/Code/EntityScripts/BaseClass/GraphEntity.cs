@@ -10,5 +10,6 @@ namespace Code.EntityScripts.BaseClass {
         protected virtual void Reset() {
             GraphAgent ??= GetComponent<BehaviorGraphAgent>();
         }
+        
     }
 }
