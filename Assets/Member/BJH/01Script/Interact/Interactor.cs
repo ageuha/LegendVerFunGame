@@ -8,7 +8,7 @@ namespace Member.BJH._01Script.Interact
         [SerializeField] private Transform _interactionPoint;
         [SerializeField] private float _interactionPointRadius;
         [SerializeField] private LayerMask _interactionMask;
-        private IInteractable<GameObject> _interactableThing;
+        private IInteractable _interactableThing;
         private void CheckInteract()
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(_interactionPoint.position, _interactionPointRadius, _interactionMask);
@@ -24,7 +24,7 @@ namespace Member.BJH._01Script.Interact
         public void Interact()
         {
             CheckInteract();
-            _interactableThing?.Interaction(gameObject);
+            // _interactableThing?.Interaction(gameObject);
         }
 
         void OnDrawGizmosSelected()

@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Code.Core.Pool {
     public class PoolManager : MonoSingleton<PoolManager> {
         [SerializeField] private List<PoolItemList> itemLists;
-
+        
         private Dictionary<Type, IPoolable> _itemDictionary;
 
         protected override void Awake() {
