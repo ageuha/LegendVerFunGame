@@ -19,6 +19,7 @@ namespace Member.KJW.Code.CombatSystem
         public void Init(WeaponDataSO weapon)
         {
             _spriteRenderer ??= GetComponentInChildren<SpriteRenderer>(true);
+            _collider ??= GetComponentInChildren<BoxCollider2D>(true);
             _spriteRenderer.sprite = weapon.Icon;
             _collider.size = weapon.HitBoxSize;
             transform.localPosition = weapon.HitBoxOffset;

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Member.KJW.Code.Data;
 using UnityEngine;
 using YTH.Code.Stat;
 
@@ -9,6 +10,7 @@ namespace YTH.Code.Item
     public class WeaponDataSO : ItemDataSO
     {
         [field:SerializeField] public EquipmentType EquipmentType { get; private set; }
+        [field:SerializeField] public AttackData AttackData { get; private set; }
         [field:SerializeField] public List<Stat> Stats { get; private set; }
         [field:SerializeField] public Vector2 HitBoxOffset { get; private set; }
         [field:SerializeField] public Vector2 HitBoxSize { get; private set; }
