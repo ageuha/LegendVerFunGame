@@ -5,7 +5,7 @@ using UnityEngine;
 namespace YTH.Code.Inventory
 {    
     [CreateAssetMenu(fileName = "InventoryAddEventChannel", menuName = "EventChannel/InventoryAddEventChannel")]
-    public class InventoryAddEventChannel : EventChannel<ItemDataSO>
+    public class InventoryAddEventChannel : EventChannel<ItemData>
     {
         
     }

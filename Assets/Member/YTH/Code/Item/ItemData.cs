@@ -1,5 +1,4 @@
 using System;
-using Member.YTH.Code.Item;
 
 namespace YTH.Code.Item
 {
