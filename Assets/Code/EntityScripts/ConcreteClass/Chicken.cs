@@ -3,6 +3,7 @@ using Code.Core.Utility;
 using Code.EntityScripts.BaseClass;
 using Code.EntityScripts.Enums;
 using Member.KJW.Code.CombatSystem;
+using Member.KJW.Code.CombatSystem.DamageSystem;
 using UnityEngine;
 
 namespace Code.EntityScripts.ConcreteClass {

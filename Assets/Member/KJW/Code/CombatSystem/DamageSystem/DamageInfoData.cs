@@ -1,7 +1,6 @@
-﻿using Member.KJW.Code.CombatSystem;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Member.KJW.Code.Data {
+namespace Member.KJW.Code.CombatSystem.DamageSystem {
     [CreateAssetMenu(fileName = "DamageInfoData", menuName = "SO/DamageInfoData", order = 0)]
     public class DamageInfoData : ScriptableObject {
         public float damage;
