@@ -156,7 +156,7 @@ namespace Member.YDW.Script.NewBuildingSystem
                         buildCompo.Initialize(_currentBuildingData);
                     }
                     building.SettingChildComponent(compo);
-                    building.Initialize(_currentBuildingData.BuildingSize,compo,_currentBuildingData.MaxHealth,_currentBuildingData.BuildTime);
+                    building.Initialize(_currentBuildingData.BuildingSize,compo,_currentBuildingData.InitValue,_currentBuildingData.MaxHealth,_currentBuildingData.BuildTime);
                 }
                 GridManager.Instance.GridMap.SetCellObject(_selectPos, building);
                 _inventoryManager.UseSelectedItem();
@@ -173,7 +173,7 @@ namespace Member.YDW.Script.NewBuildingSystem
                         buildCompo.Initialize(_currentBuildingData);
                     }
                     building.SettingChildComponent(compo);
-                    building.Initialize(compo,_currentBuildingData.MaxHealth,_currentBuildingData.BuildTime);
+                    building.Initialize(compo,_currentBuildingData.InitValue,_currentBuildingData.MaxHealth,_currentBuildingData.BuildTime);
                 }
                 //building.Initialize(_currentBuildingData.BuildingSize); 추후 필요하면 추가.
                 GridManager.Instance.GridMap.SetCellObject(_selectPos, building);

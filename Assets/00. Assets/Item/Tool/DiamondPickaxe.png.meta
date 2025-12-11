@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3f946bd55eb4c9f44a44cb4927e248b9
+guid: 9dd32aeb6a8f005489b9bf58c3bc9510
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3317806273994890464
-    second: ShabbyHouse_0
+      213: -3671775346378272248
+    second: DiamondPickaxe_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 32
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ShabbyHouse_0
+      name: DiamondPickaxe_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 0
-        width: 42
-        height: 48
+        x: 2
+        y: 1
+        width: 27
+        height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0ec170b4a373b0e20800000000000000
-      internalID: 3317806273994890464
+      spriteID: 8021610c6cb3b0dc0800000000000000
+      internalID: -3671775346378272248
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ShabbyHouse_0: 3317806273994890464
+      DiamondPickaxe_0: -3671775346378272248
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
