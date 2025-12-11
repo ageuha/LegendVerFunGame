@@ -1,13 +1,16 @@
 fileFormatVersion: 2
-guid: 54b61de1afea735468fcffff0527d974
+guid: 86e708767509ea049b8eec6f0e62df4d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3419641003194043845
-    second: DesertTileMap 1_0
+      213: -5948307481242581127
+    second: DesertTileMap_0
   - first:
-      213: -6097309690588275210
-    second: DesertTileMap 1_1
+      213: 625044989078268195
+    second: DesertTileMap_1
+  - first:
+      213: -288950374855881538
+    second: DesertTileMap_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,12 +106,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DesertTileMap 1_0
+      name: DesertTileMap_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
+        width: 208
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -118,8 +121,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5cdcdb6df51057f20800000000000000
-      internalID: 3419641003194043845
+      spriteID: 977ccbd7cdd537da0800000000000000
+      internalID: -5948307481242581127
       vertices: []
       indices: 
       edges: []
@@ -128,7 +131,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 3104b3761e978d44c8537590899ec558
+    spriteID: 2bff8c0b120657b43a10d26668879c89
     internalID: 0
     vertices: []
     indices: 
@@ -138,7 +141,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DesertTileMap 1_0: 3419641003194043845
+      DesertTileMap_0: -5948307481242581127
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
