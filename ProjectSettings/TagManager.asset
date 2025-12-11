@@ -16,8 +16,8 @@ TagManager:
   - InteractableObject
   - ThrowableObject
   - Enemy
-  - 
-  - 
+  - Attack
+  - MovementCollider
   - 
   - 
   - 

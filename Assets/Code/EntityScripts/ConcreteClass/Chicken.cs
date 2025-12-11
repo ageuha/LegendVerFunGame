@@ -11,9 +11,6 @@ namespace Code.EntityScripts.ConcreteClass {
         [SerializeField] private BlackBoardGUIDSO stateGUID;
         [SerializeField] private BlackBoardGUIDSO badGuy;
 
-        public override void DropItem() {
-        }
-
         protected override void Awake() {
             base.Awake();
             Health.OnDead += HandleDead;
@@ -26,6 +23,7 @@ namespace Code.EntityScripts.ConcreteClass {
         private void HandleDead() {
             IsDead = true;
             Logging.Log("Dead");
+            DropItem();
             GraphAgent.SetVariableValue(stateGUID, FriendlyEntityStates.Dead);
         }
 

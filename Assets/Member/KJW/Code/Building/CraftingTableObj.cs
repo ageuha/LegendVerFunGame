@@ -16,13 +16,13 @@ namespace Member.KJW.Code.Building
         
         public bool IsActive { get; private set; }
         public BuildingDataSO BuildingData { get; private set; }
-        private SpriteRenderer _spriteRenderer;
+        public SpriteRenderer SpriteRenderer { get; private set; }
         
         public void Initialize(BuildingDataSO buildingData)
         {
             BuildingData = buildingData;
-            _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-            _spriteRenderer.sprite = BuildingData.Image;
+            SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            SpriteRenderer.sprite = BuildingData.Image;
         }
 
         public void Interaction(InteractionContext context)

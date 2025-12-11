@@ -11,22 +11,22 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings
     {
         public bool IsActive { get; private set; }
         public BuildingDataSO BuildingData { get; private set; }
-        private SpriteRenderer _spriteRenderer;
+        public SpriteRenderer SpriteRenderer { get; private set; }
+        public ICooldownBar CooldownBar { get; private set; }
+        public BuildingTimer Timer { get; private set; }
         private Animator _animator;
         private readonly int _dirXHash = Animator.StringToHash("dirX");
         private readonly int _dirYHash = Animator.StringToHash("dirY"); 
-        private ICooldownBar _cooldownBar;
-        private BuildingTimer _timer;
         
         public bool IsWaiting { get; private set; }
         public void Initialize(BuildingDataSO buildingData)
         {
             BuildingData = buildingData;
-            _spriteRenderer ??= GetComponentInChildren<SpriteRenderer>();
-            _spriteRenderer.sprite = BuildingData.Image;
+            SpriteRenderer ??= GetComponentInChildren<SpriteRenderer>();
+            SpriteRenderer.sprite = BuildingData.Image;
             _animator ??= GetComponentInChildren<Animator>();
-            _cooldownBar ??= GetComponentInChildren<ICooldownBar>();
-            _timer = new BuildingTimer();
+            CooldownBar ??= GetComponentInChildren<ICooldownBar>();
+            Timer = new BuildingTimer();
             if(buildingData.AnimController != null)
                 _animator.runtimeAnimatorController = buildingData.AnimController;
         }
@@ -47,7 +47,7 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings
             {
                 Arrow arrow = PoolManager.Instance.Factory<Arrow>().Pop();
                 arrow.Initialize(transform.position,target - transform.position);
-                _timer.StartTimer(this,_cooldownBar,0.2f,this,false);
+                Timer.StartTimer(this,CooldownBar,0.2f,this,false);
             }
 
             if (target == Vector3.zero)
