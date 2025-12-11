@@ -1,5 +1,6 @@
 ﻿using System;
 using Code.Core.GlobalSO;
+using Code.Core.Utility;
 using DG.Tweening;
 using UnityEngine;
 
@@ -25,6 +26,7 @@ namespace Code.UI {
 
         public void Disable() {
             _tweener.PlayBackwards();
+            Logging.LogWarning("agsni");
         }
     }
 }

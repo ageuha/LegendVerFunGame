@@ -13,8 +13,8 @@ namespace Code.EntityScripts {
 
     [Serializable]
     public struct EntityDropData {
-        public ItemDataSO Item { get; private set; }
-        public byte Count { get; private set; }
-        public float DropRate { get; private set; }
+        [field: SerializeField] public ItemDataSO Item { get; private set; }
+        [field: SerializeField] public byte Count { get; private set; }
+        [field: SerializeField] public float DropRate { get; private set; }
     }
 }

@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 2916415147714662034}
   - component: {fileID: 7811930647618891265}
   - component: {fileID: 4562855320560523916}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -252,8 +252,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <InputReader>k__BackingField: {fileID: 11400000, guid: 777b456eb927283439da0b796da61433, type: 2}
   <RollingData>k__BackingField: {fileID: 11400000, guid: 870b15c39db4d2547bcd398c11b4be93, type: 2}
-  maxHp: 100
   <InventoryChannel>k__BackingField: {fileID: 11400000, guid: fb6f9fa11354ee140bf4d4a28a3935cc, type: 2}
+  <BuildingGhostEvent>k__BackingField: {fileID: 0}
+  maxHp: 100
 --- !u!114 &5244186388177151095
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -23,6 +23,7 @@ namespace Code.EntityScripts.ConcreteClass {
         private void HandleDead() {
             IsDead = true;
             Logging.Log("Dead");
+            DropItem();
             GraphAgent.SetVariableValue(stateGUID, FriendlyEntityStates.Dead);
         }
 
