@@ -1,4 +1,5 @@
 using Code.Core.GlobalSO;
+using Code.Core.Pool;
 using UnityEngine;
 using YTH.Code.Interface;
 using YTH.Code.Inventory;
@@ -6,7 +7,7 @@ using YTH.Code.Item;
 
 namespace Member.YTH.Code.Item 
 {
-    public class ItemObject : MonoBehaviour, IPickable 
+    public class ItemObject : MonoBehaviour, IPickable, IPoolable
     {
         [SerializeField] private ItemObjectTrigger itemObjectTrigger;
         [SerializeField] private InventoryAddEventChannel inventoryAddEventChannel;
@@ -19,6 +20,8 @@ namespace Member.YTH.Code.Item
 
         private bool m_isLoockOn;
         private Transform m_target;
+
+        public int InitialCapacity => 10;
 
         private void OnValidate() 
         {
@@ -84,6 +87,16 @@ namespace Member.YTH.Code.Item
             inventoryAddEventChannel.Raise(new ItemData(itemData, amount));
             m_isLoockOn = false;
             Destroy(gameObject);
+        }
+
+        public void OnPopFromPool()
+        {
+            
+        }
+
+        public void OnReturnToPool()
+        {
+            
         }
     }
 }

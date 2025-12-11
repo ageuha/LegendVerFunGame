@@ -107,7 +107,7 @@ namespace YTH.Code.Inventory
             if (Count <= 0)
             {
                 Logging.Log($"{m_InventoryManager.HoldItem}");
-                if (this == m_InventoryManager.HoldItem) //여기 버그?
+                if (this == m_InventoryManager.HoldItem) //여기 버그? 여기 한번 Inventory Slot 말고 Material Slot으로 바꿔서 해보거나 해
                 {
                     inventoryItemPickDownEventChannel.Raise(new Empty());
                 }
