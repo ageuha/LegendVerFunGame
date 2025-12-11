@@ -4,6 +4,7 @@ using Code.Core.GlobalStructs;
 using Code.Core.Pool;
 using Code.Core.Utility;
 using Code.SaveSystem;
+using JetBrains.Annotations;
 using Member.YTH.Code.Item;
 using UnityEngine;
 using YTH.Code.Inventory;
@@ -18,22 +19,23 @@ namespace YTH.Code.Craft
         [SerializeField] private InventoryManagerEventChannel inventoryManagerEventChannel;
         [SerializeField] private InventoryAddEventChannel inventoryAddEventChannel;
         [SerializeField] private InventoryChangeEventChannel inventoryChangeEventChannel;
-        [SerializeField] private List<InventorySlot> Materials = new List<InventorySlot>(gridSize);
-        [SerializeField] private List<InventorySlot> Slots;
-        [SerializeField] private InventorySlot resultSlot;
+        [SerializeField] private List<CraftingMaterialSlot> craftingMaterialSlots = new List<CraftingMaterialSlot>(gridSize);
+        [SerializeField] private List<InventorySlot> slots;
+        [SerializeField] private CraftingResultSlot resultSlot;
         [SerializeField] private List<RecipeSO> recipeList;
 
         private const int gridSize = 9;
-        private CraftingSystem m_CraftingSystem = new();
         private InventoryManager m_InventoryManager;
         private JsonSaveManager<InventoryData> m_InventoryJsonSaveManager;
+        private int m_ItemCount = 0;
+        private RecipeSO m_Recipe;
 
         private void Awake()
         {
             inventoryAddEventChannel.OnEvent += AddItem;
             inventoryManagerEventChannel.OnEvent += Initialize;
             craftingTableMateiralChangeEventChannel.OnEvent += Info;
-            craftEventChannel.OnEvent += Craft;
+            //craftEventChannel.OnEvent += Craft;
         }
 
         private void Start()
@@ -46,7 +48,7 @@ namespace YTH.Code.Craft
             inventoryAddEventChannel.OnEvent -= AddItem;
             inventoryManagerEventChannel.OnEvent -= Initialize;
             craftingTableMateiralChangeEventChannel.OnEvent -= Info;
-            craftEventChannel.OnEvent -= Craft;
+            //craftEventChannel.OnEvent -= Craft;
         }
 
         
@@ -54,12 +56,12 @@ namespace YTH.Code.Craft
         {
             this.m_InventoryManager = inventoryManager;
 
-            foreach (var slot in Slots)
+            foreach (var slot in slots)
             {
                 slot.Initialize(m_InventoryManager);
             }
 
-            foreach (var slot in Materials)
+            foreach (var slot in craftingMaterialSlots)
             {
                 slot.Initialize(m_InventoryManager);
             }
@@ -76,9 +78,9 @@ namespace YTH.Code.Craft
         {
             int remain = item.Count;
 
-            for (int i = 0; i < Slots.Count && remain > 0; i++)
+            for (int i = 0; i < slots.Count && remain > 0; i++)
             {
-                InventorySlot slot = Slots[i];
+                InventorySlot slot = slots[i];
                 InventoryItem itemInSlot = slot.InventoryItem;
 
                 if (itemInSlot != null && itemInSlot.Item == item.Item && itemInSlot.Count < item.Item.MaxStack)
@@ -111,54 +113,101 @@ namespace YTH.Code.Craft
 
         private InventorySlot FindFirstEmptySlot()
         {
-            for (int i = 0; i < Slots.Count; i++)
+            for (int i = 0; i < slots.Count; i++)
             {
-                if (Slots[i].InventoryItem == null)
-                    return Slots[i];
+                if (slots[i].InventoryItem == null)
+                    return slots[i];
             }
             return null;
         }
 
         public void Info(Empty empty)
         {
-            for (int i = 0; i < gridSize; i++)
-            {
-                var item = Materials[i].InventoryItem;
-                if(item != null)
-                {
-                    m_CraftingSystem.SetItem(item, i);
-                }
-            }
-
             foreach (var r in recipeList)
             {
-                if(m_CraftingSystem.CanMake(r))
+                m_ItemCount = 0; 
+                if (CanMake(r))
                 {
-                    InventoryItem newItem  = PoolManager.Instance.Factory<InventoryItem>().Pop(resultSlot.transform);
-                    newItem.Initialize(m_InventoryManager, r.Result, 1);
-                    newItem.transform.localScale = Vector3.one;
-                    newItem.transform.localPosition = Vector3.zero;
-                    Logging.Log($"만들 수 있는 레시피: {r.Result.ItemName}");
+                    if (resultSlot.InventoryItem != null)
+                    {
+                        Logging.Log(m_ItemCount);
+                        resultSlot.InventoryItem.SetCount(m_ItemCount);
+                    }
+                    else
+                    {    
+                        InventoryItem newItem  = PoolManager.Instance.Factory<InventoryItem>().Pop(resultSlot.transform);
+                        newItem.Initialize(m_InventoryManager, r.Result, m_ItemCount);
+                        newItem.transform.localScale = Vector3.one;
+                        newItem.transform.localPosition = Vector3.zero;
+                    }
+                    Logging.Log($"만들 수 있는 레시피 : {r.Result.ItemName}");
+                    m_Recipe = r;
                     return;
+                }
+                else
+                {
+                    Logging.Log($"만들 수 있는 레시피 : 없음");
+                    m_Recipe = null;
+                    if (resultSlot.InventoryItem != null)
+                    {
+                        PoolManager.Instance.Factory<InventoryItem>().Push(resultSlot.InventoryItem);
+                    }
                 }
             }   
         }
 
-        public void Craft(Empty empty)
+        public bool CanMake(RecipeSO currentRecipe)
         {
+            if (currentRecipe == null) return false;
+            if (m_ItemCount > 0) m_ItemCount = 0;
+
             for (int i = 0; i < gridSize; i++)
             {
-                m_CraftingSystem.SetItem(Materials[i].InventoryItem, i);
+                ItemDataSO requiredMaterial = currentRecipe.Materials[i];
+                InventoryItem item = craftingMaterialSlots[i].InventoryItem;
+                
+
+                if (item == null)
+                {
+                    Logging.Log("Null 값임");
+                    if (requiredMaterial == null) continue;
+                    else
+                    {
+                        Logging.Log("못 만듬");
+                        return false;
+                    }
+                }
+                else
+                {
+                    if (requiredMaterial != item.Item) return false;
+                    m_ItemCount = Math.Max(m_ItemCount, item.Count);
+                }
             }
 
-            foreach (var r in recipeList)
+            Logging.Log($"{currentRecipe.Result} {m_ItemCount}개");
+            return true;
+        }
+
+        public void TryMake()
+        {
+            if(CanMake(m_Recipe))
             {
-                if(m_CraftingSystem.TryMake(r))
+                for (int i = 0; i < m_Recipe.Materials.Length; i++)
                 {
-                    PoolManager.Instance.Factory<InventoryItem>().Push(resultSlot.InventoryItem);
-                    return;
+                    if(craftingMaterialSlots[i].InventoryItem != null) continue;
+                    craftingMaterialSlots[i].InventoryItem.RemoveStack(m_ItemCount);
                 }
-            }  
+                Logging.Log("제작을 했습니다.");
+            }
+            else
+            {
+                Logging.LogWarning("제작을 할 수 없습니다.");
+            }
+        }
+
+        public void Craft(Empty empty)
+        {
+            TryMake();
         }   
     }
 }

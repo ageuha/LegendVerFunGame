@@ -81,17 +81,17 @@ namespace YTH.Code.Inventory
         {
             if(value == 0) return;
 
-            if(m_SelectedSlot + value <= 0)
+            if(m_SelectedSlot - value <= 0)
             {
                 m_SelectedSlot = 9;
             }
-            else if (m_SelectedSlot + value >= 10)
+            else if (m_SelectedSlot - value >= 10)
             {
                 m_SelectedSlot = 1;
             }
             else
             {
-                m_SelectedSlot += (int)value;
+                m_SelectedSlot -= (int)value;
             }
             ChangeSelectedSlot(m_SelectedSlot);
         }
