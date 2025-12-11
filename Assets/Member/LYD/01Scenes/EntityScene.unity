@@ -1325,6 +1325,7 @@ GameObject:
   - component: {fileID: 881399502}
   - component: {fileID: 881399501}
   - component: {fileID: 881399503}
+  - component: {fileID: 881399504}
   m_Layer: 0
   m_Name: Chicken
   m_TagString: Untagged
@@ -1497,6 +1498,18 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: -0.1}
   m_Radius: 0.4
+--- !u!210 &881399504
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881399495}
+  m_Enabled: 1
+  m_SortingLayerID: -769256641
+  m_SortingLayer: 2
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &1064959098
 GameObject:
   m_ObjectHideFlags: 0
@@ -1559,10 +1572,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5130819061766407106, guid: 0342f2df741e8a6438289141dea6e69f, type: 3}
-      propertyPath: <BuildingGhostEvent>k__BackingField
-      value: 
-      objectReference: {fileID: 11400000, guid: 6f61a38863c8e214287793b225d3ce60, type: 2}
     - target: {fileID: 7482172943847465529, guid: 0342f2df741e8a6438289141dea6e69f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

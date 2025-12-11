@@ -213,6 +213,7 @@ GameObject:
   - component: {fileID: 7484282472645894099}
   - component: {fileID: 3878644787371316426}
   - component: {fileID: 9110808616861326032}
+  - component: {fileID: 4012536754685618492}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -253,7 +254,9 @@ MonoBehaviour:
   <InputReader>k__BackingField: {fileID: 11400000, guid: 777b456eb927283439da0b796da61433, type: 2}
   <RollingData>k__BackingField: {fileID: 11400000, guid: 870b15c39db4d2547bcd398c11b4be93, type: 2}
   <InventoryChannel>k__BackingField: {fileID: 11400000, guid: fb6f9fa11354ee140bf4d4a28a3935cc, type: 2}
-  <BuildingGhostEvent>k__BackingField: {fileID: 0}
+  <InventorySelectedSlotChangeChannel>k__BackingField: {fileID: 11400000, guid: ef9b2291179504e4d8a0c83fdc8e47d5, type: 2}
+  <BuildingGhostChannel>k__BackingField: {fileID: 11400000, guid: 6f61a38863c8e214287793b225d3ce60, type: 2}
+  buildingGhostFlagEventChannel: {fileID: 0}
   maxHp: 100
 --- !u!114 &5244186388177151095
 MonoBehaviour:
@@ -385,6 +388,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 1}
   m_Direction: 0
+--- !u!210 &4012536754685618492
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2743378625830887524}
+  m_Enabled: 1
+  m_SortingLayerID: -769256641
+  m_SortingLayer: 2
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &6342582208790996079
 GameObject:
   m_ObjectHideFlags: 0
