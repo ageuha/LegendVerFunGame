@@ -3,6 +3,7 @@ using Code.Core.GlobalStructs;
 using Code.Core.Pool;
 using Code.Core.Utility;
 using Code.SaveSystem;
+using Code.UI.TooltipSystem;
 using Member.KJW.Code.Input;
 using Member.YTH.Code.Item;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace YTH.Code.Inventory
     public class InventoryManager : MonoBehaviour
     {
         [field:SerializeField] public InventoryItem HoldItem { get; private set; }
+        [field:SerializeField] public bool UIOpen { get; private set; }
         public List<InventorySlot> inventorySlots;
         public InventoryTotemSlot totemSlot;
         [SerializeField] private GameObject mainInventory;
@@ -20,9 +22,12 @@ namespace YTH.Code.Inventory
         [SerializeField] private InventoryItemPickUpEventChannel inventoryItemPickUpEventChannel;
         [SerializeField] private InventoryItemPickDownEventChannel inventoryItemPickDownEventChannel;
         [SerializeField] private InventoryManagerEventChannel inventoryManagerEventChannel;
-        [SerializeField] private InventoryChangeEventChannel inventoryChangeEventChannel;
+        [SerializeField] private CraftingCloseEventChannel craftingCloseEventChannel;
+        [SerializeField] private TooltipChannel tooltipEventChannel;
         [SerializeField] private InventorySelectedSlotChangeEventChannel inventorySelectedSlotChangeEventChannel;
+        [SerializeField] private InventorySaveEventChannel inventorySaveEventChannel;
         [SerializeField] private InputReader inputReader;
+        
 
         private int m_SelectedSlot = 1;
         private bool m_Open = true;
@@ -34,7 +39,8 @@ namespace YTH.Code.Inventory
             inventoryAddEventChannel.OnEvent += AddItem;
             inventoryItemPickUpEventChannel.OnEvent += PickUp;
             inventoryItemPickDownEventChannel.OnEvent += PickDown;
-            inventoryChangeEventChannel.OnEvent += InventorySave;
+            inventorySaveEventChannel.OnEvent += InventorySave;
+            craftingCloseEventChannel.OnEvent += InventoryLoad;
             inputReader.OnNumKeyPressed += ChangeSelectedSlot;
             inputReader.OnInventory += MainInventory;
             inputReader.OnScrolled += ChangeSelectedSlotScroll;
@@ -42,6 +48,7 @@ namespace YTH.Code.Inventory
 
         private void Start()
         {
+            m_InventoryJsonSaveManager = new("Inventory.json");
             inventoryManagerEventChannel.Raise(this);   
             
             foreach (var slot in inventorySlots)
@@ -55,9 +62,8 @@ namespace YTH.Code.Inventory
             ChangeSelectedSlot(1);
         
 
-            m_InventoryJsonSaveManager = new("Inventory.json");
             
-            InventoryLoad();
+            InventoryLoad(new Empty());
         }
 
         private void OnDestroy()
@@ -65,16 +71,53 @@ namespace YTH.Code.Inventory
             inventoryAddEventChannel.OnEvent -= AddItem;
             inventoryItemPickUpEventChannel.OnEvent -= PickUp;
             inventoryItemPickDownEventChannel.OnEvent -= PickDown;
-            inventoryChangeEventChannel.OnEvent -= InventorySave;
+            inventorySaveEventChannel.OnEvent -= InventorySave;
+            craftingCloseEventChannel.OnEvent -= InventoryLoad;
             inputReader.OnNumKeyPressed -= ChangeSelectedSlot;
             inputReader.OnInventory -= MainInventory;
             inputReader.OnScrolled -= ChangeSelectedSlotScroll;
+        }
+
+        public void Open()
+        {
+            UIOpen = true;
+        }
+
+        public void Close()
+        {
+            UIOpen = false;
         }
 
         private void MainInventory()
         {
             m_Open = !m_Open;
             mainInventory.SetActive(m_Open);
+            
+            if (mainInventory.activeSelf)
+            {
+                Open();
+            }
+            else
+            {
+                Close();
+            }
+
+            TooltipContext tooltip = new();
+            tooltip.Active = false;
+
+            tooltipEventChannel.Raise(tooltip);
+        }
+
+        public void MainInventoryClose()
+        {
+            m_Open = false;
+            mainInventory.SetActive(false);
+            Close();
+
+            TooltipContext tooltip = new();
+            tooltip.Active = false;
+
+            tooltipEventChannel.Raise(tooltip);
         }
 
         private void ChangeSelectedSlotScroll(float value)
@@ -108,7 +151,7 @@ namespace YTH.Code.Inventory
             inventorySelectedSlotChangeEventChannel.Raise(new Empty());
         }
 
-        private void InventoryLoad()
+        private void InventoryLoad(Empty empty)
         {
             InventoryData inventoryData = m_InventoryJsonSaveManager.LoadSaveData();
 
@@ -120,6 +163,11 @@ namespace YTH.Code.Inventory
             
             for(int i = 0; i < inventorySlots.Count; i++)
             {
+                if (inventorySlots[i].InventoryItem != null)
+                {
+                    PoolManager.Instance.Factory<InventoryItem>().Push(inventorySlots[i].InventoryItem);
+                }
+
                 if (inventoryData.InventoryItems[i] != null)
                 {
                     SpawnNewItem(inventoryData.InventoryItems[i].Item, inventorySlots[i], inventoryData.InventoryItems[i].Count);
@@ -163,7 +211,6 @@ namespace YTH.Code.Inventory
                 InventorySlot emptySlot = FindFirstEmptySlot();
                 if (emptySlot == null)
                 {
-                    inventoryChangeEventChannel.Raise(new Empty());
                     return;
                 }
 
@@ -224,5 +271,6 @@ namespace YTH.Code.Inventory
             }
             return null;
         }
+
     }
 }

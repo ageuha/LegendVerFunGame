@@ -11,7 +11,6 @@ namespace YTH.Code.Inventory
     {
         [field:SerializeField] public InventoryItem InventoryItem { get; private set; }
         [SerializeField] protected InventoryItemPickDownEventChannel inventoryItemPickDownEventChannel;
-        [SerializeField] private InventoryChangeEventChannel inventoryChangeEventChannel;
         [SerializeField] private Image image;
         [SerializeField] private Color selectedColor;
         [SerializeField] private Color unSelectedColor;
@@ -41,6 +40,7 @@ namespace YTH.Code.Inventory
 
         public virtual void OnPointerClick(PointerEventData eventData)
         {
+            if (!m_InventoryManager.UIOpen) return;
             if (m_InventoryManager.HoldItem != null)
             {
                 if (transform.childCount == 0)
@@ -60,7 +60,6 @@ namespace YTH.Code.Inventory
                         newItem.transform.SetParent(transform);
                         m_InventoryManager.HoldItem.RemoveStack(1);
                     }
-                    inventoryChangeEventChannel.Raise(new Empty());
                 }
             }
         }
