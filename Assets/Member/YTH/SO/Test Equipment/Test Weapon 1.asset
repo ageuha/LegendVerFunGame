@@ -22,9 +22,7 @@ MonoBehaviour:
   <DamageInfoData>k__BackingField: {fileID: 11400000, guid: 23ed14e7c6f3cbe48ad18b9c64b4188a, type: 2}
   <EquipmentType>k__BackingField: 0
   <AttackData>k__BackingField: {fileID: 11400000, guid: 6dbd2607bbedc97429dc278d0132a7e7, type: 2}
-  <Stats>k__BackingField:
-  - StatData: {fileID: 11400000, guid: 9be955361fa31964c9240a55d564efe7, type: 2}
-    Amount: 2
-  <HitBoxOffset>k__BackingField: {x: 5, y: 0}
-  <HitBoxSize>k__BackingField: {x: 5, y: 5}
+  <Stats>k__BackingField: []
+  <HitBoxOffset>k__BackingField: {x: 1, y: 0}
+  <HitBoxSize>k__BackingField: {x: 1, y: 1}
   <ThrowLifeTime>k__BackingField: 5
