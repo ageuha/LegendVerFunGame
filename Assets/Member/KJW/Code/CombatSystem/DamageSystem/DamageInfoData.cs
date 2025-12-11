@@ -1,0 +1,13 @@
+﻿using UnityEngine;
+
+namespace Member.KJW.Code.CombatSystem.DamageSystem {
+    [CreateAssetMenu(fileName = "DamageInfoData", menuName = "SO/DamageInfoData", order = 0)]
+    public class DamageInfoData : ScriptableObject {
+        public float damage;
+        public float knockback;
+
+        public DamageInfo ToStruct(GameObject source) {
+            return new DamageInfo() { Damage = damage, Knockback = knockback, Source = source };
+        }
+    }
+}
