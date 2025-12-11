@@ -9,13 +9,20 @@ namespace YTH.Code.Inventory
 {
     public class InventorySlot : MonoBehaviour, IPointerClickHandler
     {
-        [SerializeField] private InventoryItemPickDownEventChannel inventoryItemPickDownEventChannel;
+        [field:SerializeField] public InventoryItem InventoryItem { get; private set; }
+        [SerializeField] protected InventoryItemPickDownEventChannel inventoryItemPickDownEventChannel;
+        [SerializeField] private InventoryChangeEventChannel inventoryChangeEventChannel;
         [SerializeField] private Image image;
         [SerializeField] private Color selectedColor;
         [SerializeField] private Color unSelectedColor;
-        private InventoryManager m_InventoryManager;
+        protected InventoryManager m_InventoryManager;
 
-        public void Initialize(InventoryManager inventoryManager)
+        protected virtual void OnTransformChildrenChanged()
+        {
+            InventoryItem = GetComponentInChildren<InventoryItem>();
+        }
+
+        public virtual void Initialize(InventoryManager inventoryManager)
         {
             this.m_InventoryManager = inventoryManager;
             UnSelect();
@@ -32,7 +39,7 @@ namespace YTH.Code.Inventory
         }
 
 
-        public void OnPointerClick(PointerEventData eventData)
+        public virtual void OnPointerClick(PointerEventData eventData)
         {
             if (m_InventoryManager.HoldItem != null)
             {
@@ -52,13 +59,9 @@ namespace YTH.Code.Inventory
                         newItem.transform.localPosition = Vector3.zero;
                         m_InventoryManager.HoldItem.RemoveStack(1);
                     }
+                    inventoryChangeEventChannel.Raise(new Empty());
                 }
             }
-        }
-
-        public InventoryItem GetInventoryItem()
-        {
-            return GetComponentInChildren<InventoryItem>();
         }
     }
 }

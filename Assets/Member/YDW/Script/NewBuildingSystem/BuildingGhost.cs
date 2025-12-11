@@ -1,48 +1,62 @@
 ﻿using System;
 using Code.Core.Pool;
 using Code.Core.Utility;
-using Code.GridSystem.Map;
-using Code.GridSystem.Objects;
+using Member.KJW.Code.EventChannel;
 using Member.KJW.Code.Input;
 using Member.YDW.Script.BuildingSystem;
 using Member.YDW.Script.EventStruct;
-using Member.YDW.Script.NewBuildingSystem.Buildings;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using YTH.Code.Inventory;
 
 namespace Member.YDW.Script.NewBuildingSystem
 {
-    public class BuildingGhost : GridBoundsObject
+    public class BuildingGhost : MonoBehaviour
     {
         [SerializeField] private InputReader  inputReader;
         [SerializeField] private BuildingGhostEventSO buildingGhostEventSO;
         [SerializeField] private BuildingEventSO buildingEventSO;
+        [SerializeField] private InventoryManagerEventChannel inventoryChannel;
+        [SerializeField] private BuildingGhostFlagEventChannel buildingGhostFlagEventChannel;
+        
 
         #region TestCode
 
-        [SerializeField] private BuildingDataSO _buildingData;
+        [SerializeField] private BuildingDataSO buildingData;
 
         #endregion
         private SpriteRenderer _spriteRenderer;
         private bool _canBuild;
-        private Vector2Int _beforePos;
         private Vector2 _aim;
         private Vector2Int _selectPos;
         private BuildingDataSO _currentBuildingData;
         private bool _eventFlag;
         private Vector2Int _size;
-        protected override Vector2Int Size => _currentBuildingData.BuildingSize;
+        private Vector2Int _worldPos;
+        private InventoryManager _inventoryManager;
 
         private void Awake()
         {
             _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             buildingGhostEventSO.OnEvent += HandleBuildingGhost;
+            inventoryChannel.OnEvent += InitInventory;
             //gameObject.SetActive(false);
         }
         
-        
-          
-        
+        private void InitInventory(InventoryManager inventoryManager)
+        {
+            _inventoryManager = inventoryManager;
+        }
+
+        private void OnEnable()
+        {
+            inputReader.OnPlaced += CreateBuilding;
+        }
+
+        private void OnDisable()
+        {
+            inputReader.OnPlaced -= CreateBuilding;
+        }
 
         private void Update()
         {
@@ -57,71 +71,78 @@ namespace Member.YDW.Script.NewBuildingSystem
                 OffBuildingGhostEvent();
             if (Keyboard.current.rKey.wasPressedThisFrame)
             {
-                HandleBuildingGhost(new  BuildingGhostEvent(_buildingData,true));
-                _currentBuildingData = _buildingData;
+                HandleBuildingGhost(new  BuildingGhostEvent(buildingData,true));
+                _currentBuildingData = buildingData;
             }
-                
+            
+            if (_eventFlag)
+                OnBuildingGhostEvent();
 
             #endregion
         }
                 
+        
 
         private void HandleBuildingGhost(BuildingGhostEvent obj)
         {
             if (obj.OnOff &&  !_eventFlag)
             {
                 _eventFlag = true;
-                inputReader.OnAttacked += OnBuildingGhostEvent;
-                _spriteRenderer.sprite =  obj.buildingDataSO.Image;
+                // gameObject.SetActive(true);
+                // inputReader.OnAttacked += OnBuildingGhostEvent;
                 _currentBuildingData =  obj.buildingDataSO;
                 _size = obj.buildingDataSO.BuildingSize;
             }
             else
             {
                 _eventFlag = false;
-                inputReader.OnAttacked -= OnBuildingGhostEvent;
+                // gameObject.SetActive(false);
+                // inputReader.OnAttacked -= OnBuildingGhostEvent;
                 _spriteRenderer.sprite = null;
                 _currentBuildingData = null;
                 _size = Vector2Int.zero;
             }
-                
-           
+            buildingGhostFlagEventChannel.Raise(_eventFlag);
         }
 
         private void OnBuildingGhostEvent() //미리보기 켜기 (특정 노드에 마우스 좌클릭 시.)
         {
             gameObject.SetActive(true);
+            _spriteRenderer.sprite =  _currentBuildingData.Image;
+            
+            if (_selectPos == GridManager.Instance.GetWorldToCellPosition(Camera.main.ScreenToWorldPoint(_aim))) return;
+            
             _selectPos = GridManager.Instance.GetWorldToCellPosition(Camera.main.ScreenToWorldPoint(_aim));
             
-            Logging.Log($"Has Object : {CheckIntersect(_selectPos, GridManager.Instance.GridMap)}, SelectPos : {_selectPos}");
+            //Logging.Log($"Has Object : {CheckIntersect(_selectPos, GridManager.Instance.GridMap)}, SelectPos : {_selectPos}");
             // GridManager.Instance.LogTiles(WorldPos);
-            if (!CheckIntersect(_selectPos, GridManager.Instance.GridMap) &&
+            if (!GridManager.Instance.CheckHasNodeBound(_selectPos,_size) &&
                 GridManager.Instance.HasGroundTile(_selectPos)) //만약 오브젝트가 없다면.
             {
                 _canBuild = true;
                 _spriteRenderer.color = Color.blue;
-                GridManager.Instance.GridMap.TryDeleteCell(_beforePos);
-                GridManager.Instance.GridMap.SetCellObject(_selectPos, this);
-                Logging.Log("Delete Before Pos");
-                _beforePos = _selectPos;
             }
             else
             {
                 _canBuild = false;
                 _spriteRenderer.color = Color.red;
             }
+
+            _worldPos = _selectPos;
+            transform.position = GridManager.Instance.GetCellToWorldPosition(_selectPos);
+            transform.position += new Vector3(0.5f, 0.5f, 0);
         }
 
         private void CreateBuilding() //추후 버튼이나 특정 키를 누를 시, 실행되도록.
         {
-            if (_canBuild == false)
+            if (!_canBuild || !_currentBuildingData)
             {
                 Logging.Log("건설할 수 없습니다.");
                 return;
             }
             _canBuild = false;
             //gameObject.SetActive(false); 태스트 때문에 주석
-            GridManager.Instance.DeleteBuildingObject(WorldPos);
+            //GridManager.Instance.DeleteBuildingObject(WorldPos);
             //여기서 waitBuilding을 가져오는게 아니라, 그냥 Building 자체를 설치 해버림.
             if (_currentBuildingData.Building is BoundsBuilding)
             {
@@ -135,26 +156,30 @@ namespace Member.YDW.Script.NewBuildingSystem
                         buildCompo.Initialize(_currentBuildingData);
                     }
                     building.SettingChildComponent(compo);
+                    building.Initialize(_currentBuildingData.BuildingSize,compo,_currentBuildingData.InitValue,_currentBuildingData.MaxHealth,_currentBuildingData.BuildTime);
                 }
-                building.Initialize(_currentBuildingData.BuildingSize);
                 GridManager.Instance.GridMap.SetCellObject(_selectPos, building);
-                
+                // HandleBuildingGhost(new  BuildingGhostEvent(null,false));
+                _inventoryManager.UseSelectedItem();
             }
-            else if (_currentBuildingData.Building is UnitBuilding unitBuilding)
+            else if (_currentBuildingData.Building is UnitBuilding)
             {
                 UnitBuilding building = PoolManager.Instance.Factory<UnitBuilding>().Pop();
-                Type t = building.GetType();
 
-                if (typeof(MonoBehaviour).IsAssignableFrom(t)) // 풀이 타입 기반이라, addComponent시킴.
+                if (typeof(MonoBehaviour).IsAssignableFrom(_currentBuildingData.RealType)) // 풀이 타입 기반이라, addComponent시킴.
                 {
-                    Component compo = building.gameObject.AddComponent(t);
+                    Component compo = building.gameObject.AddComponent(_currentBuildingData.RealType);
                     if (compo is IBuilding buildCompo)
                     {
                         buildCompo.Initialize(_currentBuildingData);
                     }
                     building.SettingChildComponent(compo);
+                    building.Initialize(compo,_currentBuildingData.InitValue,_currentBuildingData.MaxHealth,_currentBuildingData.BuildTime);
                 }
+                //building.Initialize(_currentBuildingData.BuildingSize); 추후 필요하면 추가.
                 GridManager.Instance.GridMap.SetCellObject(_selectPos, building);
+                // HandleBuildingGhost(new  BuildingGhostEvent(null,false));
+                _inventoryManager.UseSelectedItem();
             }
             else
             {
@@ -162,13 +187,6 @@ namespace Member.YDW.Script.NewBuildingSystem
             }
             
             OffBuildingGhostEvent();
-        }
-
-        protected override void OnSetCellObject(Vector2Int worldPos, GridMap map)
-        {
-            base.OnSetCellObject(worldPos, map);
-            transform.position = GridManager.Instance.GetCellToWorldPosition(WorldPos);
-            //transform.position += new Vector3(0.5f, 0.5f, 0);
         }
 
 
@@ -181,19 +199,28 @@ namespace Member.YDW.Script.NewBuildingSystem
             _size = Vector2Int.zero;
             _selectPos = Vector2Int.zero;
             _canBuild = false;
+            buildingGhostFlagEventChannel.Raise(_eventFlag);
            // gameObject.SetActive(false); 테스트 때문에 주석.
         }
 
         private void OnDestroy()
         {
             buildingGhostEventSO.OnEvent -= HandleBuildingGhost;
+            inventoryChannel.OnEvent -= InitInventory;
         }
 
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
             if(_currentBuildingData != null)
-                Gizmos.DrawCube(transform.position,new Vector3(Size.x,Size.y,0f));
+                for (int i = 0; i < _size.x; i++)
+                {
+                    for (int j = 0; j < _size.y; j++)
+                    {
+                        
+                       Gizmos.DrawWireCube(new Vector3(_worldPos.x + i + 0.5f, _worldPos.y + j + 0.5f),Vector3.one);
+                    }
+                }
         }
 
     }

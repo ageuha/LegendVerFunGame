@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using Member.YDW.Script.BuildingSystem;
+using Code.Core.Utility;
 using UnityEngine;
 
 namespace Member.YDW.Script.NewBuildingSystem
@@ -9,18 +9,21 @@ namespace Member.YDW.Script.NewBuildingSystem
         private ICooldownBar _cooldownBar;
         private IWaitable _target;
         private float _time;
+        private bool _activeBar;
 
-        public void StartTimer(IWaitable target, ICooldownBar cooldownBar , float time, MonoBehaviour mono)
+        public void StartTimer(IWaitable target, ICooldownBar cooldownBar , float time, MonoBehaviour mono,bool activeBar)
         {
             _target = target;
             _time = time;
+            _cooldownBar = cooldownBar;
             mono.StartCoroutine(OnBuildingWaiteBuilding());
+            _activeBar = activeBar;
         }
         
         private IEnumerator OnBuildingWaiteBuilding() //본인 또한 세팅이 되어야 함.
         {
             _target.SetWaiting(true);
-            float endTime = Time.time + _time;
+            float endTime = Time.unscaledTime + _time;
 
             while (Time.unscaledTime < endTime)
             {
@@ -30,15 +33,12 @@ namespace Member.YDW.Script.NewBuildingSystem
 
                 float newScaleX = Mathf.Lerp(0f, 2f, progress);
 
-                _cooldownBar.SetFillAmount(newScaleX);
+                if(_activeBar)
+                    _cooldownBar.SetFillAmount(newScaleX);
                 yield return null;
                 
             }
             _target.SetWaiting(false);
-
-
-
-
         }
         
 

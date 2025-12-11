@@ -13,22 +13,36 @@ namespace Member.YDW.Script.NewBuildingSystem
     {
         private Vector2Int _size;
         protected override Vector2Int Size => _size;
-        protected HealthSystem  healthSystem;
-        protected Component currentBuildingComponent; //자식에서 Init할때 세팅.
+        private HealthSystem  _healthSystem;
+        private Component _currentBuildingComponent; 
+        private CooldownBar _cooldownBar;
+        private BuildingTimer _timer;
+        private BoxCollider2D _collider;
         public int InitialCapacity { get; protected set; }
 
-        public void Initialize(Vector2Int size)
+        public void Initialize(Vector2Int size,Component currentBuilding,BuildingInitValue initValue ,float maxHealth, float timerTime)
         {
             _size = size;
+            _healthSystem.Initialize(maxHealth);
+            _healthSystem.ResetHealth();
+            _currentBuildingComponent = currentBuilding;
+            _timer ??= new BuildingTimer();
+            IWaitable obj = GetComponentInChildren<IWaitable>();
+            _cooldownBar ??= GetComponentInChildren<CooldownBar>();
+            _collider ??= GetComponent<BoxCollider2D>();
+            _collider.size = size;
+            _timer.StartTimer(obj,_cooldownBar,timerTime,this,true);
+            
+
         }
        
-        private void HandleIDead()
+        protected virtual void HandleIDead()
         {
             //아마 추후 이곳에서 아이템 다시 드랍해줄 듯.
             GridManager.Instance.DeleteBuildingObject(WorldPos);
            
-            BuildingManager.Instance.DestroyBuilding(new BuildingEvent(WorldPos,transform.position,this)); //자신의 셀 위치와 월드 위치, 그리고 객체를 넘김.
-            healthSystem.OnDead -= HandleIDead;
+            BuildingManager.Instance.DestroyBuilding(new BuildingEvent(WorldPos,this)); //자신의 셀 위치와 월드 위치, 그리고 객체를 넘김.
+            _healthSystem.OnDead -= HandleIDead;
         }
 
         protected override void OnSetCellObject(Vector2Int worldPos, GridMap map)
@@ -36,28 +50,36 @@ namespace Member.YDW.Script.NewBuildingSystem
             base.OnSetCellObject(worldPos, map);
             Logging.Log($"건물 세팅됨. 위치 : {worldPos}");
             transform.position = GridManager.Instance.GetCellToWorldPosition(worldPos);
-            //transform.position += new Vector3(0.5f, 0.5f, 0);
+            transform.position += new Vector3(0.5f, 0.5f, 0);
+            BuildingManager.Instance.SettingBuilding(new BuildingEvent(WorldPos, this));
         }
 
         public void SettingChildComponent(Component c)
         {
-            currentBuildingComponent = c;
+            _currentBuildingComponent = c;
         }
         public virtual void OnPopFromPool()
         {
-            
+            _healthSystem ??= gameObject.GetComponentInChildren<HealthSystem>();
+            _healthSystem.OnDead += HandleIDead;
         }
 
         public virtual void OnReturnToPool()
         {
-            Destroy(currentBuildingComponent);
-            GridManager.Instance.DeleteBuildingObject(WorldPos);
+            if(_currentBuildingComponent != null)
+                Destroy(_currentBuildingComponent);
         }
 
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.blue;
-                Gizmos.DrawWireCube(transform.position, new Vector3(_size.x,_size.y,0f));
+            for (int i = 0; i < _size.x; i++) 
+            {
+                for (int j = 0; j < _size.y; j++) 
+                {
+                    Gizmos.DrawWireCube(new Vector3(WorldPos.x + i + 0.5f, WorldPos.y + j + 0.5f),Vector3.one); 
+                } 
+            }
             
         }
     }

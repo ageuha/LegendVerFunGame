@@ -5,6 +5,7 @@ using Code.EntityScripts;
 using Member.JJW.Code.Weather;
 using Member.JJW.EventChannel;
 using Member.KJW.Code.CombatSystem;
+using Member.KJW.Code.CombatSystem.DamageSystem;
 using Member.KJW.Code.Player;
 using UnityEngine;
 

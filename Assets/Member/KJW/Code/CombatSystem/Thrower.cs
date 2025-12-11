@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using Code.Core.Pool;
+using Member.YTH.Code.Item;
 using UnityEngine;
 
 namespace Member.KJW.Code.CombatSystem
 {
     public class Thrower : MonoBehaviour
     {
-        [SerializeField] private Transform throwPos;
-        [SerializeField] private GameObject throwPrefab;
-
-        public void Throw(DamageInfo damageInfo, Vector2 dir)
+        public void Throw(WeaponDataSO weaponData, Vector2 dir)
         {
             Throwable th = PoolManager.Instance.Factory<Throwable>().Pop();
-            th.transform.position = throwPos.position;
-            th.Init(damageInfo).Throw(dir);
+            th.Init(weaponData, transform.position).Throw(dir);
         }
     }
 }

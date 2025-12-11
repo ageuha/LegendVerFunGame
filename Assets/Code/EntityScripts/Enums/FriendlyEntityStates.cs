@@ -5,6 +5,8 @@ namespace Code.EntityScripts.Enums {
     public enum FriendlyEntityStates {
         Idle,
         Patrolling,
-        Fleeing
+        Fleeing,
+        Hurt,
+        Dead
     }
 }

@@ -1,37 +1,40 @@
 ﻿using System;
 using Code.Core.Pool;
+using Code.Core.Utility;
+using Member.KJW.Code.CombatSystem.DamageSystem;
+using Member.YTH.Code.Item;
 using UnityEngine;
 
 namespace Member.KJW.Code.CombatSystem
 {
     public class Throwable : MonoBehaviour, IPoolable
     {
-        [SerializeField] private float lifeTime;
+        private float _lifeTime;
         private Rigidbody2D _rb;
+        public Rigidbody2D Rb => _rb ??= GetComponent<Rigidbody2D>();
         private SpriteRenderer _renderer;
+        public SpriteRenderer Renderer => _renderer ??= GetComponent<SpriteRenderer>();
         private DamageInfo _damageInfo;
         private float _speed;
+        private BoxCollider2D _collider;
+        public BoxCollider2D Collider => _collider ??= GetComponent<BoxCollider2D>();
 
-        private void Awake()
+        public Throwable Init(WeaponDataSO weaponData, Vector2 pos)
         {
-            _rb = GetComponent<Rigidbody2D>();
-            _renderer = GetComponentInChildren<SpriteRenderer>();
-        }
-
-        private void OnEnable()
-        {
-            Invoke(nameof(Push), lifeTime);
-        }
-
-        public Throwable Init(DamageInfo damageInfo)
-        {
-            _damageInfo = damageInfo;
+            _damageInfo = weaponData.DamageInfoData.ToStruct(gameObject);
+            Renderer.sprite = weaponData.Icon;
+            _speed = weaponData.ThrowSpeed;
+            Collider.size = weaponData.HitBoxSize;
+            _lifeTime = weaponData.ThrowLifeTime;
+            transform.position = pos;
             return this;
         }
 
         public void Throw(Vector2 dir)
         {
-            _rb.linearVelocity = dir * _speed;
+            Rb.linearVelocity = dir * _speed;
+            Rb.AddTorque(1, ForceMode2D.Impulse);
+            Invoke(nameof(Push), _lifeTime);
         }
 
         private void Push()

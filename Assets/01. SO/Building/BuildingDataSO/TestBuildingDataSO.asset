@@ -12,8 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 668546e97cea464eaabfa7ac84609bfd, type: 3}
   m_Name: TestBuildingDataSO
   m_EditorClassIdentifier: 
-  <Image>k__BackingField: {fileID: 1309592179222711874, guid: 1846f6f20c0e47d4ab952dc4c2359f66, type: 3}
   <BuildTime>k__BackingField: 2
-  <Building>k__BackingField: {fileID: -5893058046380223713, guid: 0ac47aae0bd70d44da3588f8b20d3be6, type: 3}
-  <BuildingSize>k__BackingField: {x: 2, y: 2}
-  <InitialCapacity>k__BackingField: 0
+  <MaxHealth>k__BackingField: 1
+  <Image>k__BackingField: {fileID: 1309592179222711874, guid: 1846f6f20c0e47d4ab952dc4c2359f66, type: 3}
+  <Building>k__BackingField: {fileID: 7051405046897650709, guid: 451c5b2e9ef1b5d478912d4f5e248928, type: 3}
+  <BuildingSize>k__BackingField: {x: 1, y: 1}
+  <InitialCapacity>k__BackingField: 5
+  <AnimController>k__BackingField: {fileID: 0}
+  <InitValue>k__BackingField:
+    valueInt: 0
+    valueInt2: 0
+    valueString: 
+    valueFloat: 0
+    valueFloat2: 0
+    valueFloat3: 0

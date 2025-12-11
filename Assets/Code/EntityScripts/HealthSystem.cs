@@ -10,6 +10,7 @@ namespace Code.EntityScripts {
 
         private NotifyValue<float> _hp;
         private bool _initialized;
+        private bool _isDead;
         private float _maxHp;
 
         public void Initialize(float maxHp) {
@@ -32,6 +33,8 @@ namespace Code.EntityScripts {
             else {
                 _hp.Value = _maxHp;
             }
+
+            _isDead = false;
         }
 
         public void ApplyDamage(float damage) {
@@ -45,11 +48,16 @@ namespace Code.EntityScripts {
                 damage = 0;
             }
 
+            if (_isDead) return;
+
             float clampedHp = Mathf.Max(_hp.Value - damage, 0);
 
             _hp.Value = clampedHp;
 
-            if (_hp.Value <= 0) OnDead?.Invoke();
+            if (_hp.Value <= 0) {
+                _isDead = true;
+                OnDead?.Invoke();
+            }
         }
 
         public void ApplyHeal(float heal) {
@@ -62,6 +70,8 @@ namespace Code.EntityScripts {
                 Logging.LogWarning("회복량은 음수값이 될 수 없습니다.");
                 heal = 0;
             }
+
+            if (_isDead) return;
 
             float clampedHp = Mathf.Min(_hp.Value + heal, _maxHp);
 

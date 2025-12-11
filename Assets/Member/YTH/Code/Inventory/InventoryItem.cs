@@ -1,43 +1,56 @@
+using System;
+using System.Runtime.InteropServices;
 using Code.Core.GlobalStructs;
 using Code.Core.Pool;
 using Code.Core.Utility;
+using Code.UI.TooltipSystem;
 using Member.KJW.Code.Input;
+using Member.YTH.Code.Item;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using YTH.Code.Item;
 
 namespace YTH.Code.Inventory
 {
-    public class InventoryItem : MonoBehaviour, IPointerClickHandler, IPoolable
+    public class InventoryItem : MonoBehaviour, IPointerClickHandler, IPoolable, IPointerEnterHandler, IPointerExitHandler
     {
+        [field:SerializeField] public ItemDataSO Item { get; private set; }
+        [field:SerializeField] public int Count { get; private set; }
+        public RectTransform RectTransform => m_RectTransform ??= transform as RectTransform;
         public int InitialCapacity => 60;
+        
+        [HideInInspector] public Transform parentAfterDrag;
+
         [SerializeField] private Image itemIcon;
         [SerializeField] private TextMeshProUGUI countText;
         [SerializeField] private InputReader inputReader;
-        [HideInInspector] public Transform parentAfterDrag;
         [SerializeField] private InventoryItemPickUpEventChannel inventoryItemPickUpEventChannel;
         [SerializeField] private InventoryItemPickDownEventChannel inventoryItemPickDownEventChannel;
-        [field:SerializeField] public ItemDataSO Item { get; private set; }
-        [field:SerializeField] public int Count { get; private set; }
+        [SerializeField] private InventoryChangeEventChannel inventoryChangeEventChannel;
+        [SerializeField] private TooltipChannel tooltipEventChannel;
+        [SerializeField] private TooltipContextDataSO tooltipContextData;
+        [SerializeField] private bool m_IsHold;
+
 
         private InventoryManager m_InventoryManager;
-        [SerializeField] private bool m_IsHold;
+        private RectTransform m_RectTransform;
 
         public void Initialize(InventoryManager inventoryManager, ItemDataSO itemDataSO)
         {
             this.m_InventoryManager = inventoryManager;
             SetItemData(itemDataSO); 
             m_IsHold = false;
+            Count = 1;
             itemIcon.raycastTarget = true;   
-            transform.localPosition = Vector2.zero;   
+            transform.localPosition = Vector2.zero; 
         }
 
         public void Initialize(InventoryManager inventoryManager, ItemDataSO itemDataSO, int count)
         {
             this.m_InventoryManager = inventoryManager;      
-            SetItemData(itemDataSO,count); 
+            SetItemData(itemDataSO, count); 
             m_IsHold = false;
             itemIcon.raycastTarget = true;   
             transform.localPosition = Vector2.zero;  
@@ -59,13 +72,33 @@ namespace YTH.Code.Inventory
         private void UpdateUI()
         {
             if (Item != null) itemIcon.sprite = Item.Icon;
-            if (countText != null) countText.text = Count.ToString();
+            if (countText != null)
+            {
+                if (Count == 1)
+                {
+                    countText.gameObject.SetActive(false);
+                }
+                else
+                {
+                    countText.gameObject.SetActive(true);  
+                    countText.text = Count.ToString();
+                }
+            }
         }
 
-        public void AddStack(int count = 1)
+        public int AddStack(int count = 1)
         {
             Count += count;
+
+            if (Count > Item.MaxStack)
+            {
+                int remain = Count - Item.MaxStack;
+                Count = Item.MaxStack;
+                return remain;
+            }
+            
             UpdateUI();
+            return 0;
         }
 
         public void RemoveStack(int count = 1)
@@ -73,7 +106,8 @@ namespace YTH.Code.Inventory
             Count -= count;
             if (Count <= 0)
             {
-                if (this == m_InventoryManager.HoldItem)
+                Logging.Log($"{m_InventoryManager.HoldItem}");
+                if (this == m_InventoryManager.HoldItem) //여기 버그? 여기 한번 Inventory Slot 말고 Material Slot으로 바꿔서 해보거나 해
                 {
                     inventoryItemPickDownEventChannel.Raise(new Empty());
                 }
@@ -90,7 +124,8 @@ namespace YTH.Code.Inventory
         {
             if (m_IsHold)
             {
-                transform.position = (Vector2)Camera.main.ScreenToWorldPoint(inputReader.MousePos);
+                transform.position = inputReader.MousePos;
+
             }
         }
         
@@ -152,8 +187,8 @@ namespace YTH.Code.Inventory
                             int remainCount = Item.MaxStack - Count;
                             AddStack(remainCount);
                             HoldItem.RemoveStack(remainCount);
-
                         }
+                        inventoryChangeEventChannel.Raise(new Empty());
                     }
                     else if(eventData.button == PointerEventData.InputButton.Right)
                     {
@@ -162,6 +197,7 @@ namespace YTH.Code.Inventory
                             AddStack(1);
                             HoldItem.RemoveStack(1);
                         }
+                        inventoryChangeEventChannel.Raise(new Empty());
                     }
                 }
             }
@@ -187,6 +223,41 @@ namespace YTH.Code.Inventory
         public void OnReturnToPool()
         {
             
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            if (Item != null)
+            {    
+                TooltipContext tooltip = new();
+
+                tooltip.Active = true;
+
+                tooltip.BackgroundColor = tooltipContextData.BackgroundColor;
+                tooltip.BorderColor = tooltipContextData.BorderColor;
+                tooltip.DescriptionColor = tooltipContextData.DescriptionColor;
+                tooltip.OutlineColor = tooltipContextData.OutlineColor;
+                tooltip.TitleColor = tooltipContextData.TitleColor;
+
+                tooltip.TitleText = Item.ToString();
+                tooltip.DescriptionText = Item.GetDescription();
+                tooltip.Position = (Vector2)RectTransform.position + tooltipContextData.Offset;
+
+                tooltipEventChannel.Raise(tooltip);
+            }
+        }
+
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            if (Item != null)
+            {  
+                TooltipContext tooltip = new();
+
+                tooltip.Active = false;
+
+                tooltipEventChannel.Raise(tooltip);
+            }
         }
     }
 }

@@ -117,8 +117,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.1
-      minScalar: 0.001
+      scalar: 0.04
+      minScalar: 0.0001
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1496,7 +1496,7 @@ ParticleSystem:
     x:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -40
+      scalar: -80
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1549,7 +1549,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -100
+      scalar: -200
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -3818,7 +3818,7 @@ ParticleSystem:
       emitter: {fileID: 7567812065779486357}
       type: 2
       properties: 0
-      emitProbability: 1
+      emitProbability: 0.1
   LightsModule:
     enabled: 0
     ratio: 0
@@ -4800,8 +4800,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 897611323
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0

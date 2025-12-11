@@ -290,6 +290,7 @@ MonoBehaviour:
   itemData: {fileID: 0}
   speed: 20
   amount: 1
+  targetTag: {fileID: 11400000, guid: 13723ff4661830b49ad94c121ac2e28b, type: 2}
 --- !u!1 &1775467302103644444
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,3 +400,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6e7ecac4c9ea224ba912b7ace7d1a09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetTag: {fileID: 11400000, guid: 13723ff4661830b49ad94c121ac2e28b, type: 2}

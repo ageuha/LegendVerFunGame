@@ -1,12 +1,23 @@
 using System;
+using Code.Core.GlobalStructs;
 using Code.Core.Utility;
 using Code.EntityScripts;
+using Code.GridSystem.Objects;
 using Member.BJH._01Script.Interact;
+using Member.JJW.Code.Interface;
 using Member.KJW.Code.CombatSystem;
+using Member.KJW.Code.CombatSystem.DamageSystem;
 using Member.KJW.Code.Data;
+using Member.KJW.Code.EventChannel;
 using Member.KJW.Code.Input;
+using Member.YDW.Script;
+using Member.YDW.Script.BuildingSystem;
+using Member.YDW.Script.EventStruct;
+using Member.YDW.Script.NewBuildingSystem;
+using Member.YTH.Code.Item;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using YTH.Code.Inventory;
 
 namespace Member.KJW.Code.Player
 {
@@ -15,6 +26,7 @@ namespace Member.KJW.Code.Player
         [field: SerializeField] public InputReader InputReader { get; private set; }
         [field: SerializeField] public RollingData RollingData { get; private set; }
         
+        
         public AgentMovement MoveCompo { get; private set; }
         public HealthSystem HealthCompo { get; private set; }
         public Interactor Interactor { get; private set; }
@@ -22,10 +34,20 @@ namespace Member.KJW.Code.Player
         public Arm Arm { get; private set; }
         public Weapon Weapon { get; private set; }
         
+        [Header("Event Channel")]
+        [SerializeField] private InventoryManagerEventChannel inventoryChannel;
+        [SerializeField] private InventorySelectedSlotChangeEventChannel inventorySelectedSlotChangeChannel;
+        [SerializeField] private BuildingGhostEventSO buildingGhostChannel;
+        [SerializeField] private BuildingGhostFlagEventChannel buildingGhostFlagEventChannel;
+        [SerializeField] private CraftingInteractEventChannel craftingInteractEventChannel;
+
+        
         public bool IsRolling { get; private set; }
         private bool _isInvincible;
+        private bool _isBuilding;
         
         public Vector2 StandDir { get; private set; } = Vector2.right;
+        public Vector2 MouseWorldPos => Camera.main!.ScreenToWorldPoint(InputReader.MousePos);
         
         private float _coolTimer;
         private int _remainRoll;
@@ -34,17 +56,27 @@ namespace Member.KJW.Code.Player
             get => _remainRoll;
             private set => _remainRoll = Mathf.Clamp(value, 0, RollingData.MaxRoll);
         }
+        private ItemDataSO CurItem => _inventoryManager.GetSelectedItem();
+        private InventoryManager _inventoryManager;
+        
+        [Header("Settings")]
+        [SerializeField] private float maxHp;
         
         private void Awake()
         {
-            MoveCompo = GetComponent<AgentMovement>();
-            HealthCompo = GetComponent<HealthSystem>();
-            Interactor = GetComponent<Interactor>();
-            Thrower = GetComponent<Thrower>();
-            Arm = GetComponentInChildren<Arm>();
-            Weapon = GetComponentInChildren<Weapon>();
+            MoveCompo = GetComponentInChildren<AgentMovement>();
+            HealthCompo = GetComponentInChildren<HealthSystem>();
+            Interactor = GetComponentInChildren<Interactor>();
+            Thrower = GetComponentInChildren<Thrower>();
+            Arm = GetComponentInChildren<Arm>(true);
+            Weapon = GetComponentInChildren<Weapon>(true);
 
             RemainRoll = RollingData.MaxRoll;
+            HealthCompo.Initialize(maxHp);
+            
+            inventoryChannel.OnEvent += InitInventory;
+            inventorySelectedSlotChangeChannel.OnEvent += CancelPlace;
+            buildingGhostFlagEventChannel.OnEvent += SetIsBuilding;
         }
 
         private void OnEnable()
@@ -52,6 +84,24 @@ namespace Member.KJW.Code.Player
             InputReader.OnInteracted += Interactor.Interact;
             InputReader.OnRolled += Roll;
             InputReader.OnMoved += UpdateStandDir;
+            InputReader.OnThrew += Throw;
+            InputReader.OnAttacked += Click;
+            InputReader.OnPlaced += RClick;
+        }
+
+        private void SetIsBuilding(bool value)
+        {
+            _isBuilding = value;
+        }
+
+        private void CancelPlace(Empty e)
+        {
+            buildingGhostChannel.Raise(new BuildingGhostEvent(null, false));
+        }
+
+        private void InitInventory(InventoryManager inventoryManager)
+        {
+            _inventoryManager = inventoryManager;
         }
 
         private void Update()
@@ -72,11 +122,71 @@ namespace Member.KJW.Code.Player
             InputReader.OnInteracted -= Interactor.Interact;
             InputReader.OnRolled -= Roll;
             InputReader.OnMoved -= UpdateStandDir;
+            InputReader.OnThrew -= Throw;
+            InputReader.OnAttacked -= Click;
+            InputReader.OnPlaced -= RClick;
         }
 
-        public void HandleThrow()
+        private void OnDestroy()
+        {
+            inventoryChannel.OnEvent -= InitInventory;
+        }
+        
+        private void Click()
+        {
+            if (CurItem == null) return;
+            
+            if (CurItem is WeaponDataSO weaponData)
+            {
+                Attack(weaponData);
+                return;
+            }
+            
+            if (CurItem is PlaceableItemData placeableItemData)
+            {
+                buildingGhostChannel.Raise(new BuildingGhostEvent(placeableItemData.BuildingData, true));
+                return;
+            }
+
+            Break();
+        }
+
+        private void Break()
         {
             
+        }
+
+        private void RClick()
+        {
+            // if (_isBuilding) return;
+
+            GridObject gridObj = GridManager.Instance.GridMap.GetObjectsAt(Vector2Int.RoundToInt(MouseWorldPos));
+            Logging.Log(gridObj);
+            
+            if(!gridObj) return;
+            
+            if (gridObj.TryGetComponent(out IInteractable interactable))
+                interactable.Interaction(new InteractionContext(craftingInteractEventChannel));
+        }
+
+        private void Place(PlaceableItemData placeableItemData)
+        {
+            
+        }
+
+        private void Attack(WeaponDataSO weaponData)
+        {
+            Vector2 dir = MouseWorldPos - (Vector2)transform.position;
+            Weapon.Init(weaponData);
+            Arm.Init(Mathf.Rad2Deg * Mathf.Atan2(dir.y, dir.x), weaponData.AttackData.AttackSpeed).Swing();
+        }
+
+        private void Throw()
+        {
+            if (CurItem == null || CurItem is not WeaponDataSO w) return;
+            
+            Thrower.Throw(w, MouseWorldPos - (Vector2)transform.position);
+            _inventoryManager.UseSelectedItem();
         }
 
         private void UpdateStandDir(Vector2 dir)
