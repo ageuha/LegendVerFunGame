@@ -9,7 +9,6 @@ namespace Member.JJW.Code.SO
     {
         [field: SerializeField] public float MaxHp { get; private set; }
 
-        public ItemType CorrectUsedItemType;
         public Sprite ResourceImage;
         public GameObject ItemPrefab;
         public ItemDataSO ItemDataSO;

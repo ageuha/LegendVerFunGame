@@ -6,6 +6,7 @@ using Code.GridSystem.Objects;
 using Member.JJW.Code.Interface;
 using Member.JJW.Code.SO;
 using Member.YDW.Script.NewBuildingSystem;
+using Member.YTH.Code.Item;
 using UnityEngine;
 
 namespace Member.JJW.Code.ResourceObject
@@ -36,29 +37,9 @@ namespace Member.JJW.Code.ResourceObject
             _clickBoundSize = resourceSO.DetectionRangeSize;
             OnInitialize?.Invoke();
         }
-        public void Harvest(ItemInfo itemInfo)
+        public void Harvest(ItemDataSO itemInfo)
         {
-            float finalDamage = 10;
-            float onCorrectTypeDamage;
-            if (itemInfo.ItemType == ItemType.Default)
-            {
-                onCorrectTypeDamage = 0;
-            }
-            else
-            {
-                if (itemInfo.ItemType == ResourceSO.CorrectUsedItemType)
-                {
-                    onCorrectTypeDamage = 10;
-                }
-                else
-                {
-                    onCorrectTypeDamage = 1;
-                }
-            }
-                            
-            var damagePlusValue = (int)itemInfo.Ingredient;
-            finalDamage += damagePlusValue * onCorrectTypeDamage;
-            CurrentHp.ApplyDamage(finalDamage);
+            CurrentHp.ApplyDamage(itemInfo.DamageInfoData.damage);  
         }
         private bool CheckMouseInRange()
         {
@@ -83,5 +64,9 @@ namespace Member.JJW.Code.ResourceObject
         {
             CurrentHp.ResetHealth();
         }
+    }
+
+    public interface IHarvestable
+    {
     }
 }

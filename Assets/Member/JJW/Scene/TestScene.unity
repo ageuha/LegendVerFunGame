@@ -1463,9 +1463,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resource: {fileID: 1141745857}
   temperatureSystem: {fileID: 0}
-  itemInfo:
-    ItemType: 0
-    Ingredient: 2
+  itemData: {fileID: 11400000, guid: f8bab177737b0e24f85cfd8c8717bbc0, type: 2}
 --- !u!114 &1276273848
 MonoBehaviour:
   m_ObjectHideFlags: 0
