@@ -81,6 +81,7 @@ namespace Member.KJW.Code.Player
             InputReader.OnMoved += UpdateStandDir;
             InputReader.OnThrew += Throw;
             InputReader.OnAttacked += Click;
+            InputReader.OnPlaced += RClick;
         }
 
         private void SetIsBuilding(bool value)
@@ -118,6 +119,7 @@ namespace Member.KJW.Code.Player
             InputReader.OnMoved -= UpdateStandDir;
             InputReader.OnThrew -= Throw;
             InputReader.OnAttacked -= Click;
+            InputReader.OnPlaced -= RClick;
         }
 
         private void OnDestroy()
@@ -152,8 +154,8 @@ namespace Member.KJW.Code.Player
         private void RClick()
         {
             if (CurItem == null || _isBuilding || EventSystem.current.IsPointerOverGameObject()) return;
-            
-            
+
+            Logging.Log(GridManager.Instance.GridMap.GetObjectsAt(Vector2Int.RoundToInt(MouseWorldPos)));
         }
 
         private void Place(PlaceableItemData placeableItemData)

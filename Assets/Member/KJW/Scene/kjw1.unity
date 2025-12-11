@@ -259,6 +259,7 @@ MonoBehaviour:
   buildingGhostEventSO: {fileID: 11400000, guid: 6f61a38863c8e214287793b225d3ce60, type: 2}
   buildingEventSO: {fileID: 11400000, guid: fb892e74a82e7b541b8b69989e423a4d, type: 2}
   inventoryChannel: {fileID: 11400000, guid: fb6f9fa11354ee140bf4d4a28a3935cc, type: 2}
+  buildingGhostFlagEventChannel: {fileID: 0}
   buildingData: {fileID: 11400000, guid: 17cf49b142400cd42aedf58b7191ffda, type: 2}
 --- !u!4 &149522447
 Transform:
