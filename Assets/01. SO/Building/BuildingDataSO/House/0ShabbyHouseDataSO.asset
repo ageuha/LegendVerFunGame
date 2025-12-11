@@ -26,3 +26,9 @@ MonoBehaviour:
     valueFloat: 1
     valueFloat2: 32
     valueFloat3: 0
+    itemData1: {fileID: 11400000, guid: 53700f27cf0c2be47a78b59af0e0ce0a, type: 2}
+    dropCount1: 0
+    itemData2: {fileID: 0}
+    dropCount2: 0
+    itemData3: {fileID: 0}
+    dropCount3: 0

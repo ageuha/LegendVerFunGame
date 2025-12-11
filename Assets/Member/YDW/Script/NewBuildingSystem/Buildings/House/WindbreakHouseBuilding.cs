@@ -1,5 +1,7 @@
-﻿using Member.JJW.Code.TemperSystem;
+﻿using Code.Core.Pool;
+using Member.JJW.Code.TemperSystem;
 using Member.YDW.Script.BuildingSystem;
+using Member.YTH.Code.Item;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -73,6 +75,25 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings.House
                 IsActive = true;
             }
             IsWaiting = waiting;
+        }
+        private void OnDestroy()
+        {
+            if (BuildingData.InitValue.itemData1 != null)
+            {
+                ItemObject itemObject =  PoolManager.Instance.Factory<ItemObject>().Pop();
+                itemObject.SetItemData(BuildingData.InitValue.itemData1,BuildingData.InitValue.dropCount1);
+            }
+            if(BuildingData.InitValue.itemData2 != null)
+            {
+                ItemObject itemObject =  PoolManager.Instance.Factory<ItemObject>().Pop();
+                itemObject.SetItemData(BuildingData.InitValue.itemData2,BuildingData.InitValue.dropCount2); 
+            }
+            if(BuildingData.InitValue.itemData3 != null)
+            {
+                ItemObject itemObject =  PoolManager.Instance.Factory<ItemObject>().Pop();
+                itemObject.SetItemData(BuildingData.InitValue.itemData3,BuildingData.InitValue.dropCount3); 
+            }
+                
         }
     }
 }

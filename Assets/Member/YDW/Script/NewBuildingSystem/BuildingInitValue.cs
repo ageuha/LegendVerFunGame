@@ -1,4 +1,5 @@
 ﻿using System;
+using Member.YTH.Code.Item;
 
 namespace Member.YDW.Script.NewBuildingSystem
 {
@@ -11,6 +12,13 @@ namespace Member.YDW.Script.NewBuildingSystem
         public float valueFloat;
         public float valueFloat2;
         public float valueFloat3;
-        
+        public ItemDataSO itemData1;
+        public int dropCount1;
+        public ItemDataSO itemData2;
+        public int dropCount2;
+        public ItemDataSO itemData3;
+        public int dropCount3;
+
+
     }
 }
