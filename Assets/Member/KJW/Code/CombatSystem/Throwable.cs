@@ -27,7 +27,7 @@ namespace Member.KJW.Code.CombatSystem
             _speed = itemData.ThrowSpeed;
             Collider.size = itemData.HitBoxSize;
             _lifeTime = itemData.ThrowLifeTime;
-            // _rotSpeed = itemData.
+            _rotSpeed = itemData.ThrowRotationSpeed;
             transform.position = pos;
             return this;
         }
