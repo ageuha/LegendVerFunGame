@@ -1,11 +1,13 @@
 ﻿using System;
 using Code.Core.Pool;
 using Code.Core.Utility;
+using Member.KJW.Code.EventChannel;
 using Member.KJW.Code.Input;
 using Member.YDW.Script.BuildingSystem;
 using Member.YDW.Script.EventStruct;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using YTH.Code.Inventory;
 
 namespace Member.YDW.Script.NewBuildingSystem
 {
@@ -14,6 +16,9 @@ namespace Member.YDW.Script.NewBuildingSystem
         [SerializeField] private InputReader  inputReader;
         [SerializeField] private BuildingGhostEventSO buildingGhostEventSO;
         [SerializeField] private BuildingEventSO buildingEventSO;
+        [SerializeField] private InventoryManagerEventChannel inventoryChannel;
+        [SerializeField] private BuildingGhostFlagEventChannel buildingGhostFlagEventChannel;
+        
 
         #region TestCode
 
@@ -28,12 +33,19 @@ namespace Member.YDW.Script.NewBuildingSystem
         private bool _eventFlag;
         private Vector2Int _size;
         private Vector2Int _worldPos;
+        private InventoryManager _inventoryManager;
 
         private void Awake()
         {
             _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             buildingGhostEventSO.OnEvent += HandleBuildingGhost;
+            inventoryChannel.OnEvent += InitInventory;
             //gameObject.SetActive(false);
+        }
+        
+        private void InitInventory(InventoryManager inventoryManager)
+        {
+            _inventoryManager = inventoryManager;
         }
 
         private void OnEnable()
@@ -69,6 +81,7 @@ namespace Member.YDW.Script.NewBuildingSystem
             #endregion
         }
                 
+        
 
         private void HandleBuildingGhost(BuildingGhostEvent obj)
         {
@@ -89,6 +102,7 @@ namespace Member.YDW.Script.NewBuildingSystem
                 _currentBuildingData = null;
                 _size = Vector2Int.zero;
             }
+            buildingGhostFlagEventChannel.Raise(_eventFlag);
         }
 
         private void OnBuildingGhostEvent() //미리보기 켜기 (특정 노드에 마우스 좌클릭 시.)
@@ -121,7 +135,7 @@ namespace Member.YDW.Script.NewBuildingSystem
 
         private void CreateBuilding() //추후 버튼이나 특정 키를 누를 시, 실행되도록.
         {
-            if (_canBuild == false)
+            if (!_canBuild || !_currentBuildingData)
             {
                 Logging.Log("건설할 수 없습니다.");
                 return;
@@ -145,7 +159,7 @@ namespace Member.YDW.Script.NewBuildingSystem
                     building.Initialize(_currentBuildingData.BuildingSize,compo,_currentBuildingData.MaxHealth,_currentBuildingData.BuildTime);
                 }
                 GridManager.Instance.GridMap.SetCellObject(_selectPos, building);
-                
+                _inventoryManager.UseSelectedItem();
             }
             else if (_currentBuildingData.Building is UnitBuilding)
             {
@@ -163,6 +177,7 @@ namespace Member.YDW.Script.NewBuildingSystem
                 }
                 //building.Initialize(_currentBuildingData.BuildingSize); 추후 필요하면 추가.
                 GridManager.Instance.GridMap.SetCellObject(_selectPos, building);
+                _inventoryManager.UseSelectedItem();
             }
             else
             {
@@ -188,6 +203,7 @@ namespace Member.YDW.Script.NewBuildingSystem
         private void OnDestroy()
         {
             buildingGhostEventSO.OnEvent -= HandleBuildingGhost;
+            inventoryChannel.OnEvent -= InitInventory;
         }
 
         private void OnDrawGizmos()

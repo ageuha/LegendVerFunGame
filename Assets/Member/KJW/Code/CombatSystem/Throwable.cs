@@ -1,8 +1,9 @@
 ﻿using System;
 using Code.Core.Pool;
 using Code.Core.Utility;
+using Member.KJW.Code.CombatSystem.DamageSystem;
+using Member.YTH.Code.Item;
 using UnityEngine;
-using YTH.Code.Item;
 
 namespace Member.KJW.Code.CombatSystem
 {
@@ -20,7 +21,7 @@ namespace Member.KJW.Code.CombatSystem
 
         public Throwable Init(WeaponDataSO weaponData)
         {
-            _damageInfo = weaponData.DamageInfoData.ToStruct();
+            _damageInfo = weaponData.DamageInfoData.ToStruct(gameObject);
             Renderer.sprite = weaponData.Icon;
             _speed = weaponData.ThrowSpeed;
             Collider.size = weaponData.HitBoxSize;
