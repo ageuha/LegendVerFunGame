@@ -3,6 +3,7 @@ using System.Timers;
 using Code.Core.Pool;
 using Code.Core.Utility;
 using Member.YDW.Script.BuildingSystem;
+using Member.YTH.Code.Item;
 using UnityEngine;
 
 namespace Member.YDW.Script.NewBuildingSystem.Buildings
@@ -120,6 +121,21 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings
 
         private void OnDestroy()
         {
+            if (BuildingData.InitValue.itemData1 != null)
+            {
+                ItemObject itemObject =  PoolManager.Instance.Factory<ItemObject>().Pop();
+                itemObject.SetItemData(BuildingData.InitValue.itemData1,BuildingData.InitValue.dropCount1);
+            }
+            if(BuildingData.InitValue.itemData2 != null)
+            {
+                ItemObject itemObject =  PoolManager.Instance.Factory<ItemObject>().Pop();
+                itemObject.SetItemData(BuildingData.InitValue.itemData2,BuildingData.InitValue.dropCount2); 
+            }
+            if(BuildingData.InitValue.itemData3 != null)
+            {
+                ItemObject itemObject =  PoolManager.Instance.Factory<ItemObject>().Pop();
+                itemObject.SetItemData(BuildingData.InitValue.itemData3,BuildingData.InitValue.dropCount3); 
+            }
             if(_animator != null)
                 _animator.runtimeAnimatorController = null;
             Logging.Log("Oh.. Im Destroyed");
