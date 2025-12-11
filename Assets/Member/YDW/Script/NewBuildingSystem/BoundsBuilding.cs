@@ -20,7 +20,7 @@ namespace Member.YDW.Script.NewBuildingSystem
         private BoxCollider2D _collider;
         public int InitialCapacity { get; protected set; }
 
-        public void Initialize(Vector2Int size,Component currentBuilding, float maxHealth, float timerTime)
+        public void Initialize(Vector2Int size,Component currentBuilding,BuildingInitValue initValue ,float maxHealth, float timerTime)
         {
             _size = size;
             _healthSystem.Initialize(maxHealth);

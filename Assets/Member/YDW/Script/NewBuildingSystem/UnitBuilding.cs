@@ -18,7 +18,7 @@ namespace Member.YDW.Script.NewBuildingSystem
         private BuildingTimer _timer;
         public int InitialCapacity { get; }
         
-        public void Initialize(Component currentBuildingCompo,float maxHealth, float timerTime)
+        public void Initialize(Component currentBuildingCompo,BuildingInitValue initValue ,float maxHealth, float timerTime)
         {
             _healthSystem.Initialize(maxHealth);
             _healthSystem.ResetHealth();
