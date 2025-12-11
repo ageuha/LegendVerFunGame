@@ -24,6 +24,7 @@ namespace Code.EntityScripts.ConcreteClass {
             IsDead = true;
             DropItem();
             GraphAgent.SetVariableValue(stateGUID, FriendlyEntityStates.Dead);
+            GraphAgent.End();
         }
 
         public void GetDamage(DamageInfo damageInfo) {
