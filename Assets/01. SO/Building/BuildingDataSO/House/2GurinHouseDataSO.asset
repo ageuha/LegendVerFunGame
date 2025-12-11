@@ -10,12 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 668546e97cea464eaabfa7ac84609bfd, type: 3}
-  m_Name: ShabbyHouseDataSO
+  m_Name: 2GurinHouseDataSO
   m_EditorClassIdentifier: 
   <BuildTime>k__BackingField: 15
   <MaxHealth>k__BackingField: 10
   <Image>k__BackingField: {fileID: 3317806273994890464, guid: 3f946bd55eb4c9f44a44cb4927e248b9, type: 3}
-  <Building>k__BackingField: {fileID: 8152941393873946542, guid: 818fbfb5e8b3b434da60150e99f71c63, type: 3}
+  <Building>k__BackingField: {fileID: 9171778904995521523, guid: 0f23ec597b7b7064a8fb2c2576ad89e3, type: 3}
   <BuildingSize>k__BackingField: {x: 3, y: 3}
   <InitialCapacity>k__BackingField: 5
   <AnimController>k__BackingField: {fileID: 0}
+  <InitValue>k__BackingField:
+    valueInt: 0
+    valueInt2: 0
+    valueString: 
+    valueFloat: 0
+    valueFloat2: 34
+    valueFloat3: 0
