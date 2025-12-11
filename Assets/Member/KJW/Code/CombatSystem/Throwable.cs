@@ -20,7 +20,7 @@ namespace Member.KJW.Code.CombatSystem
 
         public Throwable Init(WeaponDataSO weaponData)
         {
-            _damageInfo = weaponData.DamageInfoData.ToStruct();
+            _damageInfo = weaponData.DamageInfoData.ToStruct(gameObject);
             Renderer.sprite = weaponData.Icon;
             _speed = weaponData.ThrowSpeed;
             Collider.size = weaponData.HitBoxSize;
