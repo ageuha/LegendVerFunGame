@@ -1,13 +1,13 @@
+using System;
 using System.Text;
 using Member.KJW.Code.Data;
 using UnityEngine;
-using YTH.Code.Core.Enum;
+using YTH.Code.Enum;
 
 namespace YTH.Code.Item
 {
     public class ItemDataSO : ScriptableObject
     {
-        //Member.KJW.Code.Data 참조
         [field:Header("Item Settings")]
         [field:SerializeField] public string ItemName { get; private set; }
         [field:SerializeField] public string Description { get; private set; }

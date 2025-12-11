@@ -8,11 +8,10 @@ namespace YTH.Code.Test
     {
         [SerializeField] private InventoryAddEventChannel inventoryAddEventChannel;
         [SerializeField] private ItemDataSO item;
-        [SerializeField] private int count;
 
         public void Test()
         {
-            inventoryAddEventChannel.Raise(new ItemData(item, count));
+            inventoryAddEventChannel.Raise(item);
         }
     }
 }

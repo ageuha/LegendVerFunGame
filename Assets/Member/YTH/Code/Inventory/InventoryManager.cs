@@ -5,6 +5,8 @@ using Code.Core.Utility;
 using Code.SaveSystem;
 using Member.KJW.Code.Input;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
+using YTH.Code.Inventorys;
 using YTH.Code.Item;
 
 namespace YTH.Code.Inventory
@@ -41,8 +43,6 @@ namespace YTH.Code.Inventory
 
         private void Start()
         {
-            inventoryManagerEventChannel.Raise(this);
-               
             foreach (var slot in inventorySlots)
             {
                 slot.Initialize(this);
@@ -53,6 +53,7 @@ namespace YTH.Code.Inventory
             MainInventory();
             ChangeSelectedSlot(1);
         
+            inventoryManagerEventChannel.Raise(this);   
 
             m_InventoryJsonSaveManager = new("Inventory.json");
             
@@ -132,7 +133,7 @@ namespace YTH.Code.Inventory
             m_InventoryJsonSaveManager.SaveToFile(inventoryData);
         }
 
-        private void PickUp(InventoryItem item) 
+        private void PickUp(InventoryItem item)
         {
             HoldItem = item;
         }
@@ -142,34 +143,36 @@ namespace YTH.Code.Inventory
             HoldItem = null;
         }
 
-        public void AddItem(ItemData item)
+        public void AddItem(ItemDataSO item)
         {
-            int remain = item.Count;
+            InventorySlot firstEmptySlot = null;
 
-            for (int i = 0; i < inventorySlots.Count && remain > 0; i++)
+            for (int i = 0; i < inventorySlots.Count; i++)
             {
                 InventorySlot slot = inventorySlots[i];
                 InventoryItem itemInSlot = slot.InventoryItem;
 
-                if (itemInSlot != null && itemInSlot.Item == item.Item && itemInSlot.Count < item.Item.MaxStack)
+                if (itemInSlot != null)
                 {
-                    remain = itemInSlot.AddStack(remain);
+                    if (itemInSlot.Item == item && itemInSlot.Count < item.MaxStack)
+                    {
+                        itemInSlot.AddStack();
+                        return;
+                    }
+                }
+                else if (firstEmptySlot == null)
+                {
+                    firstEmptySlot = slot;
                 }
             }
 
-            while (remain > 0)
+            if (firstEmptySlot != null)
             {
-                InventorySlot emptySlot = FindFirstEmptySlot();
-                if (emptySlot == null)
-                {
-                    inventoryChangeEventChannel.Raise(new Empty());
-                    return;
-                }
-
-                int add = Mathf.Min(item.Item.MaxStack, remain);
-                SpawnNewItem(item.Item, emptySlot, add);
-                remain -= add;
+                SpawnNewItem(item, firstEmptySlot);
+                return;
             }
+
+            inventoryChangeEventChannel.Raise(new Empty());
         }
 
         private void SpawnNewItem(ItemDataSO item, InventorySlot slot, int count = 1)
@@ -212,16 +215,6 @@ namespace YTH.Code.Inventory
                 inventoryItems.Add(slot.InventoryItem);
             }
             return inventoryItems;
-        }
-
-        private InventorySlot FindFirstEmptySlot()
-        {
-            for (int i = 0; i < inventorySlots.Count; i++)
-            {
-                if (inventorySlots[i].InventoryItem == null)
-                    return inventorySlots[i];
-            }
-            return null;
         }
     }
 }

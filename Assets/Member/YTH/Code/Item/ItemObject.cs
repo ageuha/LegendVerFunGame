@@ -1,22 +1,19 @@
 using Member.KJW.Code.Player;
 using UnityEngine;
-using YTH.Code.Core.Interface;
+using YTH.Code.Interface;
 using YTH.Code.Inventory;
 
 namespace YTH.Code.Item
 {
     public class ItemObject : MonoBehaviour, IPickable
     {
-        //Member.KJW.Code.Player
-        //YTH.Code.Core.Interface;
-        //YTH.Code.Inventory
         [SerializeField] private ItemObjectTrigger itemObjectTrigger;
         [SerializeField] private InventoryAddEventChannel inventoryAddEventChannel;
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Rigidbody2D rb;
         [SerializeField] private ItemDataSO itemData;
         [SerializeField] private float speed = 5;
-        [SerializeField] private int count = 1;
+        [SerializeField] private int amount = 1;
 
         private bool m_isLoockOn;
         private Transform m_target;
@@ -74,9 +71,9 @@ namespace YTH.Code.Item
         }
 
 
-        public void SetItemData(ItemDataSO newData, int count = 1)
+        public void SetItemData(ItemDataSO newData, int amount = 1)
         {
-            this.count = count;
+            this.amount = amount;
             itemData = newData;
             spriteRenderer.sprite = itemData.Icon;
             gameObject.name = $"ItemObject_{itemData.ItemName}";
@@ -84,7 +81,8 @@ namespace YTH.Code.Item
 
         public void PickUp()
         {
-            inventoryAddEventChannel.Raise(new ItemData(itemData, count));
+            inventoryAddEventChannel.Raise(itemData);
+            m_isLoockOn = false;
             Destroy(gameObject);
         }
     }

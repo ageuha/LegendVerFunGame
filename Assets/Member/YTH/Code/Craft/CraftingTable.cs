@@ -6,16 +6,13 @@ using Code.Core.Utility;
 using Code.SaveSystem;
 using UnityEngine;
 using YTH.Code.Inventory;
-using YTH.Code.Item;
+using YTH.Code.Inventorys;
 
 namespace YTH.Code.Craft
 {    
     public class CraftingTable : MonoBehaviour
     {
-        [SerializeField] private CraftEventChannel craftEventChannel;
-        [SerializeField] private CraftingTableMateiralChangeEventChannel craftingTableMateiralChangeEventChannel;
         [SerializeField] private InventoryManagerEventChannel inventoryManagerEventChannel;
-        [SerializeField] private InventoryAddEventChannel inventoryAddEventChannel;
         [SerializeField] private InventoryChangeEventChannel inventoryChangeEventChannel;
         [SerializeField] private List<InventorySlot> Materials = new List<InventorySlot>(gridSize);
         [SerializeField] private List<InventorySlot> Slots;
@@ -29,10 +26,8 @@ namespace YTH.Code.Craft
 
         private void Awake()
         {
-            inventoryAddEventChannel.OnEvent += AddItem;
+            inventoryChangeEventChannel.OnEvent += UpdateInventory;
             inventoryManagerEventChannel.OnEvent += Initialize;
-            craftingTableMateiralChangeEventChannel.OnEvent += Info;
-            craftEventChannel.OnEvent += Craft;
         }
 
         private void Start()
@@ -42,10 +37,8 @@ namespace YTH.Code.Craft
 
         private void OnDestroy()
         {
-            inventoryAddEventChannel.OnEvent -= AddItem;
+            inventoryChangeEventChannel.OnEvent -= UpdateInventory;
             inventoryManagerEventChannel.OnEvent -= Initialize;
-            craftingTableMateiralChangeEventChannel.OnEvent -= Info;
-            craftEventChannel.OnEvent -= Craft;
         }
 
         
@@ -57,13 +50,6 @@ namespace YTH.Code.Craft
             {
                 slot.Initialize(m_InventoryManager);
             }
-
-            foreach (var slot in Materials)
-            {
-                slot.Initialize(m_InventoryManager);
-            }
-            
-            resultSlot.Initialize(m_InventoryManager);
         }
 
         public void OpenCrafting()
@@ -71,60 +57,38 @@ namespace YTH.Code.Craft
             
         }
         
-        public void AddItem(ItemData item)
+        public void UpdateInventory(Empty empty)
         {
-            int remain = item.Count;
+            InventoryData inventoryData = m_InventoryJsonSaveManager.LoadSaveData();
 
-            for (int i = 0; i < Slots.Count && remain > 0; i++)
+            if (inventoryData == null)
             {
-                InventorySlot slot = Slots[i];
-                InventoryItem itemInSlot = slot.InventoryItem;
-
-                if (itemInSlot != null && itemInSlot.Item == item.Item && itemInSlot.Count < item.Item.MaxStack)
-                {
-                    remain = itemInSlot.AddStack(remain);
-                }
+                Logging.Log("널");
+                return;
             }
 
-            while (remain > 0)
-            {
-                InventorySlot emptySlot = FindFirstEmptySlot();
-                if (emptySlot == null)
-                {
-                    return;
-                }
-
-                int add = Mathf.Min(item.Item.MaxStack, remain);
-                SpawnNewItem(item.Item, emptySlot, add);
-                remain -= add;
-            }
-        }
-
-        private void SpawnNewItem(ItemDataSO item, InventorySlot slot, int count = 1)
-        {
-            InventoryItem newItem  = PoolManager.Instance.Factory<InventoryItem>().Pop(slot.transform);
-            newItem.transform.localScale = Vector3.one;
-            newItem.transform.localPosition = Vector3.zero;
-            newItem.Initialize(m_InventoryManager, item, count);
-        }
-
-        private InventorySlot FindFirstEmptySlot()
-        {
             for (int i = 0; i < Slots.Count; i++)
             {
-                if (Slots[i].InventoryItem == null)
-                    return Slots[i];
+                if (inventoryData.InventoryItems[i] != null)
+                {
+                    Logging.Log("UI");
+                    InventoryItem newItem = PoolManager.Instance.Factory<InventoryItem>().Pop(Slots[i].transform);
+                    newItem.transform.localScale = Vector3.one;
+                    newItem.transform.localPosition = Vector3.zero;
+                    newItem.Initialize(m_InventoryManager, inventoryData.InventoryItems[i].Item, inventoryData.InventoryItems[i].Count);
+                }
             }
-            return null;
         }
 
-        public void Info(Empty empty)
+        [ContextMenu("Info")]
+        public void Info()
         {
             for (int i = 0; i < gridSize; i++)
             {
                 var item = Materials[i].InventoryItem;
                 if(item != null)
                 {
+                    Logging.Log(i);
                     m_CraftingSystem.SetItem(item, i);
                 }
             }
@@ -133,20 +97,14 @@ namespace YTH.Code.Craft
             {
                 if(m_CraftingSystem.CanMake(r))
                 {
-                    if (resultSlot.InventoryItem == null)
-                    {    
-                        InventoryItem newItem  = PoolManager.Instance.Factory<InventoryItem>().Pop(resultSlot.transform);
-                        newItem.Initialize(m_InventoryManager, r.Result, 1);
-                        newItem.transform.localScale = Vector3.one;
-                        newItem.transform.localPosition = Vector3.zero;
-                    }
                     Logging.Log($"만들 수 있는 레시피: {r.Result.ItemName}");
                     return;
                 }
             }   
         }
 
-        public void Craft(Empty empty)
+        [ContextMenu("Craft")]
+        public void Craft()
         {
             for (int i = 0; i < gridSize; i++)
             {
@@ -157,10 +115,13 @@ namespace YTH.Code.Craft
             {
                 if(m_CraftingSystem.TryMake(r))
                 {
-                    PoolManager.Instance.Factory<InventoryItem>().Push(resultSlot.InventoryItem);
+                    Logging.Log($"만들 수 있는 레시피: {r.Result.ItemName}");
                     return;
                 }
-            }  
+            }   
+            
+            Logging.LogWarning("만들 수 있는 제작법이 없습니다.");
+
         }   
     }
 }

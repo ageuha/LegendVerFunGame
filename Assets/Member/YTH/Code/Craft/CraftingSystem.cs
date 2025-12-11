@@ -17,8 +17,6 @@ namespace YTH.Code.Craft
 
         public bool IsEmpty(int index)
         {
-            Logging.Log($"{m_ItemArray[index] == null}");
-            Logging.Log($"{m_ItemArray[index].Item.ItemName}");
             return m_ItemArray[index] == null;
         }
         

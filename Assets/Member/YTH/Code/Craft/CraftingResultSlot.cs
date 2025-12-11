@@ -9,12 +9,6 @@ namespace YTH.Code.Inventory
 {
     public class CraftingResultSlot : InventorySlot
     {
-        [SerializeField] private CraftEventChannel craftEventChannel;
-        protected override void OnTransformChildrenChanged()
-        {
-            base.OnTransformChildrenChanged();
-            craftEventChannel.Raise(new Empty());
-        }
         public override void OnPointerClick(PointerEventData eventData)
         {
             return;

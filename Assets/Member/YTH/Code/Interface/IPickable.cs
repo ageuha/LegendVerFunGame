@@ -1,4 +1,4 @@
-namespace YTH.Code.Core.Interface
+namespace YTH.Code.Interface
 {    
     public interface IPickable
     {

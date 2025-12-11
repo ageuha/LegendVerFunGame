@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using YTH.Code.Inventory;
 
-namespace YTH.Code.Inventory
+namespace YTH.Code.Inventorys
 {    
     [Serializable]
     public class InventoryData
