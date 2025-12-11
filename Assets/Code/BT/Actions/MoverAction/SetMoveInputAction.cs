@@ -11,7 +11,7 @@ namespace Code.BT.Actions.MoverAction {
     [NodeDescription(name: "SetMoveInputAction", story: "Set [Mover] MoveInput to [Value]", category: "Move", id: "c84df7933bcf59e7e1a1ea0adf630a6d")]
     public partial class SetMoveInputAction : Action {
     [SerializeReference] public BlackboardVariable<EntityMover> Mover;
-    [SerializeReference] public BlackboardVariable<Vector3> Value;
+    [SerializeReference] public BlackboardVariable<Vector2> Value;
         protected override Status OnStart() {
             if (!Mover.Value) {
                 Logging.LogError("SetMoveInputAction에 Mover 참조 까먹으셨어요");

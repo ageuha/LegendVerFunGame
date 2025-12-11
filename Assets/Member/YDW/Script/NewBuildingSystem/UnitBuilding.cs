@@ -26,7 +26,7 @@ namespace Member.YDW.Script.NewBuildingSystem
             _timer ??= new BuildingTimer();
             IWaitable obj = GetComponent<IWaitable>();
             _cooldownBar ??= GetComponentInChildren<CooldownBar>();
-            _timer.StartTimer(obj,_cooldownBar,timerTime,this);
+            _timer.StartTimer(obj,_cooldownBar,timerTime,this,true);
         }
 
         #region TestCode
