@@ -54,7 +54,8 @@ namespace Member.KJW.Code.Input
 
         public void OnRoll(InputAction.CallbackContext context)
         {
-            OnRolled?.Invoke();
+            if (context.performed)
+                OnRolled?.Invoke();
         }
 
         public void OnAim(InputAction.CallbackContext context)
@@ -64,7 +65,8 @@ namespace Member.KJW.Code.Input
 
         public void OnInteract(InputAction.CallbackContext context)
         {
-            OnInteracted?.Invoke();
+            if (context.performed)
+                OnInteracted?.Invoke();
         }
 
         public void OnThrow(InputAction.CallbackContext context)
