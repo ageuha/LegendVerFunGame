@@ -14,3 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MaxHp>k__BackingField: 15
   <MoveSpeed>k__BackingField: 1
+  <DropTable>k__BackingField:
+  - <Item>k__BackingField: {fileID: 11400000, guid: d5f4cf37b0cfe244d8ac767e483f96c8, type: 2}
+    <Count>k__BackingField: 5
+    <DropRate>k__BackingField: 0.75
+  - <Item>k__BackingField: {fileID: 11400000, guid: c3498d198acd0164dae1fe3018e6e2d6, type: 2}
+    <Count>k__BackingField: 5
+    <DropRate>k__BackingField: 0.75

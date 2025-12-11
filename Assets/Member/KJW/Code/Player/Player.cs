@@ -34,10 +34,13 @@ namespace Member.KJW.Code.Player
         public Arm Arm { get; private set; }
         public Weapon Weapon { get; private set; }
         
-        [field: SerializeField] public InventoryManagerEventChannel InventoryChannel { get; private set; }
-        [field: SerializeField] public InventorySelectedSlotChangeEventChannel InventorySelectedSlotChangeChannel { get; private set; }
-        [field: SerializeField] public BuildingGhostEventSO BuildingGhostChannel { get; private set; }
+        [Header("Event Channel")]
+        [SerializeField] private InventoryManagerEventChannel inventoryChannel;
+        [SerializeField] private InventorySelectedSlotChangeEventChannel inventorySelectedSlotChangeChannel;
+        [SerializeField] private BuildingGhostEventSO buildingGhostChannel;
         [SerializeField] private BuildingGhostFlagEventChannel buildingGhostFlagEventChannel;
+        [SerializeField] private CraftingInteractEventChannel craftingInteractEventChannel;
+
         
         public bool IsRolling { get; private set; }
         private bool _isInvincible;
@@ -56,6 +59,7 @@ namespace Member.KJW.Code.Player
         private ItemDataSO CurItem => _inventoryManager.GetSelectedItem();
         private InventoryManager _inventoryManager;
         
+        [Header("Settings")]
         [SerializeField] private float maxHp;
         
         private void Awake()
@@ -70,8 +74,8 @@ namespace Member.KJW.Code.Player
             RemainRoll = RollingData.MaxRoll;
             HealthCompo.Initialize(maxHp);
             
-            InventoryChannel.OnEvent += InitInventory;
-            InventorySelectedSlotChangeChannel.OnEvent += CancelPlace;
+            inventoryChannel.OnEvent += InitInventory;
+            inventorySelectedSlotChangeChannel.OnEvent += CancelPlace;
             buildingGhostFlagEventChannel.OnEvent += SetIsBuilding;
         }
 
@@ -92,7 +96,7 @@ namespace Member.KJW.Code.Player
 
         private void CancelPlace(Empty e)
         {
-            BuildingGhostChannel.Raise(new BuildingGhostEvent(null, false));
+            buildingGhostChannel.Raise(new BuildingGhostEvent(null, false));
         }
 
         private void InitInventory(InventoryManager inventoryManager)
@@ -125,12 +129,12 @@ namespace Member.KJW.Code.Player
 
         private void OnDestroy()
         {
-            InventoryChannel.OnEvent -= InitInventory;
+            inventoryChannel.OnEvent -= InitInventory;
         }
         
         private void Click()
         {
-            if (CurItem == null || EventSystem.current.IsPointerOverGameObject()) return;
+            if (CurItem == null) return;
             
             if (CurItem is WeaponDataSO weaponData)
             {
@@ -140,7 +144,7 @@ namespace Member.KJW.Code.Player
             
             if (CurItem is PlaceableItemData placeableItemData)
             {
-                BuildingGhostChannel.Raise(new BuildingGhostEvent(placeableItemData.BuildingData, true));
+                buildingGhostChannel.Raise(new BuildingGhostEvent(placeableItemData.BuildingData, true));
                 return;
             }
 
@@ -154,9 +158,14 @@ namespace Member.KJW.Code.Player
 
         private void RClick()
         {
-            if (CurItem == null || _isBuilding || EventSystem.current.IsPointerOverGameObject()) return;
+            if (_isBuilding) return;
 
-            Logging.Log(GridManager.Instance.GridMap.GetObjectsAt(Vector2Int.RoundToInt(MouseWorldPos)));
+            GridObject gridObj = GridManager.Instance.GridMap.GetObjectsAt(Vector2Int.RoundToInt(MouseWorldPos - new Vector2(0.5f, 0.5f)));
+            
+            if(!gridObj) return;
+            
+            if (gridObj.TryGetComponent(out IInteractable interactable))
+                interactable.Interaction(new InteractionContext(craftingInteractEventChannel));
         }
 
         private void Place(PlaceableItemData placeableItemData)

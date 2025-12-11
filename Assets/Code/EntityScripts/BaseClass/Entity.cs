@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Code.Core.Pool;
+using Code.Core.Utility;
 using Code.EntityScripts.Components;
 using Code.EntityScripts.Interface;
+using Member.YTH.Code.Item;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Code.EntityScripts.BaseClass {
     public abstract class Entity : MonoBehaviour {
@@ -14,7 +18,24 @@ namespace Code.EntityScripts.BaseClass {
 
         public bool IsDead { get; protected set; }
 
-        public abstract void DropItem();
+        public void DropItem() {
+            if (!Data) {
+                Logging.LogError("데이터가 없어요");
+                return;
+            }
+
+            if (Data.DropTable == null) return;
+
+            foreach (var dropData in Data.DropTable) {
+                for (int i = 0; i < dropData.Count; i++) {
+                    if (Random.value > dropData.DropRate) continue;
+                    var item = PoolManager.Instance.Factory<ItemObject>().Pop();
+                    item.SetItemData(dropData.Item);
+                    item.transform.position = transform.position;
+                    item.AddForce(Random.insideUnitCircle * 2f, ForceMode2D.Impulse);
+                }
+            }
+        }
 
         protected virtual void Awake() {
             _moduleDict = GetComponentsInChildren<IEntityModule>(true)

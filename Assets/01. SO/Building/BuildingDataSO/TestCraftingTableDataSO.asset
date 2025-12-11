@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 668546e97cea464eaabfa7ac84609bfd, type: 3}
-  m_Name: TestBuildingDataSO
+  m_Name: TestCraftingTableDataSO
   m_EditorClassIdentifier: 
   <BuildTime>k__BackingField: 2
   <MaxHealth>k__BackingField: 1
-  <Image>k__BackingField: {fileID: 1309592179222711874, guid: 1846f6f20c0e47d4ab952dc4c2359f66, type: 3}
-  <Building>k__BackingField: {fileID: 7051405046897650709, guid: 451c5b2e9ef1b5d478912d4f5e248928, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: 50cca6ab1283ac240958cb292d914ea1, type: 3}
+  <Building>k__BackingField: {fileID: 7669345526184148536, guid: b265739a671f3e14ca088ff105a0d6c1, type: 3}
   <BuildingSize>k__BackingField: {x: 1, y: 1}
   <InitialCapacity>k__BackingField: 5
   <AnimController>k__BackingField: {fileID: 0}

@@ -1,4 +1,7 @@
-﻿namespace Member.JJW.Code.Interface
+﻿using Code.Core.GlobalStructs;
+using Code.Events;
+
+namespace Member.JJW.Code.Interface
 {
     public interface IInteractable
     {
@@ -7,6 +10,11 @@
 
     public struct InteractionContext
     {
-        
+        public EventChannel<Empty> EventChannel;
+
+        public InteractionContext(EventChannel<Empty> eventChannel)
+        {
+            EventChannel = eventChannel;
+        }
     }
 }

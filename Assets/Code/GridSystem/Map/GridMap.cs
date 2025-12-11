@@ -138,7 +138,7 @@ namespace Code.GridSystem.Map {
             for (int i = 0; i < size.x; i++) {
                 for (int j = 0; j < size.y; j++) {
                     Vector2Int cellPos = worldCell + new Vector2Int(i, j);
-                    Logging.Log($"CheckIntersect : {cellPos.x} , {cellPos.y}");
+                    // Logging.Log($"CheckIntersect : {cellPos.x} , {cellPos.y}");
                     if (HasObjectAt(cellPos)) return true;
                 }
             }

@@ -1,5 +1,4 @@
-﻿using System;
-using Code.Core.GlobalSO;
+﻿using Code.Core.GlobalSO;
 using DG.Tweening;
 using UnityEngine;
 

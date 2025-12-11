@@ -1,5 +1,7 @@
 ﻿using Code.Core.GlobalStructs;
+using Code.Core.Pool;
 using Code.Core.Utility;
+using Code.GridSystem.Objects;
 using Member.JJW.Code.Interface;
 using Member.KJW.Code.EventChannel;
 using Member.YDW.Script.BuildingSystem;
@@ -8,10 +10,8 @@ using UnityEngine;
 
 namespace Member.KJW.Code.Building
 {
-    public class CraftingTableObj : MonoBehaviour, IBuilding, IInteractable
+    public class CraftingTableObj : UnitBuilding, IBuilding, IWaitable, IInteractable
     {
-        [SerializeField] private CraftingInteractEventChannel craftingInteractEventChannel;
-        
         public bool IsActive { get; private set; }
         public BuildingDataSO BuildingData { get; private set; }
         public SpriteRenderer SpriteRenderer { get; private set; }
@@ -25,8 +25,14 @@ namespace Member.KJW.Code.Building
 
         public void Interaction(InteractionContext context)
         {
-            craftingInteractEventChannel.Raise(new Empty());
+            context.EventChannel.Raise(new Empty());
             Logging.Log("Crafting Table Interacted");
+        }
+
+        public bool IsWaiting { get; private set; }
+        public void SetWaiting(bool waiting)
+        {
+            IsWaiting = waiting;
         }
     }
 }

@@ -87,6 +87,7 @@ namespace Member.YDW.Script.NewBuildingSystem
         {
             if (obj.OnOff &&  !_eventFlag)
             {
+                buildingGhostFlagEventChannel.Raise(_eventFlag);
                 _eventFlag = true;
                 // gameObject.SetActive(true);
                 // inputReader.OnAttacked += OnBuildingGhostEvent;
@@ -95,6 +96,7 @@ namespace Member.YDW.Script.NewBuildingSystem
             }
             else
             {
+                buildingGhostFlagEventChannel.Raise(_eventFlag);
                 _eventFlag = false;
                 // gameObject.SetActive(false);
                 // inputReader.OnAttacked -= OnBuildingGhostEvent;
@@ -159,6 +161,7 @@ namespace Member.YDW.Script.NewBuildingSystem
                     building.Initialize(_currentBuildingData.BuildingSize,compo,_currentBuildingData.InitValue,_currentBuildingData.MaxHealth,_currentBuildingData.BuildTime);
                 }
                 GridManager.Instance.GridMap.SetCellObject(_selectPos, building);
+                // HandleBuildingGhost(new  BuildingGhostEvent(null,false));
                 _inventoryManager.UseSelectedItem();
             }
             else if (_currentBuildingData.Building is UnitBuilding)
@@ -177,6 +180,7 @@ namespace Member.YDW.Script.NewBuildingSystem
                 }
                 //building.Initialize(_currentBuildingData.BuildingSize); 추후 필요하면 추가.
                 GridManager.Instance.GridMap.SetCellObject(_selectPos, building);
+                // HandleBuildingGhost(new  BuildingGhostEvent(null,false));
                 _inventoryManager.UseSelectedItem();
             }
             else
@@ -191,12 +195,13 @@ namespace Member.YDW.Script.NewBuildingSystem
         private void OffBuildingGhostEvent() //미리보기 끄기 (esc누를 시.)
         {
             _eventFlag = false;
-            inputReader.OnAttacked -= OnBuildingGhostEvent;
+            // inputReader.OnAttacked -= OnBuildingGhostEvent;
             _spriteRenderer.sprite = null;
             _currentBuildingData = null;
             _size = Vector2Int.zero;
             _selectPos = Vector2Int.zero;
             _canBuild = false;
+            buildingGhostFlagEventChannel.Raise(_eventFlag);
            // gameObject.SetActive(false); 테스트 때문에 주석.
         }
 
