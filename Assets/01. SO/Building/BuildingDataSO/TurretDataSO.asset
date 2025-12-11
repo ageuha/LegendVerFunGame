@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 668546e97cea464eaabfa7ac84609bfd, type: 3}
+  m_Name: TurretDataSO
+  m_EditorClassIdentifier: 
+  <BuildTime>k__BackingField: 5
+  <MaxHealth>k__BackingField: 10
+  <Image>k__BackingField: {fileID: -447292424, guid: 4db19fc6eccec7d4d926ade1c12dfbfe, type: 3}
+  <Building>k__BackingField: {fileID: 8152941393873946542, guid: 818fbfb5e8b3b434da60150e99f71c63, type: 3}
+  <BuildingSize>k__BackingField: {x: 1, y: 1}
+  <InitialCapacity>k__BackingField: 5
+  <AnimController>k__BackingField: {fileID: 9100000, guid: 4507623a1a64b0d4b8eed03be7391593, type: 2}
