@@ -158,10 +158,9 @@ namespace Member.KJW.Code.Player
 
         private void RClick()
         {
-            // if (_isBuilding) return;
+            if (_isBuilding) return;
 
-            GridObject gridObj = GridManager.Instance.GridMap.GetObjectsAt(Vector2Int.RoundToInt(MouseWorldPos));
-            Logging.Log(gridObj);
+            GridObject gridObj = GridManager.Instance.GridMap.GetObjectsAt(Vector2Int.RoundToInt(MouseWorldPos - new Vector2(0.5f, 0.5f)));
             
             if(!gridObj) return;
             
