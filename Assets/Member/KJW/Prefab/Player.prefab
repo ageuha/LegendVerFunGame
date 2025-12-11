@@ -256,7 +256,7 @@ MonoBehaviour:
   <InventoryChannel>k__BackingField: {fileID: 11400000, guid: fb6f9fa11354ee140bf4d4a28a3935cc, type: 2}
   <InventorySelectedSlotChangeChannel>k__BackingField: {fileID: 11400000, guid: ef9b2291179504e4d8a0c83fdc8e47d5, type: 2}
   <BuildingGhostChannel>k__BackingField: {fileID: 11400000, guid: 6f61a38863c8e214287793b225d3ce60, type: 2}
-  buildingGhostFlagEventChannel: {fileID: 0}
+  buildingGhostFlagEventChannel: {fileID: 11400000, guid: 6a1a27c5d79f26542a4372182399c81c, type: 2}
   maxHp: 100
 --- !u!114 &5244186388177151095
 MonoBehaviour:
