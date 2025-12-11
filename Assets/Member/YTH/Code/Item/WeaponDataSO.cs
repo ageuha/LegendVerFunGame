@@ -4,7 +4,7 @@ using Member.KJW.Code.Data;
 using UnityEngine;
 using YTH.Code.Stat;
 
-namespace Member.YTH.Code.Item
+namespace YTH.Code.Item
 {    
     [CreateAssetMenu(fileName = "EquipmentDataSO", menuName = "SO/Item/Equipment")]
     public class WeaponDataSO : ItemDataSO

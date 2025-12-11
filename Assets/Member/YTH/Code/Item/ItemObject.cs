@@ -1,9 +1,8 @@
-using Code.Core.GlobalSO;
+using Member.KJW.Code.Player;
 using UnityEngine;
 using YTH.Code.Core.Interface;
 using YTH.Code.Inventory;
 
-<<<<<<< HEAD:Assets/Member/YTH/Code/Item/ItemObject.cs
 namespace YTH.Code.Item
 {
     public class ItemObject : MonoBehaviour, IPickable
@@ -11,27 +10,19 @@ namespace YTH.Code.Item
         //Member.KJW.Code.Player
         //YTH.Code.Core.Interface;
         //YTH.Code.Inventory
-=======
-namespace Member.YTH.Code.Item {
-    public class ItemObject : MonoBehaviour, IPickable {
->>>>>>> LYD:Assets/Member/YTH/Code/Item/ItemAsm/ItemObject.cs
         [SerializeField] private ItemObjectTrigger itemObjectTrigger;
         [SerializeField] private InventoryAddEventChannel inventoryAddEventChannel;
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Rigidbody2D rb;
         [SerializeField] private ItemDataSO itemData;
         [SerializeField] private float speed = 5;
-<<<<<<< HEAD:Assets/Member/YTH/Code/Item/ItemObject.cs
         [SerializeField] private int count = 1;
-=======
-        [SerializeField] private int amount = 1;
-        [SerializeField] private TagHandleSO targetTag;
->>>>>>> LYD:Assets/Member/YTH/Code/Item/ItemAsm/ItemObject.cs
 
         private bool m_isLoockOn;
         private Transform m_target;
 
-        private void OnValidate() {
+        private void OnValidate()
+        {
             if (itemData == null || spriteRenderer == null) return;
 
             spriteRenderer.sprite = itemData.Icon;
@@ -41,20 +32,23 @@ namespace Member.YTH.Code.Item {
             itemObjectTrigger ??= GetComponentInChildren<ItemObjectTrigger>();
         }
 
-        private void Reset() {
+        private void Reset()
+        {
             rb ??= GetComponentInChildren<Rigidbody2D>();
             spriteRenderer ??= GetComponent<SpriteRenderer>();
             itemObjectTrigger ??= GetComponentInChildren<ItemObjectTrigger>();
         }
 
-        private void Awake() {
+        private void Awake()
+        {
             itemObjectTrigger.Trigger += OnLockOn;
         }
 
-        private void FixedUpdate() {
-            if (m_isLoockOn) {
-                rb.AddForce((m_target.position - transform.position).normalized * (speed * Time.deltaTime),
-                    ForceMode2D.Impulse);
+        private void FixedUpdate()
+        {
+            if(m_isLoockOn)
+            {    
+                rb.AddForce((m_target.position - transform.position).normalized * speed * Time.deltaTime, ForceMode2D.Impulse);
 
                 //float distance = Vector3.Distance(transform.position, m_target.position);
                 //float scale = Mathf.Clamp01(distance);
@@ -62,43 +56,37 @@ namespace Member.YTH.Code.Item {
             }
         }
 
-        private void OnLockOn(Transform target) {
+        private void OnLockOn(Player player)
+        {
             m_isLoockOn = true;
-            m_target = target;
+            m_target = player.transform;
         }
 
-        private void OnTriggerEnter2D(Collider2D collision) {
-            if (m_isLoockOn) {
-                if (collision.CompareTag(targetTag)) {
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if(m_isLoockOn)
+            {       
+                if (collision.TryGetComponent<Player>(out Player player))
+                {
                     PickUp();
                 }
             }
         }
 
 
-<<<<<<< HEAD:Assets/Member/YTH/Code/Item/ItemObject.cs
         public void SetItemData(ItemDataSO newData, int count = 1)
         {
             this.count = count;
-=======
-        public void SetItemData(ItemDataSO newData, int amount = 1) {
-            this.amount = amount;
->>>>>>> LYD:Assets/Member/YTH/Code/Item/ItemAsm/ItemObject.cs
             itemData = newData;
             spriteRenderer.sprite = itemData.Icon;
             gameObject.name = $"ItemObject_{itemData.ItemName}";
         }
 
-<<<<<<< HEAD:Assets/Member/YTH/Code/Item/ItemObject.cs
         public void PickUp()
         {
             inventoryAddEventChannel.Raise(new ItemData(itemData, count));
-=======
-        public void PickUp() {
-            inventoryAddEventChannel.Raise(itemData);
-            m_isLoockOn = false;
->>>>>>> LYD:Assets/Member/YTH/Code/Item/ItemAsm/ItemObject.cs
             Destroy(gameObject);
         }
     }
+
 }

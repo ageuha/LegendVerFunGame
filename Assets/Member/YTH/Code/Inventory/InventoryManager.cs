@@ -4,14 +4,8 @@ using Code.Core.Pool;
 using Code.Core.Utility;
 using Code.SaveSystem;
 using Member.KJW.Code.Input;
-using Member.YTH.Code.Item;
 using UnityEngine;
-<<<<<<< HEAD
 using YTH.Code.Item;
-=======
-using UnityEngine.PlayerLoop;
-using YTH.Code.Inventorys;
->>>>>>> LYD
 
 namespace YTH.Code.Inventory
 {    

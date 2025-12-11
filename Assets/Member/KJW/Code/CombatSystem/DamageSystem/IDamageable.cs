@@ -1,4 +1,4 @@
-﻿namespace Member.KJW.Code.CombatSystem.DamageSystem
+﻿namespace Member.KJW.Code.CombatSystem
 {
     public interface IDamageable
     {

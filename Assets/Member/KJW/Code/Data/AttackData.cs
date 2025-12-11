@@ -1,6 +1,4 @@
-﻿using Member.KJW.Code.CombatSystem.DamageSystem;
-using Member.YTH.Code.Item;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Member.KJW.Code.Data
 {
