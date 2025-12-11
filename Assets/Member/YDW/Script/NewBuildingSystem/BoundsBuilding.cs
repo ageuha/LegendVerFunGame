@@ -31,7 +31,7 @@ namespace Member.YDW.Script.NewBuildingSystem
             _cooldownBar ??= GetComponentInChildren<CooldownBar>();
             _collider ??= GetComponent<BoxCollider2D>();
             _collider.size = size;
-            _timer.StartTimer(obj,_cooldownBar,timerTime,this);
+            _timer.StartTimer(obj,_cooldownBar,timerTime,this,true);
             
 
         }
