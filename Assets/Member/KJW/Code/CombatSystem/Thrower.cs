@@ -8,10 +8,10 @@ namespace Member.KJW.Code.CombatSystem
 {
     public class Thrower : MonoBehaviour
     {
-        public void Throw(WeaponDataSO weaponData, Vector2 dir)
+        public void Throw(ItemDataSO itemData, Vector2 dir)
         {
             Throwable th = PoolManager.Instance.Factory<Throwable>().Pop();
-            th.Init(weaponData, transform.position).Throw(dir);
+            th.Init(itemData, transform.position).Throw(dir);
         }
     }
 }
