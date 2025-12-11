@@ -5,6 +5,7 @@ using Code.EntityScripts;
 using Code.GridSystem.Map;
 using Code.GridSystem.Objects;
 using Member.YDW.Script.EventStruct;
+using Member.YTH.Code.Item;
 using UnityEngine;
 
 namespace Member.YDW.Script.NewBuildingSystem

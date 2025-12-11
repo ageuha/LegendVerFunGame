@@ -1,40 +1,42 @@
-﻿using System;
+﻿using Code.Core.Utility;
 using UnityEngine;
 namespace Member.JJW.Code.ResourceObject
 {
     public class ResourceSpriteChanger : MonoBehaviour
     {
         [SerializeField] private Sprite[] sprites;
-        private Resource _resource;
+        [SerializeField] private Resource resource;
+        
         private SpriteRenderer _spriteRenderer;
-
         
         private void Awake()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
-            _resource = GetComponentInParent<Resource>();
         }
 
         private void OnEnable()
         {
-            _resource.OnInit += ChangeResourceSprite;
-            _resource.CurrentHp.Hp.OnValueChanged += ChangeSprite;
-            
-            if (_resource.CurrentHp.Hp == null)
-                _resource.CurrentHp.Initialize(_resource.ResourceSO.MaxHp);
+            if (resource == null) return;
+            if (resource.CurrentHp.Hp == null)
+            {
+                resource.CurrentHp.Initialize(resource.ResourceSO.MaxHp);
+            }
+            resource.CurrentHp.Hp.OnValueChanged += ChangeSprite;
+            resource.OnInitialize += Init;
+            Logging.Log("2");
         }
 
-        private void ChangeResourceSprite(Sprite sprite)
+        private void Init()
         {
-            _spriteRenderer.sprite = sprite;
+            _spriteRenderer.sprite = resource.ResourceSO.ResourceImage;
         }
-
+        
         private void ChangeSprite(float before, float after)
         {
             if(sprites == null || sprites.Length == 0) return;
             if (before == after) return;
             if (after <= 0) return;
-            float ratio = after / _resource.ResourceSO.MaxHp;
+            float ratio = after / resource.ResourceSO.MaxHp;
             int idx = Mathf.RoundToInt(ratio * sprites.Length - 1);
             idx = sprites.Length - 1 - idx;
             _spriteRenderer.sprite = sprites[idx];
@@ -42,7 +44,8 @@ namespace Member.JJW.Code.ResourceObject
 
         private void OnDisable()
         {
-            _resource.CurrentHp.Hp.OnValueChanged -= ChangeSprite;
+            resource.CurrentHp.Hp.OnValueChanged -= ChangeSprite;
+            resource.OnInitialize -= Init;
         }
     }
 }

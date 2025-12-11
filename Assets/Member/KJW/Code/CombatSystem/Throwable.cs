@@ -16,16 +16,18 @@ namespace Member.KJW.Code.CombatSystem
         public SpriteRenderer Renderer => _renderer ??= GetComponent<SpriteRenderer>();
         private DamageInfo _damageInfo;
         private float _speed;
+        private float _rotSpeed;
         private BoxCollider2D _collider;
         public BoxCollider2D Collider => _collider ??= GetComponent<BoxCollider2D>();
 
-        public Throwable Init(WeaponDataSO weaponData, Vector2 pos)
+        public Throwable Init(ItemDataSO itemData, Vector2 pos)
         {
-            _damageInfo = weaponData.DamageInfoData.ToStruct(gameObject);
-            Renderer.sprite = weaponData.Icon;
-            _speed = weaponData.ThrowSpeed;
-            Collider.size = weaponData.HitBoxSize;
-            _lifeTime = weaponData.ThrowLifeTime;
+            _damageInfo = itemData.DamageInfoData.ToStruct(gameObject);
+            Renderer.sprite = itemData.Icon;
+            _speed = itemData.ThrowSpeed;
+            Collider.size = itemData.HitBoxSize;
+            _lifeTime = itemData.ThrowLifeTime;
+            _rotSpeed = itemData.ThrowRotationSpeed;
             transform.position = pos;
             return this;
         }

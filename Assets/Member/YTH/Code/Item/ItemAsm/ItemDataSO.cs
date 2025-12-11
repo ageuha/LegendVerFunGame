@@ -16,6 +16,9 @@ namespace Member.YTH.Code.Item
 
         [field:Header("Throw Settings")]
         [field:SerializeField] public float ThrowSpeed { get; private set; }
+        [field:SerializeField] public float ThrowLifeTime { get; private set; }
+        [field:SerializeField] public float ThrowRotationSpeed { get; private set; }
+        [field:SerializeField] public Vector2 HitBoxSize { get; private set; }
         [field:SerializeField] public DamageInfoData DamageInfoData { get; private set; }
 
 

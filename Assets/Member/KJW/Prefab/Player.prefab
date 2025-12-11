@@ -253,10 +253,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <InputReader>k__BackingField: {fileID: 11400000, guid: 777b456eb927283439da0b796da61433, type: 2}
   <RollingData>k__BackingField: {fileID: 11400000, guid: 870b15c39db4d2547bcd398c11b4be93, type: 2}
-  <InventoryChannel>k__BackingField: {fileID: 11400000, guid: fb6f9fa11354ee140bf4d4a28a3935cc, type: 2}
-  <InventorySelectedSlotChangeChannel>k__BackingField: {fileID: 11400000, guid: ef9b2291179504e4d8a0c83fdc8e47d5, type: 2}
-  <BuildingGhostChannel>k__BackingField: {fileID: 11400000, guid: 6f61a38863c8e214287793b225d3ce60, type: 2}
+  inventoryChannel: {fileID: 11400000, guid: fb6f9fa11354ee140bf4d4a28a3935cc, type: 2}
+  inventorySelectedSlotChangeChannel: {fileID: 11400000, guid: ef9b2291179504e4d8a0c83fdc8e47d5, type: 2}
+  buildingGhostChannel: {fileID: 11400000, guid: 6f61a38863c8e214287793b225d3ce60, type: 2}
   buildingGhostFlagEventChannel: {fileID: 11400000, guid: 6a1a27c5d79f26542a4372182399c81c, type: 2}
+  craftingInteractEventChannel: {fileID: 11400000, guid: 39669dea86831f64389e8da7cee13ca3, type: 2}
+  breakingFlagEventChannel: {fileID: 11400000, guid: 0af2e021c330093429ce65cda8f83342, type: 2}
   maxHp: 100
 --- !u!114 &5244186388177151095
 MonoBehaviour:
@@ -473,8 +475,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -769256641
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
