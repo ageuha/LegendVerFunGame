@@ -1,4 +1,5 @@
 ﻿using System;
+using Code.Core.Utility;
 using Member.JJW.Code.TemperSystem;
 using Member.YDW.Script.BuildingSystem;
 using UnityEngine;
@@ -45,6 +46,9 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings.House
                 {
                     _playerTemperatureSystem.CurrentTemperature =  _temperatureValue;
                 }
+                 
+                Logging.Log(_playerTemperatureSystem.CurrentTemperature);
+                
             }
                 
 
@@ -60,11 +64,21 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings.House
         private void InPlayer()
         {
             Collider2D player = Physics2D.OverlapCircle(transform.position,_detectRange, _playerMask);
-            if (player != null && player.TryGetComponent(out TemperatureSystem system) && _playerTemperatureSystem == null)
+            Logging.Log(player == null);
+            if (player != null && player.gameObject.TryGetComponent(out TemperatureSystem system) && _playerTemperatureSystem == null)
             {
+                Logging.Log("시스템 세팅");
+                player.transform.position = transform.position;
                 //필요한거 처리.
                 _playerTemperatureSystem = system;
             }
+
+            if (player.gameObject.TryGetComponent(out TemperatureSystem systea))
+            {
+                Logging.Log("가져오기 성공");
+            }
+            else
+                Logging.Log("가져오기 실패");
         }
 
         public void SetWaiting(bool waiting)
