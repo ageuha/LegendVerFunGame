@@ -53,10 +53,11 @@ namespace YTH.Code.Inventory
                     }
                     else if(eventData.button == PointerEventData.InputButton.Right)
                     {
-                        InventoryItem newItem  = PoolManager.Instance.Factory<InventoryItem>().Pop(transform);
+                        InventoryItem newItem  = PoolManager.Instance.Factory<InventoryItem>().Pop();
                         newItem.Initialize(m_InventoryManager, m_InventoryManager.HoldItem.Item, 1);
                         newItem.transform.localScale = Vector3.one;
                         newItem.transform.localPosition = Vector3.zero;
+                        newItem.transform.SetParent(transform);
                         m_InventoryManager.HoldItem.RemoveStack(1);
                     }
                     inventoryChangeEventChannel.Raise(new Empty());

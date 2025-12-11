@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647b4de93b6b4ad4e9f125d5c4c2c88d, type: 3}
   m_Name: Test Weapon 1
   m_EditorClassIdentifier: 
-  <ItemName>k__BackingField: Test Weapon 1
-  <Description>k__BackingField: 
+  <ItemName>k__BackingField: Test Wepaon
+  <Description>k__BackingField: "\uC218\uB9C9\uC0C8"
   <Icon>k__BackingField: {fileID: 21300000, guid: 12c618c54c46a86419f545b188ba7670, type: 3}
-  <ItemID>k__BackingField: 456
+  <ItemID>k__BackingField: 12123
   <MaxStack>k__BackingField: 1
   <ItemType>k__BackingField: 0
   <ThrowSpeed>k__BackingField: 5
