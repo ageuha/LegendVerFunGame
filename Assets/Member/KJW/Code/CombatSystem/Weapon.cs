@@ -6,6 +6,8 @@ namespace Member.KJW.Code.CombatSystem
 {
     public class Weapon : MonoBehaviour
     {
+        [SerializeField] private GameObject owner;
+        
         private SpriteRenderer _spriteRenderer;
         public SpriteRenderer SpriteRenderer => _spriteRenderer ??= GetComponent<SpriteRenderer>();
 
@@ -19,7 +21,7 @@ namespace Member.KJW.Code.CombatSystem
             SpriteRenderer.sprite = weapon.Icon;
             Collider.size = weapon.HitBoxSize;
             transform.localPosition = weapon.HitBoxOffset;
-            _damageInfo = weapon.DamageInfoData.ToStruct();
+            _damageInfo = weapon.DamageInfoData.ToStruct(owner ?? gameObject);
         }
         
         private void OnTriggerEnter2D(Collider2D other)

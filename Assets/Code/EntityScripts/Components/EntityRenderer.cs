@@ -22,8 +22,11 @@ namespace Code.EntityScripts.Components {
             _material.SetFloat(shaderID, value);
         }
 
+        public void SetFlip(float xVelocity) {
+            transform.localRotation = Quaternion.Euler(0f, xVelocity > 0 ? 180f : 0f, 0f);
+        }
+
         public void Initialize(Entity owner) {
-            
         }
     }
 }
