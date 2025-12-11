@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Member.BJH._01Script.Boat
 {
-    public class Boat : MonoBehaviour, IInteractable<GameObject>
+    public class Boat : MonoBehaviour
     {
         [field: SerializeField] public BoatSOScript BoatSO { get; private set; }
         [SerializeField] private InputReader inputreader;
