@@ -130,7 +130,7 @@ namespace Member.KJW.Code.Player
         
         private void Click()
         {
-            if (CurItem == null || EventSystem.current.IsPointerOverGameObject()) return;
+            if (CurItem == null) return;
             
             if (CurItem is WeaponDataSO weaponData)
             {
@@ -154,9 +154,15 @@ namespace Member.KJW.Code.Player
 
         private void RClick()
         {
-            if (CurItem == null || _isBuilding || EventSystem.current.IsPointerOverGameObject()) return;
+            if (_isBuilding) return;
 
-            Logging.Log(GridManager.Instance.GridMap.GetObjectsAt(Vector2Int.RoundToInt(MouseWorldPos)));
+            GridObject gridObj = GridManager.Instance.GridMap.GetObjectsAt(Vector2Int.RoundToInt(MouseWorldPos));
+            Logging.Log(gridObj);
+            
+            if(!gridObj) return;
+            
+            if (gridObj.TryGetComponent(out IInteractable interactable))
+                interactable.Interaction(new InteractionContext());
         }
 
         private void Place(PlaceableItemData placeableItemData)
