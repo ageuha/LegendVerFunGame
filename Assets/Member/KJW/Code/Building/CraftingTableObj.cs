@@ -10,10 +10,8 @@ using UnityEngine;
 
 namespace Member.KJW.Code.Building
 {
-    public class CraftingTableObj : UnitBuilding, IBuilding, IInteractable
+    public class CraftingTableObj : UnitBuilding, IBuilding, IWaitable, IInteractable
     {
-        [SerializeField] private CraftingInteractEventChannel craftingInteractEventChannel;
-        
         public bool IsActive { get; private set; }
         public BuildingDataSO BuildingData { get; private set; }
         public SpriteRenderer SpriteRenderer { get; private set; }
@@ -27,8 +25,14 @@ namespace Member.KJW.Code.Building
 
         public void Interaction(InteractionContext context)
         {
-            craftingInteractEventChannel.Raise(new Empty());
+            context.EventChannel.Raise(new Empty());
             Logging.Log("Crafting Table Interacted");
+        }
+
+        public bool IsWaiting { get; private set; }
+        public void SetWaiting(bool waiting)
+        {
+            IsWaiting = waiting;
         }
     }
 }
