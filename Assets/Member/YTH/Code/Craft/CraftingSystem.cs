@@ -75,7 +75,6 @@ namespace YTH.Code.Craft
             {
                 if (item.Item == GetItem(index).Item)
                 {
-                    DecreaseItemStack(index);
                     return true;
                 }
                 else
@@ -92,28 +91,17 @@ namespace YTH.Code.Craft
             for (int i = 0; i < gridSize; i++)
             {
                 ItemDataSO requiredMaterial = currentRecipe.Materials[i];
-                InventoryItem currentItem = m_ItemArray[i];
-
-
-                if (currentItem != null && currentItem.Item != null)
+                InventoryItem currentItem = null;
+                if (m_ItemArray[i] != null)
                 {
-                    if (currentItem.Item == requiredMaterial)
-                    {
-                        continue;
-                    }
-                    if (requiredMaterial == null)
-                    {
-                        return false;
-                    }
+                    currentItem = m_ItemArray[i];
                 }
 
                 if (currentItem == null)
                 {
-                    if (requiredMaterial != null)
-                    {
-                        return false;
-                    }
+                    if (requiredMaterial == null) continue;
                 }
+                else if (requiredMaterial != currentItem.Item) return false;
             }
 
             return true;
@@ -135,6 +123,10 @@ namespace YTH.Code.Craft
                     }
                 }
 
+                for (int i = 0; i < currentRecipe.Materials.Length; i++)
+                {
+                    DecreaseItemStack(i);
+                }
                 Logging.Log("제작을 했습니다.");
                 return true;
             }
