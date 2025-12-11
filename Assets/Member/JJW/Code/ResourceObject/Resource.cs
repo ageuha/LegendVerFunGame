@@ -1,43 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
 using Code.Core.Pool;
+using Code.Core.Utility;
 using Code.EntityScripts;
+using Code.GridSystem.Objects;
+using Member.JJW.Code.Interface;
 using Member.JJW.Code.SO;
-using Unity.Cinemachine;
+using Member.YDW.Script.NewBuildingSystem;
 using UnityEngine;
-using YTH.Code.Item;
-using Random = UnityEngine.Random;
 
 namespace Member.JJW.Code.ResourceObject
 {
-    public class Resource : MonoBehaviour,IPoolable
+    public class Resource : GridBoundsObject,IPoolable,IHarvestable
     {
-        public event Action<Sprite> OnInit;
+        public event Action OnInitialize;
         public int InitialCapacity { get => initialCapacity; }
-        [field:SerializeField] public ResourceSO ResourceSO {get; private set; }
-        [field:SerializeField] public HealthSystem CurrentHp {get; private set; }
+        [field: SerializeField] public HealthSystem CurrentHp { get; set; }
+        [field:SerializeField] public ResourceSO ResourceSO {get; set; }
         [SerializeField] private int initialCapacity = 1;
         
-        private SpriteRenderer _spriteRenderer;
-        private bool _isCanSpawn = false;
-
-        private void OnEnable()
+        protected override Vector2Int Size { get => _clickBoundSize; }//자신의 범위
+        private Vector2Int _clickBoundSize;
+        private BoxCollider2D _boxCollider;
+        
+        private void Awake()
         {
-            CurrentHp.OnDead += SpawnItem;
-            CurrentHp.OnDead += ChangeCondition;
+            _boxCollider = GetComponent<BoxCollider2D>();
+            Initialize(ResourceSO);
         }
+
         public void Initialize(ResourceSO resourceSO) //다른 SO로 초기화 하고 싶을때 사용
         {
-            if (resourceSO == null && !_isCanSpawn)
-            {
-                ResourceSO = resourceSO;
-                CurrentHp.Initialize(ResourceSO.MaxHp);
-                _isCanSpawn = false;
-                OnInit?.Invoke(resourceSO.ResourceImage);
-            }
+            ResourceSO = resourceSO;
+            CurrentHp.Initialize(ResourceSO.MaxHp);
+            _boxCollider.size = resourceSO.DetectionRangeSize;
+            _clickBoundSize = resourceSO.DetectionRangeSize;
+            OnInitialize?.Invoke();
         }
-
-        public void GetDamage(ItemInfo itemInfo) //리소스에 줄 데미지를 계산후 줌
+        public void Harvest(ItemInfo itemInfo)
         {
             float finalDamage = 10;
             float onCorrectTypeDamage;
@@ -47,7 +46,7 @@ namespace Member.JJW.Code.ResourceObject
             }
             else
             {
-                if (itemInfo.ItemType == ResourceSO.correctType)
+                if (itemInfo.ItemType == ResourceSO.CorrectUsedItemType)
                 {
                     onCorrectTypeDamage = 10;
                 }
@@ -56,53 +55,31 @@ namespace Member.JJW.Code.ResourceObject
                     onCorrectTypeDamage = 1;
                 }
             }
-            
+                            
             var damagePlusValue = (int)itemInfo.Ingredient;
             finalDamage += damagePlusValue * onCorrectTypeDamage;
             CurrentHp.ApplyDamage(finalDamage);
         }
-
-        private void SpawnItem() //리소스가 파괴되면 실행 리소스가 생성하는 아이템을 생성해줌 
+        private bool CheckMouseInRange()
         {
-            if(_isCanSpawn == false) return;
-            for (int i = 0; i < ResourceSO.SpawnItemAmount; i++)
-            {
-                Vector2 randomPos = (Vector2)transform.position + Random.insideUnitCircle;
-                GameObject item = Instantiate(ResourceSO.ItemPrefab,randomPos,Quaternion.identity);
-                if (item.TryGetComponent<ItemObject>(out ItemObject itemObject))
-                {
-                    itemObject.SetItemData(ResourceSO.ItemDataSO,ResourceSO.SpawnItemAmount);
-                }
-            }
-            _isCanSpawn = false;
-            PoolManager.Instance.Factory<Resource>().Push(this);
-            Debug.Log("아이템 스폰");
+            Vector2Int mousePos = GridManager.Instance.GetWorldToCellPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            return GridManager.Instance.GridMap.HasObjectInBounds(mousePos,Size);
         }
 
-        private void ChangeCondition()
-        {
-            _isCanSpawn = true;
-        }
-
-        private void OnDisable()
-        {
-            CurrentHp.OnDead -= SpawnItem;
-            CurrentHp.OnDead -= ChangeCondition;
-        }
-
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             if (!ResourceSO) return;
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(transform.position, ResourceSO.ItemSpawnRadius);
+            Gizmos.color = Color.red;
+            Vector3 vector2Int = new Vector3(Size.x, Size.y, 0);
+            Gizmos.DrawWireCube(transform.position,vector2Int);
         }
-        
-        public void OnPopFromPool()
-        {
-            
-        }
-
         public void OnReturnToPool()
+        {
+            CurrentHp.ResetHealth();
+        }
+        public void OnPopFromPool()
         {
             CurrentHp.ResetHealth();
         }

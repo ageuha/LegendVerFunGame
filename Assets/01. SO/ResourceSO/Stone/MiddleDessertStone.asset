@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: MiddleDessertStone
   m_EditorClassIdentifier: 
   <MaxHp>k__BackingField: 300
-  correctType: 0
-  ResourceImage: {fileID: -6384673231930468807, guid: b926204ba1fa06845a24a251777f3deb, type: 3}
+  CorrectUsedItemType: 0
+  ResourceImage: {fileID: 21300000, guid: b926204ba1fa06845a24a251777f3deb, type: 3}
   ItemPrefab: {fileID: 0}
   ItemDataSO: {fileID: 0}
   SpawnItemAmount: 3
   ItemSpawnRadius: 1
+  DetectionRangeSize: {x: 1, y: 1}
