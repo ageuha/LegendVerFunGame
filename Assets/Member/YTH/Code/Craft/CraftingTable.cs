@@ -4,6 +4,7 @@ using Code.Core.GlobalStructs;
 using Code.Core.Pool;
 using Code.Core.Utility;
 using Code.SaveSystem;
+using Member.YTH.Code.Item;
 using UnityEngine;
 using YTH.Code.Inventory;
 using YTH.Code.Item;
@@ -38,18 +39,6 @@ namespace YTH.Code.Craft
         private void Start()
         {
             m_InventoryJsonSaveManager = new("Inventory.json");
-
-            foreach (var slot in Slots)
-            {
-                slot.Initialize(m_InventoryManager);
-            }
-
-            foreach (var slot in Materials)
-            {
-                slot.Initialize(m_InventoryManager);
-            }
-            
-            resultSlot.Initialize(m_InventoryManager);
         }
 
         private void OnDestroy()
@@ -64,6 +53,18 @@ namespace YTH.Code.Craft
         private void Initialize(InventoryManager inventoryManager)
         {
             this.m_InventoryManager = inventoryManager;
+
+            foreach (var slot in Slots)
+            {
+                slot.Initialize(m_InventoryManager);
+            }
+
+            foreach (var slot in Materials)
+            {
+                slot.Initialize(m_InventoryManager);
+            }
+            
+            resultSlot.Initialize(m_InventoryManager);
         }
 
         public void OpenCrafting()

@@ -2,6 +2,7 @@ using Code.Core.GlobalSO;
 using UnityEngine;
 using YTH.Code.Interface;
 using YTH.Code.Inventory;
+using YTH.Code.Item;
 
 namespace Member.YTH.Code.Item 
 {
@@ -80,7 +81,7 @@ namespace Member.YTH.Code.Item
 
         public void PickUp() 
         {
-            inventoryAddEventChannel.Raise(itemData);
+            inventoryAddEventChannel.Raise(new ItemData(itemData, amount));
             m_isLoockOn = false;
             Destroy(gameObject);
         }

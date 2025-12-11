@@ -1,6 +1,7 @@
 using Member.YTH.Code.Item;
 using UnityEngine;
 using YTH.Code.Inventory;
+using YTH.Code.Item;
 
 namespace YTH.Code.Test
 {    

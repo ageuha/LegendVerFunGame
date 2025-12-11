@@ -4,6 +4,7 @@ using Code.Core.Pool;
 using Code.Core.Utility;
 using Code.SaveSystem;
 using Member.KJW.Code.Input;
+using Member.YTH.Code.Item;
 using UnityEngine;
 using YTH.Code.Item;
 
@@ -41,6 +42,8 @@ namespace YTH.Code.Inventory
 
         private void Start()
         {
+            inventoryManagerEventChannel.Raise(this);   
+            
             foreach (var slot in inventorySlots)
             {
                 slot.Initialize(this);
@@ -51,7 +54,6 @@ namespace YTH.Code.Inventory
             MainInventory();
             ChangeSelectedSlot(1);
         
-            inventoryManagerEventChannel.Raise(this);   
 
             m_InventoryJsonSaveManager = new("Inventory.json");
             

@@ -106,6 +106,7 @@ namespace YTH.Code.Inventory
             Count -= count;
             if (Count <= 0)
             {
+                Logging.Log($"{m_InventoryManager.HoldItem}");
                 if (this == m_InventoryManager.HoldItem) //여기 버그?
                 {
                     inventoryItemPickDownEventChannel.Raise(new Empty());
