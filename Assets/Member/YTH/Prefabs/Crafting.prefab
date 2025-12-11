@@ -959,10 +959,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b5e3a242e18fc141b3e122b7e4f27a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemDataListSO: {fileID: 11400000, guid: 3e0f45833a534d14e8a6bc45fe8d7a6b, type: 2}
   craftEventChannel: {fileID: 11400000, guid: 739303250df4f6c4aa1508b0c9174d55, type: 2}
   craftingTableMateiralChangeEventChannel: {fileID: 11400000, guid: 9c86dc802dc5e434c853ee6def57bb77, type: 2}
   inventoryManagerEventChannel: {fileID: 11400000, guid: fb6f9fa11354ee140bf4d4a28a3935cc, type: 2}
-  inventoryChangeEventChannel: {fileID: 11400000, guid: 4aea8ae936534c94ca9bab6e29e2c17b, type: 2}
   inventorySaveEventChannel: {fileID: 11400000, guid: 8d4bee229df88014d94707be8ea1f231, type: 2}
   craftingInteractEventChannel: {fileID: 11400000, guid: 39669dea86831f64389e8da7cee13ca3, type: 2}
   craftingCloseEventChannel: {fileID: 11400000, guid: c48c75da13fa60848bdc91c2cbaaa73b, type: 2}
@@ -1529,7 +1529,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <InventoryItem>k__BackingField: {fileID: 0}
   inventoryItemPickDownEventChannel: {fileID: 11400000, guid: 8014b59b7e9492a4a8cb7aa15f9beabe, type: 2}
-  inventoryChangeEventChannel: {fileID: 11400000, guid: 4aea8ae936534c94ca9bab6e29e2c17b, type: 2}
   image: {fileID: 1265384527225136708}
   selectedColor: {r: 0.49803922, g: 0.54901963, b: 0.5529412, a: 1}
   unSelectedColor: {r: 0.7411765, g: 0.7647059, b: 0.78039217, a: 1}
@@ -1904,7 +1903,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <InventoryItem>k__BackingField: {fileID: 0}
   inventoryItemPickDownEventChannel: {fileID: 11400000, guid: 8014b59b7e9492a4a8cb7aa15f9beabe, type: 2}
-  inventoryChangeEventChannel: {fileID: 11400000, guid: 4aea8ae936534c94ca9bab6e29e2c17b, type: 2}
   image: {fileID: 394605176880360856}
   selectedColor: {r: 0.49803922, g: 0.54901963, b: 0.5529412, a: 1}
   unSelectedColor: {r: 0.7411765, g: 0.7647059, b: 0.78039217, a: 1}
@@ -2175,7 +2173,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <InventoryItem>k__BackingField: {fileID: 0}
   inventoryItemPickDownEventChannel: {fileID: 11400000, guid: 8014b59b7e9492a4a8cb7aa15f9beabe, type: 2}
-  inventoryChangeEventChannel: {fileID: 11400000, guid: 4aea8ae936534c94ca9bab6e29e2c17b, type: 2}
   image: {fileID: 4597972457697646494}
   selectedColor: {r: 0.49803922, g: 0.54901963, b: 0.5529412, a: 1}
   unSelectedColor: {r: 0.7411765, g: 0.7647059, b: 0.78039217, a: 1}
@@ -2691,7 +2688,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <InventoryItem>k__BackingField: {fileID: 0}
   inventoryItemPickDownEventChannel: {fileID: 11400000, guid: 8014b59b7e9492a4a8cb7aa15f9beabe, type: 2}
-  inventoryChangeEventChannel: {fileID: 11400000, guid: 4aea8ae936534c94ca9bab6e29e2c17b, type: 2}
   image: {fileID: 3757624819706020281}
   selectedColor: {r: 0.49803922, g: 0.54901963, b: 0.5529412, a: 1}
   unSelectedColor: {r: 0.7411765, g: 0.7647059, b: 0.78039217, a: 1}
@@ -3077,7 +3073,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <InventoryItem>k__BackingField: {fileID: 0}
   inventoryItemPickDownEventChannel: {fileID: 11400000, guid: 8014b59b7e9492a4a8cb7aa15f9beabe, type: 2}
-  inventoryChangeEventChannel: {fileID: 11400000, guid: 4aea8ae936534c94ca9bab6e29e2c17b, type: 2}
   image: {fileID: 3455616009871282428}
   selectedColor: {r: 0.49803922, g: 0.54901963, b: 0.5529412, a: 1}
   unSelectedColor: {r: 0.7411765, g: 0.7647059, b: 0.78039217, a: 1}
@@ -3609,7 +3604,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <InventoryItem>k__BackingField: {fileID: 0}
   inventoryItemPickDownEventChannel: {fileID: 11400000, guid: 8014b59b7e9492a4a8cb7aa15f9beabe, type: 2}
-  inventoryChangeEventChannel: {fileID: 11400000, guid: 4aea8ae936534c94ca9bab6e29e2c17b, type: 2}
   image: {fileID: 6535317355124820188}
   selectedColor: {r: 0.49803922, g: 0.54901963, b: 0.5529412, a: 1}
   unSelectedColor: {r: 0.7411765, g: 0.7647059, b: 0.78039217, a: 1}
@@ -4125,7 +4119,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <InventoryItem>k__BackingField: {fileID: 0}
   inventoryItemPickDownEventChannel: {fileID: 11400000, guid: 8014b59b7e9492a4a8cb7aa15f9beabe, type: 2}
-  inventoryChangeEventChannel: {fileID: 11400000, guid: 4aea8ae936534c94ca9bab6e29e2c17b, type: 2}
   image: {fileID: 6458607866503861688}
   selectedColor: {r: 0.49803922, g: 0.54901963, b: 0.5529412, a: 1}
   unSelectedColor: {r: 0.7411765, g: 0.7647059, b: 0.78039217, a: 1}
@@ -6125,7 +6118,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <InventoryItem>k__BackingField: {fileID: 0}
   inventoryItemPickDownEventChannel: {fileID: 11400000, guid: 8014b59b7e9492a4a8cb7aa15f9beabe, type: 2}
-  inventoryChangeEventChannel: {fileID: 11400000, guid: 4aea8ae936534c94ca9bab6e29e2c17b, type: 2}
   image: {fileID: 7962435502556065930}
   selectedColor: {r: 0.49803922, g: 0.54901963, b: 0.5529412, a: 1}
   unSelectedColor: {r: 0.7411765, g: 0.7647059, b: 0.78039217, a: 1}
@@ -6402,7 +6394,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <InventoryItem>k__BackingField: {fileID: 0}
   inventoryItemPickDownEventChannel: {fileID: 11400000, guid: 8014b59b7e9492a4a8cb7aa15f9beabe, type: 2}
-  inventoryChangeEventChannel: {fileID: 11400000, guid: 4aea8ae936534c94ca9bab6e29e2c17b, type: 2}
   image: {fileID: 7655321667125539089}
   selectedColor: {r: 0.49803922, g: 0.54901963, b: 0.5529412, a: 1}
   unSelectedColor: {r: 0.7411765, g: 0.7647059, b: 0.78039217, a: 1}
@@ -6782,7 +6773,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <InventoryItem>k__BackingField: {fileID: 0}
   inventoryItemPickDownEventChannel: {fileID: 11400000, guid: 8014b59b7e9492a4a8cb7aa15f9beabe, type: 2}
-  inventoryChangeEventChannel: {fileID: 11400000, guid: 4aea8ae936534c94ca9bab6e29e2c17b, type: 2}
   image: {fileID: 7264624882047258413}
   selectedColor: {r: 0.49803922, g: 0.54901963, b: 0.5529412, a: 1}
   unSelectedColor: {r: 0.7411765, g: 0.7647059, b: 0.78039217, a: 1}

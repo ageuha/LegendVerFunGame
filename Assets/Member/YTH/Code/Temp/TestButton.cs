@@ -13,7 +13,7 @@ namespace YTH.Code.Test
 
         public void Test()
         {
-            inventoryAddEventChannel.Raise(new ItemData(item, count));
+            inventoryAddEventChannel.Raise(new ItemData(item.ItemID, count));
         }
     }
 }

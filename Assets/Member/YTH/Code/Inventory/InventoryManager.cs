@@ -157,7 +157,7 @@ namespace YTH.Code.Inventory
 
             if(inventoryData == null)
             {
-                Logging.LogWarning("Null임");
+                Logging.LogWarning("인벤토리 데이터 없음");
                 return;
             }
             
@@ -165,19 +165,46 @@ namespace YTH.Code.Inventory
             {
                 if (inventorySlots[i].InventoryItem != null)
                 {
+                    Logging.Log("인벤토리 로드할 때 아이템 삭제함");
                     PoolManager.Instance.Factory<InventoryItem>().Push(inventorySlots[i].InventoryItem);
                 }
 
-                if (inventoryData.InventoryItems[i] != null)
+                Logging.Log($"{i}번 : {inventoryData.InventoryItems[i]}");
+                if (inventoryData.InventoryItems[i].ItemID != 0)
                 {
-                    SpawnNewItem(inventoryData.InventoryItems[i].Item, inventorySlots[i], inventoryData.InventoryItems[i].Count);
+                    Logging.Log("인벤토리 로드할 때 아이템 추가함");
+                    ItemDataSO item = GetItemDataSO.Instance.ItemDataListSO[inventoryData.InventoryItems[i].ItemID];
+                    SpawnNewItem(item, inventorySlots[i], inventoryData.InventoryItems[i].Count);
                 }
             }
+
+            if (totemSlot.InventoryItem != null)
+            {
+                PoolManager.Instance.Factory<InventoryItem>().Push(totemSlot.InventoryItem);
+            }
+
+            if (inventoryData.TotemItem.ItemID != 0)
+            {
+                Logging.Log("인벤토리 로드할 때 아이템 추가함");
+                ItemDataSO item = GetItemDataSO.Instance.ItemDataListSO[inventoryData.TotemItem.ItemID];
+                SpawnNewItem(item, totemSlot, inventoryData.TotemItem.Count);
+            }
+
+            Logging.Log("인벤토리 로드");
         }
 
         private void InventorySave(Empty empty)
         {
-            InventoryData inventoryData = new(GetInventoryItems(), totemSlot.GetComponentInChildren<InventoryItem>());
+            InventoryItem inventoryItem = totemSlot.GetComponentInChildren<InventoryItem>();
+            InventoryData inventoryData;
+            if (inventoryItem == null)
+            {
+                inventoryData = new(GetInventoryItems(), new ItemData(0, 0));
+            }
+            else
+            {
+                inventoryData = new(GetInventoryItems(), new ItemData(inventoryItem.Item.ItemID, inventoryItem.Count));
+            }
             m_InventoryJsonSaveManager.SaveToFile(inventoryData);
         }
 
@@ -199,8 +226,9 @@ namespace YTH.Code.Inventory
             {
                 InventorySlot slot = inventorySlots[i];
                 InventoryItem itemInSlot = slot.InventoryItem;
+                ItemDataSO itemDataSO = GetItemDataSO.Instance.ItemDataListSO[item.ItemID];
 
-                if (itemInSlot != null && itemInSlot.Item == item.Item && itemInSlot.Count < item.Item.MaxStack)
+                if (itemInSlot != null && itemInSlot.Item == itemDataSO && itemInSlot.Count < itemDataSO.MaxStack)
                 {
                     remain = itemInSlot.AddStack(remain);
                 }
@@ -214,8 +242,10 @@ namespace YTH.Code.Inventory
                     return;
                 }
 
-                int add = Mathf.Min(item.Item.MaxStack, remain);
-                SpawnNewItem(item.Item, emptySlot, add);
+                ItemDataSO itemDataSO = GetItemDataSO.Instance.ItemDataListSO[item.ItemID];
+                Logging.Log(itemDataSO);
+                int add = Mathf.Min(itemDataSO.MaxStack, remain);
+                SpawnNewItem(itemDataSO, emptySlot, add);
                 remain -= add;
             }
         }
@@ -252,12 +282,19 @@ namespace YTH.Code.Inventory
             return false;
         }
 
-        private List<InventoryItem> GetInventoryItems()
+        private List<ItemData> GetInventoryItems()
         {
-            List<InventoryItem> inventoryItems = new();
+            List<ItemData> inventoryItems = new();
             foreach (var slot in inventorySlots)
             {
-                inventoryItems.Add(slot.InventoryItem);
+                if(slot.InventoryItem == null)
+                {
+                    inventoryItems.Add(new ItemData(0, 0));
+                }
+                else
+                {                
+                    inventoryItems.Add(new ItemData(slot.InventoryItem.Item.ItemID, slot.InventoryItem.Count));
+                }
             }
             return inventoryItems;
         }
