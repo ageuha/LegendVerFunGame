@@ -11,7 +11,7 @@ namespace Member.KJW.Code.CombatSystem
         public void Throw(WeaponDataSO weaponData, Vector2 dir)
         {
             Throwable th = PoolManager.Instance.Factory<Throwable>().Pop();
-            th.Init(weaponData).Throw(dir);
+            th.Init(weaponData, transform.position).Throw(dir);
         }
     }
 }
