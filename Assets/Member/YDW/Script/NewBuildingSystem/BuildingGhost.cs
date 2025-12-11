@@ -87,6 +87,7 @@ namespace Member.YDW.Script.NewBuildingSystem
         {
             if (obj.OnOff &&  !_eventFlag)
             {
+                buildingGhostFlagEventChannel.Raise(_eventFlag);
                 _eventFlag = true;
                 // gameObject.SetActive(true);
                 // inputReader.OnAttacked += OnBuildingGhostEvent;
@@ -95,6 +96,7 @@ namespace Member.YDW.Script.NewBuildingSystem
             }
             else
             {
+                buildingGhostFlagEventChannel.Raise(_eventFlag);
                 _eventFlag = false;
                 // gameObject.SetActive(false);
                 // inputReader.OnAttacked -= OnBuildingGhostEvent;
@@ -193,7 +195,7 @@ namespace Member.YDW.Script.NewBuildingSystem
         private void OffBuildingGhostEvent() //미리보기 끄기 (esc누를 시.)
         {
             _eventFlag = false;
-            inputReader.OnAttacked -= OnBuildingGhostEvent;
+            // inputReader.OnAttacked -= OnBuildingGhostEvent;
             _spriteRenderer.sprite = null;
             _currentBuildingData = null;
             _size = Vector2Int.zero;
