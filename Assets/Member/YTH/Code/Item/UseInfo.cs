@@ -1,7 +1,6 @@
 using UnityEngine;
-using YTH.Code.Item;
 
-namespace YTH.Code.Struct
+namespace YTH.Code.Item
 {
     public struct UseInfo
     {

@@ -1,6 +1,5 @@
-using YTH.Code.Struct;
 
-namespace YTH.Code.Interface
+namespace YTH.Code.Item
 { 
     public interface IUseable
     {
