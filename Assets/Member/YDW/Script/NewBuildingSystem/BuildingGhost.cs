@@ -159,7 +159,7 @@ namespace Member.YDW.Script.NewBuildingSystem
                     building.Initialize(_currentBuildingData.BuildingSize,compo,_currentBuildingData.InitValue,_currentBuildingData.MaxHealth,_currentBuildingData.BuildTime);
                 }
                 GridManager.Instance.GridMap.SetCellObject(_selectPos, building);
-                HandleBuildingGhost(new  BuildingGhostEvent(null,false));
+                // HandleBuildingGhost(new  BuildingGhostEvent(null,false));
                 _inventoryManager.UseSelectedItem();
             }
             else if (_currentBuildingData.Building is UnitBuilding)
@@ -178,7 +178,7 @@ namespace Member.YDW.Script.NewBuildingSystem
                 }
                 //building.Initialize(_currentBuildingData.BuildingSize); 추후 필요하면 추가.
                 GridManager.Instance.GridMap.SetCellObject(_selectPos, building);
-                HandleBuildingGhost(new  BuildingGhostEvent(null,false));
+                // HandleBuildingGhost(new  BuildingGhostEvent(null,false));
                 _inventoryManager.UseSelectedItem();
             }
             else

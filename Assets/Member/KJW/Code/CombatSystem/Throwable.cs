@@ -19,13 +19,14 @@ namespace Member.KJW.Code.CombatSystem
         private BoxCollider2D _collider;
         public BoxCollider2D Collider => _collider ??= GetComponent<BoxCollider2D>();
 
-        public Throwable Init(WeaponDataSO weaponData)
+        public Throwable Init(WeaponDataSO weaponData, Vector2 pos)
         {
             _damageInfo = weaponData.DamageInfoData.ToStruct(gameObject);
             Renderer.sprite = weaponData.Icon;
             _speed = weaponData.ThrowSpeed;
             Collider.size = weaponData.HitBoxSize;
             _lifeTime = weaponData.ThrowLifeTime;
+            transform.position = pos;
             return this;
         }
 

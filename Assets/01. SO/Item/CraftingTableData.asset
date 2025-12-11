@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97152a8e22e844ba8b8d291f8ff1a037, type: 3}
   m_Name: CraftingTableData
   m_EditorClassIdentifier: 
-  <ItemName>k__BackingField: TestPlaceable
+  <ItemName>k__BackingField: TestCrafting
   <Description>k__BackingField: pppp
   <Icon>k__BackingField: {fileID: 21300000, guid: 50cca6ab1283ac240958cb292d914ea1, type: 3}
-  <ItemID>k__BackingField: 5009
+  <ItemID>k__BackingField: 5034
   <MaxStack>k__BackingField: 16
   <ItemType>k__BackingField: 0
   <ThrowSpeed>k__BackingField: 4
