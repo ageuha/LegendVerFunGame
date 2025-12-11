@@ -2824,6 +2824,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemLists:
   - {fileID: 11400000, guid: 5b08f8aa27218884eac621025fa54f12, type: 2}
+  - {fileID: 11400000, guid: a1a8a1ab43b23f34a967e1297996ec2e, type: 2}
 --- !u!4 &1197661917
 Transform:
   m_ObjectHideFlags: 0
@@ -6482,6 +6483,7 @@ MonoBehaviour:
   buildingGhostChannel: {fileID: 11400000, guid: 6f61a38863c8e214287793b225d3ce60, type: 2}
   buildingGhostFlagEventChannel: {fileID: 11400000, guid: 6a1a27c5d79f26542a4372182399c81c, type: 2}
   craftingInteractEventChannel: {fileID: 11400000, guid: 39669dea86831f64389e8da7cee13ca3, type: 2}
+  breakingFlagEventChannel: {fileID: 0}
   maxHp: 100
 --- !u!114 &5244186387585605204
 MonoBehaviour:
