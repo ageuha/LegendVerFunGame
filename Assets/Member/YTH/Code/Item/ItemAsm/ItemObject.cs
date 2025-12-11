@@ -3,8 +3,10 @@ using UnityEngine;
 using YTH.Code.Interface;
 using YTH.Code.Inventory;
 
-namespace Member.YTH.Code.Item {
-    public class ItemObject : MonoBehaviour, IPickable {
+namespace Member.YTH.Code.Item 
+{
+    public class ItemObject : MonoBehaviour, IPickable 
+    {
         [SerializeField] private ItemObjectTrigger itemObjectTrigger;
         [SerializeField] private InventoryAddEventChannel inventoryAddEventChannel;
         [SerializeField] private SpriteRenderer spriteRenderer;
@@ -17,7 +19,8 @@ namespace Member.YTH.Code.Item {
         private bool m_isLoockOn;
         private Transform m_target;
 
-        private void OnValidate() {
+        private void OnValidate() 
+        {
             if (itemData == null || spriteRenderer == null) return;
 
             spriteRenderer.sprite = itemData.Icon;
@@ -27,17 +30,20 @@ namespace Member.YTH.Code.Item {
             itemObjectTrigger ??= GetComponentInChildren<ItemObjectTrigger>();
         }
 
-        private void Reset() {
+        private void Reset() 
+        {
             rb ??= GetComponentInChildren<Rigidbody2D>();
             spriteRenderer ??= GetComponent<SpriteRenderer>();
             itemObjectTrigger ??= GetComponentInChildren<ItemObjectTrigger>();
         }
 
-        private void Awake() {
+        private void Awake() 
+        {
             itemObjectTrigger.Trigger += OnLockOn;
         }
 
-        private void FixedUpdate() {
+        private void FixedUpdate() 
+        {
             if (m_isLoockOn) {
                 rb.AddForce((m_target.position - transform.position).normalized * (speed * Time.deltaTime),
                     ForceMode2D.Impulse);
@@ -48,12 +54,14 @@ namespace Member.YTH.Code.Item {
             }
         }
 
-        private void OnLockOn(Transform target) {
+        private void OnLockOn(Transform target) 
+        {
             m_isLoockOn = true;
             m_target = target;
         }
 
-        private void OnTriggerEnter2D(Collider2D collision) {
+        private void OnTriggerEnter2D(Collider2D collision) 
+        {
             if (m_isLoockOn) {
                 if (collision.CompareTag(targetTag)) {
                     PickUp();
@@ -62,14 +70,16 @@ namespace Member.YTH.Code.Item {
         }
 
 
-        public void SetItemData(ItemDataSO newData, int amount = 1) {
+        public void SetItemData(ItemDataSO newData, int amount = 1) 
+        {
             this.amount = amount;
             itemData = newData;
             spriteRenderer.sprite = itemData.Icon;
             gameObject.name = $"ItemObject_{itemData.ItemName}";
         }
 
-        public void PickUp() {
+        public void PickUp() 
+        {
             inventoryAddEventChannel.Raise(itemData);
             m_isLoockOn = false;
             Destroy(gameObject);
