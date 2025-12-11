@@ -4,16 +4,17 @@ using Code.EntityScripts;
 using Code.GridSystem.Objects;
 using Member.BJH._01Script.Interact;
 using Member.KJW.Code.CombatSystem;
+using Member.KJW.Code.CombatSystem.DamageSystem;
 using Member.KJW.Code.Data;
 using Member.KJW.Code.Input;
 using Member.YDW.Script;
 using Member.YDW.Script.BuildingSystem;
 using Member.YDW.Script.EventStruct;
 using Member.YDW.Script.NewBuildingSystem;
+using Member.YTH.Code.Item;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using YTH.Code.Inventory;
-using YTH.Code.Item;
 
 namespace Member.KJW.Code.Player
 {

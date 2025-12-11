@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Member.KJW.Code.CombatSystem
+namespace Member.KJW.Code.CombatSystem.DamageSystem
 {
     public struct DamageInfo
     {
