@@ -38,18 +38,6 @@ namespace YTH.Code.Craft
         private void Start()
         {
             m_InventoryJsonSaveManager = new("Inventory.json");
-
-            foreach (var slot in Slots)
-            {
-                slot.Initialize(m_InventoryManager);
-            }
-
-            foreach (var slot in Materials)
-            {
-                slot.Initialize(m_InventoryManager);
-            }
-            
-            resultSlot.Initialize(m_InventoryManager);
         }
 
         private void OnDestroy()
@@ -64,6 +52,18 @@ namespace YTH.Code.Craft
         private void Initialize(InventoryManager inventoryManager)
         {
             this.m_InventoryManager = inventoryManager;
+
+            foreach (var slot in Slots)
+            {
+                slot.Initialize(m_InventoryManager);
+            }
+
+            foreach (var slot in Materials)
+            {
+                slot.Initialize(m_InventoryManager);
+            }
+            
+            resultSlot.Initialize(m_InventoryManager);
         }
 
         public void OpenCrafting()
@@ -133,10 +133,13 @@ namespace YTH.Code.Craft
             {
                 if(m_CraftingSystem.CanMake(r))
                 {
-                    InventoryItem newItem  = PoolManager.Instance.Factory<InventoryItem>().Pop(resultSlot.transform);
-                    newItem.Initialize(m_InventoryManager, r.Result, 1);
-                    newItem.transform.localScale = Vector3.one;
-                    newItem.transform.localPosition = Vector3.zero;
+                    if (resultSlot.InventoryItem == null)
+                    {    
+                        InventoryItem newItem  = PoolManager.Instance.Factory<InventoryItem>().Pop(resultSlot.transform);
+                        newItem.Initialize(m_InventoryManager, r.Result, 1);
+                        newItem.transform.localScale = Vector3.one;
+                        newItem.transform.localPosition = Vector3.zero;
+                    }
                     Logging.Log($"만들 수 있는 레시피: {r.Result.ItemName}");
                     return;
                 }

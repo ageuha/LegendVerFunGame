@@ -1,12 +1,15 @@
 using Member.KJW.Code.Player;
 using UnityEngine;
-using YTH.Code.Interface;
+using YTH.Code.Core.Interface;
 using YTH.Code.Inventory;
 
 namespace YTH.Code.Item
 {
     public class ItemObject : MonoBehaviour, IPickable
     {
+        //Member.KJW.Code.Player
+        //YTH.Code.Core.Interface;
+        //YTH.Code.Inventory
         [SerializeField] private ItemObjectTrigger itemObjectTrigger;
         [SerializeField] private InventoryAddEventChannel inventoryAddEventChannel;
         [SerializeField] private SpriteRenderer spriteRenderer;

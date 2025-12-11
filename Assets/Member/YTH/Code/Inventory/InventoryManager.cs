@@ -41,6 +41,8 @@ namespace YTH.Code.Inventory
 
         private void Start()
         {
+            inventoryManagerEventChannel.Raise(this);
+               
             foreach (var slot in inventorySlots)
             {
                 slot.Initialize(this);
@@ -51,7 +53,6 @@ namespace YTH.Code.Inventory
             MainInventory();
             ChangeSelectedSlot(1);
         
-            inventoryManagerEventChannel.Raise(this);   
 
             m_InventoryJsonSaveManager = new("Inventory.json");
             

@@ -39,6 +39,11 @@ namespace YTH.Code.Inventory
 
         public void Initialize(InventoryManager inventoryManager, ItemDataSO itemDataSO)
         {
+            if (inventoryManager == null)
+            {
+                Logging.LogWarning("인벤토리 매니저 널임");
+            }
+
             this.m_InventoryManager = inventoryManager;
             SetItemData(itemDataSO); 
             m_IsHold = false;
@@ -49,6 +54,11 @@ namespace YTH.Code.Inventory
 
         public void Initialize(InventoryManager inventoryManager, ItemDataSO itemDataSO, int count)
         {
+            if (inventoryManager == null)
+            {
+                Logging.LogWarning("인벤토리 매니저 널임");
+            }
+            
             this.m_InventoryManager = inventoryManager;      
             SetItemData(itemDataSO, count); 
             m_IsHold = false;
@@ -106,6 +116,7 @@ namespace YTH.Code.Inventory
             Count -= count;
             if (Count <= 0)
             {
+                Logging.Log($"{m_InventoryManager}");
                 if (this == m_InventoryManager.HoldItem) //여기 버그?
                 {
                     inventoryItemPickDownEventChannel.Raise(new Empty());

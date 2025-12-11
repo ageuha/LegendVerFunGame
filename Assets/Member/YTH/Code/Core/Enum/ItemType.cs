@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace YTH.Code.Enum
+namespace YTH.Code.Core.Enum
 {    
     public enum ItemType
     {

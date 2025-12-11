@@ -1,9 +1,8 @@
 using Code.Core.GlobalStructs;
 using Code.Core.Pool;
-using Code.Core.Utility;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using YTH.Code.Enum;
+using YTH.Code.Core.Enum;
 using YTH.Code.Interface;
 
 namespace YTH.Code.Inventory

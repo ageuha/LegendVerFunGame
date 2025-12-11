@@ -1,8 +1,6 @@
 using Code.EntityScripts;
-using Member.YDW.Script;
 using Member.YDW.Script.CookingSystem;
 using UnityEngine;
-using YTH.Code.Stat;
 
 namespace YTH.Code.Item
 {

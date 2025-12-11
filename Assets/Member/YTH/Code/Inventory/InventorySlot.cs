@@ -15,7 +15,7 @@ namespace YTH.Code.Inventory
         [SerializeField] private Image image;
         [SerializeField] private Color selectedColor;
         [SerializeField] private Color unSelectedColor;
-        protected InventoryManager m_InventoryManager;
+        [SerializeField] protected InventoryManager m_InventoryManager;
 
         protected virtual void OnTransformChildrenChanged()
         {
