@@ -31,8 +31,6 @@ namespace YTH.Code.Inventory
         [SerializeField] private TooltipChannel tooltipEventChannel;
         [SerializeField] private TooltipContextDataSO tooltipContextData;
         [SerializeField] private bool m_IsHold;
-
-
         private InventoryManager m_InventoryManager;
         private RectTransform m_RectTransform;
 

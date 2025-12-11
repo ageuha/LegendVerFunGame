@@ -4,7 +4,6 @@ using Code.Core.GlobalStructs;
 using Code.Core.Pool;
 using Code.Core.Utility;
 using Code.SaveSystem;
-using JetBrains.Annotations;
 using Member.KJW.Code.EventChannel;
 using Member.YTH.Code.Item;
 using UnityEngine;
@@ -38,6 +37,7 @@ namespace YTH.Code.Craft
             inventoryManagerEventChannel.OnEvent += Initialize;
             craftingTableMateiralChangeEventChannel.OnEvent += Info;
             craftingInteractEventChannel.OnEvent += OpenCraftingTable;
+            craftEventChannel.OnEvent += TryMake;
         }
 
         private void Start()
@@ -49,6 +49,8 @@ namespace YTH.Code.Craft
         {
             inventoryManagerEventChannel.OnEvent -= Initialize;
             craftingTableMateiralChangeEventChannel.OnEvent -= Info;
+            craftingInteractEventChannel.OnEvent -= OpenCraftingTable;
+            craftEventChannel.OnEvent -= TryMake;
         }
 
         
@@ -83,7 +85,7 @@ namespace YTH.Code.Craft
             {
                 if (slot.InventoryItem != null)
                 {    
-                    AddItem(new ItemData(slot.InventoryItem.Item, slot.InventoryItem.Count));
+                    AddItem(new ItemData(slot.InventoryItem.Item.ItemID, slot.InventoryItem.Count));
                     PoolManager.Instance.Factory<InventoryItem>().Push(slot.InventoryItem);
                 }
             }
@@ -102,8 +104,9 @@ namespace YTH.Code.Craft
             {
                 InventorySlot slot = slots[i];
                 InventoryItem itemInSlot = slot.InventoryItem;
+                ItemDataSO itemDataSO = GetItemDataSO.Instance.ItemDataListSO[item.ItemID];
 
-                if (itemInSlot != null && itemInSlot.Item == item.Item && itemInSlot.Count < item.Item.MaxStack)
+                if (itemInSlot != null && itemInSlot.Item == itemDataSO && itemInSlot.Count < itemDataSO.MaxStack)
                 {
                     remain = itemInSlot.AddStack(remain);
                 }
@@ -117,8 +120,10 @@ namespace YTH.Code.Craft
                     return;
                 }
 
-                int add = Mathf.Min(item.Item.MaxStack, remain);
-                SpawnNewItem(item.Item, emptySlot, add);
+                ItemDataSO itemDataSO = GetItemDataSO.Instance.ItemDataListSO[item.ItemID];
+
+                int add = Mathf.Min(itemDataSO.MaxStack, remain);
+                SpawnNewItem(itemDataSO, emptySlot, add);
                 remain -= add;
             }
         }
@@ -129,7 +134,7 @@ namespace YTH.Code.Craft
 
             if(inventoryData == null)
             {
-                Logging.LogWarning("Null임");
+                Logging.LogWarning("인벤토리 로드 실패함");
                 return;
             }
             
@@ -137,19 +142,32 @@ namespace YTH.Code.Craft
             {
                 if (slots[i].InventoryItem != null)
                 {
+                    Logging.Log("인벤토리 로드할 때 아이템 삭제함");
                     PoolManager.Instance.Factory<InventoryItem>().Push(slots[i].InventoryItem);
                 }
 
-                if (inventoryData.InventoryItems[i] != null)
+                if (inventoryData.InventoryItems[i].ItemID != 0)
                 {
-                    SpawnNewItem(inventoryData.InventoryItems[i].Item, slots[i], inventoryData.InventoryItems[i].Count);
+                    Logging.Log("인벤토리 로드할 때 아이템 추가함");
+                    ItemDataSO item = GetItemDataSO.Instance.ItemDataListSO[inventoryData.InventoryItems[i].ItemID];
+                    SpawnNewItem(item, slots[i], inventoryData.InventoryItems[i].Count);
                 }
             }
+            Logging.Log("인벤토리 로드");
         }
 
         private void CraftingInventorySave()
         {
-            InventoryData inventoryData = new(GetInventoryItems(), m_InventoryManager.totemSlot.GetComponentInChildren<InventoryItem>());
+            InventoryItem inventoryItem = m_InventoryManager.totemSlot.GetComponentInChildren<InventoryItem>();
+            InventoryData inventoryData;
+            if (inventoryItem == null)
+            {
+                inventoryData = new(GetInventoryItems(), new ItemData(0, 0));
+            }
+            else
+            {
+                inventoryData = new(GetInventoryItems(), new ItemData(inventoryItem.Item.ItemID, inventoryItem.Count));
+            }
             m_InventoryJsonSaveManager.SaveToFile(inventoryData);
         }
 
@@ -238,13 +256,13 @@ namespace YTH.Code.Craft
             return true;
         }
 
-        public void TryMake()
+        public void TryMake(Empty empty)
         {
             if(CanMake(m_Recipe))
             {
                 for (int i = 0; i < m_Recipe.Materials.Length; i++)
                 {
-                    if(craftingMaterialSlots[i].InventoryItem != null) continue;
+                    if (craftingMaterialSlots[i].InventoryItem == null) continue;
                     craftingMaterialSlots[i].InventoryItem.RemoveStack(m_ItemCount);
                 }
                 Logging.Log("제작을 했습니다.");
@@ -255,17 +273,19 @@ namespace YTH.Code.Craft
             }
         }
 
-        public void Craft(Empty empty)
+        private List<ItemData> GetInventoryItems()
         {
-            TryMake();
-        }   
-
-        private List<InventoryItem> GetInventoryItems()
-        {
-            List<InventoryItem> inventoryItems = new();
+            List<ItemData> inventoryItems = new();
             foreach (var slot in slots)
             {
-                inventoryItems.Add(slot.InventoryItem);
+                if(slot.InventoryItem == null)
+                {
+                    inventoryItems.Add(new ItemData(0, 0));
+                }
+                else
+                {                
+                    inventoryItems.Add(new ItemData(slot.InventoryItem.Item.ItemID, slot.InventoryItem.Count));
+                }
             }
             return inventoryItems;
         }

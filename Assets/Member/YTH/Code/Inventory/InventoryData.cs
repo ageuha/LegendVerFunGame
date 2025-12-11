@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
+using YTH.Code.Item;
 
 namespace YTH.Code.Inventory
 {    
     [Serializable]
     public class InventoryData
     {
-        public List<InventoryItem> InventoryItems;
-        public InventoryItem TotemItem;
+        public List<ItemData> InventoryItems;
+        public ItemData TotemItem;
 
-        public InventoryData(List<InventoryItem> inventoryItems, InventoryItem totemItem)
+        public InventoryData(List<ItemData> inventoryItems, ItemData totemItem)
         {
             this.InventoryItems = inventoryItems;
             this.TotemItem = totemItem;
