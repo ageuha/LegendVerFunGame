@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Member/KJW/Scene/kjw1.unity
+    guid: ba57a64eb118d424a8929fde6cfb0bc8
+  - enabled: 1
     path: Assets/Member/LYD/01Scenes/RealUI.unity
     guid: 0c10a0cd50d8d1a409718e5b3d4d65f2
   m_configObjects:

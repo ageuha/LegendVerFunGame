@@ -5,6 +5,7 @@ using Code.Core.Pool;
 using Code.Core.Utility;
 using Code.SaveSystem;
 using JetBrains.Annotations;
+using Member.KJW.Code.EventChannel;
 using Member.YTH.Code.Item;
 using UnityEngine;
 using YTH.Code.Inventory;
@@ -17,12 +18,14 @@ namespace YTH.Code.Craft
         [SerializeField] private CraftEventChannel craftEventChannel;
         [SerializeField] private CraftingTableMateiralChangeEventChannel craftingTableMateiralChangeEventChannel;
         [SerializeField] private InventoryManagerEventChannel inventoryManagerEventChannel;
-        [SerializeField] private InventoryAddEventChannel inventoryAddEventChannel;
-        [SerializeField] private InventoryChangeEventChannel inventoryChangeEventChannel;
+        [SerializeField] private InventorySaveEventChannel inventorySaveEventChannel;
+        [SerializeField] private CraftingInteractEventChannel craftingInteractEventChannel;
+        [SerializeField] private CraftingCloseEventChannel craftingCloseEventChannel;
         [SerializeField] private List<CraftingMaterialSlot> craftingMaterialSlots = new List<CraftingMaterialSlot>(gridSize);
         [SerializeField] private List<InventorySlot> slots;
         [SerializeField] private CraftingResultSlot resultSlot;
         [SerializeField] private List<RecipeSO> recipeList;
+        [SerializeField] private GameObject craftingTable;
 
         private const int gridSize = 9;
         private InventoryManager m_InventoryManager;
@@ -32,10 +35,9 @@ namespace YTH.Code.Craft
 
         private void Awake()
         {
-            inventoryAddEventChannel.OnEvent += AddItem;
             inventoryManagerEventChannel.OnEvent += Initialize;
             craftingTableMateiralChangeEventChannel.OnEvent += Info;
-            //craftEventChannel.OnEvent += Craft;
+            craftingInteractEventChannel.OnEvent += OpenCraftingTable;
         }
 
         private void Start()
@@ -45,10 +47,8 @@ namespace YTH.Code.Craft
 
         private void OnDestroy()
         {
-            inventoryAddEventChannel.OnEvent -= AddItem;
             inventoryManagerEventChannel.OnEvent -= Initialize;
             craftingTableMateiralChangeEventChannel.OnEvent -= Info;
-            //craftEventChannel.OnEvent -= Craft;
         }
 
         
@@ -69,11 +69,31 @@ namespace YTH.Code.Craft
             resultSlot.Initialize(m_InventoryManager);
         }
 
-        public void OpenCrafting()
+        public void OpenCraftingTable(Empty empty)
         {
-            
+            inventorySaveEventChannel.Raise(new Empty());
+            CraftingInventoryLoad();
+            craftingTable.SetActive(true);
+            m_InventoryManager.Open();
         }
-        
+
+        public void CloseCraftingTable()
+        {
+            foreach (var slot in craftingMaterialSlots)
+            {
+                if (slot.InventoryItem != null)
+                {    
+                    AddItem(new ItemData(slot.InventoryItem.Item, slot.InventoryItem.Count));
+                    PoolManager.Instance.Factory<InventoryItem>().Push(slot.InventoryItem);
+                }
+            }
+
+            CraftingInventorySave();
+            craftingTable.SetActive(false);
+            craftingCloseEventChannel.Raise(new Empty());
+            m_InventoryManager.MainInventoryClose();
+        }
+
         public void AddItem(ItemData item)
         {
             int remain = item.Count;
@@ -101,6 +121,36 @@ namespace YTH.Code.Craft
                 SpawnNewItem(item.Item, emptySlot, add);
                 remain -= add;
             }
+        }
+        
+        private void CraftingInventoryLoad()
+        {
+            InventoryData inventoryData = m_InventoryJsonSaveManager.LoadSaveData();
+
+            if(inventoryData == null)
+            {
+                Logging.LogWarning("Null임");
+                return;
+            }
+            
+            for(int i = 0; i < slots.Count; i++)
+            {
+                if (slots[i].InventoryItem != null)
+                {
+                    PoolManager.Instance.Factory<InventoryItem>().Push(slots[i].InventoryItem);
+                }
+
+                if (inventoryData.InventoryItems[i] != null)
+                {
+                    SpawnNewItem(inventoryData.InventoryItems[i].Item, slots[i], inventoryData.InventoryItems[i].Count);
+                }
+            }
+        }
+
+        private void CraftingInventorySave()
+        {
+            InventoryData inventoryData = new(GetInventoryItems(), m_InventoryManager.totemSlot.GetComponentInChildren<InventoryItem>());
+            m_InventoryJsonSaveManager.SaveToFile(inventoryData);
         }
 
         private void SpawnNewItem(ItemDataSO item, InventorySlot slot, int count = 1)
@@ -209,5 +259,15 @@ namespace YTH.Code.Craft
         {
             TryMake();
         }   
+
+        private List<InventoryItem> GetInventoryItems()
+        {
+            List<InventoryItem> inventoryItems = new();
+            foreach (var slot in slots)
+            {
+                inventoryItems.Add(slot.InventoryItem);
+            }
+            return inventoryItems;
+        }
     }
 }
