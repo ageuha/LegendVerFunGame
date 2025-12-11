@@ -199,6 +199,7 @@ namespace Member.YDW.Script.NewBuildingSystem
             _size = Vector2Int.zero;
             _selectPos = Vector2Int.zero;
             _canBuild = false;
+            buildingGhostFlagEventChannel.Raise(_eventFlag);
            // gameObject.SetActive(false); 테스트 때문에 주석.
         }
 
