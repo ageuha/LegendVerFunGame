@@ -86,10 +86,19 @@ namespace YTH.Code.Inventory
             }
         }
 
-        public void AddStack(int count = 1)
+        public int AddStack(int count = 1)
         {
             Count += count;
+
+            if (Count > Item.MaxStack)
+            {
+                int remain = Count - Item.MaxStack;
+                Count = Item.MaxStack;
+                return remain;
+            }
+            
             UpdateUI();
+            return 0;
         }
 
         public void RemoveStack(int count = 1)
@@ -97,7 +106,8 @@ namespace YTH.Code.Inventory
             Count -= count;
             if (Count <= 0)
             {
-                if (this == m_InventoryManager.HoldItem)
+                Logging.Log($"{m_InventoryManager.HoldItem}");
+                if (this == m_InventoryManager.HoldItem) //여기 버그? 여기 한번 Inventory Slot 말고 Material Slot으로 바꿔서 해보거나 해
                 {
                     inventoryItemPickDownEventChannel.Raise(new Empty());
                 }

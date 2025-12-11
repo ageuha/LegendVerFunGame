@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b05111a695bf4939b354d032470c9344, type: 3}
-  m_Name: YTHPrefabList
+  m_Script: {fileID: 11500000, guid: 2a3b161c5c3a4bc42a1cf1e8da5a4327, type: 3}
+  m_Name: CraftingTableMateiralChangeEventChannel
   m_EditorClassIdentifier: 
-  prefabs:
-  - {fileID: 7769497490189935627, guid: 763ab45b781f6d841ad26e32d8639423, type: 3}
-  - {fileID: 724235180653317779, guid: 209d5b700103ce44891453d41c3b74f8, type: 3}
