@@ -20,7 +20,7 @@ namespace Member.KJW.Code.CombatSystem
         public void Init(WeaponDataSO weapon)
         {
             SpriteRenderer.sprite = weapon.Icon;
-            Collider.size = weapon.HitBoxSize;
+            Collider.size = weapon.WeaponHitBoxSize;
             transform.localPosition = weapon.HitBoxOffset;
             _damageInfo = weapon.DamageInfoData.ToStruct(owner ?? gameObject);
         }

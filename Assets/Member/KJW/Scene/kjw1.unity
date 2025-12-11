@@ -461,7 +461,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 0456eb8b51c327840af7a1e171e34b65, type: 2}
     - target: {fileID: 1090272032970249111, guid: 209d5b700103ce44891453d41c3b74f8, type: 3}
       propertyPath: m_Name
-      value: ItemObject_Test Weapon 1
+      value: ItemObject_Test Wepaon
       objectReference: {fileID: 0}
     - target: {fileID: 1090272032970249111, guid: 209d5b700103ce44891453d41c3b74f8, type: 3}
       propertyPath: m_IsActive
@@ -7032,8 +7032,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 897611323
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0

@@ -40,11 +40,13 @@ namespace Member.KJW.Code.Player
         [SerializeField] private BuildingGhostEventSO buildingGhostChannel;
         [SerializeField] private BuildingGhostFlagEventChannel buildingGhostFlagEventChannel;
         [SerializeField] private CraftingInteractEventChannel craftingInteractEventChannel;
+        [SerializeField] private BreakingFlagEventChannel breakingFlagEventChannel;
 
         
         public bool IsRolling { get; private set; }
         private bool _isInvincible;
         private bool _isBuilding;
+        private bool _isBreaking;
         
         public Vector2 StandDir { get; private set; } = Vector2.right;
         public Vector2 MouseWorldPos => Camera.main!.ScreenToWorldPoint(InputReader.MousePos);
@@ -86,6 +88,7 @@ namespace Member.KJW.Code.Player
             InputReader.OnMoved += UpdateStandDir;
             InputReader.OnThrew += Throw;
             InputReader.OnAttacked += Click;
+            InputReader.OnAttackReleased += StopBreak;
             InputReader.OnPlaced += RClick;
         }
 
@@ -124,6 +127,7 @@ namespace Member.KJW.Code.Player
             InputReader.OnMoved -= UpdateStandDir;
             InputReader.OnThrew -= Throw;
             InputReader.OnAttacked -= Click;
+            InputReader.OnAttackReleased -= StopBreak;
             InputReader.OnPlaced -= RClick;
         }
 
@@ -134,7 +138,11 @@ namespace Member.KJW.Code.Player
         
         private void Click()
         {
-            if (CurItem == null) return;
+            if (CurItem == null)
+            {
+                Break();
+                return;
+            }
             
             if (CurItem is WeaponDataSO weaponData)
             {
@@ -147,31 +155,39 @@ namespace Member.KJW.Code.Player
                 buildingGhostChannel.Raise(new BuildingGhostEvent(placeableItemData.BuildingData, true));
                 return;
             }
-
+            
             Break();
         }
 
         private void Break()
         {
+            if (_isBuilding) return;
+
+            GridObject gridObj = GridManager.Instance.GridMap.GetObjectsAt(Vector2Int.RoundToInt(MouseWorldPos - new Vector2(0.5f, 0.5f)));
+            Logging.Log(gridObj);
             
+            if(!gridObj) return;
+            
+            _isBreaking = true;
+            breakingFlagEventChannel.Raise(_isBreaking);
+        }
+
+        private void StopBreak()
+        {
+            _isBreaking = false;
+            breakingFlagEventChannel.Raise(_isBreaking);
         }
 
         private void RClick()
         {
-            // if (_isBuilding) return;
+            if (_isBuilding) return;
 
-            GridObject gridObj = GridManager.Instance.GridMap.GetObjectsAt(Vector2Int.RoundToInt(MouseWorldPos));
-            Logging.Log(gridObj);
+            GridObject gridObj = GridManager.Instance.GridMap.GetObjectsAt(Vector2Int.RoundToInt(MouseWorldPos - new Vector2(0.5f, 0.5f)));
             
             if(!gridObj) return;
             
             if (gridObj.TryGetComponent(out IInteractable interactable))
                 interactable.Interaction(new InteractionContext(craftingInteractEventChannel));
-        }
-
-        private void Place(PlaceableItemData placeableItemData)
-        {
-            
         }
 
         private void Attack(WeaponDataSO weaponData)
@@ -183,9 +199,9 @@ namespace Member.KJW.Code.Player
 
         private void Throw()
         {
-            if (CurItem == null || CurItem is not WeaponDataSO w) return;
+            if (CurItem == null) return;
             
-            Thrower.Throw(w, MouseWorldPos - (Vector2)transform.position);
+            Thrower.Throw(CurItem, MouseWorldPos - (Vector2)transform.position);
             _inventoryManager.UseSelectedItem();
         }
 

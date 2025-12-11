@@ -1,49 +1,49 @@
 fileFormatVersion: 2
-guid: 585f550132d1729429db2525992d82b5
+guid: 4de7b7933333dd74f895a664816395da
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4393737063595412700
-    second: CaveTileMap_0
+      213: 8898586665953087090
+    second: CaveTileMap 1_0
   - first:
-      213: -6746797122181708536
-    second: CaveTileMap_1
+      213: -3126287544075297705
+    second: CaveTileMap 1_1
   - first:
-      213: 276476963537522087
-    second: CaveTileMap_2
+      213: 6570298914024077096
+    second: CaveTileMap 1_2
   - first:
-      213: 6926419378030006735
-    second: CaveTileMap_3
+      213: -3535214159907069821
+    second: CaveTileMap 1_3
   - first:
-      213: -1307198808450347892
-    second: CaveTileMap_4
+      213: -3800902409632499670
+    second: CaveTileMap 1_4
   - first:
-      213: 545118481773352567
-    second: CaveTileMap_5
+      213: -8407306563505188770
+    second: CaveTileMap 1_5
   - first:
-      213: 1179229246281431760
-    second: CaveTileMap_6
+      213: 8861996182187632614
+    second: CaveTileMap 1_6
   - first:
-      213: 367863797788466996
-    second: CaveTileMap_7
+      213: -1513034326851766711
+    second: CaveTileMap 1_7
   - first:
-      213: 6137578549183809706
-    second: CaveTileMap_8
+      213: -7571730593737992579
+    second: CaveTileMap 1_8
   - first:
-      213: -5515478300792596374
-    second: CaveTileMap_9
+      213: -3771998200316767198
+    second: CaveTileMap 1_9
   - first:
-      213: -3276592455600751882
-    second: CaveTileMap_10
+      213: -6832605945372768018
+    second: CaveTileMap 1_10
   - first:
-      213: -6869684566378882291
-    second: CaveTileMap_11
+      213: -8123544512519961048
+    second: CaveTileMap 1_11
   - first:
-      213: 2099186330782737730
-    second: CaveTileMap_12
+      213: -8424659359348759631
+    second: CaveTileMap 1_12
   - first:
-      213: -4894310897968689441
-    second: CaveTileMap_13
+      213: -3816396843509331870
+    second: CaveTileMap 1_13
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -152,10 +152,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4237def6b6f4603c0800000000000000
-      internalID: -4393737063595412700
+      spriteID: 16a883302efef2843a778961c296d2cd
+      internalID: -1109668148
       vertices: []
       indices: 
       edges: []
@@ -164,7 +164,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: db1aba096976966438a3a5ecc586fe4a
+    spriteID: c78abb982cb209e4a884e1dc2d9ba80d
     internalID: 0
     vertices: []
     indices: 
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      CaveTileMap_0: -4393737063595412700
+      CaveTileMap_0: -1109668148
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
