@@ -9684,6 +9684,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6e2c5db6113a41f48b30fc74a65afb7a, type: 2}
   - {fileID: 11400000, guid: bb307f57cac39d34c8c6ee0802fa5375, type: 2}
   - {fileID: 11400000, guid: a1a8a1ab43b23f34a967e1297996ec2e, type: 2}
+  dynamicPoolItemLists: []
 --- !u!4 &1064959100
 Transform:
   m_ObjectHideFlags: 0

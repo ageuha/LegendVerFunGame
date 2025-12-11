@@ -7,8 +7,10 @@ using UnityEngine;
 namespace Code.Core.Pool {
     public class PoolManager : MonoSingleton<PoolManager> {
         [SerializeField] private List<PoolItemList> itemLists;
-        
+        [SerializeField] private List<DynamicPoolItemList> dynamicPoolItemLists;
+
         private Dictionary<Type, IPoolable> _itemDictionary;
+        private Dictionary<PoolableSO, DynamicPoolFactory> _factoryDictionary;
 
         protected override void Awake() {
             base.Awake();
@@ -30,9 +32,26 @@ namespace Code.Core.Pool {
             }
 
             _itemDictionary = poolables.ToDictionary(poolable => poolable.GetType());
+
+            if (_factoryDictionary != null) return;
+            int totalCount2 = 0;
+            foreach (var list in dynamicPoolItemLists) {
+                totalCount2 += list.PoolList.Count;
+            }
+
+            List<PoolableSO> poolables2 = new List<PoolableSO>(totalCount2);
+
+            foreach (var list in dynamicPoolItemLists) {
+                poolables2.AddRange(list.PoolList);
+            }
+
+            var factoryObj = new GameObject("DynamicFactory");
+            factoryObj.transform.SetParent(transform);
+            _factoryDictionary = poolables2.ToDictionary(poolable => poolable,
+                poolable => new DynamicPoolFactory(poolable.Prefab, 8, factoryObj.transform));
         }
 
-        public PoolFactory<T> Factory<T>() where T : MonoBehaviour, IPoolable {
+        public TypeSafePoolFactory<T> Factory<T>() where T : MonoBehaviour, IPoolable {
             if (_itemDictionary == null) InitializeDictionary();
             if (PoolFactoryContainer<T>.Factory == null) {
                 if (!_itemDictionary!.TryGetValue(typeof(T), out var prefab)) {
@@ -46,6 +65,12 @@ namespace Code.Core.Pool {
             }
 
             return PoolFactoryContainer<T>.Factory;
+        }
+
+        public DynamicPoolFactory DynamicFactory(PoolableSO so) {
+            if (_factoryDictionary.TryGetValue(so, out var factory)) return factory;
+            Logging.LogError("List에 존재하지 않는 PoolableSO입니다.");
+            return null;
         }
     }
 }

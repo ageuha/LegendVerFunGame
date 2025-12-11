@@ -12,7 +12,7 @@
 //
 //
 //         private TTTGrid _grid;
-//         private PoolFactory<TTTCell> _cellPoolFactory;
+//         private TypeSafePoolFactory<TTTCell> _cellPoolFactory;
 //
 //         public bool IsGameActive { get; private set; } = false;
 //         public TTTEnum LastGameWinner { get; private set; } = TTTEnum.None;
@@ -50,7 +50,7 @@
 //         public TTTEnum Turn { get; private set; } = TTTEnum.X;
 //
 //         private void Awake() {
-//             _cellPoolFactory = new PoolFactory<TTTCell>(cellPrefab, 100);
+//             _cellPoolFactory = new TypeSafePoolFactory<TTTCell>(cellPrefab, 100);
 //         }
 //
 //         [ContextMenu("Start Game")]
