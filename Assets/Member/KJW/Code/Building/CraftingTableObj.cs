@@ -1,5 +1,7 @@
 ﻿using Code.Core.GlobalStructs;
+using Code.Core.Pool;
 using Code.Core.Utility;
+using Code.GridSystem.Objects;
 using Member.JJW.Code.Interface;
 using Member.KJW.Code.EventChannel;
 using Member.YDW.Script.BuildingSystem;
@@ -8,7 +10,7 @@ using UnityEngine;
 
 namespace Member.KJW.Code.Building
 {
-    public class CraftingTableObj : MonoBehaviour, IBuilding, IInteractable
+    public class CraftingTableObj : UnitBuilding, IBuilding, IInteractable
     {
         [SerializeField] private CraftingInteractEventChannel craftingInteractEventChannel;
         
