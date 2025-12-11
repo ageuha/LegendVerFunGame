@@ -1,9 +1,13 @@
+<<<<<<< HEAD:Assets/Member/YTH/Code/Item/ItemDataSO.cs
 using System.Text;
 using Member.KJW.Code.Data;
+=======
+using Member.KJW.Code.CombatSystem.DamageSystem;
+>>>>>>> LYD:Assets/Member/YTH/Code/Item/ItemAsm/ItemDataSO.cs
 using UnityEngine;
 using YTH.Code.Core.Enum;
 
-namespace YTH.Code.Item
+namespace Member.YTH.Code.Item
 {
     public class ItemDataSO : ScriptableObject
     {
@@ -20,9 +24,6 @@ namespace YTH.Code.Item
         [field:SerializeField] public float ThrowSpeed { get; private set; }
         [field:SerializeField] public DamageInfoData DamageInfoData { get; private set; }
 
-
-
-        protected StringBuilder _stringBuilder = new StringBuilder();
 
         public virtual string GetDescription() => Description;
         public override string ToString() => ItemName;

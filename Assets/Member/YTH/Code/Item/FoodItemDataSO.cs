@@ -2,7 +2,7 @@ using Code.EntityScripts;
 using Member.YDW.Script.CookingSystem;
 using UnityEngine;
 
-namespace YTH.Code.Item
+namespace Member.YTH.Code.Item
 {
     [CreateAssetMenu(fileName = "FoodItemDataSO", menuName = "SO/Item/Food")]
     public abstract class FoodItemDataSO : ItemDataSO , ICookable
