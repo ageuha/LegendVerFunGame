@@ -28,7 +28,6 @@ namespace Code.EntityScripts.ConcreteClass {
         }
 
         public void GetDamage(DamageInfo damageInfo) {
-            Logging.LogWarning("동물학대");
             Health.ApplyDamage(damageInfo.Damage);
             if (!IsDead) {
                 GraphAgent.SetVariableValue(stateGUID, FriendlyEntityStates.Hurt);
