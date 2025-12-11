@@ -177,6 +177,19 @@ namespace YTH.Code.Inventory
                     SpawnNewItem(item, inventorySlots[i], inventoryData.InventoryItems[i].Count);
                 }
             }
+
+            if (totemSlot.InventoryItem != null)
+            {
+                PoolManager.Instance.Factory<InventoryItem>().Push(totemSlot.InventoryItem);
+            }
+
+            if (inventoryData.TotemItem.ItemID != 0)
+            {
+                Logging.Log("인벤토리 로드할 때 아이템 추가함");
+                ItemDataSO item = GetItemDataSO.Instance.ItemDataListSO[inventoryData.TotemItem.ItemID];
+                SpawnNewItem(item, totemSlot, inventoryData.TotemItem.Count);
+            }
+
             Logging.Log("인벤토리 로드");
         }
 
