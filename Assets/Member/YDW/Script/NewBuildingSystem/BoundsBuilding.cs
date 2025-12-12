@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Code.Core.Pool;
 using Code.Core.Utility;
 using Code.EntityScripts;
@@ -7,11 +8,13 @@ using Code.GridSystem.Objects;
 using Member.YDW.Script.EventStruct;
 using Member.YTH.Code.Item;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Member.YDW.Script.NewBuildingSystem
 {
     public class BoundsBuilding : GridBoundsObject, IPoolable
     {
+        [SerializeField] private PathBakeEventSO _pathBakeEventSO;
         private Vector2Int _size;
         protected override Vector2Int Size => _size;
         private HealthSystem  _healthSystem;
@@ -53,7 +56,27 @@ namespace Member.YDW.Script.NewBuildingSystem
             transform.position = GridManager.Instance.GetCellToWorldPosition(worldPos);
             transform.position += new Vector3(0.5f, 0.5f, 0);
             BuildingManager.Instance.SettingBuilding(new BuildingEvent(WorldPos, this));
+            _pathBakeEventSO.Raise(new RunTimeBakeEvent(RunTimeBakeEventType.Set,WorldPos,Size));
         }
+
+        public override void DestroyFromGrid()
+        {
+            base.DestroyFromGrid();
+            _pathBakeEventSO.Raise(new RunTimeBakeEvent(RunTimeBakeEventType.Delete,WorldPos,Size));
+        }
+        
+        
+        #region TestCode
+
+        private void Update()
+        {
+            if (Keyboard.current.kKey.wasPressedThisFrame)
+            {
+                _healthSystem.ApplyDamage(100);
+            }
+        }
+
+        #endregion
 
         public void SettingChildComponent(Component c)
         {

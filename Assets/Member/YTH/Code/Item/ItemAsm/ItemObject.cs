@@ -78,7 +78,7 @@ namespace Member.YTH.Code.Item {
         }
 
         public void PickUp() {
-            inventoryAddEventChannel.Raise(new ItemData(itemData, amount));
+            inventoryAddEventChannel.Raise(new ItemData(itemData.ItemID, amount));
             m_isLoockOn = false;
             Destroy(gameObject);
         }

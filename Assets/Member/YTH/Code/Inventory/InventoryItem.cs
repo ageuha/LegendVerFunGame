@@ -10,6 +10,7 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace YTH.Code.Inventory
@@ -25,15 +26,11 @@ namespace YTH.Code.Inventory
 
         [SerializeField] private Image itemIcon;
         [SerializeField] private TextMeshProUGUI countText;
-        [SerializeField] private InputReader inputReader;
         [SerializeField] private InventoryItemPickUpEventChannel inventoryItemPickUpEventChannel;
         [SerializeField] private InventoryItemPickDownEventChannel inventoryItemPickDownEventChannel;
-        [SerializeField] private InventoryChangeEventChannel inventoryChangeEventChannel;
         [SerializeField] private TooltipChannel tooltipEventChannel;
         [SerializeField] private TooltipContextDataSO tooltipContextData;
         [SerializeField] private bool m_IsHold;
-
-
         private InventoryManager m_InventoryManager;
         private RectTransform m_RectTransform;
 
@@ -129,7 +126,7 @@ namespace YTH.Code.Inventory
         {
             if (m_IsHold)
             {
-                transform.position = inputReader.MousePos;
+                transform.position = Mouse.current.position.value;
 
             }
         }
@@ -153,6 +150,7 @@ namespace YTH.Code.Inventory
 
         public void OnPointerClick(PointerEventData eventData)
         {
+            if (!m_InventoryManager.UIOpen) return;
             if (m_InventoryManager.HoldItem == null)
             {       
                 if (!m_IsHold)
@@ -193,7 +191,6 @@ namespace YTH.Code.Inventory
                             AddStack(remainCount);
                             HoldItem.RemoveStack(remainCount);
                         }
-                        inventoryChangeEventChannel.Raise(new Empty());
                     }
                     else if(eventData.button == PointerEventData.InputButton.Right)
                     {
@@ -202,7 +199,6 @@ namespace YTH.Code.Inventory
                             AddStack(1);
                             HoldItem.RemoveStack(1);
                         }
-                        inventoryChangeEventChannel.Raise(new Empty());
                     }
                 }
             }

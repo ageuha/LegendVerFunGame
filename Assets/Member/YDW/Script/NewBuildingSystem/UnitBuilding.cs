@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Code.Core.Pool;
 using Code.Core.Utility;
 using Code.EntityScripts;
@@ -12,6 +13,7 @@ namespace Member.YDW.Script.NewBuildingSystem
 {
     public class UnitBuilding : GridUnitObject , IPoolable
     {
+        [SerializeField] private PathBakeEventSO _pathBakeEventSO;
         private HealthSystem  _healthSystem;
         private Component _currentBuildingComponent;
         private CooldownBar _cooldownBar;
@@ -35,7 +37,7 @@ namespace Member.YDW.Script.NewBuildingSystem
         {
             if (Keyboard.current.kKey.wasPressedThisFrame)
             {
-                _healthSystem.ApplyDamage(1);
+                _healthSystem.ApplyDamage(100);
             }
         }
 
@@ -53,7 +55,16 @@ namespace Member.YDW.Script.NewBuildingSystem
             transform.position = GridManager.Instance.GetCellToWorldPosition(worldPos);
             transform.position += new Vector3(0.5f, 0.5f, 0);
             BuildingManager.Instance.SettingBuilding(new BuildingEvent(WorldPos, this));
+            
+            _pathBakeEventSO.Raise(new RunTimeBakeEvent(RunTimeBakeEventType.Set,WorldPos,Size));
         }
+
+        public override void DestroyFromGrid()
+        {
+            base.DestroyFromGrid();
+            _pathBakeEventSO.Raise(new RunTimeBakeEvent(RunTimeBakeEventType.Delete,WorldPos,Size));
+        }
+
         public void SettingChildComponent(Component c)
         {
             _currentBuildingComponent = c;
