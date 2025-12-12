@@ -1,11 +1,8 @@
 ﻿using System;
 using Code.Core.Pool;
-using Code.Core.Utility;
 using Code.EntityScripts;
 using Code.GridSystem.Objects;
-using Member.JJW.Code.Interface;
 using Member.JJW.Code.SO;
-using Member.YDW.Script.NewBuildingSystem;
 using Member.YTH.Code.Item;
 using UnityEngine;
 
@@ -22,6 +19,7 @@ namespace Member.JJW.Code.ResourceObject
         protected override Vector2Int Size { get => _clickBoundSize; }//자신의 범위
         private Vector2Int _clickBoundSize;
         private BoxCollider2D _boxCollider;
+        private SpriteRenderer _spriteRenderer;
         
         private void Awake()
         {
@@ -37,16 +35,32 @@ namespace Member.JJW.Code.ResourceObject
             _clickBoundSize = resourceSO.DetectionRangeSize;
             OnInitialize?.Invoke();
         }
+        // Resource.cs 스크립트 내부
+        private void OnValidate()
+        {
+            // 1. SpriteRenderer 컴포넌트를 가져옵니다. (OnValidate는 에디터에서 실행되므로 안전)
+            if (_spriteRenderer == null)
+            {
+                _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            }
+
+            // 2. ResourceSO가 할당되어 있고, SpriteRenderer가 있을 때만 이미지 업데이트
+            if (_spriteRenderer != null && ResourceSO != null && ResourceSO.ResourceImage != null)
+            {
+                // ⭐ SO에 정의된 이미지로 SpriteRenderer의 스프라이트를 즉시 변경합니다. ⭐
+                _spriteRenderer.sprite = ResourceSO.ResourceImage;
+            }
+            // SO가 null이 되었거나 ResourceImage가 없으면 스프라이트를 지울 수도 있습니다.
+            else if (_spriteRenderer != null && (ResourceSO == null || ResourceSO.ResourceImage == null))
+            {
+                _spriteRenderer.sprite = null;
+            }
+        }
         public void Harvest(ItemDataSO itemInfo)
         {
             CurrentHp.ApplyDamage(itemInfo.DamageInfoData.damage);  
         }
-        private bool CheckMouseInRange()
-        {
-            Vector2Int mousePos = GridManager.Instance.GetWorldToCellPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            return GridManager.Instance.GridMap.HasObjectInBounds(mousePos,Size);
-        }
-
+       
         private void OnDrawGizmosSelected()
         {
             if (!ResourceSO) return;
@@ -64,9 +78,5 @@ namespace Member.JJW.Code.ResourceObject
         {
             CurrentHp.ResetHealth();
         }
-    }
-
-    public interface IHarvestable
-    {
     }
 }
