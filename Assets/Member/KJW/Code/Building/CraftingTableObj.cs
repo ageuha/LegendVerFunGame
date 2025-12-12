@@ -25,6 +25,7 @@ namespace Member.KJW.Code.Building
 
         public void Interaction(InteractionContext context)
         {
+            if (IsWaiting) return;
             context.EventChannel.Raise(new Empty());
             Logging.Log("Crafting Table Interacted");
         }

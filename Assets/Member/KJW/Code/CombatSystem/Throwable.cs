@@ -19,6 +19,7 @@ namespace Member.KJW.Code.CombatSystem
         private float _rotSpeed;
         private BoxCollider2D _collider;
         public BoxCollider2D Collider => _collider ??= GetComponent<BoxCollider2D>();
+        private float _timer;
 
         public Throwable Init(ItemDataSO itemData, Vector2 pos)
         {
@@ -36,7 +37,13 @@ namespace Member.KJW.Code.CombatSystem
         {
             Rb.linearVelocity = dir * _speed;
             Rb.AddTorque(1, ForceMode2D.Impulse);
-            Invoke(nameof(Push), _lifeTime);
+            _timer = Time.time + _lifeTime;
+        }
+
+        private void Update()
+        {
+            if (Time.time > _timer)
+                Push();
         }
 
         private void Push()

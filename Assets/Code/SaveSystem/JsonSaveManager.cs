@@ -6,7 +6,7 @@ namespace Code.SaveSystem {
         protected override string Filepath { get; }
 
         public override void SaveToFile(T data) {
-            string jsonData = JsonUtility.ToJson(data);
+            string jsonData = JsonUtility.ToJson(data, true);
             File.WriteAllText(Filepath, jsonData);
         }
 
