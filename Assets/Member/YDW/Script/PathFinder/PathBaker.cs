@@ -42,35 +42,32 @@ namespace Member.YDW.Script.PathFinder
 
         private void DeletePos(Vector2Int buildingPosition, Vector2Int buildingSize)
         {
-            foreach (var pos in GetBounds(buildingPosition, buildingSize))
+            foreach (Vector3Int points in GetBounds(buildingPosition, buildingSize))
             {
-                if (bakedData.TryGetNode((Vector3Int)pos, out NodeData node))
+                if (bakedData.TryGetNode(points, out NodeData nodeData))
                 {
-                    bakedData.points.Remove(node);
-                    DeleteNeighbors(node);
+                    bakedData.RunTimeRemovePoint(nodeData);
+                    DeleteNeighbors(nodeData);
                 }
             }
         }
 
         private void DeleteNeighbors(NodeData nodeData)
         {
-            for (int i = 0; i < nodeData.neighbors.Count; i++)
+            for (int x = -1; x <= 1; x++)
             {
-                //내 이웃들을 순회하면서 노드를 얻음.
-                if (bakedData.TryGetNode(nodeData.neighbors[i].endCellPositon, out NodeData neighbor))
+                for (int y = -1; y <= 1; y++)
                 {
-                    //얻은 이웃 노드의 이웃을 탐색함.
-                    for (int j = 0; j < neighbor.neighbors.Count; j++)
-                    {
-                        //그 이웃중 만약 현재 노드가 존재한다면, 그 이웃을 삭제함.
-                        if (neighbor.neighbors[j].endCellPositon == nodeData.cellPosition)
-                        {
-                            //Debug.Log($"Delete Node : {neighbor.neighbors[j].endCellPositon}");
-                            neighbor.neighbors.RemoveAt(j);
-                        }
+                    if (x == 0 && y == 0) continue;
+                    
+                    Vector3Int neighborPos = nodeData.cellPosition + new Vector3Int(x, y, 0);
+                    if (bakedData.TryGetNode(neighborPos, out NodeData adjacentNode))
+                    { 
+                        adjacentNode.neighbors.RemoveAll(link => link.endCellPositon == nodeData.cellPosition );
                     }
                 }
             }
+
         }
 
         private void GenerateNeighbors(NodeData nodeData)
@@ -81,15 +78,17 @@ namespace Member.YDW.Script.PathFinder
                 {
                     if(x == 0 && y == 0) continue;
                     Vector3Int nextPoint = new Vector3Int(x, y) + nodeData.cellPosition;
-                    if(GridManager.Instance.GridMap.HasObjectAt((Vector2Int)nextPoint)) continue;
-                    if (bakedData.TryGetNode(nextPoint, out NodeData abjacentNode))
+                    if (bakedData.TryGetNode(nextPoint, out NodeData abjacentNode)) 
                     {
+                        Debug.Log($"Generating neighbors ; {nodeData.worldPosition}, {nodeData.cellPosition}");
                         if (CheckCorner(nextPoint, nodeData.cellPosition))
                         {
-                            nodeData.AddNeighbors(abjacentNode);
+                            nodeData.AddNeighbors(abjacentNode); 
                             abjacentNode.AddNeighbors(nodeData);
                         }
                     }
+                    else
+                        Debug.Log($"Failed to generate neighbors : {nextPoint} ");
                 }
             }
         }
@@ -100,9 +99,9 @@ namespace Member.YDW.Script.PathFinder
             foreach (Vector3Int pos in GetBounds(buildingPosition, buildingSize))
             {
                 Vector3 worldPosition = groundMap.GetCellCenterWorld(pos);
-                NodeData node = new NodeData(worldPosition, pos); 
-                bakedData.points.Add(node);
-                GenerateNeighbors(node);
+                bakedData.RunTimeAddPoint(worldPosition,pos);
+                bakedData.TryGetNode(pos, out NodeData nodeData);
+                GenerateNeighbors(nodeData);
             }
             
         }
@@ -117,8 +116,23 @@ namespace Member.YDW.Script.PathFinder
                 }
             }
             return bounds;
-            
         }
+
+        private bool CheckNeighbors(NodeData targetNode, Vector3Int generateCell)
+        {
+            //True면 해당 셀 데이터가 존재한다. 
+            //False면 존재하지 않는다.
+            for (int i = 0; i < targetNode.neighbors.Count; i++)
+            {
+                if (targetNode.neighbors[i].endCellPositon == generateCell) //이웃에 해당 데이터가 존재함을 의미하므로.
+                {
+                    return true;
+                }
+
+            }
+            return false;
+        }
+        
 
         //런타임 베이크 필요.
         [ContextMenu("Bake map Data")]
@@ -149,7 +163,7 @@ namespace Member.YDW.Script.PathFinder
                     {
                         if(x == 0 && y == 0) continue;
                         Vector3Int nextPoint = new Vector3Int(x, y) + nodeData.cellPosition;
-                        if (bakedData.TryGetNode(nextPoint, out NodeData abjacentNode))
+                        if (bakedData.TryGetNode(nextPoint, out NodeData abjacentNode)) 
                         {
                             if (CheckCorner(nextPoint, nodeData.cellPosition))
                             {
