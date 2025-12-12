@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: ForestStone
   m_EditorClassIdentifier: 
   <MaxHp>k__BackingField: 350
-  correctType: 0
+  CorrectUsedItemType: 0
   ResourceImage: {fileID: 21300000, guid: 45b3ffd982e055e4d875d53fb1659cd5, type: 3}
   ItemPrefab: {fileID: 0}
   ItemDataSO: {fileID: 0}
   SpawnItemAmount: 5
   ItemSpawnRadius: 1
+  DetectionRangeSize: {x: 1, y: 1}

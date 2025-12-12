@@ -45,20 +45,5 @@ namespace Member.YDW.Script.PathFinder
             nodeData = default;
             return false;
         }
-
-        public bool TryGetNode(Vector3 worldPosition, out NodeData nodeData)
-        {
-            foreach (var data in _worldPointDict.Keys)
-            {
-                if (Vector3.Distance(data, worldPosition) < 0.5f)
-                {
-                    nodeData = _worldPointDict[data];
-                    return true;
-                }
-            }
-            nodeData = default;
-            return false;
-
-        }
     }
 }

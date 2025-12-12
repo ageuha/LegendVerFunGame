@@ -14,11 +14,13 @@ namespace Member.YTH.Code.Item
         [field:SerializeField] public int MaxStack { get; private set; }
         [field:SerializeField] public ItemType ItemType { get; private set; }
 
-        [field:Header("Throw Settings")]
-        [field:SerializeField] public float ThrowSpeed { get; private set; }
-        [field:SerializeField] public float ThrowLifeTime { get; private set; }
-        [field:SerializeField] public float ThrowRotationSpeed { get; private set; }
-        [field:SerializeField] public Vector2 HitBoxSize { get; private set; }
+        [field: Header("Throw Settings")]
+        [field: SerializeField]
+        public float ThrowSpeed { get; private set; } = 5;
+
+        [field: SerializeField] public float ThrowLifeTime { get; private set; } = 1;
+        [field: SerializeField] public float ThrowRotationSpeed { get; private set; } = 1;
+        [field: SerializeField] public Vector2 HitBoxSize { get; private set; } = Vector2.one;
         [field:SerializeField] public DamageInfoData DamageInfoData { get; private set; }
 
 
