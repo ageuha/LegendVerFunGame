@@ -16,8 +16,10 @@ namespace Member.KJW.Code.CombatSystem
         public SpriteRenderer Renderer => _renderer ??= GetComponent<SpriteRenderer>();
         private DamageInfo _damageInfo;
         private float _speed;
+        private float _rotSpeed;
         private BoxCollider2D _collider;
         public BoxCollider2D Collider => _collider ??= GetComponent<BoxCollider2D>();
+        private float _timer;
 
         public Throwable Init(ItemDataSO itemData, Vector2 pos)
         {
@@ -26,6 +28,7 @@ namespace Member.KJW.Code.CombatSystem
             _speed = itemData.ThrowSpeed;
             Collider.size = itemData.HitBoxSize;
             _lifeTime = itemData.ThrowLifeTime;
+            _rotSpeed = itemData.ThrowRotationSpeed;
             transform.position = pos;
             return this;
         }
@@ -34,7 +37,13 @@ namespace Member.KJW.Code.CombatSystem
         {
             Rb.linearVelocity = dir * _speed;
             Rb.AddTorque(1, ForceMode2D.Impulse);
-            Invoke(nameof(Push), _lifeTime);
+            _timer = Time.time + _lifeTime;
+        }
+
+        private void Update()
+        {
+            if (Time.time > _timer)
+                Push();
         }
 
         private void Push()

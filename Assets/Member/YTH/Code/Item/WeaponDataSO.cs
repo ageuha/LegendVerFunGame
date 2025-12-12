@@ -12,7 +12,7 @@ namespace Member.YTH.Code.Item
         [field: SerializeField] public AttackData AttackData { get; private set; }
         [field: SerializeField] public List<Stat> Stats { get; private set; }
         [field: SerializeField] public Vector2 HitBoxOffset { get; private set; }
-        [field: SerializeField] public Vector2 WeaponHitBoxSize { get; private set; }
+        [field: SerializeField] public Vector2 WeaponHitBoxSize { get; private set; } = Vector2.one;
 
 
         [Serializable]

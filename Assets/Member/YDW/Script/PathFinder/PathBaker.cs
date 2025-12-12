@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Code.Core.Pool;
+using Member.YDW.Script.NewBuildingSystem;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -18,20 +20,108 @@ namespace Member.YDW.Script.PathFinder
         [SerializeField] private bool isConnerCheck = true;
         [SerializeField] private Color nodeColor, edgeColor;
         
-        [SerializeField] private List<NodeData> BuildingPosList = new(); //빌딩 위치 리스트
+        private Vector2Int buildingPos; //빌딩 위치 리스트
 
-        [ContextMenu("Bake map Data")]
         private void Awake()
         {
             bakeEventSO.OnEvent += BakeMapDataRunning;
         }
 
-        private void BakeMapDataRunning(List<NodeData> obj)
+        private void BakeMapDataRunning(RunTimeBakeEvent obj)
         {
+            switch (obj.runTimeBakeEventType)
+            {
+                case RunTimeBakeEventType.Delete:
+                    ReGeneratePos(obj.buildingPosition,obj.buildingSize);
+                    break;
+                case RunTimeBakeEventType.Set:
+                    DeletePos(obj.buildingPosition,obj.buildingSize);
+                    break;
+            }
+        }
+
+        private void DeletePos(Vector2Int buildingPosition, Vector2Int buildingSize)
+        {
+            foreach (var pos in GetBounds(buildingPosition, buildingSize))
+            {
+                if (bakedData.TryGetNode((Vector3Int)pos, out NodeData node))
+                {
+                    bakedData.points.Remove(node);
+                    DeleteNeighbors(node);
+                }
+            }
+        }
+
+        private void DeleteNeighbors(NodeData nodeData)
+        {
+            for (int i = 0; i < nodeData.neighbors.Count; i++)
+            {
+                //내 이웃들을 순회하면서 노드를 얻음.
+                if (bakedData.TryGetNode(nodeData.neighbors[i].endCellPositon, out NodeData neighbor))
+                {
+                    //얻은 이웃 노드의 이웃을 탐색함.
+                    for (int j = 0; j < neighbor.neighbors.Count; j++)
+                    {
+                        //그 이웃중 만약 현재 노드가 존재한다면, 그 이웃을 삭제함.
+                        if (neighbor.neighbors[j].endCellPositon == nodeData.cellPosition)
+                        {
+                            //Debug.Log($"Delete Node : {neighbor.neighbors[j].endCellPositon}");
+                            neighbor.neighbors.RemoveAt(j);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void GenerateNeighbors(NodeData nodeData)
+        {
+            for (int x = -1; x <= 1; x++)
+            {
+                for (int y = -1; y <= 1; y++)
+                {
+                    if(x == 0 && y == 0) continue;
+                    Vector3Int nextPoint = new Vector3Int(x, y) + nodeData.cellPosition;
+                    if(GridManager.Instance.GridMap.HasObjectAt((Vector2Int)nextPoint)) continue;
+                    if (bakedData.TryGetNode(nextPoint, out NodeData abjacentNode))
+                    {
+                        if (CheckCorner(nextPoint, nodeData.cellPosition))
+                        {
+                            nodeData.AddNeighbors(abjacentNode);
+                            abjacentNode.AddNeighbors(nodeData);
+                        }
+                    }
+                }
+            }
+        }
+            
+
+        private void ReGeneratePos(Vector2Int buildingPosition, Vector2Int buildingSize)
+        {
+            foreach (Vector3Int pos in GetBounds(buildingPosition, buildingSize))
+            {
+                Vector3 worldPosition = groundMap.GetCellCenterWorld(pos);
+                NodeData node = new NodeData(worldPosition, pos); 
+                bakedData.points.Add(node);
+                GenerateNeighbors(node);
+            }
+            
+        }
+
+        private List<Vector2Int> GetBounds(Vector2Int buildingPosition, Vector2Int buildingSize)
+        {
+            List<Vector2Int> bounds = new();
+            for (int i = 0; i < buildingSize.x; i++) {
+                for (int j = 0; j < buildingSize.y; j++) {
+                    Vector2Int cellPos = buildingPosition + new Vector2Int(i, j);
+                    bounds.Add(cellPos);
+                }
+            }
+            return bounds;
             
         }
 
         //런타임 베이크 필요.
+        [ContextMenu("Bake map Data")]
         private void BakeMapData()
         {
             Debug.Assert(groundMap != null && obstacleMap != null, "Target tilemap are null or empty");
@@ -93,7 +183,7 @@ namespace Member.YDW.Script.PathFinder
                     Vector3Int targetCell = new Vector3Int(x, y);
                     if (CanMovePosition(targetCell))
                     {
-                            AddPoint(targetCell);
+                        AddPoint(targetCell);
                     }
                 }
             }

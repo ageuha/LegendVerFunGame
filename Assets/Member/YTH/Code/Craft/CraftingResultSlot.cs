@@ -1,10 +1,7 @@
 using Code.Core.GlobalStructs;
-using Code.Core.Pool;
 using Code.Core.Utility;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using YTH.Code.Interface;
-using YTH.Code.Inventory;
 
 namespace YTH.Code.Inventory
 {
@@ -15,7 +12,7 @@ namespace YTH.Code.Inventory
         {
             Logging.Log("OnTransformChildrenChanged");
             base.OnTransformChildrenChanged();
-            //craftEventChannel.Raise(new Empty());
+            craftEventChannel.Raise(new Empty());
         }
         public override void OnPointerClick(PointerEventData eventData)
         {
