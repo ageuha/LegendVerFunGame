@@ -1,11 +1,8 @@
 ﻿using System;
 using Code.Core.Pool;
-using Code.Core.Utility;
 using Code.EntityScripts;
 using Code.GridSystem.Objects;
-using Member.JJW.Code.Interface;
 using Member.JJW.Code.SO;
-using Member.YDW.Script.NewBuildingSystem;
 using Member.YTH.Code.Item;
 using UnityEngine;
 
@@ -22,6 +19,7 @@ namespace Member.JJW.Code.ResourceObject
         protected override Vector2Int Size { get => _clickBoundSize; }//자신의 범위
         private Vector2Int _clickBoundSize;
         private BoxCollider2D _boxCollider;
+        private SpriteRenderer _spriteRenderer;
         
         private void Awake()
         {
@@ -37,16 +35,27 @@ namespace Member.JJW.Code.ResourceObject
             _clickBoundSize = resourceSO.DetectionRangeSize;
             OnInitialize?.Invoke();
         }
+        private void OnValidate()
+        {
+            if (_spriteRenderer == null)
+            {
+                _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            }
+
+            if (_spriteRenderer != null && ResourceSO != null && ResourceSO.ResourceImage != null)
+            {
+                _spriteRenderer.sprite = ResourceSO.ResourceImage;
+            }
+            else if (_spriteRenderer != null && (ResourceSO == null || ResourceSO.ResourceImage == null))
+            {
+                _spriteRenderer.sprite = null;
+            }
+        }
         public void Harvest(ItemDataSO itemInfo)
         {
             CurrentHp.ApplyDamage(itemInfo.DamageInfoData.damage);  
         }
-        private bool CheckMouseInRange()
-        {
-            Vector2Int mousePos = GridManager.Instance.GetWorldToCellPosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            return GridManager.Instance.GridMap.HasObjectInBounds(mousePos,Size);
-        }
-
+       
         private void OnDrawGizmosSelected()
         {
             if (!ResourceSO) return;
@@ -64,9 +73,5 @@ namespace Member.JJW.Code.ResourceObject
         {
             CurrentHp.ResetHealth();
         }
-    }
-
-    public interface IHarvestable
-    {
     }
 }
