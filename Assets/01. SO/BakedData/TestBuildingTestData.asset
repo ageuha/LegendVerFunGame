@@ -6933,4 +6933,3 @@ MonoBehaviour:
       endPosition: {x: 8.5, y: 3.5, z: 0}
       endCellPositon: {x: 8, y: 3, z: 0}
       cost: 1
-  SetCanBuildPoints: []
