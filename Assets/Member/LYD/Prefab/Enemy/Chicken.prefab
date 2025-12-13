@@ -63,6 +63,7 @@ MonoBehaviour:
   - rid: 1402868234298851671
   - rid: 1402868237551010259
   - rid: 1402868247031710591
+  - rid: 1402868258245706071
   m_OriginalGraph: {fileID: 0}
   m_IsInitialised: 0
   m_IsStarted: 0
@@ -117,6 +118,14 @@ MonoBehaviour:
           m_Value1: 6304728586475838558
         Name: SoundPlayer
         m_Value: {fileID: 7667689773895606748}
+    - rid: 1402868258245706071
+      type: {class: 'BlackboardVariable`1[[Code.EntityScripts.BaseClass.GraphEntity, Code.Entity]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 10396028958422805496
+          m_Value1: 14469241979769500130
+        Name: GraphEntity
+        m_Value: {fileID: 6691714285905978147}
 --- !u!114 &6691714285905978147
 MonoBehaviour:
   m_ObjectHideFlags: 0

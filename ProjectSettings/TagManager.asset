@@ -53,5 +53,8 @@ TagManager:
   - name: GUI
     uniqueID: 6121961
     locked: 0
+  - name: Foremost
+    uniqueID: 3874156637
+    locked: 0
   m_RenderingLayers:
   - Default

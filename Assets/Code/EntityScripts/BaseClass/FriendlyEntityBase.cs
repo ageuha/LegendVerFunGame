@@ -1,13 +1,10 @@
 ﻿using Code.Core.GlobalSO;
-using Code.Core.Utility;
-using Code.EntityScripts.BaseClass;
 using Code.EntityScripts.Enums;
-using Member.KJW.Code.CombatSystem;
 using Member.KJW.Code.CombatSystem.DamageSystem;
 using UnityEngine;
 
-namespace Code.EntityScripts.ConcreteClass {
-    public class Chicken : GraphEntity, IDamageable {
+namespace Code.EntityScripts.BaseClass {
+    public class FriendlyEntityBase : GraphEntity, IDamageable {
         [SerializeField] private BlackBoardGUIDSO stateGUID;
         [SerializeField] private BlackBoardGUIDSO badGuy;
 
@@ -24,7 +21,6 @@ namespace Code.EntityScripts.ConcreteClass {
             IsDead = true;
             DropItem();
             GraphAgent.SetVariableValue(stateGUID, FriendlyEntityStates.Dead);
-            GraphAgent.End();
         }
 
         public void GetDamage(DamageInfo damageInfo) {

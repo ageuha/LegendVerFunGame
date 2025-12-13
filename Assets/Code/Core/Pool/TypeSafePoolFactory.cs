@@ -8,10 +8,12 @@ namespace Code.Core.Pool {
         private readonly T _prefab;
         private readonly Transform _parent;
         private readonly Stack<T> _pool;
+        private readonly bool _worldPositionStays;
 
-        public TypeSafePoolFactory(T prefab, int initialCapacity, Transform parent) {
+        public TypeSafePoolFactory(T prefab, int initialCapacity, Transform parent, bool worldPositionStays = false) {
             _prefab = prefab;
             _parent = parent;
+            _worldPositionStays = worldPositionStays;
             _pool = new Stack<T>(initialCapacity);
         }
 
@@ -31,8 +33,8 @@ namespace Code.Core.Pool {
             return obj;
         }
 
-        private static void SetObjectParent(Transform parent, T obj) {
-            obj.transform.SetParent(parent);
+        private void SetObjectParent(Transform parent, T obj) {
+            obj.transform.SetParent(parent, _worldPositionStays);
             if (!parent)
                 SceneManager.MoveGameObjectToScene(obj.gameObject, SceneManager.GetActiveScene());
         }
@@ -47,7 +49,8 @@ namespace Code.Core.Pool {
             _pool.Push(item);
             item.OnReturnToPool();
             item.gameObject.SetActive(false);
-            item.transform.SetParent(_parent);
+            if (item.transform.parent != _parent)
+                item.transform.SetParent(_parent);
         }
     }
 
