@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace YTH.Code.Item
 {    
-    public class GetItemDataSO : MonoSingleton<GetItemDataSO>
+    public class GetItemData : MonoSingleton<GetItemData>
     {
         [field:SerializeField] public ItemDataListSO ItemDataListSO { get; private set; }
 

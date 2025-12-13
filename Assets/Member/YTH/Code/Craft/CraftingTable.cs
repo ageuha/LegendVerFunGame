@@ -82,6 +82,8 @@ namespace YTH.Code.Craft
 
         public void CloseCraftingTable()
         {
+            if (m_InventoryManager.HoldItem != null) return;
+            
             foreach (var slot in craftingMaterialSlots)
             {
                 if (slot.InventoryItem != null)
@@ -105,7 +107,7 @@ namespace YTH.Code.Craft
             {
                 InventorySlot slot = slots[i];
                 InventoryItem itemInSlot = slot.InventoryItem;
-                ItemDataSO itemDataSO = GetItemDataSO.Instance.ItemDataListSO[item.ItemID];
+                ItemDataSO itemDataSO = GetItemData.Instance.ItemDataListSO[item.ItemID];
 
                 if (itemInSlot != null && itemInSlot.Item == itemDataSO && itemInSlot.Count < itemDataSO.MaxStack)
                 {
@@ -121,7 +123,7 @@ namespace YTH.Code.Craft
                     return;
                 }
 
-                ItemDataSO itemDataSO = GetItemDataSO.Instance.ItemDataListSO[item.ItemID];
+                ItemDataSO itemDataSO = GetItemData.Instance.ItemDataListSO[item.ItemID];
 
                 int add = Mathf.Min(itemDataSO.MaxStack, remain);
                 SpawnNewItem(itemDataSO, emptySlot, add);
@@ -150,7 +152,7 @@ namespace YTH.Code.Craft
                 if (inventoryData.InventoryItems[i].ItemID != 0)
                 {
                     Logging.Log("인벤토리 로드할 때 아이템 추가함");
-                    ItemDataSO item = GetItemDataSO.Instance.ItemDataListSO[inventoryData.InventoryItems[i].ItemID];
+                    ItemDataSO item = GetItemData.Instance.ItemDataListSO[inventoryData.InventoryItems[i].ItemID];
                     SpawnNewItem(item, slots[i], inventoryData.InventoryItems[i].Count);
                 }
             }
