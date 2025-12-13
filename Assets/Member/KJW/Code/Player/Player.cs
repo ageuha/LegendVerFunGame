@@ -139,6 +139,7 @@ namespace Member.KJW.Code.Player
         
         private void Click()
         {
+            if (_inventoryManager.UIOpen) return;
             // Logging.LogError("ERROR");
             if (CurItem == null)
             {
