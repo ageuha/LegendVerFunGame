@@ -675,3 +675,4 @@ MonoBehaviour:
   group: {fileID: 6020628444850311477}
   displayDuration: 4
   fadeDuration: 0.5
+  scaleTweeningInfo: {fileID: 11400000, guid: 1fab635c73fc7c8439754f6a784f600d, type: 2}
