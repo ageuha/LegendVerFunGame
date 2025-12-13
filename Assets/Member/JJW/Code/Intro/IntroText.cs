@@ -6,6 +6,7 @@ namespace Member.JJW.Code.Intro
 {
     public class IntroText : MonoBehaviour
     {
+        [SerializeField] private Ease fadeEase = Ease.Linear;
         private TextMeshPro _textMeshPro;
         private RectTransform _rectTransform;
     
@@ -18,8 +19,8 @@ namespace Member.JJW.Code.Intro
         public void Init(string text, float arriveTime)
         {
             _textMeshPro.text = text;
-            _rectTransform.DOMove(new Vector3(0, 25, 23),arriveTime);
-            _textMeshPro.DOFade(0, arriveTime);
+            _rectTransform.DOMove(new Vector3(0, 25, 23),arriveTime).SetEase(Ease.Linear);
+            _textMeshPro.DOFade(0, arriveTime).SetEase(fadeEase);
         }
     }
 }

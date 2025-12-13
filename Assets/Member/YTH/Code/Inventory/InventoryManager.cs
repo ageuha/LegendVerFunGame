@@ -78,6 +78,11 @@ namespace YTH.Code.Inventory
             inputReader.OnScrolled -= ChangeSelectedSlotScroll;
         }
 
+        private void OnApplicationQuit()
+        {
+            InventorySave(new Empty());
+        }
+
         public void Open()
         {
             UIOpen = true;

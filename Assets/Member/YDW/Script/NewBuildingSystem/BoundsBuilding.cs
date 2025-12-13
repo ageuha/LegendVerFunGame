@@ -6,6 +6,7 @@ using Code.EntityScripts;
 using Code.GridSystem.Map;
 using Code.GridSystem.Objects;
 using Member.YDW.Script.EventStruct;
+using Member.YDW.Script.PathFinder;
 using Member.YTH.Code.Item;
 using UnityEngine;
 using UnityEngine.InputSystem;
