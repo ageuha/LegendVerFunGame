@@ -1,8 +1,7 @@
 ﻿using Code.Events;
-using Member.YDW.Script.NewBuildingSystem;    
 using UnityEngine;
 
-namespace Member.YDW.Script
+namespace Member.YDW.Script.PathFinder
 {
     [CreateAssetMenu(fileName = "PathBakeEventSO", menuName = "PathFinder/PathBakeEvent", order = 0)]
     public class PathBakeEventSO : EventChannel<RunTimeBakeEvent>

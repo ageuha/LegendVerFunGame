@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using Unity.AppUI.UI;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Member.YDW.Script.NewBuildingSystem
+namespace Member.YDW.Script.PathFinder
 {
     public enum RunTimeBakeEventType
     {
