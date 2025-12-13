@@ -20,12 +20,15 @@ namespace Member.JJW.Code.Intro
 
         private IEnumerator CreateText()
         {
-            if (introTexts[_index] == null)
+            if (_index >= introTexts.Length)
+            {
+                Debug.Log("인트로 끝남");
                 yield break;
+            }
             
-            
-            
-            introTextPrefab.Init(introTexts[_index],textArriveTime);
+            yield return new WaitForSeconds(waitTime);
+            IntroText introText = Instantiate(introTextPrefab,transform.position,Quaternion.Euler(40,0,0));
+            introText.Init(introTexts[_index],textArriveTime);
             _index++;
             StartCoroutine(CreateText());
         }
