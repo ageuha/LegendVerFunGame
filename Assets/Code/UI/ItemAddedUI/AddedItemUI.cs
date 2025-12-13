@@ -36,8 +36,8 @@ namespace Code.UI.ItemAddedUI {
         }
 
         public void SetItemAddedInfo(ItemData itemData, TypeSafePoolFactory<AddedItemUI> factory) {
-            icon.sprite = itemData.Item.Icon;
-            header.text = itemData.Item.ItemName;
+            icon.sprite = GetItemData.Instance.ItemDataListSO[itemData.ItemID].Icon;
+            header.text = GetItemData.Instance.ItemDataListSO[itemData.ItemID].ItemName;
             amount.text = $"x{itemData.Count}";
             _factory = factory;
         }
