@@ -29,6 +29,25 @@ namespace Member.YDW.Script.PathFinder
             
         public void ClearPoints() => points.Clear();
 
+        public void RunTimeAddPoint(Vector3 worldPosition,Vector3Int cellPosition)
+        {
+            NodeData nodeData = new  NodeData(worldPosition, cellPosition);
+            
+            points.Add(nodeData);
+            if(!_pointDict.ContainsKey(cellPosition))
+                _pointDict[cellPosition] = nodeData;
+            if(!_worldPointDict.ContainsKey(worldPosition))
+                _worldPointDict[worldPosition] = nodeData;
+           
+        }
+
+        public void RunTimeRemovePoint(NodeData nodeData)
+        {
+            points.Remove(nodeData);
+            _pointDict.Remove(nodeData.cellPosition);
+            _worldPointDict.Remove(nodeData.worldPosition);
+        }
+            
         public void AddPoint(Vector3 worldPosition, Vector3Int cellPosition) => points.Add(new NodeData(worldPosition, cellPosition));
    
         public bool HasNode(Vector3Int cellPosition) => _pointDict != null && _pointDict.ContainsKey(cellPosition);

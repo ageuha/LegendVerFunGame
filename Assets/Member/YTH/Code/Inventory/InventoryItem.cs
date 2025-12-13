@@ -21,6 +21,8 @@ namespace YTH.Code.Inventory
         [field:SerializeField] public int Count { get; private set; }
         public RectTransform RectTransform => m_RectTransform ??= transform as RectTransform;
         public int InitialCapacity => 60;
+
+        public event Action CountChanged;
         
         [HideInInspector] public Transform parentAfterDrag;
 
@@ -91,9 +93,11 @@ namespace YTH.Code.Inventory
             {
                 int remain = Count - Item.MaxStack;
                 Count = Item.MaxStack;
+                CountChanged?.Invoke();
                 return remain;
             }
-            
+
+            CountChanged?.Invoke();
             UpdateUI();
             return 0;
         }
@@ -101,6 +105,7 @@ namespace YTH.Code.Inventory
         public void SetCount(int count = 1)
         {
             Count = count;
+            CountChanged?.Invoke();
             UpdateUI();
         }
 
@@ -113,12 +118,14 @@ namespace YTH.Code.Inventory
                 {
                     inventoryItemPickDownEventChannel.Raise(new Empty());
                 }
+                CountChanged = null;
                 PoolManager.Instance.Factory<InventoryItem>().Push(this);
             }
             else
             {
                 UpdateUI();
             }
+            CountChanged?.Invoke();
         }
 
 

@@ -1,4 +1,4 @@
-{
+﻿{
     "name": "Code.BT",
     "rootNamespace": "",
     "references": [
@@ -7,7 +7,8 @@
         "GUID:73907d139b13f8a43b7e3e95c329d30a",
         "GUID:d6546a3dc77edf2418143fd1a2fa071d",
         "GUID:5c9398feb133d714d87e9693a1565d25",
-        "GUID:7ae687291f79a7f40ab9bd075d326ac6"
+        "GUID:7ae687291f79a7f40ab9bd075d326ac6",
+        "GUID:ebf854af489141a0951d2eaf309727f2"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

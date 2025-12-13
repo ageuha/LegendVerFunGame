@@ -90,6 +90,8 @@ namespace YTH.Code.Inventory
 
         private void MainInventory()
         {
+            if (HoldItem != null) return;
+            
             m_Open = !m_Open;
             mainInventory.SetActive(m_Open);
             
@@ -173,7 +175,7 @@ namespace YTH.Code.Inventory
                 if (inventoryData.InventoryItems[i].ItemID != 0)
                 {
                     Logging.Log("인벤토리 로드할 때 아이템 추가함");
-                    ItemDataSO item = GetItemDataSO.Instance.ItemDataListSO[inventoryData.InventoryItems[i].ItemID];
+                    ItemDataSO item = GetItemData.Instance.ItemDataListSO[inventoryData.InventoryItems[i].ItemID];
                     SpawnNewItem(item, inventorySlots[i], inventoryData.InventoryItems[i].Count);
                 }
             }
@@ -186,7 +188,7 @@ namespace YTH.Code.Inventory
             if (inventoryData.TotemItem.ItemID != 0)
             {
                 Logging.Log("인벤토리 로드할 때 아이템 추가함");
-                ItemDataSO item = GetItemDataSO.Instance.ItemDataListSO[inventoryData.TotemItem.ItemID];
+                ItemDataSO item = GetItemData.Instance.ItemDataListSO[inventoryData.TotemItem.ItemID];
                 SpawnNewItem(item, totemSlot, inventoryData.TotemItem.Count);
             }
 
@@ -226,7 +228,7 @@ namespace YTH.Code.Inventory
             {
                 InventorySlot slot = inventorySlots[i];
                 InventoryItem itemInSlot = slot.InventoryItem;
-                ItemDataSO itemDataSO = GetItemDataSO.Instance.ItemDataListSO[item.ItemID];
+                ItemDataSO itemDataSO = GetItemData.Instance.ItemDataListSO[item.ItemID];
 
                 if (itemInSlot != null && itemInSlot.Item == itemDataSO && itemInSlot.Count < itemDataSO.MaxStack)
                 {
@@ -242,7 +244,7 @@ namespace YTH.Code.Inventory
                     return;
                 }
 
-                ItemDataSO itemDataSO = GetItemDataSO.Instance.ItemDataListSO[item.ItemID];
+                ItemDataSO itemDataSO = GetItemData.Instance.ItemDataListSO[item.ItemID];
                 Logging.Log(itemDataSO);
                 int add = Mathf.Min(itemDataSO.MaxStack, remain);
                 SpawnNewItem(itemDataSO, emptySlot, add);
