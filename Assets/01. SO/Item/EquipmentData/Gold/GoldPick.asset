@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647b4de93b6b4ad4e9f125d5c4c2c88d, type: 3}
+  m_Name: GoldPick
+  m_EditorClassIdentifier: 
+  <ItemName>k__BackingField: GoldPick
+  <Description>k__BackingField: "\uACE1\uAD2D\uC774"
+  <Icon>k__BackingField: {fileID: -1776163363491982672, guid: c20ee6507bc9f0c48b3ca929e45bb8af, type: 3}
+  <ItemID>k__BackingField: 0
+  <MaxStack>k__BackingField: 1
+  <ItemType>k__BackingField: 0
+  <ThrowSpeed>k__BackingField: 5
+  <ThrowLifeTime>k__BackingField: 1
+  <ThrowRotationSpeed>k__BackingField: 1
+  <HitBoxSize>k__BackingField: {x: 1, y: 1}
+  <DamageInfoData>k__BackingField: {fileID: 0}
+  <AttackData>k__BackingField: {fileID: 0}
+  <Stats>k__BackingField: []
+  <HitBoxOffset>k__BackingField: {x: 0, y: 0}
+  <WeaponHitBoxSize>k__BackingField: {x: 1, y: 1}

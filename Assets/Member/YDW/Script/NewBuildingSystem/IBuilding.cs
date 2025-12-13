@@ -7,8 +7,6 @@ namespace Member.YDW.Script.NewBuildingSystem
     {
         public bool IsActive { get; }
         public BuildingDataSO BuildingData { get; }
-        public SpriteRenderer SpriteRenderer { get; }
-
-        public void Initialize(BuildingDataSO buildingData);
+        public void InitializeBuilding(BuildingDataSO buildingData);
     }
 }
