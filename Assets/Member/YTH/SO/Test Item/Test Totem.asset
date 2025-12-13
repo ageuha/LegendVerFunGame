@@ -19,4 +19,7 @@ MonoBehaviour:
   <MaxStack>k__BackingField: 1
   <ItemType>k__BackingField: 1
   <ThrowSpeed>k__BackingField: 5
+  <ThrowLifeTime>k__BackingField: 1
+  <ThrowRotationSpeed>k__BackingField: 0
+  <HitBoxSize>k__BackingField: {x: 1, y: 1}
   <DamageInfoData>k__BackingField: {fileID: 11400000, guid: 23ed14e7c6f3cbe48ad18b9c64b4188a, type: 2}

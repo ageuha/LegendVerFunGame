@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Code.Core.GlobalStructs;
 using Code.Core.Pool;
 using Code.Core.Utility;
@@ -81,6 +82,8 @@ namespace YTH.Code.Craft
 
         public void CloseCraftingTable()
         {
+            if (m_InventoryManager.HoldItem != null) return;
+            
             foreach (var slot in craftingMaterialSlots)
             {
                 if (slot.InventoryItem != null)
@@ -104,7 +107,7 @@ namespace YTH.Code.Craft
             {
                 InventorySlot slot = slots[i];
                 InventoryItem itemInSlot = slot.InventoryItem;
-                ItemDataSO itemDataSO = GetItemDataSO.Instance.ItemDataListSO[item.ItemID];
+                ItemDataSO itemDataSO = GetItemData.Instance.ItemDataListSO[item.ItemID];
 
                 if (itemInSlot != null && itemInSlot.Item == itemDataSO && itemInSlot.Count < itemDataSO.MaxStack)
                 {
@@ -120,7 +123,7 @@ namespace YTH.Code.Craft
                     return;
                 }
 
-                ItemDataSO itemDataSO = GetItemDataSO.Instance.ItemDataListSO[item.ItemID];
+                ItemDataSO itemDataSO = GetItemData.Instance.ItemDataListSO[item.ItemID];
 
                 int add = Mathf.Min(itemDataSO.MaxStack, remain);
                 SpawnNewItem(itemDataSO, emptySlot, add);
@@ -149,7 +152,7 @@ namespace YTH.Code.Craft
                 if (inventoryData.InventoryItems[i].ItemID != 0)
                 {
                     Logging.Log("인벤토리 로드할 때 아이템 추가함");
-                    ItemDataSO item = GetItemDataSO.Instance.ItemDataListSO[inventoryData.InventoryItems[i].ItemID];
+                    ItemDataSO item = GetItemData.Instance.ItemDataListSO[inventoryData.InventoryItems[i].ItemID];
                     SpawnNewItem(item, slots[i], inventoryData.InventoryItems[i].Count);
                 }
             }
@@ -227,13 +230,13 @@ namespace YTH.Code.Craft
         public bool CanMake(RecipeSO currentRecipe)
         {
             if (currentRecipe == null) return false;
-            if (m_ItemCount > 0) m_ItemCount = 0;
+            List<int> list = new();
 
             for (int i = 0; i < gridSize; i++)
             {
                 ItemDataSO requiredMaterial = currentRecipe.Materials[i];
                 InventoryItem item = craftingMaterialSlots[i].InventoryItem;
-                
+                m_ItemCount = 1;
 
                 if (item == null)
                 {
@@ -248,8 +251,13 @@ namespace YTH.Code.Craft
                 else
                 {
                     if (requiredMaterial != item.Item) return false;
-                    m_ItemCount = Math.Max(m_ItemCount, item.Count);
+                    if (item.Count > 0)
+                    {
+                        list.Add(item.Count);
+                    }
                 }
+
+                m_ItemCount = list.Min();
             }
 
             Logging.Log($"{currentRecipe.Result} {m_ItemCount}개");

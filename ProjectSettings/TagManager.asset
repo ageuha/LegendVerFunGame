@@ -38,11 +38,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Environtment
+    uniqueID: 848484699
+    locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: EnvirontMent
-    uniqueID: 848484699
     locked: 0
   - name: Entity
     uniqueID: 3525710655
@@ -52,6 +52,9 @@ TagManager:
     locked: 0
   - name: GUI
     uniqueID: 6121961
+    locked: 0
+  - name: Foremost
+    uniqueID: 3874156637
     locked: 0
   m_RenderingLayers:
   - Default
