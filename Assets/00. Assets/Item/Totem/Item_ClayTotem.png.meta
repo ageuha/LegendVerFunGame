@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 666770c6463f07f4c983a472a59f743e
+guid: e08ae6f4bbb04dd47a22a07d4c1e5d74
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5702237312708427229
-    second: Item_StoneTotem_0
+      213: -7476345878151610856
+    second: Item_ClayTotem_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Item_StoneTotem_0
+      name: Item_ClayTotem_0
       rect:
         serializedVersion: 2
         x: 9
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 322490730659dd0b0800000000000000
-      internalID: -5702237312708427229
+      spriteID: 81e31d2090fae3890800000000000000
+      internalID: -7476345878151610856
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Item_StoneTotem_0: -5702237312708427229
+      Item_ClayTotem_0: -7476345878151610856
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

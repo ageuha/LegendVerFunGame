@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: 666770c6463f07f4c983a472a59f743e
+guid: 2d11b0896a2027e498dc95b0fa47e463
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5702237312708427229
-    second: Item_StoneTotem_0
+      213: -7902781555010652226
+    second: TurtleLeftIdle_0
+  - first:
+      213: 1892981055596044046
+    second: TurtleLeftIdle_1
+  - first:
+      213: 945497510059293671
+    second: TurtleLeftIdle_2
+  - first:
+      213: 9198097551704575934
+    second: TurtleLeftIdle_3
+  - first:
+      213: -3526360416975503747
+    second: TurtleLeftIdle_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +84,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 64
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -100,13 +112,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Item_StoneTotem_0
+      name: TurtleLeftIdle_0
       rect:
         serializedVersion: 2
-        x: 9
+        x: 15
         y: 13
-        width: 46
-        height: 39
+        width: 36
+        height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +127,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 322490730659dd0b0800000000000000
-      internalID: -5702237312708427229
+      spriteID: eb7b414eb0ea35290800000000000000
+      internalID: -7902781555010652226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TurtleLeftIdle_1
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 13
+        width: 36
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0f98599d38354a10800000000000000
+      internalID: 1892981055596044046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TurtleLeftIdle_2
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 13
+        width: 36
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ebb917d9f41f1d00800000000000000
+      internalID: 945497510059293671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TurtleLeftIdle_3
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 13
+        width: 36
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebfcdba5df436af70800000000000000
+      internalID: 9198097551704575934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TurtleLeftIdle_4
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 13
+        width: 36
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7e3d2c52e9df0fc0800000000000000
+      internalID: -3526360416975503747
       vertices: []
       indices: 
       edges: []
@@ -135,7 +235,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Item_StoneTotem_0: -5702237312708427229
+      TurtleLeftIdle_0: -7902781555010652226
+      TurtleLeftIdle_1: 1892981055596044046
+      TurtleLeftIdle_2: 945497510059293671
+      TurtleLeftIdle_3: 9198097551704575934
+      TurtleLeftIdle_4: -3526360416975503747
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
