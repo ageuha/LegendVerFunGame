@@ -1,4 +1,5 @@
-﻿using Member.JJW.Code.TemperSystem;
+﻿using Code.Core.Utility;
+using Member.JJW.Code.TemperSystem;
 using Member.YDW.Script.BuildingSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -33,6 +34,7 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings.House
 
         private void Update()
         {
+           
             if(!IsActive) return;
             #region TestInput
 
@@ -47,7 +49,6 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings.House
                     _playerTemperatureSystem.CurrentTemperature =  temperatureValue;
                 }
             }
-                
 
             #endregion
         }

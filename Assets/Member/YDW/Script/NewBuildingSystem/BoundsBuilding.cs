@@ -20,7 +20,7 @@ namespace Member.YDW.Script.NewBuildingSystem
         [SerializeField] protected CooldownBar cooldownBar;
         protected override Vector2Int Size => _size;
         private Vector2Int _size;
-        private HealthSystem  _healthSystem;
+        protected HealthSystem  _healthSystem;
         protected BuildingTimer timer;
         public int InitialCapacity { get; protected set; }
 
@@ -36,6 +36,7 @@ namespace Member.YDW.Script.NewBuildingSystem
         protected virtual void HandleIDead()
         {
             //아마 추후 이곳에서 아이템 다시 드랍해줄 듯.
+            Logging.Log("Im Dead");
             DropReturnItem();
             GridManager.Instance.DeleteBuildingObject(WorldPos);
            
@@ -67,19 +68,6 @@ namespace Member.YDW.Script.NewBuildingSystem
             base.DestroyFromGrid();
             pathBakeEventSO.Raise(new RunTimeBakeEvent(RunTimeBakeEventType.Delete,WorldPos,Size));
         }
-        
-        
-        #region TestCode
-
-        private void Update()
-        {
-            if (Keyboard.current.kKey.wasPressedThisFrame)
-            {
-                _healthSystem.ApplyDamage(100);
-            }
-        }
-
-        #endregion
         
         public virtual void OnPopFromPool()
         {

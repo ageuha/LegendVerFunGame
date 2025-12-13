@@ -37,6 +37,11 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings.House
 
         private void Update()
         {
+            if (Keyboard.current.tKey.wasPressedThisFrame)
+            {
+                _healthSystem.ApplyDamage(1000);
+                Logging.Log("ApplyDamage");
+            }
             if(!IsActive) return;
             #region TestInput
 
