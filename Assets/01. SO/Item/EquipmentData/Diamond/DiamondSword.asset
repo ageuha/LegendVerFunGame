@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 647b4de93b6b4ad4e9f125d5c4c2c88d, type: 3}
-  m_Name: WoodSword
+  m_Name: DiamondSword
   m_EditorClassIdentifier: 
-  <ItemName>k__BackingField: WoodSword
+  <ItemName>k__BackingField: DiamondSword
   <Description>k__BackingField: "\uAC80"
-  <Icon>k__BackingField: {fileID: 0}
+  <Icon>k__BackingField: {fileID: 4671008988360117891, guid: 50aa2d110c0412d42bdb1e960adf8af8, type: 3}
   <ItemID>k__BackingField: 0
   <MaxStack>k__BackingField: 1
   <ItemType>k__BackingField: 0

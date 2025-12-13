@@ -9,21 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 647b4de93b6b4ad4e9f125d5c4c2c88d, type: 3}
-  m_Name: DiamondSword
+  m_Script: {fileID: 11500000, guid: 97152a8e22e844ba8b8d291f8ff1a037, type: 3}
+  m_Name: PlaceableItemData
   m_EditorClassIdentifier: 
-  <ItemName>k__BackingField: DiamondSword
-  <Description>k__BackingField: "\uACE1\uAD2D\uC774"
-  <Icon>k__BackingField: {fileID: 4671008988360117891, guid: 50aa2d110c0412d42bdb1e960adf8af8, type: 3}
+  <ItemName>k__BackingField: 
+  <Description>k__BackingField: 
+  <Icon>k__BackingField: {fileID: 6254522901472976095, guid: f3b470da653cf874ea6c18f677c28c7f, type: 3}
   <ItemID>k__BackingField: 0
-  <MaxStack>k__BackingField: 1
+  <MaxStack>k__BackingField: 0
   <ItemType>k__BackingField: 0
   <ThrowSpeed>k__BackingField: 5
   <ThrowLifeTime>k__BackingField: 1
   <ThrowRotationSpeed>k__BackingField: 1
   <HitBoxSize>k__BackingField: {x: 1, y: 1}
   <DamageInfoData>k__BackingField: {fileID: 0}
-  <AttackData>k__BackingField: {fileID: 0}
-  <Stats>k__BackingField: []
-  <HitBoxOffset>k__BackingField: {x: 0, y: 0}
-  <WeaponHitBoxSize>k__BackingField: {x: 1, y: 1}
+  <BuildingData>k__BackingField: {fileID: 0}

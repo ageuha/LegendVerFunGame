@@ -9,21 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 647b4de93b6b4ad4e9f125d5c4c2c88d, type: 3}
-  m_Name: WoodPick
+  m_Script: {fileID: 11500000, guid: e1c032bafb028b845988dae6e6675c5f, type: 3}
+  m_Name: Rock
   m_EditorClassIdentifier: 
-  <ItemName>k__BackingField: WoodPick
-  <Description>k__BackingField: "\uACE1\uAD2D\uC774"
-  <Icon>k__BackingField: {fileID: 0}
+  <ItemName>k__BackingField: Rock
+  <Description>k__BackingField: 
+  <Icon>k__BackingField: {fileID: 9142070130237026910, guid: edb5095f1eb7d4d46aeba1df7fdefeda, type: 3}
   <ItemID>k__BackingField: 0
-  <MaxStack>k__BackingField: 1
+  <MaxStack>k__BackingField: 64
   <ItemType>k__BackingField: 0
   <ThrowSpeed>k__BackingField: 5
   <ThrowLifeTime>k__BackingField: 1
   <ThrowRotationSpeed>k__BackingField: 1
   <HitBoxSize>k__BackingField: {x: 1, y: 1}
   <DamageInfoData>k__BackingField: {fileID: 0}
-  <AttackData>k__BackingField: {fileID: 0}
-  <Stats>k__BackingField: []
-  <HitBoxOffset>k__BackingField: {x: 0, y: 0}
-  <WeaponHitBoxSize>k__BackingField: {x: 1, y: 1}
