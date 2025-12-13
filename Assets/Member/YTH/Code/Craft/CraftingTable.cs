@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Code.Core.GlobalStructs;
 using Code.Core.Pool;
 using Code.Core.Utility;
@@ -227,13 +228,13 @@ namespace YTH.Code.Craft
         public bool CanMake(RecipeSO currentRecipe)
         {
             if (currentRecipe == null) return false;
-            if (m_ItemCount > 0) m_ItemCount = 0;
+            List<int> list = new();
 
             for (int i = 0; i < gridSize; i++)
             {
                 ItemDataSO requiredMaterial = currentRecipe.Materials[i];
                 InventoryItem item = craftingMaterialSlots[i].InventoryItem;
-                
+                m_ItemCount = 1;
 
                 if (item == null)
                 {
@@ -248,8 +249,13 @@ namespace YTH.Code.Craft
                 else
                 {
                     if (requiredMaterial != item.Item) return false;
-                    m_ItemCount = Math.Max(m_ItemCount, item.Count);
+                    if (item.Count > 0)
+                    {
+                        list.Add(item.Count);
+                    }
                 }
+
+                m_ItemCount = list.Min();
             }
 
             Logging.Log($"{currentRecipe.Result} {m_ItemCount}개");
