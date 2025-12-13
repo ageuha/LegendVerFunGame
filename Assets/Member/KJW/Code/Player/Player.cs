@@ -138,6 +138,7 @@ namespace Member.KJW.Code.Player
         
         private void Click()
         {
+            // Logging.LogError("ERROR");
             if (CurItem == null)
             {
                 Break();
@@ -180,7 +181,7 @@ namespace Member.KJW.Code.Player
 
         private void RClick()
         {
-            if (_isBuilding) return;
+            if (_isBuilding || _inventoryManager.UIOpen) return;
 
             GridObject gridObj = GridManager.Instance.GridMap.GetObjectsAt(Vector2Int.RoundToInt(MouseWorldPos - new Vector2(0.5f, 0.5f)));
             

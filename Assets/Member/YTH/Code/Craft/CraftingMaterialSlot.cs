@@ -37,11 +37,17 @@ namespace YTH.Code.Craft
                         newItem.Initialize(m_InventoryManager, m_InventoryManager.HoldItem.Item, 1);
                         newItem.transform.localScale = Vector3.one;
                         newItem.transform.localPosition = Vector3.zero;
+                        newItem.CountChanged += OnChangeItemCount;
                         m_InventoryManager.HoldItem.RemoveStack(1);
                         craftingTableMateiralChangeEventChannel.Raise(new Empty());
                     }
                 }
             }
+        }
+
+        private void OnChangeItemCount()
+        {
+            craftingTableMateiralChangeEventChannel.Raise(new Empty());
         }
     }
 }

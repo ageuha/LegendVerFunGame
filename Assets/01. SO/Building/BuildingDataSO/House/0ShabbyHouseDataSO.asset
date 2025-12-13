@@ -16,7 +16,7 @@ MonoBehaviour:
   <MaxHealth>k__BackingField: 10
   <Image>k__BackingField: {fileID: 3317806273994890464, guid: 3f946bd55eb4c9f44a44cb4927e248b9, type: 3}
   <Building>k__BackingField: {fileID: 1104475483019205229, guid: 6fc9aa729ff337c42a45d247d9dfe4fa, type: 3}
-  <BuildingSize>k__BackingField: {x: 1, y: 1}
+  <BuildingSize>k__BackingField: {x: 2, y: 2}
   <InitialCapacity>k__BackingField: 5
   <AnimController>k__BackingField: {fileID: 0}
   <InitValue>k__BackingField:
