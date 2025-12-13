@@ -8,28 +8,20 @@ using UnityEngine;
 
 namespace Member.YDW.Script.NewBuildingSystem.Buildings
 {
-    public class TurretBuilding : BoundsBuilding, IBuilding , IWaitable
+    public class TurretBuilding : UnitBuilding, IBuilding , IWaitable
     {
+        [SerializeField] private float shootingTime;
+        [SerializeField] private Animator animator;
         public bool IsActive { get; private set; }
         public BuildingDataSO BuildingData { get; private set; }
-        public SpriteRenderer SpriteRenderer { get; private set; }
-        public ICooldownBar CooldownBar { get; private set; }
-        public BuildingTimer Timer { get; private set; }
-        private Animator _animator;
         private readonly int _dirXHash = Animator.StringToHash("dirX");
         private readonly int _dirYHash = Animator.StringToHash("dirY"); 
         
         public bool IsWaiting { get; private set; }
-        public void Initialize(BuildingDataSO buildingData)
+        public void InitializeBuilding(BuildingDataSO buildingData)
         {
             BuildingData = buildingData;
-            SpriteRenderer ??= GetComponentInChildren<SpriteRenderer>();
-            SpriteRenderer.sprite = BuildingData.Image;
-            _animator ??= GetComponentInChildren<Animator>();
-            CooldownBar ??= GetComponentInChildren<ICooldownBar>();
-            Timer = new BuildingTimer();
-            if(buildingData.AnimController != null)
-                _animator.runtimeAnimatorController = buildingData.AnimController;
+            Initialize(buildingData,buildingData.MaxHealth);
         }
 
         public void SetWaiting(bool waiting)
@@ -48,15 +40,15 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings
             {
                 Arrow arrow = PoolManager.Instance.Factory<Arrow>().Pop();
                 arrow.Initialize(transform.position,target - transform.position);
-                Timer.StartTimer(this,CooldownBar,0.2f,this,false);
+                timer.StartTimer(this,cooldownBar,shootingTime,this,false);
             }
 
             if (target == Vector3.zero)
-                _animator.speed = 0;
+                animator.speed = 0;
             else
-                _animator.speed = 1;
-            _animator.SetFloat(_dirXHash,target.x - transform.position.x); 
-            _animator.SetFloat(_dirYHash, target.y - transform.position.y);
+                animator.speed = 1;
+            animator.SetFloat(_dirXHash,target.x - transform.position.x); 
+            animator.SetFloat(_dirYHash, target.y - transform.position.y);
         }
 
 
@@ -117,28 +109,6 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings
             }
             position = Vector2.zero;
             return false;
-        }
-
-        private void OnDestroy()
-        {
-            if (BuildingData.InitValue.itemData1 != null)
-            {
-                ItemObject itemObject =  PoolManager.Instance.Factory<ItemObject>().Pop();
-                itemObject.SetItemData(BuildingData.InitValue.itemData1,BuildingData.InitValue.dropCount1);
-            }
-            if(BuildingData.InitValue.itemData2 != null)
-            {
-                ItemObject itemObject =  PoolManager.Instance.Factory<ItemObject>().Pop();
-                itemObject.SetItemData(BuildingData.InitValue.itemData2,BuildingData.InitValue.dropCount2); 
-            }
-            if(BuildingData.InitValue.itemData3 != null)
-            {
-                ItemObject itemObject =  PoolManager.Instance.Factory<ItemObject>().Pop();
-                itemObject.SetItemData(BuildingData.InitValue.itemData3,BuildingData.InitValue.dropCount3); 
-            }
-            if(_animator != null)
-                _animator.runtimeAnimatorController = null;
-            Logging.Log("Oh.. Im Destroyed");
         }
     }
 }
