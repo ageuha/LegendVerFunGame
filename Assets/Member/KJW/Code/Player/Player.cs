@@ -5,6 +5,7 @@ using Code.EntityScripts;
 using Code.GridSystem.Objects;
 using Member.BJH._01Script.Interact;
 using Member.JJW.Code.Interface;
+using Member.JJW.Code.ResourceObject;
 using Member.KJW.Code.CombatSystem;
 using Member.KJW.Code.CombatSystem.DamageSystem;
 using Member.KJW.Code.Data;
@@ -138,6 +139,7 @@ namespace Member.KJW.Code.Player
         
         private void Click()
         {
+            if (_inventoryManager.UIOpen) return;
             // Logging.LogError("ERROR");
             if (CurItem == null)
             {
@@ -168,6 +170,11 @@ namespace Member.KJW.Code.Player
             Logging.Log(gridObj);
             
             if(!gridObj) return;
+
+            if (gridObj is Resource r)
+            {
+                r.Harvest(CurItem);
+            }
             
             _isBreaking = true;
             breakingFlagEventChannel.Raise(_isBreaking);

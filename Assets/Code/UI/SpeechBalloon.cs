@@ -12,17 +12,18 @@ namespace Code.UI {
         private void Awake() {
             transform.localScale = new Vector3(1, 0, 1);
             _tweener = transform.DOScaleY(1, info.Duration).SetEase(info.EasingType).SetAutoKill(false).Pause();
-            gameObject.SetActive(false);
         }
 
         public void EnableFor(Sprite item) {
             gameObject.SetActive(true);
             transform.localScale = new Vector3(1, 0, 1);
             icon.sprite = item;
+            _tweener.Pause();
             _tweener.PlayForward();
         }
 
         public void Disable() {
+            _tweener.Pause();
             _tweener.PlayBackwards();
         }
     }

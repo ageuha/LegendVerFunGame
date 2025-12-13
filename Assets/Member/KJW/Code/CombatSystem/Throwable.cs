@@ -21,9 +21,9 @@ namespace Member.KJW.Code.CombatSystem
         public BoxCollider2D Collider => _collider ??= GetComponent<BoxCollider2D>();
         private float _timer;
 
-        public Throwable Init(ItemDataSO itemData, Vector2 pos)
+        public Throwable Init(ItemDataSO itemData, Vector2 pos, GameObject thrower)
         {
-            _damageInfo = itemData.DamageInfoData.ToStruct(gameObject);
+            _damageInfo = itemData.DamageInfoData.ToStruct(thrower);
             Renderer.sprite = itemData.Icon;
             _speed = itemData.ThrowSpeed;
             Collider.size = itemData.HitBoxSize;
