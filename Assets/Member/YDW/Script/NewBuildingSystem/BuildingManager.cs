@@ -13,13 +13,13 @@ namespace Member.YDW.Script.NewBuildingSystem
     {
         //[SerializeField] private BuildingEventSO buildingEvent;
         
-        private Dictionary<Vector2Int,GridObject>  _buildings = new();
+        private Dictionary<Vector2Int,BuildingDataSO>  _buildings = new();
         
-        protected override void Awake()
-        {
+        /*protected override void Awake()
+    
             base.Awake();
             //buildingEvent.OnEvent += CreateBuilding;
-        }
+        }*/
 
         /*private void HandleBuildBuildingEvent(BuildingEvent obj)
         {
@@ -37,22 +37,13 @@ namespace Member.YDW.Script.NewBuildingSystem
         }*/
         public void DestroyBuilding(BuildingEvent obj) //삭제하려는 오브젝트를 받아서 삭제시킴.
         {
-            //GridManager.Instance.DeleteBuildingObject(obj.buildCellPosition);
-            if (_buildings[obj.buildCellPosition] is BoundsBuilding building)
-            {
-                PoolManager.Instance.Factory<BoundsBuilding>().Push(building);
-            }
-            else if (_buildings[obj.buildCellPosition] is UnitBuilding buildingU)
-            {
-                Logging.Log("PushBUildings");
-                PoolManager.Instance.Factory<UnitBuilding>().Push(buildingU);
-            }
-            //_buildingData.Remove(obj.buildCellPosition);
+            PoolManager.Instance.DynamicFactory(_buildings[obj.buildCellPosition].PoolableSO).Push(obj.gridObject);
+            _buildings.Remove(obj.buildCellPosition);
         }
 
-        public void SettingBuilding(BuildingEvent obj)
+        public void SettingBuilding(BuildingDataSO buildingDataSO, Vector2Int selectionPos)
         {
-            _buildings[obj.buildCellPosition] = obj.gridObject;
+            _buildings[selectionPos] = buildingDataSO;
         }
         
         

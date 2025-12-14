@@ -28,13 +28,13 @@ namespace Member.YDW.Script.NewBuildingSystem
             parent.transform.localScale = new Vector3(size.x, size.y, 1f);
         }
 
-        public void SetFillAmount(float normalizedTime)
+        public void SetFillAmount(float normalizedTime, bool active)
         {
             if (normalizedTime < 0.01f)
             {
                 parent.gameObject.SetActive(false);
             }
-            else if (!parent.gameObject.activeSelf)
+            else if (!parent.gameObject.activeSelf && active)
             {
                 parent.gameObject.SetActive(true);
             }

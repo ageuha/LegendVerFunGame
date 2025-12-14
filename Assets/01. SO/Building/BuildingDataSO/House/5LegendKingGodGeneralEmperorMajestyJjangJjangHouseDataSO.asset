@@ -12,17 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 668546e97cea464eaabfa7ac84609bfd, type: 3}
   m_Name: 5LegendKingGodGeneralEmperorMajestyJjangJjangHouseDataSO
   m_EditorClassIdentifier: 
-  <BuildTime>k__BackingField: 15
-  <MaxHealth>k__BackingField: 10
-  <Image>k__BackingField: {fileID: 3317806273994890464, guid: 3f946bd55eb4c9f44a44cb4927e248b9, type: 3}
+  <BuildTime>k__BackingField: 400
+  <MaxHealth>k__BackingField: 300
+  <Image>k__BackingField: {fileID: 3719555198883805809, guid: 56c49ed538145764ca315ff116b8468a, type: 3}
   <Building>k__BackingField: {fileID: 7183455517970611332, guid: 70316a0cca08bb04ba4cd00a6bf28073, type: 3}
-  <BuildingSize>k__BackingField: {x: 3, y: 3}
+  <BuildingSize>k__BackingField: {x: 8, y: 3}
   <InitialCapacity>k__BackingField: 5
-  <AnimController>k__BackingField: {fileID: 0}
-  <InitValue>k__BackingField:
-    valueInt: 0
-    valueInt2: 0
-    valueString: 
-    valueFloat: 0
-    valueFloat2: 37
-    valueFloat3: 0
+  <PoolableSO>k__BackingField: {fileID: 11400000, guid: efe27b1602545504bba04af22b01d989, type: 2}
+  <CorrectionPosition>k__BackingField: {x: 4, y: 3.5}

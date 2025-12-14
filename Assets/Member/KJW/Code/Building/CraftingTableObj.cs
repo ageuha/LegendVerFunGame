@@ -16,7 +16,7 @@ namespace Member.KJW.Code.Building
         public BuildingDataSO BuildingData { get; private set; }
         public SpriteRenderer SpriteRenderer { get; private set; }
         
-        public void Initialize(BuildingDataSO buildingData)
+        public void InitializeBuilding(BuildingDataSO buildingData)
         {
             BuildingData = buildingData;
             SpriteRenderer = GetComponentInChildren<SpriteRenderer>();

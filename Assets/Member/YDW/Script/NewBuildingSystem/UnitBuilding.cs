@@ -5,31 +5,36 @@ using Code.Core.Utility;
 using Code.EntityScripts;
 using Code.GridSystem.Map;
 using Code.GridSystem.Objects;
+using Member.YDW.Script.BuildingSystem;
 using Member.YDW.Script.EventStruct;
+using Member.YDW.Script.PathFinder;
+using Member.YTH.Code.Item;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Member.YDW.Script.NewBuildingSystem
 {
-    public class UnitBuilding : GridUnitObject , IPoolable
+    public abstract class UnitBuilding : GridUnitObject , IPoolable
     {
-        [SerializeField] private PathBakeEventSO _pathBakeEventSO;
+        [SerializeField] private ReturnItemStruct[] items;
+        [SerializeField] private PathBakeEventSO pathBakeEventSO; 
+        [SerializeField] protected CooldownBar cooldownBar;
         private HealthSystem  _healthSystem;
         private Component _currentBuildingComponent;
-        private CooldownBar _cooldownBar;
-        private BuildingTimer _timer;
+        protected BuildingTimer timer;
+        private BuildingDataSO _dataSO;
         public int InitialCapacity { get; }
         
-        public void Initialize(Component currentBuildingCompo,BuildingInitValue initValue ,float maxHealth, float timerTime)
+        public void Initialize(BuildingDataSO dataSO,float maxHealth)
         {
+            _dataSO = dataSO;
             _healthSystem.Initialize(maxHealth);
             _healthSystem.ResetHealth();
-            _currentBuildingComponent = currentBuildingCompo;
-            _timer ??= new BuildingTimer();
-            IWaitable obj = GetComponent<IWaitable>();
-            _cooldownBar ??= GetComponentInChildren<CooldownBar>();
-            _timer.StartTimer(obj,_cooldownBar,timerTime,this,true);
+            
+            timer ??= new BuildingTimer();
         }
+        
+        
 
         #region TestCode
 
@@ -45,24 +50,33 @@ namespace Member.YDW.Script.NewBuildingSystem
         private void HandleIDead()
         {
             //아마 추후 이곳에서 아이템 다시 드랍해줄 듯.
+            DropReturnItem();
             GridManager.Instance.DeleteBuildingObject(WorldPos);
             BuildingManager.Instance.DestroyBuilding(new BuildingEvent(WorldPos,this)); //자신의 셀 위치와 월드 위치, 그리고 객체를 넘김.
             _healthSystem.OnDead -= HandleIDead;
+        }
+        
+        private void DropReturnItem()
+        {
+            for (int i = 0; i < items.Length; i++)
+            { 
+                ReturnItemStruct returnItem = items[i];
+                ItemObject item = PoolManager.Instance.Factory<ItemObject>().Pop();
+                item.SetItemData(returnItem.item,returnItem.amount);
+            }
         }
         protected override void OnSetCellObject(Vector2Int worldPos, GridMap map)
         {
             base.OnSetCellObject(worldPos, map);
             transform.position = GridManager.Instance.GetCellToWorldPosition(worldPos);
             transform.position += new Vector3(0.5f, 0.5f, 0);
-            BuildingManager.Instance.SettingBuilding(new BuildingEvent(WorldPos, this));
-            
-            _pathBakeEventSO.Raise(new RunTimeBakeEvent(RunTimeBakeEventType.Set,WorldPos,Size));
+            pathBakeEventSO.Raise(new RunTimeBakeEvent(RunTimeBakeEventType.Set,WorldPos,Size));
         }
 
         public override void DestroyFromGrid()
         {
             base.DestroyFromGrid();
-            _pathBakeEventSO.Raise(new RunTimeBakeEvent(RunTimeBakeEventType.Delete,WorldPos,Size));
+            pathBakeEventSO.Raise(new RunTimeBakeEvent(RunTimeBakeEventType.Delete,WorldPos,Size));
         }
 
         public void SettingChildComponent(Component c)

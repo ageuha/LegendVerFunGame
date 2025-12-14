@@ -23,7 +23,11 @@ namespace Member.KJW.Code.CombatSystem
 
         public Throwable Init(ItemDataSO itemData, Vector2 pos, GameObject thrower)
         {
-            _damageInfo = itemData.DamageInfoData.ToStruct(thrower);
+            if (itemData.DamageInfoData == null)
+                _damageInfo = new DamageInfo(){Damage = 1,Knockback = 1,Source = thrower};
+            else
+                _damageInfo = itemData.DamageInfoData.ToStruct(thrower);
+            
             Renderer.sprite = itemData.Icon;
             _speed = itemData.ThrowSpeed;
             Collider.size = itemData.HitBoxSize;
@@ -51,7 +55,7 @@ namespace Member.KJW.Code.CombatSystem
             PoolManager.Instance.Factory<Throwable>().Push(this);
         }
 
-        private void OnTriggerExit2D(Collider2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.TryGetComponent(out IDamageable id))
             {
