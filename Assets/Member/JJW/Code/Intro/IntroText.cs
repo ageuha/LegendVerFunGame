@@ -21,12 +21,14 @@ namespace Member.JJW.Code.Intro
 
         private void Start()
         {
-            _textMeshPro.DOFade(0, arriveTime).SetEase(fadeEase);
             _rectTransform.DOMove(arrivePoint,arriveTime).SetEase(Ease.Linear)
                 .OnComplete(() =>
                 {
-                    Debug.Log("인트로 끝");
-                    //메인 게임씬으로 넘어가기
+                    _textMeshPro.DOFade(0, 2).SetEase(fadeEase).OnComplete(() =>
+                    {
+                        Debug.Log("인트로 끝");
+                        //씬바꾸기
+                    });
                 });
         }
     }
