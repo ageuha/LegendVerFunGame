@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 5f3d421f2acf2a145aaf8c32c7a201f5
+guid: b9ede3e9d18e644488899c54d1155b84
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6044732053630127284
-    second: Food_Roasted Wild Boar Tomahawk_0
+      213: 388207874450847151
+    second: Bull_right_Idle_0
+  - first:
+      213: -3650653367034614577
+    second: Bull_right_Idle_1
+  - first:
+      213: -5325464619744654884
+    second: Bull_right_Idle_2
+  - first:
+      213: -881862964551400316
+    second: Bull_right_Idle_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +81,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 32
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Food_Roasted Wild Boar Tomahawk_0
+      name: Bull_right_Idle_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 4
-        width: 21
-        height: 22
+        x: 14
+        y: 21
+        width: 41
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c4375fc393ccc1ca0800000000000000
-      internalID: -6044732053630127284
+      spriteID: fa5f6a74101336500800000000000000
+      internalID: 388207874450847151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bull_right_Idle_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 21
+        width: 39
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcc61dbca16465dc0800000000000000
+      internalID: -3650653367034614577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bull_right_Idle_2
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 21
+        width: 41
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd98534d4262816b0800000000000000
+      internalID: -5325464619744654884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bull_right_Idle_3
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 21
+        width: 42
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48447595e4ef2c3f0800000000000000
+      internalID: -881862964551400316
       vertices: []
       indices: 
       edges: []
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Food_Roasted Wild Boar Tomahawk_0: -6044732053630127284
+      Bull_right_Idle_0: 388207874450847151
+      Bull_right_Idle_1: -3650653367034614577
+      Bull_right_Idle_2: -5325464619744654884
+      Bull_right_Idle_3: -881862964551400316
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
