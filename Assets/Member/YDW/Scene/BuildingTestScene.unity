@@ -3211,7 +3211,7 @@ MonoBehaviour:
   buildingEventSO: {fileID: 11400000, guid: fb892e74a82e7b541b8b69989e423a4d, type: 2}
   inventoryChannel: {fileID: 11400000, guid: fb6f9fa11354ee140bf4d4a28a3935cc, type: 2}
   buildingGhostFlagEventChannel: {fileID: 11400000, guid: 6a1a27c5d79f26542a4372182399c81c, type: 2}
-  buildingData: {fileID: 11400000, guid: ce2c6c2afd82ff848b4ecbfe491588a4, type: 2}
+  buildingData: {fileID: 11400000, guid: 86a28ffc9828d004fa2cb69fafb82f4e, type: 2}
 --- !u!1 &621298498
 GameObject:
   m_ObjectHideFlags: 0

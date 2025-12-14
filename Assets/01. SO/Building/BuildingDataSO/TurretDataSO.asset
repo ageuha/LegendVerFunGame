@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: TurretDataSO
   m_EditorClassIdentifier: 
   <BuildTime>k__BackingField: 5
-  <MaxHealth>k__BackingField: 10
+  <MaxHealth>k__BackingField: 50
   <Image>k__BackingField: {fileID: -447292424, guid: 4db19fc6eccec7d4d926ade1c12dfbfe, type: 3}
   <Building>k__BackingField: {fileID: 8152941393873946542, guid: 818fbfb5e8b3b434da60150e99f71c63, type: 3}
   <BuildingSize>k__BackingField: {x: 1, y: 1}
   <InitialCapacity>k__BackingField: 5
-  <AnimController>k__BackingField: {fileID: 9100000, guid: 4507623a1a64b0d4b8eed03be7391593, type: 2}
+  <PoolableSO>k__BackingField: {fileID: 11400000, guid: e232a197a9fcbb046abcf08cfa396dbc, type: 2}
+  <CorrectionPosition>k__BackingField: {x: 0.5, y: 0.5}
