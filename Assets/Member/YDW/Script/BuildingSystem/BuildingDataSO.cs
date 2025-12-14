@@ -19,5 +19,6 @@ namespace Member.YDW.Script.BuildingSystem
         [field: SerializeField] public Vector2Int BuildingSize { get; private set; }
         [field: SerializeField] public int InitialCapacity { get; private set; }
         [field: SerializeField] public PoolableSO PoolableSO { get; private set; }
+        [field: SerializeField] public Vector2 CorrectionPosition { get; private set; }
     }
 }

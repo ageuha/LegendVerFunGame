@@ -59,7 +59,7 @@ namespace Member.YDW.Script.NewBuildingSystem
             base.OnSetCellObject(worldPos, map);
             Logging.Log($"건물 세팅됨. 위치 : {worldPos}");
             transform.position = GridManager.Instance.GetCellToWorldPosition(worldPos);
-            transform.position += new Vector3(0.5f, 0.5f, 0);
+            transform.position += new Vector3(0.5f,0, 0);
             pathBakeEventSO.Raise(new RunTimeBakeEvent(RunTimeBakeEventType.Set,WorldPos,Size));
         }
 

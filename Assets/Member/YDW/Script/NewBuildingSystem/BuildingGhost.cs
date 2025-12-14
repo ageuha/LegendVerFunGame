@@ -134,7 +134,7 @@ namespace Member.YDW.Script.NewBuildingSystem
 
             _worldPos = _selectPos;
             transform.position = GridManager.Instance.GetCellToWorldPosition(_selectPos);
-            transform.position += new Vector3(0.5f, 0.5f, 0);
+            transform.position += new Vector3(_currentBuildingData.CorrectionPosition.x,_currentBuildingData.CorrectionPosition.y, 0);
         }
 
         private void CreateBuilding() //추후 버튼이나 특정 키를 누를 시, 실행되도록.
