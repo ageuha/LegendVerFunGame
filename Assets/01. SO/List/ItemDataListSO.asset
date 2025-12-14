@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ItemDataList>k__BackingField:
   - {fileID: 11400000, guid: 53700f27cf0c2be47a78b59af0e0ce0a, type: 2}
-  - {fileID: 11400000, guid: ab7decbc0add4fe41880f8c396de8ce5, type: 2}
   - {fileID: 11400000, guid: 0e08a81f93b9b424eb4aebd20e294c21, type: 2}
   - {fileID: 11400000, guid: 58516afa2b4eddb409cdb6d2c1df16bd, type: 2}
   - {fileID: 11400000, guid: e2500f5f5bca8924f8a175b940129c77, type: 2}
