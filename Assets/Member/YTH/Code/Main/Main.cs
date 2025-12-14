@@ -7,7 +7,8 @@ namespace YTH.Code.Main
     {
         public void Start()
         {
-            //SceneManager.Instance.Lo
+            SceneManager.Instance.LoadScene(SceneID.GameScene);
         }
     }
 }
+    
