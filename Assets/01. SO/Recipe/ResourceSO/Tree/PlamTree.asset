@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: PlamTree
   m_EditorClassIdentifier: 
   <MaxHp>k__BackingField: 150
-  CorrectUsedItemType: 2
   ResourceImage: {fileID: 21300000, guid: db061d5890fdec4439b0e81390451f77, type: 3}
   ItemPrefab: {fileID: 1090272032970249111, guid: 209d5b700103ce44891453d41c3b74f8, type: 3}
-  ItemDataSO: {fileID: 11400000, guid: ab7decbc0add4fe41880f8c396de8ce5, type: 2}
+  ItemDataSO: {fileID: 11400000, guid: 8f7e9aa71023a6743a451a9921d65291, type: 2}
   SpawnItemAmount: 7
   ItemSpawnRadius: 1
   DetectionRangeSize: {x: 2, y: 3}
