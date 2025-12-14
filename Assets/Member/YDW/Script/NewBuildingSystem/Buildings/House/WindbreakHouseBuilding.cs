@@ -9,25 +9,27 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings.House
 {
     public class WindbreakHouseBuilding : BoundsBuilding, IBuilding, IWaitable
     {
-        private float _detectRange;
-        private float _temperatureValue;
+        [Header("SettingValues")]
+        [SerializeField] private  float detectRange;
+        [SerializeField] private float temperatureValue;
+        [SerializeField] private LayerMask playerMask;
+        
+
+        //드롭 아이템 구조체 넣어줄 예정.
         public bool IsActive { get; private set; }
         public bool IsWaiting { get; private set; }
         
-        public BuildingDataSO BuildingData { get; private set; }
-        public SpriteRenderer SpriteRenderer { get; private set; }
 
-        private LayerMask _playerMask;
-        
+        public BuildingDataSO BuildingData { get; private set; }
+
         private TemperatureSystem _playerTemperatureSystem;
 
-        public void Initialize(BuildingDataSO buildingData)
-        {
+        public void InitializeBuilding(BuildingDataSO buildingData)
+        { 
             BuildingData = buildingData;
-            SpriteRenderer ??= GetComponentInChildren<SpriteRenderer>();
-            SpriteRenderer.sprite = BuildingData.Image;
-            _detectRange = buildingData.InitValue.valueFloat;
-            _playerMask = 1 << LayerMask.NameToLayer("Player");
+            Initialize(buildingData.BuildingSize,buildingData.MaxHealth);
+            timer.StartTimer(this,cooldownBar,buildingData.BuildTime,this,true);
+            
         }
 
 
@@ -42,9 +44,9 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings.House
                 OutPlayer();
             if (_playerTemperatureSystem != null)
             {
-                if (_playerTemperatureSystem.CurrentTemperature < _temperatureValue)
+                if (_playerTemperatureSystem.CurrentTemperature < temperatureValue)
                 {
-                    _playerTemperatureSystem.CurrentTemperature =  _temperatureValue;
+                    _playerTemperatureSystem.CurrentTemperature =  temperatureValue;
                 }
             }
                 
@@ -60,7 +62,7 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings.House
 
         private void InPlayer()
         {
-            Collider2D player = Physics2D.OverlapCircle(transform.position,_detectRange, _playerMask);
+            Collider2D player = Physics2D.OverlapCircle(transform.position,detectRange, playerMask);
             if (player != null && player.TryGetComponent(out TemperatureSystem system) && _playerTemperatureSystem == null)
             {
                 //필요한거 처리.
@@ -75,25 +77,6 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings.House
                 IsActive = true;
             }
             IsWaiting = waiting;
-        }
-        private void OnDestroy()
-        {
-            if (BuildingData.InitValue.itemData1 != null)
-            {
-                ItemObject itemObject =  PoolManager.Instance.Factory<ItemObject>().Pop();
-                itemObject.SetItemData(BuildingData.InitValue.itemData1,BuildingData.InitValue.dropCount1);
-            }
-            if(BuildingData.InitValue.itemData2 != null)
-            {
-                ItemObject itemObject =  PoolManager.Instance.Factory<ItemObject>().Pop();
-                itemObject.SetItemData(BuildingData.InitValue.itemData2,BuildingData.InitValue.dropCount2); 
-            }
-            if(BuildingData.InitValue.itemData3 != null)
-            {
-                ItemObject itemObject =  PoolManager.Instance.Factory<ItemObject>().Pop();
-                itemObject.SetItemData(BuildingData.InitValue.itemData3,BuildingData.InitValue.dropCount3); 
-            }
-                
         }
     }
 }

@@ -6,47 +6,52 @@ using Code.EntityScripts;
 using Code.GridSystem.Map;
 using Code.GridSystem.Objects;
 using Member.YDW.Script.EventStruct;
+using Member.YDW.Script.PathFinder;
 using Member.YTH.Code.Item;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Member.YDW.Script.NewBuildingSystem
 {
-    public class BoundsBuilding : GridBoundsObject, IPoolable
+    public abstract class BoundsBuilding : GridBoundsObject, IPoolable
     {
-        [SerializeField] private PathBakeEventSO _pathBakeEventSO;
-        private Vector2Int _size;
+        [SerializeField] private ReturnItemStruct[] items;
+        [SerializeField] private PathBakeEventSO pathBakeEventSO;
+        [SerializeField] protected CooldownBar cooldownBar;
         protected override Vector2Int Size => _size;
-        private HealthSystem  _healthSystem;
-        private Component _currentBuildingComponent; 
-        private CooldownBar _cooldownBar;
-        private BuildingTimer _timer;
-        private BoxCollider2D _collider;
+        private Vector2Int _size;
+        protected HealthSystem  _healthSystem;
+        protected BuildingTimer timer;
         public int InitialCapacity { get; protected set; }
 
-        public void Initialize(Vector2Int size,Component currentBuilding,BuildingInitValue initValue ,float maxHealth, float timerTime)
+        protected void Initialize(Vector2Int size,float maxHealth)
         {
             _size = size;
             _healthSystem.Initialize(maxHealth);
             _healthSystem.ResetHealth();
-            _currentBuildingComponent = currentBuilding;
-            _timer ??= new BuildingTimer();
-            IWaitable obj = GetComponentInChildren<IWaitable>();
-            _cooldownBar ??= GetComponentInChildren<CooldownBar>();
-            _collider ??= GetComponent<BoxCollider2D>();
-            _collider.size = size;
-            _timer.StartTimer(obj,_cooldownBar,timerTime,this,true);
-            
-
+           
+            timer ??= new BuildingTimer();
         }
        
         protected virtual void HandleIDead()
         {
             //아마 추후 이곳에서 아이템 다시 드랍해줄 듯.
+            Logging.Log("Im Dead");
+            DropReturnItem();
             GridManager.Instance.DeleteBuildingObject(WorldPos);
            
             BuildingManager.Instance.DestroyBuilding(new BuildingEvent(WorldPos,this)); //자신의 셀 위치와 월드 위치, 그리고 객체를 넘김.
             _healthSystem.OnDead -= HandleIDead;
+        }
+
+        private void DropReturnItem()
+        {
+            for (int i = 0; i < items.Length; i++)
+            { 
+                ReturnItemStruct returnItem = items[i];
+                ItemObject item = PoolManager.Instance.Factory<ItemObject>().Pop();
+                item.SetItemData(returnItem.item,returnItem.amount);
+            }
         }
 
         protected override void OnSetCellObject(Vector2Int worldPos, GridMap map)
@@ -55,33 +60,15 @@ namespace Member.YDW.Script.NewBuildingSystem
             Logging.Log($"건물 세팅됨. 위치 : {worldPos}");
             transform.position = GridManager.Instance.GetCellToWorldPosition(worldPos);
             transform.position += new Vector3(0.5f, 0.5f, 0);
-            BuildingManager.Instance.SettingBuilding(new BuildingEvent(WorldPos, this));
-            _pathBakeEventSO.Raise(new RunTimeBakeEvent(RunTimeBakeEventType.Set,WorldPos,Size));
+            pathBakeEventSO.Raise(new RunTimeBakeEvent(RunTimeBakeEventType.Set,WorldPos,Size));
         }
 
         public override void DestroyFromGrid()
         {
             base.DestroyFromGrid();
-            _pathBakeEventSO.Raise(new RunTimeBakeEvent(RunTimeBakeEventType.Delete,WorldPos,Size));
+            pathBakeEventSO.Raise(new RunTimeBakeEvent(RunTimeBakeEventType.Delete,WorldPos,Size));
         }
         
-        
-        #region TestCode
-
-        private void Update()
-        {
-            if (Keyboard.current.kKey.wasPressedThisFrame)
-            {
-                _healthSystem.ApplyDamage(100);
-            }
-        }
-
-        #endregion
-
-        public void SettingChildComponent(Component c)
-        {
-            _currentBuildingComponent = c;
-        }
         public virtual void OnPopFromPool()
         {
             _healthSystem ??= gameObject.GetComponentInChildren<HealthSystem>();
@@ -90,8 +77,6 @@ namespace Member.YDW.Script.NewBuildingSystem
 
         public virtual void OnReturnToPool()
         {
-            if(_currentBuildingComponent != null)
-                Destroy(_currentBuildingComponent);
         }
 
         private void OnDrawGizmos()

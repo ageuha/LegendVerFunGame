@@ -11,30 +11,37 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings.House
 {
     public class ShabbyHouseBuilding : BoundsBuilding, IBuilding , IWaitable
     {
-          private float _detectRange;
-        private float _temperatureValue;
+        [Header("SettingValues")]
+        [SerializeField] private  float detectRange;
+        [SerializeField] private float temperatureValue;
+        [SerializeField] private LayerMask playerMask;
+        
+
+        //드롭 아이템 구조체 넣어줄 예정.
         public bool IsActive { get; private set; }
         public bool IsWaiting { get; private set; }
         
-        public BuildingDataSO BuildingData { get; private set; }
-        public SpriteRenderer SpriteRenderer { get; private set; }
 
-        private LayerMask _playerMask;
-        
+        public BuildingDataSO BuildingData { get; private set; }
+
         private TemperatureSystem _playerTemperatureSystem;
 
-        public void Initialize(BuildingDataSO buildingData)
-        {
+        public void InitializeBuilding(BuildingDataSO buildingData)
+        { 
             BuildingData = buildingData;
-            SpriteRenderer ??= GetComponentInChildren<SpriteRenderer>();
-            SpriteRenderer.sprite = BuildingData.Image;
-            _detectRange = buildingData.InitValue.valueFloat;
-            _playerMask = 1 << LayerMask.NameToLayer("Player");
+            Initialize(buildingData.BuildingSize,buildingData.MaxHealth);
+            timer.StartTimer(this,cooldownBar,buildingData.BuildTime,this,true);
+            
         }
 
 
         private void Update()
         {
+            if (Keyboard.current.tKey.wasPressedThisFrame)
+            {
+                _healthSystem.ApplyDamage(1000);
+                Logging.Log("ApplyDamage");
+            }
             if(!IsActive) return;
             #region TestInput
 
@@ -44,13 +51,10 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings.House
                 OutPlayer();
             if (_playerTemperatureSystem != null)
             {
-                if (_playerTemperatureSystem.CurrentTemperature < _temperatureValue)
+                if (_playerTemperatureSystem.CurrentTemperature < temperatureValue)
                 {
-                    _playerTemperatureSystem.CurrentTemperature =  _temperatureValue;
+                    _playerTemperatureSystem.CurrentTemperature =  temperatureValue;
                 }
-                 
-                Logging.Log(_playerTemperatureSystem.CurrentTemperature);
-                
             }
                 
 
@@ -65,22 +69,12 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings.House
 
         private void InPlayer()
         {
-            Collider2D player = Physics2D.OverlapCircle(transform.position,_detectRange, _playerMask);
-            Logging.Log(player == null);
-            if (player != null && player.gameObject.TryGetComponent(out TemperatureSystem system) && _playerTemperatureSystem == null)
+            Collider2D player = Physics2D.OverlapCircle(transform.position,detectRange, playerMask);
+            if (player != null && player.TryGetComponent(out TemperatureSystem system) && _playerTemperatureSystem == null)
             {
-                Logging.Log("시스템 세팅");
-                player.transform.position = transform.position;
                 //필요한거 처리.
                 _playerTemperatureSystem = system;
             }
-
-            if (player.gameObject.TryGetComponent(out TemperatureSystem systea))
-            {
-                Logging.Log("가져오기 성공");
-            }
-            else
-                Logging.Log("가져오기 실패");
         }
 
         public void SetWaiting(bool waiting)
@@ -90,32 +84,6 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings.House
                 IsActive = true;
             }
             IsWaiting = waiting;
-        }
-
-        private void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, _detectRange);
-        }
-        
-        private void OnDestroy()
-        {
-            if (BuildingData.InitValue.itemData1 != null)
-            {
-                ItemObject itemObject =  PoolManager.Instance.Factory<ItemObject>().Pop();
-                itemObject.SetItemData(BuildingData.InitValue.itemData1,BuildingData.InitValue.dropCount1);
-            }
-            if(BuildingData.InitValue.itemData2 != null)
-            {
-                ItemObject itemObject =  PoolManager.Instance.Factory<ItemObject>().Pop();
-                itemObject.SetItemData(BuildingData.InitValue.itemData2,BuildingData.InitValue.dropCount2); 
-            }
-            if(BuildingData.InitValue.itemData3 != null)
-            {
-                ItemObject itemObject =  PoolManager.Instance.Factory<ItemObject>().Pop();
-                itemObject.SetItemData(BuildingData.InitValue.itemData3,BuildingData.InitValue.dropCount3); 
-            }
-                
         }
     }
 }

@@ -1,10 +1,12 @@
 ﻿using System;
 using Code.Core.Pool;
 using Code.Core.Utility;
+using Code.GridSystem.Objects;
 using Member.KJW.Code.EventChannel;
 using Member.KJW.Code.Input;
 using Member.YDW.Script.BuildingSystem;
 using Member.YDW.Script.EventStruct;
+using Member.YDW.Script.NewBuildingSystem.Buildings;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using YTH.Code.Inventory;
@@ -137,57 +139,23 @@ namespace Member.YDW.Script.NewBuildingSystem
 
         private void CreateBuilding() //추후 버튼이나 특정 키를 누를 시, 실행되도록.
         {
-            if (!_canBuild || !_currentBuildingData)
+            BuildingDataSO buildingDataSO = _currentBuildingData;   
+            if (!_canBuild || !buildingDataSO)
             {
                 Logging.Log("건설할 수 없습니다.");
                 return;
             }
             _canBuild = false;
             //gameObject.SetActive(false); 태스트 때문에 주석
-            //GridManager.Instance.DeleteBuildingObject(WorldPos);
-            //여기서 waitBuilding을 가져오는게 아니라, 그냥 Building 자체를 설치 해버림.
-            if (_currentBuildingData.Building is BoundsBuilding)
+            Vector2Int selectionPos = _selectPos;
+            MonoBehaviour building = PoolManager.Instance.DynamicFactory(buildingDataSO.PoolableSO).Pop();
+            if (building is IBuilding obj and GridObject gridObject)
             {
-                BoundsBuilding building = PoolManager.Instance.Factory<BoundsBuilding>().Pop(); //여기서 Pop 때려서 Building 생성시키고,
-
-                if (typeof(MonoBehaviour).IsAssignableFrom(_currentBuildingData.RealType)) // 풀이 제네릭 타입 기반이라, addComponent시킴.
-                {
-                    Component compo = building.gameObject.AddComponent(_currentBuildingData.RealType);
-                    if (compo is IBuilding buildCompo)
-                    {
-                        buildCompo.Initialize(_currentBuildingData);
-                    }
-                    building.SettingChildComponent(compo);
-                    building.Initialize(_currentBuildingData.BuildingSize,compo,_currentBuildingData.InitValue,_currentBuildingData.MaxHealth,_currentBuildingData.BuildTime);
-                }
-                GridManager.Instance.GridMap.SetCellObject(_selectPos, building);
-                // HandleBuildingGhost(new  BuildingGhostEvent(null,false));
-                _inventoryManager.UseSelectedItem();
+                obj.InitializeBuilding(buildingDataSO); 
+                GridManager.Instance.GridMap.SetCellObject(selectionPos,gridObject);
+                BuildingManager.Instance.SettingBuilding(buildingDataSO,selectionPos);
             }
-            else if (_currentBuildingData.Building is UnitBuilding)
-            {
-                UnitBuilding building = PoolManager.Instance.Factory<UnitBuilding>().Pop();
-
-                if (typeof(MonoBehaviour).IsAssignableFrom(_currentBuildingData.RealType)) // 풀이 타입 기반이라, addComponent시킴.
-                {
-                    Component compo = building.gameObject.AddComponent(_currentBuildingData.RealType);
-                    if (compo is IBuilding buildCompo)
-                    {
-                        buildCompo.Initialize(_currentBuildingData);
-                    }
-                    building.SettingChildComponent(compo);
-                    building.Initialize(compo,_currentBuildingData.InitValue,_currentBuildingData.MaxHealth,_currentBuildingData.BuildTime);
-                }
-                //building.Initialize(_currentBuildingData.BuildingSize); 추후 필요하면 추가.
-                GridManager.Instance.GridMap.SetCellObject(_selectPos, building);
-                // HandleBuildingGhost(new  BuildingGhostEvent(null,false));
-                _inventoryManager.UseSelectedItem();
-            }
-            else
-            {
-                Logging.Log("모든 캐스팅에 실패했습니다.");
-            }
-            
+            _inventoryManager.UseSelectedItem();
             OffBuildingGhostEvent();
         }
 
