@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 477477d323538c14597172397a2dcf65
+guid: 0610dc066c0d3fb44a00d9ae19a64b0b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3042069609902055486
-    second: CannonSide_0
+      213: 674861545286178404
+    second: aniCannonSideLeft_0
+  - first:
+      213: 9160045836280543768
+    second: aniCannonSideLeft_1
+  - first:
+      213: 5407697206892545269
+    second: aniCannonSideLeft_2
+  - first:
+      213: 3802078168070057360
+    second: aniCannonSideLeft_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +81,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 32
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CannonSide_0
+      name: aniCannonSideLeft_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 30
-        height: 21
+        y: 3
+        width: 33
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e302930513a973a20800000000000000
-      internalID: 3042069609902055486
+      spriteID: 4669a57fff69d5900800000000000000
+      internalID: 674861545286178404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aniCannonSideLeft_1
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 3
+        width: 31
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81a3cc5f7250f1f70800000000000000
+      internalID: 9160045836280543768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aniCannonSideLeft_2
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 3
+        width: 32
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f4c3bd55fffb0b40800000000000000
+      internalID: 5407697206892545269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aniCannonSideLeft_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 3
+        width: 32
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09d651813f1b3c430800000000000000
+      internalID: 3802078168070057360
       vertices: []
       indices: 
       edges: []
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      CannonSide_0: 3042069609902055486
+      aniCannonSideLeft_0: 674861545286178404
+      aniCannonSideLeft_1: 9160045836280543768
+      aniCannonSideLeft_2: 5407697206892545269
+      aniCannonSideLeft_3: 3802078168070057360
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
