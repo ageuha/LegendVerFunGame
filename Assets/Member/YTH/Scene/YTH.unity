@@ -554,7 +554,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 724235180653317779, guid: 209d5b700103ce44891453d41c3b74f8, type: 3}
       propertyPath: amount
-      value: 22
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 724235180653317779, guid: 209d5b700103ce44891453d41c3b74f8, type: 3}
       propertyPath: itemData
@@ -2921,7 +2921,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 724235180653317779, guid: 209d5b700103ce44891453d41c3b74f8, type: 3}
       propertyPath: amount
-      value: 22
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 724235180653317779, guid: 209d5b700103ce44891453d41c3b74f8, type: 3}
       propertyPath: itemData
@@ -2949,7 +2949,7 @@ PrefabInstance:
       objectReference: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
     - target: {fileID: 1295839682076747344, guid: 209d5b700103ce44891453d41c3b74f8, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1295839682076747344, guid: 209d5b700103ce44891453d41c3b74f8, type: 3}
       propertyPath: m_SortingLayerID
@@ -2997,7 +2997,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3283610674419241769, guid: 209d5b700103ce44891453d41c3b74f8, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3283610674419241769, guid: 209d5b700103ce44891453d41c3b74f8, type: 3}
       propertyPath: m_SortingLayerID
@@ -7256,6 +7256,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a3dcc69c711db3a41976619f67501480, type: 2}
   - {fileID: 11400000, guid: a1a8a1ab43b23f34a967e1297996ec2e, type: 2}
   - {fileID: 11400000, guid: 5b08f8aa27218884eac621025fa54f12, type: 2}
+  dynamicPoolItemLists: []
 --- !u!4 &1953277372
 Transform:
   m_ObjectHideFlags: 0
@@ -7421,7 +7422,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 897611323
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0

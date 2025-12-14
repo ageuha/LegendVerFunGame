@@ -11,10 +11,12 @@ namespace Member.JJW.Code.SO
     {
         [field: SerializeField] public TemperatureSystem TemperatureSystem { get;private set; }
         [field: SerializeField] public float Temperature { get;private set; }
-        
         public void Use(Player player)
         {
-            TemperatureSystem.CurrentTemperature += Temperature;
+            if (player.TryGetComponent<TemperatureSystem>(out var temperatureSystem))
+            {
+                temperatureSystem.CurrentTemperature += Temperature;;
+            }
         }
     }
 }

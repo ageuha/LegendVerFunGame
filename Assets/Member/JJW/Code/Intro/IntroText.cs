@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -6,6 +7,9 @@ namespace Member.JJW.Code.Intro
 {
     public class IntroText : MonoBehaviour
     {
+        [SerializeField] private Vector3 arrivePoint;
+        [SerializeField] private Ease fadeEase = Ease.Linear;
+        [SerializeField] private float arriveTime = 10f;
         private TextMeshPro _textMeshPro;
         private RectTransform _rectTransform;
     
@@ -15,11 +19,17 @@ namespace Member.JJW.Code.Intro
             _rectTransform = GetComponent<RectTransform>();
         }
 
-        public void Init(string text, float arriveTime)
+        private void Start()
         {
-            _textMeshPro.text = text;
-            _rectTransform.DOMove(new Vector3(0, 25, 23),arriveTime);
-            _textMeshPro.DOFade(0, arriveTime);
+            _rectTransform.DOMove(arrivePoint,arriveTime).SetEase(Ease.Linear)
+                .OnComplete(() =>
+                {
+                    _textMeshPro.DOFade(0, 2).SetEase(fadeEase).OnComplete(() =>
+                    {
+                        Debug.Log("인트로 끝");
+                        //씬바꾸기
+                    });
+                });
         }
     }
 }

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647b4de93b6b4ad4e9f125d5c4c2c88d, type: 3}
+  m_Name: WoodPick
+  m_EditorClassIdentifier: 
+  <ItemName>k__BackingField: WoodPick
+  <Description>k__BackingField: "\uACE1\uAD2D\uC774"
+  <Icon>k__BackingField: {fileID: 5186536048352783256, guid: bb021f5efa2218e49bacf78b68c7a312, type: 3}
+  <ItemID>k__BackingField: 112
+  <MaxStack>k__BackingField: 1
+  <ItemType>k__BackingField: 0
+  <ThrowSpeed>k__BackingField: 5
+  <ThrowLifeTime>k__BackingField: 1
+  <ThrowRotationSpeed>k__BackingField: 1
+  <HitBoxSize>k__BackingField: {x: 1, y: 1}
+  <DamageInfoData>k__BackingField: {fileID: 11400000, guid: 321175c26f152b342b4428b3a5787371, type: 2}
+  <AttackData>k__BackingField: {fileID: 11400000, guid: f54a0d93e4f283846864810521441e67, type: 2}
+  <Stats>k__BackingField: []
+  <HitBoxOffset>k__BackingField: {x: 0, y: 0}
+  <WeaponHitBoxSize>k__BackingField: {x: 1, y: 1}

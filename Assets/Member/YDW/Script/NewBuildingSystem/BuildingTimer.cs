@@ -16,8 +16,8 @@ namespace Member.YDW.Script.NewBuildingSystem
             _target = target;
             _time = time;
             _cooldownBar = cooldownBar;
-            mono.StartCoroutine(OnBuildingWaiteBuilding());
             _activeBar = activeBar;
+            mono.StartCoroutine(OnBuildingWaiteBuilding());
         }
         
         private IEnumerator OnBuildingWaiteBuilding() //본인 또한 세팅이 되어야 함.
@@ -33,8 +33,10 @@ namespace Member.YDW.Script.NewBuildingSystem
 
                 float newScaleX = Mathf.Lerp(0f, 2f, progress);
 
-                if(_activeBar)
-                    _cooldownBar.SetFillAmount(newScaleX);
+                if (_activeBar)
+                {
+                    _cooldownBar.SetFillAmount(newScaleX,_activeBar);
+                }
                 yield return null;
                 
             }
