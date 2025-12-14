@@ -93,6 +93,7 @@ namespace YTH.Code.Inventory
             {
                 int remain = Count - Item.MaxStack;
                 Count = Item.MaxStack;
+                UpdateUI();
                 CountChanged?.Invoke();
                 return remain;
             }
