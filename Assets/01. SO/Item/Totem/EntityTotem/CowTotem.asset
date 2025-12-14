@@ -15,7 +15,7 @@ MonoBehaviour:
   <ItemName>k__BackingField: CowTotem
   <Description>k__BackingField: "\uD1A0\uD15C"
   <Icon>k__BackingField: {fileID: 0}
-  <ItemID>k__BackingField: 0
+  <ItemID>k__BackingField: 42
   <MaxStack>k__BackingField: 1
   <ItemType>k__BackingField: 1
   <ThrowSpeed>k__BackingField: 5
