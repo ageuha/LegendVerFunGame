@@ -64,6 +64,7 @@ MonoBehaviour:
   - rid: 1402868237551010259
   - rid: 1402868247031710591
   - rid: 1402868258245706071
+  - rid: 1402868312974033545
   m_OriginalGraph: {fileID: 0}
   m_IsInitialised: 0
   m_IsStarted: 0
@@ -126,6 +127,14 @@ MonoBehaviour:
           m_Value1: 14469241979769500130
         Name: GraphEntity
         m_Value: {fileID: 6691714285905978147}
+    - rid: 1402868312974033545
+      type: {class: 'BlackboardVariable`1[[Member.YDW.Script.PathFinder.PathAgent, Code.Pathfind]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 8010530423297844294
+          m_Value1: 15208842599887825837
+        Name: PathAgent
+        m_Value: {fileID: 6559633307352980117}
 --- !u!114 &6691714285905978147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -460,7 +469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1215523858779725098, guid: 0bc16edd7e3e41b41a84498b986ea99b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.259
       objectReference: {fileID: 0}
     - target: {fileID: 1215523858779725098, guid: 0bc16edd7e3e41b41a84498b986ea99b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -501,9 +510,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 228051178570978117, guid: 0bc16edd7e3e41b41a84498b986ea99b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6559633307352980117}
-    - targetCorrespondingSourceObject: {fileID: 228051178570978117, guid: 0bc16edd7e3e41b41a84498b986ea99b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8923970284518449448}
   m_SourcePrefab: {fileID: 100100000, guid: 0bc16edd7e3e41b41a84498b986ea99b, type: 3}
 --- !u!1 &110009381288380941 stripped
 GameObject:
@@ -523,20 +529,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bakedData: {fileID: 11400000, guid: ddf6d44ef1ad34540b9c35bb20711e3e, type: 2}
---- !u!114 &8923970284518449448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110009381288380941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65cf966915714581aadc0340b7c72538, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pathAgent: {fileID: 6559633307352980117}
-  maxPathCount: 1000
 --- !u!114 &745881463681349889 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 645422778655498313, guid: 0bc16edd7e3e41b41a84498b986ea99b, type: 3}
