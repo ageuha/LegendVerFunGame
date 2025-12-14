@@ -12,17 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 668546e97cea464eaabfa7ac84609bfd, type: 3}
   m_Name: 1WindbreakHouseBuildingDataSO
   m_EditorClassIdentifier: 
-  <BuildTime>k__BackingField: 15
-  <MaxHealth>k__BackingField: 10
-  <Image>k__BackingField: {fileID: 3317806273994890464, guid: 3f946bd55eb4c9f44a44cb4927e248b9, type: 3}
+  <BuildTime>k__BackingField: 35
+  <MaxHealth>k__BackingField: 70
+  <Image>k__BackingField: {fileID: -1896098457251691926, guid: 6c34b000c748fbf49a3a15f5ab9fa9ed, type: 3}
   <Building>k__BackingField: {fileID: 3530004640943504513, guid: 52fd2e9f80ce6af44845183622267cde, type: 3}
-  <BuildingSize>k__BackingField: {x: 3, y: 3}
+  <BuildingSize>k__BackingField: {x: 2, y: 1}
   <InitialCapacity>k__BackingField: 5
-  <AnimController>k__BackingField: {fileID: 0}
-  <InitValue>k__BackingField:
-    valueInt: 0
-    valueInt2: 0
-    valueString: 
-    valueFloat: 0
-    valueFloat2: 33
-    valueFloat3: 0
+  <PoolableSO>k__BackingField: {fileID: 11400000, guid: 85a316929c68b344ea6d09a1c104aec0, type: 2}
+  <CorrectionPosition>k__BackingField: {x: 1, y: 1}

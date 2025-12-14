@@ -12,17 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 668546e97cea464eaabfa7ac84609bfd, type: 3}
   m_Name: 2GurinHouseDataSO
   m_EditorClassIdentifier: 
-  <BuildTime>k__BackingField: 15
-  <MaxHealth>k__BackingField: 10
-  <Image>k__BackingField: {fileID: 3317806273994890464, guid: 3f946bd55eb4c9f44a44cb4927e248b9, type: 3}
+  <BuildTime>k__BackingField: 50
+  <MaxHealth>k__BackingField: 95
+  <Image>k__BackingField: {fileID: 7958593873765746472, guid: b70f8e63ac65dfa45ac98aa0a400c18a, type: 3}
   <Building>k__BackingField: {fileID: 9171778904995521523, guid: 0f23ec597b7b7064a8fb2c2576ad89e3, type: 3}
-  <BuildingSize>k__BackingField: {x: 3, y: 3}
+  <BuildingSize>k__BackingField: {x: 2, y: 2}
   <InitialCapacity>k__BackingField: 5
-  <AnimController>k__BackingField: {fileID: 0}
-  <InitValue>k__BackingField:
-    valueInt: 0
-    valueInt2: 0
-    valueString: 
-    valueFloat: 0
-    valueFloat2: 34
-    valueFloat3: 0
+  <PoolableSO>k__BackingField: {fileID: 11400000, guid: 2a8747a942218a4499a3c05fe5882960, type: 2}
+  <CorrectionPosition>k__BackingField: {x: 1, y: 2}

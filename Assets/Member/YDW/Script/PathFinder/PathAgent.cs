@@ -8,9 +8,9 @@ namespace Member.YDW.Script.PathFinder
     {
         [SerializeField] private BakedDataSO bakedData;
 
-        private PriorityQueue<AstarNode> _openList = new PriorityQueue<AstarNode>();
-        private List<AstarNode> _closeList = new();
-        private List<AstarNode> _path = new();
+        private readonly PriorityQueue<AstarNode> _openList = new PriorityQueue<AstarNode>();
+        private readonly List<AstarNode> _closeList = new();
+        private readonly List<AstarNode> _path = new();
 
         public int GetPath(Vector3Int startPosition, Vector3Int destination, Vector3[] pointArr)
         {

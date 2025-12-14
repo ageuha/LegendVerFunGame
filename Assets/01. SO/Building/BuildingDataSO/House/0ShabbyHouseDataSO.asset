@@ -12,23 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 668546e97cea464eaabfa7ac84609bfd, type: 3}
   m_Name: 0ShabbyHouseDataSO
   m_EditorClassIdentifier: 
-  <BuildTime>k__BackingField: 15
-  <MaxHealth>k__BackingField: 10
+  <BuildTime>k__BackingField: 20
+  <MaxHealth>k__BackingField: 50
   <Image>k__BackingField: {fileID: 3317806273994890464, guid: 3f946bd55eb4c9f44a44cb4927e248b9, type: 3}
   <Building>k__BackingField: {fileID: 1104475483019205229, guid: 6fc9aa729ff337c42a45d247d9dfe4fa, type: 3}
-  <BuildingSize>k__BackingField: {x: 2, y: 2}
+  <BuildingSize>k__BackingField: {x: 3, y: 1}
   <InitialCapacity>k__BackingField: 5
-  <AnimController>k__BackingField: {fileID: 0}
-  <InitValue>k__BackingField:
-    valueInt: 0
-    valueInt2: 0
-    valueString: 
-    valueFloat: 1
-    valueFloat2: 32
-    valueFloat3: 0
-    itemData1: {fileID: 11400000, guid: 53700f27cf0c2be47a78b59af0e0ce0a, type: 2}
-    dropCount1: 0
-    itemData2: {fileID: 0}
-    dropCount2: 0
-    itemData3: {fileID: 0}
-    dropCount3: 0
+  <PoolableSO>k__BackingField: {fileID: 11400000, guid: 99dd64173855b2541b30b950f149c9e2, type: 2}
+  <CorrectionPosition>k__BackingField: {x: 1.5, y: 1}
