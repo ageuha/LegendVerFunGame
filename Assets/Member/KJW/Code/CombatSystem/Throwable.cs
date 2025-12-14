@@ -29,7 +29,7 @@ namespace Member.KJW.Code.CombatSystem
                 _damageInfo = itemData.DamageInfoData.ToStruct(thrower);
             
             Renderer.sprite = itemData.Icon;
-            _speed = itemData.ThrowSpeed;
+            _speed = itemData.ThrowSpeed * 3;
             Collider.size = itemData.HitBoxSize;
             _lifeTime = itemData.ThrowLifeTime;
             _rotSpeed = itemData.ThrowRotationSpeed;
