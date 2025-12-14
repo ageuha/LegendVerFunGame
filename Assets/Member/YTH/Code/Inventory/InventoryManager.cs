@@ -176,7 +176,6 @@ namespace YTH.Code.Inventory
                     PoolManager.Instance.Factory<InventoryItem>().Push(inventorySlots[i].InventoryItem);
                 }
 
-                Logging.Log($"{i}번 : {inventoryData.InventoryItems[i]}");
                 if (inventoryData.InventoryItems[i].ItemID != 0)
                 {
                     Logging.Log("인벤토리 로드할 때 아이템 추가함");

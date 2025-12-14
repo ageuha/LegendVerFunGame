@@ -14,11 +14,19 @@ namespace Member.YTH.Code.Item
 
         public void Initialize() 
         {
+            foreach (var item in ItemDataList)
+            {
+                if (item.ItemID <= 0)
+                {
+                    Logging.Log($"{item.ItemID} {item.ItemName}");
+                }
+            }
+
             m_ItemDataDictionary ??= ItemDataList.ToDictionary(item => item.ItemID);
 
             foreach (var item in m_ItemDataDictionary)
             {
-                Logging.Log($"{item.Key} {item.Value}");
+                Logging.Log($"{item.Key} {item.Value.ItemName}");
             }
         }
 
@@ -26,7 +34,7 @@ namespace Member.YTH.Code.Item
         {
             get
             {
-                if(m_ItemDataDictionary.TryGetValue(hash, out var item))
+                if (m_ItemDataDictionary.TryGetValue(hash, out var item))
                 {
                     return item;
                 }
