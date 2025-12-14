@@ -134,7 +134,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01f4c4f3275548339079ec71261b0ba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items: []
+  items:
+  - item: {fileID: 11400000, guid: 4f41101e3550fc747af6cb1e9c252569, type: 2}
+    amount: 2
+  - item: {fileID: 11400000, guid: 2475d16fa195ff94dbbc99a128a23e6d, type: 2}
+    amount: 1
   pathBakeEventSO: {fileID: 11400000, guid: c47c81e55e105f945b252dc6c485ff59, type: 2}
   cooldownBar: {fileID: 2544053931958274516}
   detectRange: 0
