@@ -22,6 +22,7 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings
         {
             BuildingData = buildingData;
             Initialize(buildingData,buildingData.MaxHealth);
+            timer.StartTimer(this,cooldownBar,buildingData.BuildTime,this,true);
         }
 
         public void SetWaiting(bool waiting)
