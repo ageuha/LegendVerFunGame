@@ -67,5 +67,10 @@ namespace Member.KJW.Code.SceneManagement
 
             sceneId.Load();
         }
+
+        public void LoadScene(SceneID sceneId)
+        {
+            StartCoroutine(LoadSceneWithFade(sceneId));
+        }
     }
 }
