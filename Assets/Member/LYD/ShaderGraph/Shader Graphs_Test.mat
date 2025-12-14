@@ -37,9 +37,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Density: 1
-    - _Progress: 0.494
-    - _Rotation: 43.56
+    - _Density: 2.56
+    - _Progress: 0.47
+    - _Rotation: -32.4
     - _Speed: 0
     m_Colors:
     - _Position: {r: 0, g: -0.18, b: 0, a: 0}
