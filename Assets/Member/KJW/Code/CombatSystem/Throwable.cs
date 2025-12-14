@@ -55,7 +55,7 @@ namespace Member.KJW.Code.CombatSystem
             PoolManager.Instance.Factory<Throwable>().Push(this);
         }
 
-        private void OnTriggerExit2D(Collider2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.TryGetComponent(out IDamageable id))
             {
