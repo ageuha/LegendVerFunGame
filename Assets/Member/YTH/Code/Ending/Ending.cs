@@ -5,9 +5,10 @@ using UnityEngine;
 public class Ending : MonoBehaviour
 {
     [SerializeField] private TextMeshPro textMeshPro;
+    [SerializeField] private float speed;
 
-    private void Awake()
+    private void Update()
     {
-        textMeshPro.transform.DOMove(new Vector3(0, 40, 41), 20f);
+        textMeshPro.transform.Translate(Vector3.up * speed * Time.deltaTime, Space.Self);
     }
 }
