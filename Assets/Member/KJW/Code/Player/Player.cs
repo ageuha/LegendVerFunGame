@@ -209,7 +209,7 @@ namespace Member.KJW.Code.Player
         {
             if (CurItem == null) return;
             
-            Thrower.Throw(CurItem, MouseWorldPos - (Vector2)transform.position);
+            Thrower.Throw(CurItem, (MouseWorldPos - (Vector2)transform.position).normalized);
             _inventoryManager.UseSelectedItem();
         }
 

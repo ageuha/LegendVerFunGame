@@ -14,3 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PoolList>k__BackingField:
   - {fileID: 11400000, guid: 99dd64173855b2541b30b950f149c9e2, type: 2}
+  - {fileID: 11400000, guid: 85a316929c68b344ea6d09a1c104aec0, type: 2}
+  - {fileID: 11400000, guid: 2a8747a942218a4499a3c05fe5882960, type: 2}
+  - {fileID: 11400000, guid: a74ce93aba7b80c4fadadb3d77b47c70, type: 2}
+  - {fileID: 11400000, guid: 526975b4ac43e0d4a8376ee9858e3f36, type: 2}
+  - {fileID: 11400000, guid: efe27b1602545504bba04af22b01d989, type: 2}

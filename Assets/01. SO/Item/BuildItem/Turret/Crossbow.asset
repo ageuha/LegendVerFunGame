@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97152a8e22e844ba8b8d291f8ff1a037, type: 3}
-  m_Name: PlaceableItemData
+  m_Name: Crossbow
   m_EditorClassIdentifier: 
-  <ItemName>k__BackingField: 
-  <Description>k__BackingField: 
-  <Icon>k__BackingField: {fileID: 6254522901472976095, guid: f3b470da653cf874ea6c18f677c28c7f, type: 3}
-  <ItemID>k__BackingField: 0
-  <MaxStack>k__BackingField: 0
+  <ItemName>k__BackingField: Crossbow
+  <Description>k__BackingField: "\uC11D\uAD81"
+  <Icon>k__BackingField: {fileID: -447292424, guid: 4db19fc6eccec7d4d926ade1c12dfbfe, type: 3}
+  <ItemID>k__BackingField: 38
+  <MaxStack>k__BackingField: 4
   <ItemType>k__BackingField: 0
   <ThrowSpeed>k__BackingField: 5
   <ThrowLifeTime>k__BackingField: 1

@@ -77,5 +77,10 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings.House
             }
             IsWaiting = waiting;
         }
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, detectRange);
+        }
     }
 }

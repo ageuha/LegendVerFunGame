@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 137616104084280307}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.41, z: 0}
+  m_LocalPosition: {x: 1, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -97,6 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 397162659629722901}
   - component: {fileID: 1104475483019205229}
+  - component: {fileID: 5601868846712655801}
   m_Layer: 0
   m_Name: ShabbyHouse
   m_TagString: Untagged
@@ -139,11 +140,48 @@ MonoBehaviour:
     amount: 5
   pathBakeEventSO: {fileID: 11400000, guid: c47c81e55e105f945b252dc6c485ff59, type: 2}
   cooldownBar: {fileID: 5281342500184816732}
-  detectRange: 2
+  detectRange: 1
   temperatureValue: 32
   playerMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!70 &5601868846712655801
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3842393503935253771}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 1.0227405, y: 0.5796903}
+  m_Size: {x: 1.6873634, y: 0.5362645}
+  m_Direction: 1
 --- !u!1001 &5133208678261652383
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -218,13 +256,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: CooldownBuilding
       objectReference: {fileID: 0}
+    - target: {fileID: 1349805443619449422, guid: 93bd2180db3457945a40567cda50adfc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3116744463969940936, guid: 93bd2180db3457945a40567cda50adfc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.04
       objectReference: {fileID: 0}
     - target: {fileID: 3116744463969940936, guid: 93bd2180db3457945a40567cda50adfc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.826
+      value: 1.72
       objectReference: {fileID: 0}
     - target: {fileID: 3116744463969940936, guid: 93bd2180db3457945a40567cda50adfc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -260,15 +302,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7412450725625516047, guid: 93bd2180db3457945a40567cda50adfc, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.2
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 7412450725625516047, guid: 93bd2180db3457945a40567cda50adfc, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.5
+      value: 1.9499999
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412450725625516047, guid: 93bd2180db3457945a40567cda50adfc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: 7412450725625516047, guid: 93bd2180db3457945a40567cda50adfc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.164
+      value: -0.434
+      objectReference: {fileID: 0}
+    - target: {fileID: 7647399122157625112, guid: 93bd2180db3457945a40567cda50adfc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7647399122157625112, guid: 93bd2180db3457945a40567cda50adfc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7647399122157625112, guid: 93bd2180db3457945a40567cda50adfc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
