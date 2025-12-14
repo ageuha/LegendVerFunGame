@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 34577f49e1e50a74095599361827db5a
+guid: 60c2d5dac6570b24e88ea49b5bf7f57e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6809907661698028246
-    second: Cannon_0
+      213: -2037212187867070245
+    second: aniCannonBack_0
+  - first:
+      213: -3781416774202273548
+    second: aniCannonBack_1
+  - first:
+      213: -8666720194495049909
+    second: aniCannonBack_2
+  - first:
+      213: 228877003333738176
+    second: aniCannonBack_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +81,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 64
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -100,11 +109,55 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cannon_0
+      name: aniCannonBack_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 17
+        x: 3
+        y: 0
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd0461a0f4e5ab3e0800000000000000
+      internalID: -2037212187867070245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aniCannonBack_1
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 0
+        width: 26
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f058f98a75b58bc0800000000000000
+      internalID: -3781416774202273548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aniCannonBack_2
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 0
         width: 26
         height: 29
       alignment: 0
@@ -115,8 +168,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a2d2747ef095e71a0800000000000000
-      internalID: -6809907661698028246
+      spriteID: b4f0b6fb6ef99b780800000000000000
+      internalID: -8666720194495049909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aniCannonBack_3
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 0
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ce96f00c622d2300800000000000000
+      internalID: 228877003333738176
       vertices: []
       indices: 
       edges: []
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Cannon_0: -6809907661698028246
+      aniCannonBack_0: -2037212187867070245
+      aniCannonBack_1: -3781416774202273548
+      aniCannonBack_2: -8666720194495049909
+      aniCannonBack_3: 228877003333738176
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
