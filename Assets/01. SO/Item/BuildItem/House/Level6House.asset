@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97152a8e22e844ba8b8d291f8ff1a037, type: 3}
-  m_Name: PlaceableItemData 1
+  m_Name: Level6House
   m_EditorClassIdentifier: 
-  <ItemName>k__BackingField: 
-  <Description>k__BackingField: 
-  <Icon>k__BackingField: {fileID: -7554699321638224539, guid: 87ba1dc419547974e809c5ed7e593abc, type: 3}
-  <ItemID>k__BackingField: 0
-  <MaxStack>k__BackingField: 0
+  <ItemName>k__BackingField: Level6House
+  <Description>k__BackingField: "\uB808\uC804\uB4DC \uD0B9\uAC13 \uC81C\uB124\uB7F4
+    \uC5E0\uD37C\uB7EC \uB9C8\uC81C\uC2A4\uD2B8 \uC9F1\uC9F1 \uD558\uC6B0\uC2A4"
+  <Icon>k__BackingField: {fileID: 0}
+  <ItemID>k__BackingField: 36
+  <MaxStack>k__BackingField: 1
   <ItemType>k__BackingField: 0
   <ThrowSpeed>k__BackingField: 5
   <ThrowLifeTime>k__BackingField: 1
