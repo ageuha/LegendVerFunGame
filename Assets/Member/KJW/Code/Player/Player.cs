@@ -179,7 +179,6 @@ namespace Member.KJW.Code.Player
             if (CurItem is WeaponDataSO weaponData)
             {
                 Attack(weaponData);
-                return;
             }
             
             if (CurItem is PlaceableItemData placeableItemData)
