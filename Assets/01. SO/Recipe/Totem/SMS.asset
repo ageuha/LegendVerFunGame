@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca98b4b111982904b80c547b4e8c4c1a, type: 3}
+  m_Name: SMS
+  m_EditorClassIdentifier: 
+  <Materials>k__BackingField:
+  - {fileID: 11400000, guid: d0a5cd2bce7cb00468300e84d4c2d17a, type: 2}
+  - {fileID: 11400000, guid: d0a5cd2bce7cb00468300e84d4c2d17a, type: 2}
+  - {fileID: 11400000, guid: d0a5cd2bce7cb00468300e84d4c2d17a, type: 2}
+  - {fileID: 11400000, guid: d0a5cd2bce7cb00468300e84d4c2d17a, type: 2}
+  - {fileID: 11400000, guid: d0a5cd2bce7cb00468300e84d4c2d17a, type: 2}
+  - {fileID: 11400000, guid: d0a5cd2bce7cb00468300e84d4c2d17a, type: 2}
+  - {fileID: 11400000, guid: d0a5cd2bce7cb00468300e84d4c2d17a, type: 2}
+  - {fileID: 11400000, guid: d0a5cd2bce7cb00468300e84d4c2d17a, type: 2}
+  - {fileID: 11400000, guid: d0a5cd2bce7cb00468300e84d4c2d17a, type: 2}
+  <Result>k__BackingField: {fileID: 11400000, guid: e2500f5f5bca8924f8a175b940129c77, type: 2}
+  <RecipeID>k__BackingField: d91f48e0e46f0954b9c7cc69efe906ca
