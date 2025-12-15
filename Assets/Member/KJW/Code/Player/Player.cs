@@ -108,6 +108,7 @@ namespace Member.KJW.Code.Player
 
         private void SetMoveAnim(Vector2 moveDir)
         {
+            if (Arm.gameObject.activeSelf) return;
             PlayerRenderer.SetValue(moveBoolHash, moveDir.sqrMagnitude > 0);
             PlayerRenderer.SetValue(vxHash, StandDir.x);
             PlayerRenderer.SetValue(vyHash, StandDir.y);
@@ -115,6 +116,7 @@ namespace Member.KJW.Code.Player
 
         private void SetFlip(float value)
         {
+            if (Arm.gameObject.activeSelf) return;
             PlayerRenderer.SetFlip(StandDir.x);
         }
 
@@ -228,7 +230,7 @@ namespace Member.KJW.Code.Player
             if (Arm.gameObject.activeSelf) return;
             Vector2 dir = MouseWorldPos - (Vector2)transform.position;
             Weapon.Init(weaponData);
-            Arm.Init(Mathf.Rad2Deg * Mathf.Atan2(dir.y, dir.x), weaponData.AttackData.AttackSpeed).Swing();
+            Arm.Init(Mathf.Rad2Deg * Mathf.Atan2(StandDir.y, StandDir.x), weaponData.AttackData.AttackSpeed).Swing();
             PlayerRenderer.SetValue(attackHash);
         }
 
