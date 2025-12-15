@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: ItemDataListSO
   m_EditorClassIdentifier: 
   <ItemDataList>k__BackingField:
-  - {fileID: 11400000, guid: 0e08a81f93b9b424eb4aebd20e294c21, type: 2}
-  - {fileID: 11400000, guid: 53700f27cf0c2be47a78b59af0e0ce0a, type: 2}
   - {fileID: 11400000, guid: c7880ff3880480849a4147cc736d5a11, type: 2}
   - {fileID: 11400000, guid: e3e7e43e53d74f249a5eecacbcb84d77, type: 2}
   - {fileID: 11400000, guid: 8da93a18fbd8212419e9c5b9a5fc54d3, type: 2}
