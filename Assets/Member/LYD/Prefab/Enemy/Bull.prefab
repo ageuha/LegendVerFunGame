@@ -81,6 +81,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7431969056217618554, guid: 5b200cc805af2a94a8b7c5855b47d805, type: 3}
+      propertyPath: managedReferences[1402868258245706071].m_Value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7431969056217618554, guid: 5b200cc805af2a94a8b7c5855b47d805, type: 3}
       propertyPath: managedReferences[1402868336843555000].m_Value
       value: 1
       objectReference: {fileID: 0}
@@ -96,9 +100,51 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -4461812079785472067, guid: a557e342614c8fd4ca9ea6b24d5024f2, type: 3}
-    m_RemovedComponents: []
+    - target: {fileID: 8926271470969763641, guid: 5b200cc805af2a94a8b7c5855b47d805, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.51
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8150068531337186313, guid: 5b200cc805af2a94a8b7c5855b47d805, type: 3}
     m_RemovedGameObjects:
     - {fileID: 7769087969833696089, guid: 5b200cc805af2a94a8b7c5855b47d805, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4716806053946407598, guid: 5b200cc805af2a94a8b7c5855b47d805, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2881854750511586722}
   m_SourcePrefab: {fileID: 100100000, guid: 5b200cc805af2a94a8b7c5855b47d805, type: 3}
+--- !u!1 &5704730160313681369 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4716806053946407598, guid: 5b200cc805af2a94a8b7c5855b47d805, type: 3}
+  m_PrefabInstance: {fileID: 1035321892507451255}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2881854750511586722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5704730160313681369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 360ace6d61a44caaa2d24e9f84d4d7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Data>k__BackingField: {fileID: 11400000, guid: 67f146bd991fba044858e323e2f3e8b7, type: 2}
+  <GraphAgent>k__BackingField: {fileID: 7601402979548964621}
+  stateGUID: {fileID: 11400000, guid: 978d8dfc47490c643894054f2bf022a4, type: 2}
+  badGuy: {fileID: 11400000, guid: 37c88b0680487094bab116f28046edab, type: 2}
+  playerTag: {fileID: 11400000, guid: 13723ff4661830b49ad94c121ac2e28b, type: 2}
+  atk: 40
+--- !u!114 &7601402979548964621 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7431969056217618554, guid: 5b200cc805af2a94a8b7c5855b47d805, type: 3}
+  m_PrefabInstance: {fileID: 1035321892507451255}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5704730160313681369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

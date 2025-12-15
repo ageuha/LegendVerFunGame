@@ -2,9 +2,9 @@
 using Code.EntityScripts.BaseClass;
 
 namespace Code.EntityScripts.ConcreteClass {
-    public class Rabbit : BadEntityBase, IPoolable {
+    public class Cow : BadEntityBase, IPoolable {
         public override void PushToPool() {
-            PoolManager.Instance.Factory<Rabbit>().Push(this);
+            PoolManager.Instance.Factory<Cow>().Push(this);
         }
 
         public int InitialCapacity => 10;

@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: YDPrefabList
   m_EditorClassIdentifier: 
   prefabs:
+  - {fileID: 2881854750511586722, guid: e8eae0e5fcee92f40853a34d4aa8e69a, type: 3}
   - {fileID: 5126775866737727835, guid: 87f6d3a5fad92a94ea82d726f2741743, type: 3}
   - {fileID: 8954898318541653896, guid: 7f4b206313b1c6c489f4e6d1d5d48ad4, type: 3}
+  - {fileID: 8150068531337186313, guid: 5b200cc805af2a94a8b7c5855b47d805, type: 3}
+  - {fileID: 7951354628577652217, guid: 051458869e2c43e40ba48172c2309c74, type: 3}
