@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93959635e2f9461ca0f164f77270578e, type: 3}
   m_Name: Chicken
   m_EditorClassIdentifier: 
-  <MaxHp>k__BackingField: 15
+  <MaxHp>k__BackingField: 70
   <MoveSpeed>k__BackingField: 1
   <DropTable>k__BackingField:
-  - <Item>k__BackingField: {fileID: 11400000, guid: d5f4cf37b0cfe244d8ac767e483f96c8, type: 2}
-    <Count>k__BackingField: 5
-    <DropRate>k__BackingField: 0.75
-  - <Item>k__BackingField: {fileID: 11400000, guid: c3498d198acd0164dae1fe3018e6e2d6, type: 2}
-    <Count>k__BackingField: 20
-    <DropRate>k__BackingField: 0.75
+  - <Item>k__BackingField: {fileID: 11400000, guid: f32ffdc54bf739844ae62fed0e5b073f, type: 2}
+    <Count>k__BackingField: 1
+    <DropRate>k__BackingField: 0.01
+  - <Item>k__BackingField: {fileID: 11400000, guid: 75af54713ea9dfd4882af46065dec245, type: 2}
+    <Count>k__BackingField: 1
+    <DropRate>k__BackingField: 1

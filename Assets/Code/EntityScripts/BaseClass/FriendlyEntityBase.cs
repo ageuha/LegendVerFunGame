@@ -17,6 +17,11 @@ namespace Code.EntityScripts.BaseClass {
             Health.OnDead -= HandleDead;
         }
 
+        public override void ResetEntity() {
+            IsDead = false;
+            Health.ResetHealth();
+        }
+
         private void HandleDead() {
             IsDead = true;
             DropItem();

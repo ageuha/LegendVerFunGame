@@ -93,6 +93,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1371043525060343283}
     m_Modifications:
+    - target: {fileID: 4331091815329157727, guid: 7a6df4b0646172b48828a55427064068, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 72dbb0032ecb5e445bac50d37f760940, type: 2}
+    - target: {fileID: 4331091815329157727, guid: 7a6df4b0646172b48828a55427064068, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5618610853525855828, guid: 7a6df4b0646172b48828a55427064068, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 72dbb0032ecb5e445bac50d37f760940, type: 2}
+    - target: {fileID: 5618610853525855828, guid: 7a6df4b0646172b48828a55427064068, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7087489099841744412, guid: 7a6df4b0646172b48828a55427064068, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
