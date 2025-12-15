@@ -7567,6 +7567,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3266063805475216574, guid: bed02e80fe2d166448ea4b1127cb4721, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8104743453367187897, guid: bed02e80fe2d166448ea4b1127cb4721, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
