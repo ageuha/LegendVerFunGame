@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Code.Core.Pool;
+﻿using Code.Core.Pool;
 using Code.Core.Utility;
 using Code.EntityScripts;
 using Code.GridSystem.Map;
@@ -9,7 +7,6 @@ using Member.YDW.Script.EventStruct;
 using Member.YDW.Script.PathFinder;
 using Member.YTH.Code.Item;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Member.YDW.Script.NewBuildingSystem
 {

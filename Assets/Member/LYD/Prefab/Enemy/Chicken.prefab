@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1151474606939139999}
   - component: {fileID: 969254559796826298}
-  - component: {fileID: 6691714285905978147}
   - component: {fileID: 4895384315929634078}
   - component: {fileID: 547245974513832635}
   - component: {fileID: 5173278049098909899}
+  - component: {fileID: 5126775866737727835}
   m_Layer: 0
   m_Name: Chicken
   m_TagString: Untagged
@@ -125,23 +125,7 @@ MonoBehaviour:
           m_Value0: 10396028958422805496
           m_Value1: 14469241979769500130
         Name: GraphEntity
-        m_Value: {fileID: 6691714285905978147}
---- !u!114 &6691714285905978147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1598560005410148216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc67975316404031af993b541be3189c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Data>k__BackingField: {fileID: 11400000, guid: ab1943a8c2fe9554eb4c180ea59f0aab, type: 2}
-  <GraphAgent>k__BackingField: {fileID: 969254559796826298}
-  stateGUID: {fileID: 11400000, guid: c2a05e238ffdc55428f88b421f11b96f, type: 2}
-  badGuy: {fileID: 11400000, guid: 07d7f533b236af14392f8c59191adeab, type: 2}
+        m_Value: {fileID: 5126775866737727835}
 --- !u!50 &4895384315929634078
 Rigidbody2D:
   serializedVersion: 5
@@ -217,6 +201,22 @@ SortingGroup:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_SortAtRoot: 0
+--- !u!114 &5126775866737727835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598560005410148216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ef0037bc35047dc8ac9e0aa146db677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Data>k__BackingField: {fileID: 11400000, guid: ab1943a8c2fe9554eb4c180ea59f0aab, type: 2}
+  <GraphAgent>k__BackingField: {fileID: 969254559796826298}
+  stateGUID: {fileID: 11400000, guid: c2a05e238ffdc55428f88b421f11b96f, type: 2}
+  badGuy: {fileID: 11400000, guid: 07d7f533b236af14392f8c59191adeab, type: 2}
 --- !u!1 &2035207176328636699
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,7 +460,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1215523858779725098, guid: 0bc16edd7e3e41b41a84498b986ea99b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.259
       objectReference: {fileID: 0}
     - target: {fileID: 1215523858779725098, guid: 0bc16edd7e3e41b41a84498b986ea99b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -501,9 +501,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 228051178570978117, guid: 0bc16edd7e3e41b41a84498b986ea99b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6559633307352980117}
-    - targetCorrespondingSourceObject: {fileID: 228051178570978117, guid: 0bc16edd7e3e41b41a84498b986ea99b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8923970284518449448}
   m_SourcePrefab: {fileID: 100100000, guid: 0bc16edd7e3e41b41a84498b986ea99b, type: 3}
 --- !u!1 &110009381288380941 stripped
 GameObject:
@@ -523,20 +520,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bakedData: {fileID: 11400000, guid: ddf6d44ef1ad34540b9c35bb20711e3e, type: 2}
---- !u!114 &8923970284518449448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110009381288380941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65cf966915714581aadc0340b7c72538, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pathAgent: {fileID: 6559633307352980117}
-  maxPathCount: 1000
 --- !u!114 &745881463681349889 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 645422778655498313, guid: 0bc16edd7e3e41b41a84498b986ea99b, type: 3}

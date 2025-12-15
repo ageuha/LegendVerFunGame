@@ -55,9 +55,9 @@ namespace YTH.Code.Inventory
                     {
                         InventoryItem newItem  = PoolManager.Instance.Factory<InventoryItem>().Pop();
                         newItem.Initialize(m_InventoryManager, m_InventoryManager.HoldItem.Item, 1);
+                        newItem.transform.SetParent(transform);
                         newItem.transform.localScale = Vector3.one;
                         newItem.transform.localPosition = Vector3.zero;
-                        newItem.transform.SetParent(transform);
                         m_InventoryManager.HoldItem.RemoveStack(1);
                     }
                 }

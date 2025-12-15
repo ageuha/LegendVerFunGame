@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Member.KJW.Code.Building
 {
-    public class CraftingTableObj : UnitBuilding, IBuilding, IWaitable, IInteractable
+    public class CraftingTableObj : BoundsBuilding, IBuilding, IWaitable, IInteractable
     {
         public bool IsActive { get; private set; }
         public BuildingDataSO BuildingData { get; private set; }
@@ -21,6 +21,8 @@ namespace Member.KJW.Code.Building
             BuildingData = buildingData;
             SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
             SpriteRenderer.sprite = BuildingData.Image;
+            Initialize(buildingData.BuildingSize,buildingData.MaxHealth);
+            timer.StartTimer(this,cooldownBar,buildingData.BuildTime,this,true);
         }
 
         public void Interaction(InteractionContext context)

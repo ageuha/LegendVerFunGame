@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050c0c06ef9a59f45881f581ecb05fa8, type: 3}
+  m_Name: RawTurtle
+  m_EditorClassIdentifier: 
+  <ItemName>k__BackingField: RawTurtle
+  <Description>k__BackingField: 
+  <Icon>k__BackingField: {fileID: 4521016162268636588, guid: 827863c0cabfe834c8c5d398a838199c, type: 3}
+  <ItemID>k__BackingField: 516
+  <MaxStack>k__BackingField: 64
+  <ItemType>k__BackingField: 0
+  <ThrowSpeed>k__BackingField: 5
+  <ThrowLifeTime>k__BackingField: 1
+  <ThrowRotationSpeed>k__BackingField: 1
+  <HitBoxSize>k__BackingField: {x: 1, y: 1}
+  <DamageInfoData>k__BackingField: {fileID: 0}
+  <Edible>k__BackingField: 0
+  <HealAmount>k__BackingField: -30
+  <CookedItemData>k__BackingField: {fileID: 0}
+  <CookTime>k__BackingField: 0
+  <IsCooked>k__BackingField: 0

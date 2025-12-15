@@ -15,7 +15,7 @@ MonoBehaviour:
   <ItemName>k__BackingField: CraftingTable
   <Description>k__BackingField: "\uC81C\uC791\uB300"
   <Icon>k__BackingField: {fileID: 21300000, guid: 50cca6ab1283ac240958cb292d914ea1, type: 3}
-  <ItemID>k__BackingField: 0
+  <ItemID>k__BackingField: 39
   <MaxStack>k__BackingField: 64
   <ItemType>k__BackingField: 0
   <ThrowSpeed>k__BackingField: 5
@@ -23,4 +23,4 @@ MonoBehaviour:
   <ThrowRotationSpeed>k__BackingField: 1
   <HitBoxSize>k__BackingField: {x: 1, y: 1}
   <DamageInfoData>k__BackingField: {fileID: 0}
-  <BuildingData>k__BackingField: {fileID: 0}
+  <BuildingData>k__BackingField: {fileID: 11400000, guid: a2109945112a632448946dc5802a5ec4, type: 2}

@@ -9,7 +9,6 @@ namespace Member.JJW.Code.SO
         [field: SerializeField] public float MaxHp { get; private set; }
 
         public Sprite ResourceImage;
-        public GameObject ItemPrefab;
         public ItemDataSO ItemDataSO;
         public int SpawnItemAmount = 1;
         public float ItemSpawnRadius = 1f;

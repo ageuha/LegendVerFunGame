@@ -18,11 +18,5 @@ MonoBehaviour:
   <Building>k__BackingField: {fileID: 7669345526184148536, guid: b265739a671f3e14ca088ff105a0d6c1, type: 3}
   <BuildingSize>k__BackingField: {x: 1, y: 1}
   <InitialCapacity>k__BackingField: 5
-  <AnimController>k__BackingField: {fileID: 0}
-  <InitValue>k__BackingField:
-    valueInt: 0
-    valueInt2: 0
-    valueString: 
-    valueFloat: 0
-    valueFloat2: 0
-    valueFloat3: 0
+  <PoolableSO>k__BackingField: {fileID: 11400000, guid: 0495f14675d2c4a46bb660a1d37cad82, type: 2}
+  <CorrectionPosition>k__BackingField: {x: 0, y: 0}

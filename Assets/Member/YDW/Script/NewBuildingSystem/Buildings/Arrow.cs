@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Code.Core.Pool;
 using Code.EntityScripts;
 using UnityEngine;
@@ -24,7 +23,7 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings
         public void Initialize(Vector2 startPos, Vector2 dir)
         {
             transform.position = startPos;
-            this.dir = dir;
+            this.dir = dir.normalized;
             StartCoroutine(Destroy());
         }
 

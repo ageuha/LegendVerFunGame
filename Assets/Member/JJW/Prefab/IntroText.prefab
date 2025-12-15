@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4401812686140891835, guid: 69858cad776c74d40a72f5c83c10b1ae, type: 2}
+  - {fileID: -7233942580385069675, guid: 72dbb0032ecb5e445bac50d37f760940, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -103,10 +103,40 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "\uAE40 \uB974\uBE0C\uB860 \uCD98\uC2DD \uB4DC \uC2E0\uC548.\n\uADF8\uB294
+    \uD68C\uC0AC\uC758 \uC911\uB300\uD55C \uD504\uB85C\uC81D\uD2B8\uB97C \uC218\uD589\uD558\uAE30
+    \uC704\uD574 \uCE84\uBCF4\uB514\uC544\uB85C \uD5A5\uD558\uACE0 \uC788\uC5C8\uB2E4.\n\uD3C9\uC18C\uCC98\uB7FC
+    \uCE90\uB9AC\uC5B4\uB97C \uB04C\uACE0 \uACF5\uD56D\uC5D0 \uC130\uC9C0\uB9CC,
+    \uADF8\uC758 \uB9C8\uC74C \uD55C\uCF20\uC5D0\uB294 \uC124\uBA85\uD560 \uC218
+    \uC5C6\uB294 \uAE34\uC7A5\uAC10\uC774 \uC2A4\uBA70\uB4E4\uACE0 \uC788\uC5C8\uB2E4.\n\uC624\uB79C\uB9CC\uC758
+    \uD574\uC678 \uCD9C\uC7A5\uC774\uB77C\uB294 \uC124\uB818\uACFC \uC54C \uC218
+    \uC5C6\uB294 \uC608\uAC10\uC774 \uAE30\uBB18\uD558\uAC8C \uB4A4\uC11E\uC5EC \uC788\uC5C8\uB2E4.\n\n\uBE44\uD589\uAE30\uB294
+    \uCC28\uBD84\uD788 \uD558\uB298\uC744 \uAC00\uB974\uBA70 \uACE0\uB3C4\uC5D0 \uC62C\uB790\uB2E4.\n\uADF8\uB7EC\uB098
+    \uADF8 \uD3C9\uC628\uD568\uC740 \uC624\uB798\uAC00\uC9C0 \uC54A\uC558\uB2E4.\n\uC608\uACE0
+    \uC5C6\uC774 \uB2E4\uAC00\uC628 \uACF5\uAE30 \uB09C\uB958\uAC00 \uAE30\uCCB4\uB97C
+    \uB4A4\uD754\uB4E4\uAE30 \uC2DC\uC791\uD55C \uAC83\uC774\uB2E4.\n\uCC98\uC74C\uC5D4
+    \uD754\uD55C \uD754\uB4E4\uB9BC\uCC98\uB7FC \uB290\uAEF4\uC84C\uC9C0\uB9CC, \uACE7
+    \uD3ED\uD48D\uCC98\uB7FC \uAC70\uC138\uC838 \uAE30\uB0B4\uB97C \uBD88\uC548\uC73C\uB85C
+    \uBB3C\uB4E4\uC600\uB2E4.\n\n\uBA87 \uBD84\uC774 \uC9C0\uB0AC\uC744\uAE4C.\n\uBE44\uD589\uAE30\uB294
+    \uC810\uC810 \uBC29\uD5A5\uC744 \uC783\uACE0 \uD1B5\uC81C\uB825\uC744 \uC0C1\uC2E4\uD558\uAE30
+    \uC2DC\uC791\uD588\uB2E4.\n\uADF8\uB9AC\uACE0 \uB9C8\uCE68\uB0B4, \uC774\uB984
+    \uBAA8\uB97C \uBC14\uB2E4 \uC704\uB85C \uCD94\uB77D\uD558\uACE0 \uB9D0\uC558\uB2E4.\n\n\uC5BC\uB9C8
+    \uD6C4.\n\uAE40 \uB974\uBE0C\uB860 \uCD98\uC2DD \uB4DC \uC2E0\uC548\uC740 \uBAA8\uB798\uC0AC\uC7A5\uC758
+    \uAC70\uCE5C \uAC10\uCD09\uACFC \uD30C\uB3C4 \uC18C\uB9AC\uC5D0 \uB208\uC744
+    \uB5B4\uB2E4.\n\uC8FC\uBCC0\uC5D0\uB294 \uBD80\uC11C\uC9C4 \uC794\uD574\uB4E4\uB9CC\uC774
+    \uD769\uC5B4\uC838 \uC788\uC5C8\uACE0, \uC0B4\uC544\uB0A8\uC740 \uC0AC\uB78C\uC740
+    \uC624\uC9C1 \uADF8\uBFD0\uC774\uC5C8\uB2E4.\n\n\uADF8\uB7EC\uB098 \uADF8\uAC00
+    \uB3C4\uCC29\uD55C \uC774\uACF3\uC740 \uB2E8\uC21C\uD55C \uBB34\uC778\uB3C4\uAC00
+    \uC544\uB2C8\uC5C8\uB2E4.\n\uCE84\uBCF4\uB514\uC544 \uADFC\uCC98, \uC804\uC124\uCC98\uB7FC
+    \uB5A0\uB3C4\uB294 \u2018\uBBF8\uC2A4\uD130\uB9AC \uC0BC\uAC01 \uD574\uD611\u2019.\n\uADF8
+    \uD574\uD611\uC758 \uC815\uD655\uD55C \uBB34\uAC8C\uC911\uC2EC\uC810\uC5D0 \uC874\uC7AC\uD558\uB294
+    \uAE08\uB2E8\uC758 \uC12C.\n\n\uC774\uC81C \uADF8\uB294 \uAE68\uB2EC\uC558\uB2E4.\n\uADF8\uB294
+    \uB2E8\uC21C\uD788 \uACE0\uB9BD\uB41C \uAC83\uC774 \uC544\uB2C8\uB2E4.\n\uC138\uACC4\uC5D0\uC11C
+    \uAC00\uC7A5 \uBBF8\uC2A4\uD130\uB9AC\uD55C \uD574\uC5ED\uC758 \uC911\uC2EC\uC5D0,
+    \uD640\uB85C \uB0B4\uB824\uC9C4 \uAC83\uC774\uB2E4."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 69858cad776c74d40a72f5c83c10b1ae, type: 2}
-  m_sharedMaterial: {fileID: -4401812686140891835, guid: 69858cad776c74d40a72f5c83c10b1ae, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 72dbb0032ecb5e445bac50d37f760940, type: 2}
+  m_sharedMaterial: {fileID: -7233942580385069675, guid: 72dbb0032ecb5e445bac50d37f760940, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -130,8 +160,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 8
-  m_fontSizeBase: 8
+  m_fontSize: 16.7
+  m_fontSizeBase: 16.7
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -189,4 +219,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 847775d1895c48044aed187f94fc61c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeEase: 7
+  arrivePoint: {x: 0, y: 8, z: 21.7}
+  fadeEase: 1
+  arriveTime: 20

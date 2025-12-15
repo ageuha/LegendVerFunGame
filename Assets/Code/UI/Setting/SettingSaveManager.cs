@@ -5,19 +5,25 @@ using Code.UI.Setting.Enums;
 using UnityEngine;
 
 namespace Code.UI.Setting {
-    public class SettingSaveManager : Singleton<SettingSaveManager> {
+    public class SettingSaveManager : MonoSingleton<SettingSaveManager> {
         private Dictionary<SettingType, float> _floatData;
         public Vector2Int Resolution { get; set; }
         public bool IsFullscreen { get; set; }
         public bool VSync { get; set; }
         public int TargetFrame { get; set; }
 
-        private readonly SaveManagerBase<SettingSaveData> _saveManager;
+        private SaveManagerBase<SettingSaveData> _saveManager;
         private SettingSaveData _saveData;
 
-        public SettingSaveManager() {
+        protected override void Awake() {
+            base.Awake();
             _saveManager = new JsonSaveManager<SettingSaveData>("SettingSaveData.json");
             LoadSetting();
+            DontDestroyOnLoad(this);
+        }
+
+        private void OnApplicationQuit() {
+            SaveSetting();
         }
 
         private void LoadSetting() {

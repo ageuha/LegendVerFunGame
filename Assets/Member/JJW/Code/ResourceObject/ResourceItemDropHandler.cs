@@ -27,11 +27,9 @@ namespace Member.JJW.Code.ResourceObject
             for (int i = 0; i < resource.ResourceSO.SpawnItemAmount; i++)
             {
                 Vector2 randomPos = (Vector2)transform.position + Random.insideUnitCircle;
-                GameObject item = Instantiate(resource.ResourceSO.ItemPrefab,randomPos,Quaternion.identity);
-                if (item.TryGetComponent<ItemObject>(out ItemObject itemObject))
-                {
-                    itemObject.SetItemData(resource.ResourceSO.ItemDataSO,resource.ResourceSO.SpawnItemAmount);
-                }
+                ItemObject item = PoolManager.Instance.Factory<ItemObject>().Pop();
+                item.transform.position = randomPos;
+                item.SetItemData(resource.ResourceSO.ItemDataSO, resource.ResourceSO.ItemDataSO.MaxStack);
             }
             PoolManager.Instance.Factory<Resource>().Push(resource);
             Debug.Log("아이템 스폰");

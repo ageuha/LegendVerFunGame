@@ -1,12 +1,10 @@
-﻿using System;
-using Code.Core.Pool;
+﻿using Code.Core.Pool;
 using Code.Core.Utility;
 using Code.GridSystem.Objects;
 using Member.KJW.Code.EventChannel;
 using Member.KJW.Code.Input;
 using Member.YDW.Script.BuildingSystem;
 using Member.YDW.Script.EventStruct;
-using Member.YDW.Script.NewBuildingSystem.Buildings;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using YTH.Code.Inventory;

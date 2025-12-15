@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Member.YDW.Script.NewBuildingSystem
+﻿namespace Member.YDW.Script.NewBuildingSystem
 {
     public interface IWaitable
     {

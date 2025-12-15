@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <BuildTime>k__BackingField: 110
   <MaxHealth>k__BackingField: 120
-  <Image>k__BackingField: {fileID: 0}
+  <Image>k__BackingField: {fileID: -7146976421299579338, guid: d74dc8311e323a5499d21a845a3db336, type: 3}
   <Building>k__BackingField: {fileID: 8342002849989694426, guid: ed0e10b5976fa2e4b834abcde5026a46, type: 3}
-  <BuildingSize>k__BackingField: {x: 3, y: 3}
+  <BuildingSize>k__BackingField: {x: 4, y: 1}
   <InitialCapacity>k__BackingField: 5
   <PoolableSO>k__BackingField: {fileID: 11400000, guid: a74ce93aba7b80c4fadadb3d77b47c70, type: 2}
+  <CorrectionPosition>k__BackingField: {x: 2, y: 1.5}

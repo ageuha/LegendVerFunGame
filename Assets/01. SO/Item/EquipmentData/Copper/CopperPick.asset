@@ -22,8 +22,8 @@ MonoBehaviour:
   <ThrowLifeTime>k__BackingField: 1
   <ThrowRotationSpeed>k__BackingField: 1
   <HitBoxSize>k__BackingField: {x: 1, y: 1}
-  <DamageInfoData>k__BackingField: {fileID: 0}
-  <AttackData>k__BackingField: {fileID: 0}
+  <DamageInfoData>k__BackingField: {fileID: 11400000, guid: eee16b55632fda042824ec161848d370, type: 2}
+  <AttackData>k__BackingField: {fileID: 11400000, guid: 7901af4d3e9628642960c6591f50fe42, type: 2}
   <Stats>k__BackingField: []
-  <HitBoxOffset>k__BackingField: {x: 0, y: 0}
+  <HitBoxOffset>k__BackingField: {x: 1, y: 0}
   <WeaponHitBoxSize>k__BackingField: {x: 1, y: 1}
