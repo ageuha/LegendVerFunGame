@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Member.YTH.Code.Item
 {
     [CreateAssetMenu(fileName = "FoodItemDataSO", menuName = "SO/Item/Food")]
-    public abstract class FoodItemDataSO : ItemDataSO , ICookable
+    public class FoodItemDataSO : ItemDataSO , ICookable
     {
         [Header("Food")]
         [field: SerializeField] public bool Edible { get; private set; } //먹을 수 있냐 없냐.
@@ -15,7 +15,7 @@ namespace Member.YTH.Code.Item
         [field: SerializeField] public bool IsCooked { get; private set; }
 
 
-        public virtual void Eat(HealthSystem healthSystem)
+        public void Eat(HealthSystem healthSystem)
         {
             if(!Edible) return;
             healthSystem.ApplyHeal(HealAmount);

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93959635e2f9461ca0f164f77270578e, type: 3}
-  m_Name: Chicken
+  m_Name: Bull
   m_EditorClassIdentifier: 
-  <MaxHp>k__BackingField: 70
+  <MaxHp>k__BackingField: 200
   <MoveSpeed>k__BackingField: 1
   <DropTable>k__BackingField:
-  - <Item>k__BackingField: {fileID: 11400000, guid: f32ffdc54bf739844ae62fed0e5b073f, type: 2}
+  - <Item>k__BackingField: {fileID: 11400000, guid: 713b4cc35c000d54aa1ada1763a42ccb, type: 2}
     <Count>k__BackingField: 1
     <DropRate>k__BackingField: 0.01
-  - <Item>k__BackingField: {fileID: 11400000, guid: 75af54713ea9dfd4882af46065dec245, type: 2}
+  - <Item>k__BackingField: {fileID: 11400000, guid: 744281b85b09ee04ebac6e623950f4a3, type: 2}
     <Count>k__BackingField: 1
     <DropRate>k__BackingField: 1
