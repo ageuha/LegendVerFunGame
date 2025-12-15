@@ -7,6 +7,8 @@ namespace Code.EntityScripts {
     public class HealthSystem : MonoBehaviour, IHealthSystem {
         public IReadOnlyNotifyValue<float> Hp => _hp;
         public event Action OnDead;
+        public event Action<float> OnDamaged;
+        public event Action<float> OnInitMaxHp;
 
         private NotifyValue<float> _hp;
         private bool _initialized;
@@ -24,6 +26,7 @@ namespace Code.EntityScripts {
 
             _maxHp = maxHp;
             _hp.Value = _maxHp;
+            OnInitMaxHp?.Invoke(maxHp);
         }
 
         public void ResetHealth(bool reInitialize = false) {
@@ -53,11 +56,18 @@ namespace Code.EntityScripts {
             float clampedHp = Mathf.Max(_hp.Value - damage, 0);
 
             _hp.Value = clampedHp;
+            OnDamaged?.Invoke(_hp.Value / _maxHp);
 
             if (_hp.Value <= 0) {
                 _isDead = true;
                 OnDead?.Invoke();
             }
+        }
+
+        [ContextMenu("ad")]
+        public void ApplyDamage()
+        {
+            ApplyDamage(1f);
         }
 
         public void ApplyHeal(float heal) {

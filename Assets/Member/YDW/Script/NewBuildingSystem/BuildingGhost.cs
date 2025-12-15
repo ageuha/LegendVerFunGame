@@ -55,8 +55,10 @@ namespace Member.YDW.Script.NewBuildingSystem
 
         private void Update()
         {
-            if (inputReader != null && _aim != inputReader.MousePos)
-                _aim = inputReader.MousePos;
+            _aim = Vector2Int.RoundToInt((Vector2)Camera.main.ScreenToWorldPoint(inputReader.MousePos - new Vector2(0.5f, 0.5f)));
+            _selectPos = Vector2Int.RoundToInt((Vector2)Camera.main.ScreenToWorldPoint(inputReader.MousePos - new Vector2(0.5f, 0.5f)));
+            if (inputReader != null && (Vector2)_aim != (Vector2)transform.position)
+                transform.position = _aim;
         }
                 
         
@@ -66,21 +68,26 @@ namespace Member.YDW.Script.NewBuildingSystem
             if (obj.OnOff &&  !_eventFlag)
             {
                 buildingGhostFlagEventChannel.Raise(_eventFlag);
+                _canBuild = true;
                 _eventFlag = true;
-                // gameObject.SetActive(true);
+                gameObject.SetActive(true);
                 // inputReader.OnAttacked += OnBuildingGhostEvent;
                 _currentBuildingData =  obj.buildingDataSO;
+                _spriteRenderer.sprite = obj.buildingDataSO.Image;
                 _size = obj.buildingDataSO.BuildingSize;
+                // OnBuildingGhostEvent();
             }
             else
             {
                 buildingGhostFlagEventChannel.Raise(_eventFlag);
+                _canBuild = false;
                 _eventFlag = false;
-                // gameObject.SetActive(false);
+                gameObject.SetActive(false);
                 // inputReader.OnAttacked -= OnBuildingGhostEvent;
                 _spriteRenderer.sprite = null;
                 _currentBuildingData = null;
                 _size = Vector2Int.zero;
+                // OnBuildingGhostEvent();
             }
             buildingGhostFlagEventChannel.Raise(_eventFlag);
         }
@@ -88,7 +95,7 @@ namespace Member.YDW.Script.NewBuildingSystem
         private void OnBuildingGhostEvent() //미리보기 켜기 (특정 노드에 마우스 좌클릭 시.)
         {
             gameObject.SetActive(true);
-            _spriteRenderer.sprite =  _currentBuildingData.Image;
+            // _spriteRenderer.sprite =  _currentBuildingData.Image;
             
             if (_selectPos == GridManager.Instance.GetWorldToCellPosition(Camera.main.ScreenToWorldPoint(_aim))) return;
             
@@ -109,8 +116,8 @@ namespace Member.YDW.Script.NewBuildingSystem
             }
 
             _worldPos = _selectPos;
-            transform.position = GridManager.Instance.GetCellToWorldPosition(_selectPos);
-            transform.position += new Vector3(_currentBuildingData.CorrectionPosition.x,_currentBuildingData.CorrectionPosition.y, 0);
+            // transform.position = GridManager.Instance.GetCellToWorldPosition(_selectPos);
+            // transform.position += new Vector3(_currentBuildingData.CorrectionPosition.x,_currentBuildingData.CorrectionPosition.y, 0);
         }
 
         private void CreateBuilding() //추후 버튼이나 특정 키를 누를 시, 실행되도록.

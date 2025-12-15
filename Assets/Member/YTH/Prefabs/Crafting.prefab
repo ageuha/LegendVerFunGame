@@ -775,8 +775,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: X
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 69858cad776c74d40a72f5c83c10b1ae, type: 2}
-  m_sharedMaterial: {fileID: -4401812686140891835, guid: 69858cad776c74d40a72f5c83c10b1ae, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 83d0da97dd7b4b74e9fabbaa7fe6ea3a, type: 2}
+  m_sharedMaterial: {fileID: 7169452839065611014, guid: 83d0da97dd7b4b74e9fabbaa7fe6ea3a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -959,7 +959,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b5e3a242e18fc141b3e122b7e4f27a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDataListSO: {fileID: 11400000, guid: 3e0f45833a534d14e8a6bc45fe8d7a6b, type: 2}
   craftEventChannel: {fileID: 11400000, guid: 739303250df4f6c4aa1508b0c9174d55, type: 2}
   craftingTableMateiralChangeEventChannel: {fileID: 11400000, guid: 9c86dc802dc5e434c853ee6def57bb77, type: 2}
   inventoryManagerEventChannel: {fileID: 11400000, guid: fb6f9fa11354ee140bf4d4a28a3935cc, type: 2}
@@ -1015,8 +1014,53 @@ MonoBehaviour:
   - {fileID: 7904016386507294721}
   resultSlot: {fileID: 144186070253755682}
   recipeList:
-  - {fileID: 11400000, guid: 9a4aa26cd7b3d874eb648609e93ed88c, type: 2}
-  - {fileID: 11400000, guid: b57c87aa6e4952c4aa9ba21963b93cc8, type: 2}
+  - {fileID: 11400000, guid: a71c30cc82aaf88429e1930404b737bc, type: 2}
+  - {fileID: 11400000, guid: bf0d99d8495f891448a9ac1d71679782, type: 2}
+  - {fileID: 11400000, guid: 164aa17fb0625754eb410ab52a727976, type: 2}
+  - {fileID: 11400000, guid: a0b078c15af384d47a0a1f129d145677, type: 2}
+  - {fileID: 11400000, guid: 7b24cc39e9d193948a2d8753c78f9d8c, type: 2}
+  - {fileID: 11400000, guid: 97d6e538ae438d844a3debb5d5522322, type: 2}
+  - {fileID: 11400000, guid: eb7cc21df4d71fb4d94e87d8ae4ecc39, type: 2}
+  - {fileID: 11400000, guid: 0a1051ad4546fe747873039aba707cd3, type: 2}
+  - {fileID: 11400000, guid: e8e77aba74de04540a24c13e8ce9e98d, type: 2}
+  - {fileID: 11400000, guid: 9b76f18311b58334982e56e3b997f756, type: 2}
+  - {fileID: 11400000, guid: 734f393a8de1c144a96fea31a4934963, type: 2}
+  - {fileID: 11400000, guid: 470efb909c67ee8488c4f55ca8f21552, type: 2}
+  - {fileID: 11400000, guid: cd6068eccaa62954da60b5eb6874d4cb, type: 2}
+  - {fileID: 11400000, guid: 59138c948b7dd7c478a8f45dc26dac24, type: 2}
+  - {fileID: 11400000, guid: 68672976881ae6f4e94dfabf357cc134, type: 2}
+  - {fileID: 11400000, guid: f838e528bdf494c47b9166f2a5df2b25, type: 2}
+  - {fileID: 11400000, guid: 2892211d570652e4f83f39f23f77f09b, type: 2}
+  - {fileID: 11400000, guid: ec112534df929e94d8e89658f3a307cf, type: 2}
+  - {fileID: 11400000, guid: 1562f2cb28e3e6a4992578c88047a682, type: 2}
+  - {fileID: 11400000, guid: b368ebf20f1338d4782762eaad0cda86, type: 2}
+  - {fileID: 11400000, guid: 780f52801b350ab44bfe51cda8c0dddb, type: 2}
+  - {fileID: 11400000, guid: 6ae7913c501072e4ba975344fad551ef, type: 2}
+  - {fileID: 11400000, guid: 735cce0132068af4c873ead145cda6b6, type: 2}
+  - {fileID: 11400000, guid: 8b57daace3bfc534ea3a6031ef6a3fd1, type: 2}
+  - {fileID: 11400000, guid: a4446b70791ef52438fbf4a9f228f946, type: 2}
+  - {fileID: 11400000, guid: 47374e9fcaf3b7f43afb727d41942e5a, type: 2}
+  - {fileID: 11400000, guid: 340caea1ed31f514ebbafa04625c34fb, type: 2}
+  - {fileID: 11400000, guid: a03a1d4c51d188644937406f2b1ce47a, type: 2}
+  - {fileID: 11400000, guid: d10c62118b0724b47ad107d44de22d55, type: 2}
+  - {fileID: 11400000, guid: 032720562ea3b214093234b73cd54d71, type: 2}
+  - {fileID: 11400000, guid: 25395221e9a1bef4ea8f7bf58f6bd628, type: 2}
+  - {fileID: 11400000, guid: 34c71138b8e92fa4f8de87c07df3371f, type: 2}
+  - {fileID: 11400000, guid: 0b2e3a5ad4350c14ab70acbba37a1175, type: 2}
+  - {fileID: 11400000, guid: ce9e2aa7aee9bde47bbbb60063daff15, type: 2}
+  - {fileID: 11400000, guid: 288da4ac5179fa54db23b95649608397, type: 2}
+  - {fileID: 11400000, guid: d91f48e0e46f0954b9c7cc69efe906ca, type: 2}
+  - {fileID: 11400000, guid: 9626d96ea6b1b854099a0e0bae36070b, type: 2}
+  - {fileID: 11400000, guid: b2d11864cba70b24d9cc36e9b07933d2, type: 2}
+  - {fileID: 11400000, guid: 2a95a2d9c11e28a4a9cc8cdc43e7323a, type: 2}
+  - {fileID: 11400000, guid: 590d87680fd75c146b76a5b07a90af74, type: 2}
+  - {fileID: 11400000, guid: a947d7246c7aed441bde756c1d443e7e, type: 2}
+  - {fileID: 11400000, guid: 3ef96a4160d7ca04b88f13357794c3df, type: 2}
+  - {fileID: 11400000, guid: 25c0abbf8f17cf245af73dcf275dd25a, type: 2}
+  - {fileID: 11400000, guid: b02c13a6dd380434586925b8425ac980, type: 2}
+  - {fileID: 11400000, guid: 92a90e04301e59749acae6481b7c1fa7, type: 2}
+  - {fileID: 11400000, guid: 8fc15efe0360d3e4c94f6c4cdde68696, type: 2}
+  - {fileID: 11400000, guid: 59e379bea071ce24680e155d2f557eea, type: 2}
   craftingTable: {fileID: 3667135461951933180}
 --- !u!1001 &876176508685854131
 PrefabInstance:

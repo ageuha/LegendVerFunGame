@@ -1,4 +1,5 @@
-﻿using Code.Core.GlobalStructs;
+﻿using System.Collections.Generic;
+using Code.Core.GlobalStructs;
 using Code.Core.Pool;
 using Code.Core.Utility;
 using Code.GridSystem.Objects;
@@ -14,13 +15,23 @@ namespace Member.KJW.Code.Building
     {
         public bool IsActive { get; private set; }
         public BuildingDataSO BuildingData { get; private set; }
-        public SpriteRenderer SpriteRenderer { get; private set; }
+        public List<SpriteRenderer> SpriteRenderers { get; private set; } = new();
         
         public void InitializeBuilding(BuildingDataSO buildingData)
         {
+            SpriteRenderers.Clear();
             BuildingData = buildingData;
-            SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
-            SpriteRenderer.sprite = BuildingData.Image;
+            foreach (Transform item in transform.root)
+            {
+                if (item.TryGetComponent(out SpriteRenderer s))
+                SpriteRenderers.Add(s);
+            }
+            
+            foreach (SpriteRenderer item in SpriteRenderers)
+            {
+                item.sprite = buildingData.Image;
+            }
+
             Initialize(buildingData.BuildingSize,buildingData.MaxHealth);
             timer.StartTimer(this,cooldownBar,buildingData.BuildTime,this,true);
         }

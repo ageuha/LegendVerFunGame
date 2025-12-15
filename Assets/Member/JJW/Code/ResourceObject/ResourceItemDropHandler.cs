@@ -24,13 +24,12 @@ namespace Member.JJW.Code.ResourceObject
         private void SpawnItem()
         {
             if(resource == null) return;
-            for (int i = 0; i < resource.ResourceSO.SpawnItemAmount; i++)
-            {
-                Vector2 randomPos = (Vector2)transform.position + Random.insideUnitCircle;
-                ItemObject item = PoolManager.Instance.Factory<ItemObject>().Pop();
-                item.transform.position = randomPos;
-                item.SetItemData(resource.ResourceSO.ItemDataSO, resource.ResourceSO.SpawnItemAmount);
-            }
+
+            Vector2 randomPos = (Vector2)transform.position + Random.insideUnitCircle;
+            ItemObject item = PoolManager.Instance.Factory<ItemObject>().Pop();
+            item.transform.position = randomPos;
+            item.SetItemData(resource.ResourceSO.ItemDataSO, resource.ResourceSO.SpawnItemAmount);
+
             PoolManager.Instance.Factory<Resource>().Push(resource);
             Debug.Log("아이템 스폰");
         }

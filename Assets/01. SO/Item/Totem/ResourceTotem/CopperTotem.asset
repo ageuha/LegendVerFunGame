@@ -17,7 +17,7 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: -9155133814818767407, guid: 23f5a42c778fe5d409a4b8e166ac8aef, type: 3}
   <ItemID>k__BackingField: 410
   <MaxStack>k__BackingField: 1
-  <ItemType>k__BackingField: 1
+  <ItemType>k__BackingField: 0
   <ThrowSpeed>k__BackingField: 5
   <ThrowLifeTime>k__BackingField: 1
   <ThrowRotationSpeed>k__BackingField: 1

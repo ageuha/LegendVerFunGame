@@ -268,7 +268,7 @@ namespace YTH.Code.Craft
         {
             if(CanMake(m_Recipe))
             {
-                for (int i = 0; i < m_Recipe.Materials.Length; i++)
+                for (int i = 0; i < 9; i++)
                 {
                     if (craftingMaterialSlots[i].InventoryItem == null) continue;
                     craftingMaterialSlots[i].InventoryItem.RemoveStack(m_ItemCount);
