@@ -5,7 +5,7 @@ namespace YTH.Code.Main
 {    
     public class Main : MonoBehaviour
     {
-        public void Start()
+        public void StartGame()
         {
             SceneManager.Instance.LoadScene(SceneID.GameScene);
         }
