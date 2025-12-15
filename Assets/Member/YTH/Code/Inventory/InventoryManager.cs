@@ -5,8 +5,10 @@ using Code.Core.Utility;
 using Code.SaveSystem;
 using Code.UI.TooltipSystem;
 using Member.KJW.Code.Input;
+using Member.KJW.Code.SceneManagement;
 using Member.YTH.Code.Item;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using YTH.Code.Item;
 
 namespace YTH.Code.Inventory
@@ -26,6 +28,7 @@ namespace YTH.Code.Inventory
         [SerializeField] private TooltipChannel tooltipEventChannel;
         [SerializeField] private InventorySelectedSlotChangeEventChannel inventorySelectedSlotChangeEventChannel;
         [SerializeField] private InventorySaveEventChannel inventorySaveEventChannel;
+        [SerializeField] private InventoryTotmeSlotChangeEventChannel inventoryTotmeSlotChangeEventChannel;
         [SerializeField] private InputReader inputReader;
         
 
@@ -41,6 +44,7 @@ namespace YTH.Code.Inventory
             inventoryItemPickDownEventChannel.OnEvent += PickDown;
             inventorySaveEventChannel.OnEvent += InventorySave;
             craftingCloseEventChannel.OnEvent += InventoryLoad;
+            inventoryTotmeSlotChangeEventChannel.OnEvent += OnClear;
             inputReader.OnNumKeyPressed += ChangeSelectedSlot;
             inputReader.OnInventory += MainInventory;
             inputReader.OnScrolled += ChangeSelectedSlotScroll;
@@ -73,6 +77,7 @@ namespace YTH.Code.Inventory
             inventoryItemPickDownEventChannel.OnEvent -= PickDown;
             inventorySaveEventChannel.OnEvent -= InventorySave;
             craftingCloseEventChannel.OnEvent -= InventoryLoad;
+            inventoryTotmeSlotChangeEventChannel.OnEvent -= OnClear;
             inputReader.OnNumKeyPressed -= ChangeSelectedSlot;
             inputReader.OnInventory -= MainInventory;
             inputReader.OnScrolled -= ChangeSelectedSlotScroll;
@@ -158,6 +163,12 @@ namespace YTH.Code.Inventory
             inventorySelectedSlotChangeEventChannel.Raise(new Empty());
         }
 
+        private void OnClear(Empty empty)
+        {
+            Logging.Log("Clear");
+            SceneManager.Instance.LoadScene(SceneID.NextScene);
+        }
+
         private void InventoryLoad(Empty empty)
         {
             InventoryData inventoryData = m_InventoryJsonSaveManager.LoadSaveData();
@@ -176,7 +187,6 @@ namespace YTH.Code.Inventory
                     PoolManager.Instance.Factory<InventoryItem>().Push(inventorySlots[i].InventoryItem);
                 }
 
-                Logging.Log($"{i}번 : {inventoryData.InventoryItems[i]}");
                 if (inventoryData.InventoryItems[i].ItemID != 0)
                 {
                     Logging.Log("인벤토리 로드할 때 아이템 추가함");

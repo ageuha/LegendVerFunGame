@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 668546e97cea464eaabfa7ac84609bfd, type: 3}
+  m_Name: CannonDataSO
+  m_EditorClassIdentifier: 
+  <BuildTime>k__BackingField: 5
+  <MaxHealth>k__BackingField: 100
+  <Image>k__BackingField: {fileID: 674861545286178404, guid: 0610dc066c0d3fb44a00d9ae19a64b0b, type: 3}
+  <Building>k__BackingField: {fileID: 2037187103467976901, guid: 927434c4355f80b409e3543c24f3489f, type: 3}
+  <BuildingSize>k__BackingField: {x: 1, y: 1}
+  <InitialCapacity>k__BackingField: 5
+  <PoolableSO>k__BackingField: {fileID: 11400000, guid: 063ae1a1c025f584d9bd223d5918e240, type: 2}
+  <CorrectionPosition>k__BackingField: {x: 0.5, y: 0.5}

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca98b4b111982904b80c547b4e8c4c1a, type: 3}
+  m_Name: CoalBundleRecipe
+  m_EditorClassIdentifier: 
+  <Materials>k__BackingField:
+  - {fileID: 11400000, guid: da6d76270160f7b4dab9282be4cf7a57, type: 2}
+  - {fileID: 11400000, guid: da6d76270160f7b4dab9282be4cf7a57, type: 2}
+  - {fileID: 11400000, guid: da6d76270160f7b4dab9282be4cf7a57, type: 2}
+  - {fileID: 11400000, guid: da6d76270160f7b4dab9282be4cf7a57, type: 2}
+  - {fileID: 11400000, guid: da6d76270160f7b4dab9282be4cf7a57, type: 2}
+  - {fileID: 11400000, guid: da6d76270160f7b4dab9282be4cf7a57, type: 2}
+  - {fileID: 11400000, guid: da6d76270160f7b4dab9282be4cf7a57, type: 2}
+  - {fileID: 11400000, guid: da6d76270160f7b4dab9282be4cf7a57, type: 2}
+  - {fileID: 11400000, guid: da6d76270160f7b4dab9282be4cf7a57, type: 2}
+  <Result>k__BackingField: {fileID: 11400000, guid: ee44bb38400a28745b77adacd3963f1c, type: 2}
+  <RecipeID>k__BackingField: 0a1051ad4546fe747873039aba707cd3
