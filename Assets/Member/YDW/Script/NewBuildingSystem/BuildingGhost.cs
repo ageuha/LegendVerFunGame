@@ -19,12 +19,7 @@ namespace Member.YDW.Script.NewBuildingSystem
         [SerializeField] private InventoryManagerEventChannel inventoryChannel;
         [SerializeField] private BuildingGhostFlagEventChannel buildingGhostFlagEventChannel;
         
-
-        #region TestCode
-
-        [SerializeField] private BuildingDataSO buildingData;
-
-        #endregion
+        
         private SpriteRenderer _spriteRenderer;
         private bool _canBuild;
         private Vector2 _aim;
@@ -62,23 +57,6 @@ namespace Member.YDW.Script.NewBuildingSystem
         {
             if (inputReader != null && _aim != inputReader.MousePos)
                 _aim = inputReader.MousePos;
-
-            #region TestCode
-
-            if(Keyboard.current.vKey.wasPressedThisFrame && _canBuild)
-                CreateBuilding();
-            if(Keyboard.current.escapeKey.wasPressedThisFrame && gameObject.activeSelf)
-                OffBuildingGhostEvent();
-            if (Keyboard.current.rKey.wasPressedThisFrame)
-            {
-                HandleBuildingGhost(new  BuildingGhostEvent(buildingData,true));
-                _currentBuildingData = buildingData;
-            }
-            
-            if (_eventFlag)
-                OnBuildingGhostEvent();
-
-            #endregion
         }
                 
         
