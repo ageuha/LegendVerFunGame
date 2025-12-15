@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8954b555fcd04e559f8600a43790b068, type: 3}
   m_Name: Gold
   m_EditorClassIdentifier: 
-  <MaxHp>k__BackingField: 50
+  <MaxHp>k__BackingField: 500
   ResourceImage: {fileID: 21300000, guid: f91814c229580454f990d0cfca0210da, type: 3}
-  ItemPrefab: {fileID: 1090272032970249111, guid: 209d5b700103ce44891453d41c3b74f8, type: 3}
   ItemDataSO: {fileID: 11400000, guid: 10e06b70746b6e14193b4aacb508bdd6, type: 2}
   SpawnItemAmount: 1
   ItemSpawnRadius: 1

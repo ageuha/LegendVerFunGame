@@ -7336,7 +7336,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5b08f8aa27218884eac621025fa54f12, type: 2}
   - {fileID: 11400000, guid: cfc9a23b104e73a4aa00f367ea2dcfff, type: 2}
   - {fileID: 11400000, guid: bb307f57cac39d34c8c6ee0802fa5375, type: 2}
-  dynamicPoolItemLists: []
+  dynamicPoolItemLists:
+  - {fileID: 11400000, guid: 424d15e3c7c6b0942944fd3b69ea1810, type: 2}
 --- !u!4 &1953277372
 Transform:
   m_ObjectHideFlags: 0
@@ -7466,21 +7467,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1143297730371080440, guid: 0342f2df741e8a6438289141dea6e69f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2743378625830887524, guid: 0342f2df741e8a6438289141dea6e69f, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 2916415147714662034, guid: 0342f2df741e8a6438289141dea6e69f, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.90625
-      objectReference: {fileID: 0}
-    - target: {fileID: 2916415147714662034, guid: 0342f2df741e8a6438289141dea6e69f, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.90625
       objectReference: {fileID: 0}
     - target: {fileID: 7482172943847465529, guid: 0342f2df741e8a6438289141dea6e69f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7521,34 +7510,6 @@ PrefabInstance:
     - target: {fileID: 7482172943847465529, guid: 0342f2df741e8a6438289141dea6e69f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7811930647618891265, guid: 0342f2df741e8a6438289141dea6e69f, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -1048616105583651761, guid: 330458c9fd401444a9f817c84b23e813, type: 3}
-    - target: {fileID: 8255713587254881707, guid: 0342f2df741e8a6438289141dea6e69f, type: 3}
-      propertyPath: endAttackHash
-      value: 
-      objectReference: {fileID: 11400000, guid: 3bf63cf6a34581646b244b212817786a, type: 2}
-    - target: {fileID: 8698138027530869979, guid: 0342f2df741e8a6438289141dea6e69f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.92387956
-      objectReference: {fileID: 0}
-    - target: {fileID: 8698138027530869979, guid: 0342f2df741e8a6438289141dea6e69f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8698138027530869979, guid: 0342f2df741e8a6438289141dea6e69f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8698138027530869979, guid: 0342f2df741e8a6438289141dea6e69f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.38268343
-      objectReference: {fileID: 0}
-    - target: {fileID: 8698138027530869979, guid: 0342f2df741e8a6438289141dea6e69f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8954b555fcd04e559f8600a43790b068, type: 3}
   m_Name: Iron
   m_EditorClassIdentifier: 
-  <MaxHp>k__BackingField: 50
+  <MaxHp>k__BackingField: 250
   ResourceImage: {fileID: 21300000, guid: 2ac55a410d30bc340821e4a223b49ffe, type: 3}
-  ItemPrefab: {fileID: 1090272032970249111, guid: 209d5b700103ce44891453d41c3b74f8, type: 3}
   ItemDataSO: {fileID: 11400000, guid: f0bfb0f14d999044a954275ef0f1796d, type: 2}
   SpawnItemAmount: 1
   ItemSpawnRadius: 1

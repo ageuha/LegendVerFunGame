@@ -29,7 +29,7 @@ namespace Member.JJW.Code.ResourceObject
                 Vector2 randomPos = (Vector2)transform.position + Random.insideUnitCircle;
                 ItemObject item = PoolManager.Instance.Factory<ItemObject>().Pop();
                 item.transform.position = randomPos;
-                item.SetItemData(resource.ResourceSO.ItemDataSO, resource.ResourceSO.ItemDataSO.MaxStack);
+                item.SetItemData(resource.ResourceSO.ItemDataSO, resource.ResourceSO.SpawnItemAmount);
             }
             PoolManager.Instance.Factory<Resource>().Push(resource);
             Debug.Log("아이템 스폰");

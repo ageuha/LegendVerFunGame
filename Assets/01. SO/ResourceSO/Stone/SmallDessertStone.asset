@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8954b555fcd04e559f8600a43790b068, type: 3}
   m_Name: SmallDessertStone
   m_EditorClassIdentifier: 
-  <MaxHp>k__BackingField: 100
+  <MaxHp>k__BackingField: 50
   ResourceImage: {fileID: 21300000, guid: a39b90f99b685c44f9e751cfeb045e93, type: 3}
-  ItemPrefab: {fileID: 1090272032970249111, guid: 209d5b700103ce44891453d41c3b74f8, type: 3}
   ItemDataSO: {fileID: 11400000, guid: 80775a1ae6f6e4843aebb274ec74b5f3, type: 2}
   SpawnItemAmount: 1
   ItemSpawnRadius: 1

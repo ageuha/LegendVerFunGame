@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 7385960097371176375, guid: a83977976ff739148b385bb809776121, type: 3}
+  - {fileID: 7669345526184148536, guid: b265739a671f3e14ca088ff105a0d6c1, type: 3}

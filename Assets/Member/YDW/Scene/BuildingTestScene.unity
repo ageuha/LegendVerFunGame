@@ -7392,7 +7392,13 @@ MonoBehaviour:
   buildingGhostFlagEventChannel: {fileID: 11400000, guid: 6a1a27c5d79f26542a4372182399c81c, type: 2}
   craftingInteractEventChannel: {fileID: 11400000, guid: 39669dea86831f64389e8da7cee13ca3, type: 2}
   breakingFlagEventChannel: {fileID: 11400000, guid: 0af2e021c330093429ce65cda8f83342, type: 2}
+  onVeloctyXChangeChannel: {fileID: 0}
+  onVeloctyChangeChannel: {fileID: 0}
   maxHp: 100
+  moveBoolHash: {fileID: 0}
+  attackHash: {fileID: 0}
+  vxHash: {fileID: 0}
+  vyHash: {fileID: 0}
 --- !u!114 &5244186387585605204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7406,6 +7412,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MoveData>k__BackingField: {fileID: 11400000, guid: 1da9dffc50b5a674c8a2ec5b786b8143, type: 2}
+  onVeloctyXChangeChannel: {fileID: 11400000, guid: ffbc0c2e22bcd334096010bf37189cba, type: 2}
+  onVeloctyChangeChannel: {fileID: 11400000, guid: 21c5c50ba54756e479716a10fcf5a3dc, type: 2}
 --- !u!4 &5783363781462024822
 Transform:
   m_ObjectHideFlags: 0
