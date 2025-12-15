@@ -12,6 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca98b4b111982904b80c547b4e8c4c1a, type: 3}
   m_Name: CopperBundleRecipe
   m_EditorClassIdentifier: 
-  <Materials>k__BackingField: []
-  <Result>k__BackingField: {fileID: 0}
-  <RecipeID>k__BackingField: 
+  <Materials>k__BackingField:
+  - {fileID: 11400000, guid: bdd1f708fd892484eaedef78343f86ee, type: 2}
+  - {fileID: 11400000, guid: bdd1f708fd892484eaedef78343f86ee, type: 2}
+  - {fileID: 11400000, guid: bdd1f708fd892484eaedef78343f86ee, type: 2}
+  - {fileID: 11400000, guid: bdd1f708fd892484eaedef78343f86ee, type: 2}
+  - {fileID: 11400000, guid: bdd1f708fd892484eaedef78343f86ee, type: 2}
+  - {fileID: 11400000, guid: bdd1f708fd892484eaedef78343f86ee, type: 2}
+  - {fileID: 11400000, guid: bdd1f708fd892484eaedef78343f86ee, type: 2}
+  - {fileID: 11400000, guid: bdd1f708fd892484eaedef78343f86ee, type: 2}
+  - {fileID: 11400000, guid: bdd1f708fd892484eaedef78343f86ee, type: 2}
+  <Result>k__BackingField: {fileID: 11400000, guid: ea7e13f06516bc1419a41d46ea55c3cf, type: 2}
+  <RecipeID>k__BackingField: e8e77aba74de04540a24c13e8ce9e98d

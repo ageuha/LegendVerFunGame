@@ -12,6 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca98b4b111982904b80c547b4e8c4c1a, type: 3}
   m_Name: IronBundleRecipe
   m_EditorClassIdentifier: 
-  <Materials>k__BackingField: []
-  <Result>k__BackingField: {fileID: 0}
-  <RecipeID>k__BackingField: 
+  <Materials>k__BackingField:
+  - {fileID: 11400000, guid: f0bfb0f14d999044a954275ef0f1796d, type: 2}
+  - {fileID: 11400000, guid: f0bfb0f14d999044a954275ef0f1796d, type: 2}
+  - {fileID: 11400000, guid: f0bfb0f14d999044a954275ef0f1796d, type: 2}
+  - {fileID: 11400000, guid: f0bfb0f14d999044a954275ef0f1796d, type: 2}
+  - {fileID: 11400000, guid: f0bfb0f14d999044a954275ef0f1796d, type: 2}
+  - {fileID: 11400000, guid: f0bfb0f14d999044a954275ef0f1796d, type: 2}
+  - {fileID: 11400000, guid: f0bfb0f14d999044a954275ef0f1796d, type: 2}
+  - {fileID: 11400000, guid: f0bfb0f14d999044a954275ef0f1796d, type: 2}
+  - {fileID: 11400000, guid: f0bfb0f14d999044a954275ef0f1796d, type: 2}
+  <Result>k__BackingField: {fileID: 11400000, guid: 5555d5e48c220fc47a511c80426bcc11, type: 2}
+  <RecipeID>k__BackingField: 470efb909c67ee8488c4f55ca8f21552
