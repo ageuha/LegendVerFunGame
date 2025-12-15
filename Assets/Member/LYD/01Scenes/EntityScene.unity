@@ -17188,6 +17188,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5704650607319609575, guid: 3eeee56152b375147847ad184a03eefe, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 8526826233856273736, guid: 3eeee56152b375147847ad184a03eefe, type: 3}
       propertyPath: m_Name
       value: InfoCanvas
