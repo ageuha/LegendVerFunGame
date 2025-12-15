@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1151474606939139999}
   - component: {fileID: 969254559796826298}
-  - component: {fileID: 6691714285905978147}
   - component: {fileID: 4895384315929634078}
   - component: {fileID: 547245974513832635}
   - component: {fileID: 5173278049098909899}
+  - component: {fileID: 5126775866737727835}
   m_Layer: 0
   m_Name: Chicken
   m_TagString: Untagged
@@ -64,7 +64,6 @@ MonoBehaviour:
   - rid: 1402868237551010259
   - rid: 1402868247031710591
   - rid: 1402868258245706071
-  - rid: 1402868312974033545
   m_OriginalGraph: {fileID: 0}
   m_IsInitialised: 0
   m_IsStarted: 0
@@ -126,31 +125,7 @@ MonoBehaviour:
           m_Value0: 10396028958422805496
           m_Value1: 14469241979769500130
         Name: GraphEntity
-        m_Value: {fileID: 6691714285905978147}
-    - rid: 1402868312974033545
-      type: {class: 'BlackboardVariable`1[[Member.YDW.Script.PathFinder.PathAgent, Code.Pathfind]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 8010530423297844294
-          m_Value1: 15208842599887825837
-        Name: PathAgent
-        m_Value: {fileID: 6559633307352980117}
---- !u!114 &6691714285905978147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1598560005410148216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc67975316404031af993b541be3189c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Data>k__BackingField: {fileID: 11400000, guid: ab1943a8c2fe9554eb4c180ea59f0aab, type: 2}
-  <GraphAgent>k__BackingField: {fileID: 969254559796826298}
-  stateGUID: {fileID: 11400000, guid: c2a05e238ffdc55428f88b421f11b96f, type: 2}
-  badGuy: {fileID: 11400000, guid: 07d7f533b236af14392f8c59191adeab, type: 2}
+        m_Value: {fileID: 5126775866737727835}
 --- !u!50 &4895384315929634078
 Rigidbody2D:
   serializedVersion: 5
@@ -226,6 +201,22 @@ SortingGroup:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_SortAtRoot: 0
+--- !u!114 &5126775866737727835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598560005410148216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ef0037bc35047dc8ac9e0aa146db677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Data>k__BackingField: {fileID: 11400000, guid: ab1943a8c2fe9554eb4c180ea59f0aab, type: 2}
+  <GraphAgent>k__BackingField: {fileID: 969254559796826298}
+  stateGUID: {fileID: 11400000, guid: c2a05e238ffdc55428f88b421f11b96f, type: 2}
+  badGuy: {fileID: 11400000, guid: 07d7f533b236af14392f8c59191adeab, type: 2}
 --- !u!1 &2035207176328636699
 GameObject:
   m_ObjectHideFlags: 0
