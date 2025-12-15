@@ -12,6 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca98b4b111982904b80c547b4e8c4c1a, type: 3}
   m_Name: RockBundleRecipe
   m_EditorClassIdentifier: 
-  <Materials>k__BackingField: []
-  <Result>k__BackingField: {fileID: 0}
-  <RecipeID>k__BackingField: 
+  <Materials>k__BackingField:
+  - {fileID: 11400000, guid: 80775a1ae6f6e4843aebb274ec74b5f3, type: 2}
+  - {fileID: 11400000, guid: 80775a1ae6f6e4843aebb274ec74b5f3, type: 2}
+  - {fileID: 11400000, guid: 80775a1ae6f6e4843aebb274ec74b5f3, type: 2}
+  - {fileID: 11400000, guid: 80775a1ae6f6e4843aebb274ec74b5f3, type: 2}
+  - {fileID: 11400000, guid: 80775a1ae6f6e4843aebb274ec74b5f3, type: 2}
+  - {fileID: 11400000, guid: 80775a1ae6f6e4843aebb274ec74b5f3, type: 2}
+  - {fileID: 11400000, guid: 80775a1ae6f6e4843aebb274ec74b5f3, type: 2}
+  - {fileID: 11400000, guid: 80775a1ae6f6e4843aebb274ec74b5f3, type: 2}
+  - {fileID: 11400000, guid: 80775a1ae6f6e4843aebb274ec74b5f3, type: 2}
+  <Result>k__BackingField: {fileID: 11400000, guid: de610c2cbb896404ea057a2b84c4a98b, type: 2}
+  <RecipeID>k__BackingField: cd6068eccaa62954da60b5eb6874d4cb
