@@ -14,7 +14,7 @@ namespace Member.KJW.Code.Player
 
         private void Awake()
         {
-            _arm = transform.root.GetComponentInChildren<Arm>();
+            _arm = transform.root.GetComponentInChildren<Arm>(true);
         }
 
         public void SetFlip(float xVelocity)
