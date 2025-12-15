@@ -9438,6 +9438,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8954898318541653896, guid: 7f4b206313b1c6c489f4e6d1d5d48ad4, type: 3}
+      propertyPath: <Data>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 0b3feb7657825c24fa9d4275cba0bc99, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17362,10 +17366,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5924e9504b754a8296054f70cb2f6088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Data>k__BackingField: {fileID: 11400000, guid: ab1943a8c2fe9554eb4c180ea59f0aab, type: 2}
+  <Data>k__BackingField: {fileID: 11400000, guid: c6b26bd74c758784a80b55e0428288e6, type: 2}
   <GraphAgent>k__BackingField: {fileID: 969254561793482580}
-  stateGUID: {fileID: 11400000, guid: c2a05e238ffdc55428f88b421f11b96f, type: 2}
-  badGuy: {fileID: 11400000, guid: 07d7f533b236af14392f8c59191adeab, type: 2}
+  stateGUID: {fileID: 11400000, guid: 978d8dfc47490c643894054f2bf022a4, type: 2}
+  badGuy: {fileID: 11400000, guid: 37c88b0680487094bab116f28046edab, type: 2}
   playerTag: {fileID: 11400000, guid: 13723ff4661830b49ad94c121ac2e28b, type: 2}
   atk: 7.58
 --- !u!1001 &5383793384501586550

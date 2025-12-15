@@ -41,13 +41,13 @@ namespace Code.EntityScripts.BaseClass {
         private void HandleDead() {
             IsDead = true;
             DropItem();
-            GraphAgent.SetVariableValue(stateGUID, FriendlyEntityStates.Dead);
+            GraphAgent.SetVariableValue(stateGUID, BadEntityStates.Dead);
         }
 
         public void GetDamage(DamageInfo damageInfo) {
             Health.ApplyDamage(damageInfo.Damage);
             if (!IsDead) {
-                GraphAgent.SetVariableValue(stateGUID, FriendlyEntityStates.Hurt);
+                GraphAgent.SetVariableValue(stateGUID, BadEntityStates.Hurt);
                 GraphAgent.SetVariableValue(badGuy, damageInfo.Source);
             }
         }
