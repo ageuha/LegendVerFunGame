@@ -32,18 +32,7 @@ namespace Member.YDW.Script.NewBuildingSystem
         }
         
         
-
-        #region TestCode
-
-        private void Update()
-        {
-            if (Keyboard.current.kKey.wasPressedThisFrame)
-            {
-                _healthSystem.ApplyDamage(100);
-            }
-        }
-
-        #endregion
+        
         private void HandleIDead()
         {
             //아마 추후 이곳에서 아이템 다시 드랍해줄 듯.
