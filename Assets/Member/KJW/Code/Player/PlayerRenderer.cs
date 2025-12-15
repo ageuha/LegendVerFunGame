@@ -9,12 +9,25 @@ namespace Member.KJW.Code.Player
     public class PlayerRenderer : AnimatorCompo
     {
         [SerializeField] private HashSO endAttackHash;
-        
+        [SerializeField] private HashSO shaderHash;
+        private SpriteRenderer _spriteRenderersr;
+        private Material _material;
         private Arm _arm;
 
         private void Awake()
         {
+            _spriteRenderersr = GetComponent<SpriteRenderer>();
             _arm = transform.root.GetComponentInChildren<Arm>(true);
+            _material = _spriteRenderersr.material;
+        }
+        
+        public void SetShaderValue(float value) {
+            _material.SetFloat(shaderHash, value);
+        }
+
+        public void GetShaderValue()
+        {
+            _material.GetFloat(shaderHash);
         }
 
         public void SetFlip(float xVelocity)
