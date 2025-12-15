@@ -25,5 +25,5 @@ MonoBehaviour:
   <DamageInfoData>k__BackingField: {fileID: 11400000, guid: 38c1fcb5f6df7584f823147e3850d58b, type: 2}
   <AttackData>k__BackingField: {fileID: 11400000, guid: 729c7cc645f79004280cce8b519408e2, type: 2}
   <Stats>k__BackingField: []
-  <HitBoxOffset>k__BackingField: {x: 0, y: 0}
+  <HitBoxOffset>k__BackingField: {x: 1, y: 0}
   <WeaponHitBoxSize>k__BackingField: {x: 1, y: 1}
