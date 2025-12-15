@@ -176,11 +176,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "- Legend Very \uC218\uB9C9\uC0C8 -\n<color=#818181><size=5>- made by HAKITA
-    -</size></color>"
+  m_text: "- Legend Very \uB9E4\uC6B0 \uC804\uC124 -\n<color=#818181><size=5>- made
+    by HAKITA -</size></color>"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 69858cad776c74d40a72f5c83c10b1ae, type: 2}
-  m_sharedMaterial: {fileID: -4401812686140891835, guid: 69858cad776c74d40a72f5c83c10b1ae, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 72dbb0032ecb5e445bac50d37f760940, type: 2}
+  m_sharedMaterial: {fileID: -7233942580385069675, guid: 72dbb0032ecb5e445bac50d37f760940, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -274,7 +274,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4401812686140891835, guid: 69858cad776c74d40a72f5c83c10b1ae, type: 2}
+  - {fileID: -7233942580385069675, guid: 72dbb0032ecb5e445bac50d37f760940, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -427,8 +427,8 @@ MonoBehaviour:
     -\n\n\n\n\uC720\uD0DC\uD604\n\n\n\n\uC774\uC724\uB2F4\n\n\n\n\uC724\uB3C4\uC6D0\n\n\n\n\uAE40\uC9C0\uC6B0<color=#818181>(\uC218)</color>\n\n\n\n\uC815\uC9C4\uC6B0\n\n\n\n\uBC15\uC18C\uC601\n\n\n\n\uBCC0\uC9C0\uD638\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPlaing
     For Thank you\n\n\n\n\n\n\n\n\n\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 69858cad776c74d40a72f5c83c10b1ae, type: 2}
-  m_sharedMaterial: {fileID: -4401812686140891835, guid: 69858cad776c74d40a72f5c83c10b1ae, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 72dbb0032ecb5e445bac50d37f760940, type: 2}
+  m_sharedMaterial: {fileID: -7233942580385069675, guid: 72dbb0032ecb5e445bac50d37f760940, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -522,7 +522,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4401812686140891835, guid: 69858cad776c74d40a72f5c83c10b1ae, type: 2}
+  - {fileID: -7233942580385069675, guid: 72dbb0032ecb5e445bac50d37f760940, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
