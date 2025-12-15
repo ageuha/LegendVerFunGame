@@ -13,8 +13,9 @@ namespace Member.KJW.Code.SceneManagement
 
         protected override void Awake()
         {
-            base.Awake();
             _fade = GetComponentInChildren<Image>(true);
+            base.Awake();
+            DontDestroyOnLoad(gameObject);
         }
 
         void OnEnable()
