@@ -3,6 +3,7 @@ using Code.Core.Pool;
 using Code.Core.Utility;
 using Code.EntityScripts;
 using Code.GridSystem.Objects;
+using DG.Tweening;
 using Member.JJW.Code.SO;
 using Member.YTH.Code.Item;
 using UnityEngine;
@@ -21,11 +22,14 @@ namespace Member.JJW.Code.ResourceObject
         private Vector2Int _clickBoundSize;
         private BoxCollider2D _boxCollider;
         private SpriteRenderer _spriteRenderer;
+        private Tweener _tweener;
         
         private void Awake()
         {
             _boxCollider = GetComponent<BoxCollider2D>();
             Initialize(ResourceSO);
+            _tweener =
+                _spriteRenderer.transform.DOShakePosition(0.1f).SetAutoKill(false).Pause();
         }
 
         public void Initialize(ResourceSO resourceSO) //다른 SO로 초기화 하고 싶을때 사용
@@ -55,7 +59,8 @@ namespace Member.JJW.Code.ResourceObject
         public void Harvest(ItemDataSO itemInfo)
         {
             Logging.Log(this);
-            CurrentHp.ApplyDamage(itemInfo ? itemInfo.DamageInfoData.damage : 1);  
+            CurrentHp.ApplyDamage(itemInfo ? itemInfo.DamageInfoData.damage : 1);
+            _tweener.Restart();
         }
        
         private void OnDrawGizmosSelected()
