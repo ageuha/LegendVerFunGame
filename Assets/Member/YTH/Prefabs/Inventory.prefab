@@ -502,7 +502,6 @@ MonoBehaviour:
   - {fileID: 2485175273737679137}
   - {fileID: 1504856157786619027}
   totemSlot: {fileID: 6802442845588427181}
-  itemDataListSO: {fileID: 11400000, guid: 3e0f45833a534d14e8a6bc45fe8d7a6b, type: 2}
   mainInventory: {fileID: 3962566524739125095}
   inventoryAddEventChannel: {fileID: 11400000, guid: 6269dbfef8d129044ba3df4966552367, type: 2}
   inventoryItemPickUpEventChannel: {fileID: 11400000, guid: 20b87e897a4ed46418837e330a188f3b, type: 2}
@@ -512,6 +511,7 @@ MonoBehaviour:
   tooltipEventChannel: {fileID: 11400000, guid: ad9626acb1008da4bb1c8dad6bd6af63, type: 2}
   inventorySelectedSlotChangeEventChannel: {fileID: 11400000, guid: ef9b2291179504e4d8a0c83fdc8e47d5, type: 2}
   inventorySaveEventChannel: {fileID: 11400000, guid: 8d4bee229df88014d94707be8ea1f231, type: 2}
+  inventoryTotmeSlotChangeEventChannel: {fileID: 11400000, guid: d58140a595c1b9940a923b6ef0c1a281, type: 2}
   inputReader: {fileID: 11400000, guid: 777b456eb927283439da0b796da61433, type: 2}
 --- !u!1 &8858759517161220616
 GameObject:
@@ -2231,6 +2231,7 @@ MonoBehaviour:
   image: {fileID: 3697571281249425392}
   selectedColor: {r: 0.49803922, g: 0.54901963, b: 0.5529412, a: 1}
   unSelectedColor: {r: 0.7411765, g: 0.7647059, b: 0.78039217, a: 1}
+  inventoryTotmeSlotChangeEventChannel: {fileID: 11400000, guid: d58140a595c1b9940a923b6ef0c1a281, type: 2}
 --- !u!1001 &3399853928322641539
 PrefabInstance:
   m_ObjectHideFlags: 0

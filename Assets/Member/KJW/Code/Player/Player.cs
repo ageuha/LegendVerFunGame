@@ -1,4 +1,5 @@
 using System;
+using Code.Core.GlobalSO;
 using Code.Core.GlobalStructs;
 using Code.Core.Utility;
 using Code.EntityScripts;
@@ -6,6 +7,7 @@ using Code.GridSystem.Objects;
 using Member.BJH._01Script.Interact;
 using Member.JJW.Code.Interface;
 using Member.JJW.Code.ResourceObject;
+using Member.JJW.EventChannel;
 using Member.KJW.Code.CombatSystem;
 using Member.KJW.Code.CombatSystem.DamageSystem;
 using Member.KJW.Code.Data;
@@ -31,6 +33,7 @@ namespace Member.KJW.Code.Player
         public AgentMovement MoveCompo { get; private set; }
         public HealthSystem HealthCompo { get; private set; }
         public Interactor Interactor { get; private set; }
+        public PlayerRenderer PlayerRenderer { get; private set; }
         public Thrower Thrower { get; private set; }
         public Arm Arm { get; private set; }
         public Weapon Weapon { get; private set; }
@@ -42,6 +45,8 @@ namespace Member.KJW.Code.Player
         [SerializeField] private BuildingGhostFlagEventChannel buildingGhostFlagEventChannel;
         [SerializeField] private CraftingInteractEventChannel craftingInteractEventChannel;
         [SerializeField] private BreakingFlagEventChannel breakingFlagEventChannel;
+        [SerializeField] private FloatEventChannel onVeloctyXChangeChannel;
+        [SerializeField] private Vector2EventChannel onVeloctyChangeChannel;
 
         
         public bool IsRolling { get; private set; }
@@ -64,12 +69,17 @@ namespace Member.KJW.Code.Player
         
         [Header("Settings")]
         [SerializeField] private float maxHp;
+        [SerializeField] private HashSO moveBoolHash;
+        [SerializeField] private HashSO attackHash;
+        [SerializeField] private HashSO vxHash;
+        [SerializeField] private HashSO vyHash;
         
         private void Awake()
         {
             MoveCompo = GetComponentInChildren<AgentMovement>();
             HealthCompo = GetComponentInChildren<HealthSystem>();
             Interactor = GetComponentInChildren<Interactor>();
+            PlayerRenderer = GetComponentInChildren<PlayerRenderer>();
             Thrower = GetComponentInChildren<Thrower>();
             Arm = GetComponentInChildren<Arm>(true);
             Weapon = GetComponentInChildren<Weapon>(true);
@@ -91,6 +101,21 @@ namespace Member.KJW.Code.Player
             InputReader.OnAttacked += Click;
             InputReader.OnAttackReleased += StopBreak;
             InputReader.OnPlaced += RClick;
+            
+            onVeloctyXChangeChannel.OnEvent += SetFlip;
+            onVeloctyChangeChannel.OnEvent += SetMoveAnim;
+        }
+
+        private void SetMoveAnim(Vector2 moveDir)
+        {
+            PlayerRenderer.SetValue(moveBoolHash, moveDir.sqrMagnitude > 0);
+            PlayerRenderer.SetValue(vxHash, StandDir.x);
+            PlayerRenderer.SetValue(vyHash, StandDir.y);
+        }
+
+        private void SetFlip(float value)
+        {
+            PlayerRenderer.SetFlip(value);
         }
 
         private void SetIsBuilding(bool value)
@@ -203,6 +228,7 @@ namespace Member.KJW.Code.Player
             Vector2 dir = MouseWorldPos - (Vector2)transform.position;
             Weapon.Init(weaponData);
             Arm.Init(Mathf.Rad2Deg * Mathf.Atan2(dir.y, dir.x), weaponData.AttackData.AttackSpeed).Swing();
+            PlayerRenderer.SetValue(attackHash);
         }
 
         private void Throw()
@@ -211,6 +237,7 @@ namespace Member.KJW.Code.Player
             
             Thrower.Throw(CurItem, (MouseWorldPos - (Vector2)transform.position).normalized);
             _inventoryManager.UseSelectedItem();
+            PlayerRenderer.SetValue(attackHash);
         }
 
         private void UpdateStandDir(Vector2 dir)
