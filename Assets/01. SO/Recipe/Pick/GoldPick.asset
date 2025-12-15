@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca98b4b111982904b80c547b4e8c4c1a, type: 3}
+  m_Name: GoldPick
+  m_EditorClassIdentifier: 
+  <Materials>k__BackingField:
+  - {fileID: 11400000, guid: 10e06b70746b6e14193b4aacb508bdd6, type: 2}
+  - {fileID: 11400000, guid: 10e06b70746b6e14193b4aacb508bdd6, type: 2}
+  - {fileID: 11400000, guid: 10e06b70746b6e14193b4aacb508bdd6, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 10e06b70746b6e14193b4aacb508bdd6, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 10e06b70746b6e14193b4aacb508bdd6, type: 2}
+  - {fileID: 0}
+  <Result>k__BackingField: {fileID: 11400000, guid: 10e06b70746b6e14193b4aacb508bdd6, type: 2}
+  <RecipeID>k__BackingField: 47374e9fcaf3b7f43afb727d41942e5a

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ItemName>k__BackingField: Level5House
   <Description>k__BackingField: "\uBD80\uC7A3\uC9D1"
-  <Icon>k__BackingField: {fileID: 0}
+  <Icon>k__BackingField: {fileID: -636915460534639434, guid: 768bc0455dc6e6d4e97cdd4b38f5abad, type: 3}
   <ItemID>k__BackingField: 35
   <MaxStack>k__BackingField: 1
   <ItemType>k__BackingField: 0

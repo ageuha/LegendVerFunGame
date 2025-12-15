@@ -10,7 +10,8 @@ namespace YTH.Code.Inventory
 {
     public class InventoryTotemSlot : InventorySlot, IExtension
     {
-
+        [SerializeField] private InventoryTotmeSlotChangeEventChannel inventoryTotmeSlotChangeEventChannel;
+        
         public override void OnPointerClick(PointerEventData eventData)
         {
             if (m_InventoryManager.HoldItem != null)
@@ -24,6 +25,7 @@ namespace YTH.Code.Inventory
                             m_InventoryManager.HoldItem.parentAfterDrag = transform;
                             m_InventoryManager.HoldItem.PickDown();
                             inventoryItemPickDownEventChannel.Raise(new Empty());
+                            inventoryTotmeSlotChangeEventChannel.Raise(new Empty());
                         }
                         else if(eventData.button == PointerEventData.InputButton.Right)
                         {
@@ -32,6 +34,7 @@ namespace YTH.Code.Inventory
                             newItem.transform.localScale = Vector3.one;
                             newItem.transform.localPosition = Vector3.zero;
                             m_InventoryManager.HoldItem.RemoveStack(1);
+                            inventoryTotmeSlotChangeEventChannel.Raise(new Empty());
                         }
                     }
                 }

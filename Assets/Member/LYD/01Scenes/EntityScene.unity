@@ -14747,11 +14747,15 @@ PrefabInstance:
     - target: {fileID: 724235180653317779, guid: 209d5b700103ce44891453d41c3b74f8, type: 3}
       propertyPath: itemData
       value: 
-      objectReference: {fileID: 11400000, guid: 0456eb8b51c327840af7a1e171e34b65, type: 2}
+      objectReference: {fileID: 11400000, guid: c7880ff3880480849a4147cc736d5a11, type: 2}
     - target: {fileID: 1090272032970249111, guid: 209d5b700103ce44891453d41c3b74f8, type: 3}
       propertyPath: m_Name
-      value: ItemObject_Test Wepaon
+      value: ItemObject_CraftingTable
       objectReference: {fileID: 0}
+    - target: {fileID: 1295839682076747344, guid: 209d5b700103ce44891453d41c3b74f8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 50cca6ab1283ac240958cb292d914ea1, type: 3}
     - target: {fileID: 3054911614822882611, guid: 209d5b700103ce44891453d41c3b74f8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.08

@@ -10,12 +10,15 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings
 {
     public class TurretBuilding : UnitBuilding, IBuilding , IWaitable
     {
+       [SerializeField] private Transform[] firePos;
         [SerializeField] private float shootingTime;
         [SerializeField] private Animator animator;
         public bool IsActive { get; private set; }
         public BuildingDataSO BuildingData { get; private set; }
         private readonly int _dirXHash = Animator.StringToHash("dirX");
-        private readonly int _dirYHash = Animator.StringToHash("dirY"); 
+        private readonly int _dirYHash = Animator.StringToHash("dirY");
+
+        private int currentPos;
         
         public bool IsWaiting { get; private set; }
         public void InitializeBuilding(BuildingDataSO buildingData)
@@ -40,7 +43,7 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings
             if (CheckTarget(out var target) && !IsWaiting)
             {
                 Arrow arrow = PoolManager.Instance.Factory<Arrow>().Pop();
-                arrow.Initialize(transform.position,target - transform.position);
+                arrow.Initialize(firePos[currentPos].position,target - transform.position);
                 timer.StartTimer(this,cooldownBar,shootingTime,this,false);
             }
 
@@ -68,21 +71,26 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings
                 {
                     Logging.Log("오른쪽에 있음.");
                     selectTarget.Add(target[i]);
+                    currentPos = 1;
+
                 }
                 else if (dir.x < -0.9f && Mathf.Abs(diff.y) < tolerance)
                 {
                     Logging.Log("왼쪽에 있음.");
                     selectTarget.Add(target[i]);
+                    currentPos = 0;
                 }
                 else if (dir.y > 0.9f && Mathf.Abs(diff.x) < tolerance)
                 {
                     Logging.Log("위쪽에 있음.");
                     selectTarget.Add(target[i]);
+                    currentPos = 2;
                 }
                 else if (dir.y < -0.9f && Mathf.Abs(diff.x) < tolerance)
                 {
                     Logging.Log("아래쪽d에 있음");
                     selectTarget.Add(target[i]);
+                    currentPos = 3;
                 }
             }
 

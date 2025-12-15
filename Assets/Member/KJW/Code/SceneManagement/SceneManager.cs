@@ -13,8 +13,9 @@ namespace Member.KJW.Code.SceneManagement
 
         protected override void Awake()
         {
-            base.Awake();
             _fade = GetComponentInChildren<Image>(true);
+            base.Awake();
+            DontDestroyOnLoad(gameObject);
         }
 
         void OnEnable()
@@ -66,6 +67,11 @@ namespace Member.KJW.Code.SceneManagement
             yield return StartCoroutine(FadeCoroutine(0, 1, 1, 0));
 
             sceneId.Load();
+        }
+
+        public void LoadScene(SceneID sceneId)
+        {
+            StartCoroutine(LoadSceneWithFade(sceneId));
         }
     }
 }
