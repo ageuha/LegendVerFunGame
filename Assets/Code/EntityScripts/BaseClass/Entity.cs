@@ -37,6 +37,10 @@ namespace Code.EntityScripts.BaseClass {
             }
         }
 
+        public virtual void PushToPool(){}
+        
+        public virtual void ResetEntity(){}
+
         protected virtual void Awake() {
             _moduleDict = GetComponentsInChildren<IEntityModule>(true)
                 .ToDictionary(compo => compo.GetType());

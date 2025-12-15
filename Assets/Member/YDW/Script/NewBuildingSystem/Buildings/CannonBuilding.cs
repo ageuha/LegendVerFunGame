@@ -8,7 +8,7 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings
 {
     public class CannonBuilding : UnitBuilding, IBuilding, IWaitable
     {
-        [SerializeField] private Transform[] firePos;
+        [SerializeField] private Transform firePos;
         [SerializeField] private float shootingTime;
         [SerializeField] private Animator animator;
         public bool IsActive { get; private set; }
@@ -41,7 +41,7 @@ namespace Member.YDW.Script.NewBuildingSystem.Buildings
             if (CheckTarget(out var target) && !IsWaiting)
             {
                 Arrow arrow = PoolManager.Instance.Factory<Arrow>().Pop();
-                arrow.Initialize(firePos[currentPos].position,target - transform.position);
+                arrow.Initialize(firePos.position,target - transform.position);
                 timer.StartTimer(this,cooldownBar,shootingTime,this,false);
             }
 

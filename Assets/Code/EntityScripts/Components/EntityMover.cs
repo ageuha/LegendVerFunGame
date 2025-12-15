@@ -9,6 +9,8 @@ namespace Code.EntityScripts.Components {
         private float _moveSpeed;
 
         private Vector2 _movementInput;
+        
+        public Vector2 MovementInput => _movementInput;
 
         private void Reset() {
             rb ??= transform.root.GetComponentInChildren<Rigidbody2D>(true);
