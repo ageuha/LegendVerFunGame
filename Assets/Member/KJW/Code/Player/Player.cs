@@ -115,7 +115,7 @@ namespace Member.KJW.Code.Player
 
         private void SetFlip(float value)
         {
-            PlayerRenderer.SetFlip(value);
+            PlayerRenderer.SetFlip(StandDir.x);
         }
 
         private void SetIsBuilding(bool value)
@@ -225,6 +225,7 @@ namespace Member.KJW.Code.Player
 
         private void Attack(WeaponDataSO weaponData)
         {
+            if (Arm.gameObject.activeSelf) return;
             Vector2 dir = MouseWorldPos - (Vector2)transform.position;
             Weapon.Init(weaponData);
             Arm.Init(Mathf.Rad2Deg * Mathf.Atan2(dir.y, dir.x), weaponData.AttackData.AttackSpeed).Swing();
