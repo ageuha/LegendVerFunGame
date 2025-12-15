@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 505f045b8f6f5b047b97b98733e700b2
+guid: 60bac1e05f9688d48b593256533ee9af
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4089893721243460612
-    second: BearFoiegras_0
+      213: -965513180393346931
+    second: Beef_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BearFoiegras_0
+      name: Beef_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 4
-        width: 25
-        height: 19
+        x: 3
+        y: 2
+        width: 26
+        height: 21
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 40421d79ba832c830800000000000000
-      internalID: 4089893721243460612
+      spriteID: d8862b0c0eec992f0800000000000000
+      internalID: -965513180393346931
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BearFoiegras_0: 4089893721243460612
+      Beef_0: -965513180393346931
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
