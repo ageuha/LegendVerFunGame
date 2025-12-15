@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Member/JJW/Scene/Intro.unity
     guid: 02798276e8806874eaeb37b9df4d2efd
   - enabled: 1
-    path: Assets/Member/YTH/Scene/YTH.unity
-    guid: ab62990551d030b4ea8893a70f451dca
+    path: Assets/Member/BJH/02Scene/Map.unity
+    guid: 623af32a39c394745a8ec0d93165632b
   - enabled: 1
     path: Assets/Member/YTH/Scene/Ending.unity
     guid: e95cca3002e71db43842921a6fa11a97
