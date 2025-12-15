@@ -15,6 +15,6 @@ MonoBehaviour:
   <MaxHp>k__BackingField: 50
   ResourceImage: {fileID: 21300000, guid: 225c4d53e33e547419df542d2351160f, type: 3}
   ItemDataSO: {fileID: 11400000, guid: da6d76270160f7b4dab9282be4cf7a57, type: 2}
-  SpawnItemAmount: 1
+  SpawnItemAmount: 7
   ItemSpawnRadius: 1
   DetectionRangeSize: {x: 2, y: 2}

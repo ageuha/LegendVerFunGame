@@ -1059,6 +1059,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 25c0abbf8f17cf245af73dcf275dd25a, type: 2}
   - {fileID: 11400000, guid: b02c13a6dd380434586925b8425ac980, type: 2}
   - {fileID: 11400000, guid: 92a90e04301e59749acae6481b7c1fa7, type: 2}
+  - {fileID: 11400000, guid: 8fc15efe0360d3e4c94f6c4cdde68696, type: 2}
+  - {fileID: 11400000, guid: 59e379bea071ce24680e155d2f557eea, type: 2}
   craftingTable: {fileID: 3667135461951933180}
 --- !u!1001 &876176508685854131
 PrefabInstance:
