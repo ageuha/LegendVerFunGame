@@ -282,6 +282,7 @@ namespace Member.KJW.Code.Player
         public void GetDamage(DamageInfo damageInfo)
         {
             if (_isInvincible) return;
+            Logging.Log($"받은 대미지 : {damageInfo.Damage}");
             HealthCompo.ApplyDamage(damageInfo.Damage);
         }
     }
