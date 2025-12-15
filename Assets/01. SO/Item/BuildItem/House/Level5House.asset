@@ -23,4 +23,4 @@ MonoBehaviour:
   <ThrowRotationSpeed>k__BackingField: 1
   <HitBoxSize>k__BackingField: {x: 1, y: 1}
   <DamageInfoData>k__BackingField: {fileID: 0}
-  <BuildingData>k__BackingField: {fileID: 0}
+  <BuildingData>k__BackingField: {fileID: 11400000, guid: 72caf74573380e24cb123aefb5800aed, type: 2}
