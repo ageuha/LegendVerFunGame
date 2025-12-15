@@ -47,6 +47,7 @@ namespace Member.KJW.Code.Player
         [SerializeField] private BreakingFlagEventChannel breakingFlagEventChannel;
         [SerializeField] private FloatEventChannel onVeloctyXChangeChannel;
         [SerializeField] private Vector2EventChannel onVeloctyChangeChannel;
+        [SerializeField] private HsEventChannel hsEventChannel;
 
         
         public bool IsRolling { get; private set; }
@@ -87,11 +88,13 @@ namespace Member.KJW.Code.Player
             Weapon = GetComponentInChildren<Weapon>(true);
 
             RemainRoll = RollingData.MaxRoll;
-            HealthCompo.Initialize(maxHp);
             
             inventoryChannel.OnEvent += InitInventory;
             inventorySelectedSlotChangeChannel.OnEvent += CancelPlace;
             buildingGhostFlagEventChannel.OnEvent += SetIsBuilding;
+            
+            hsEventChannel.Raise(HealthCompo);
+            HealthCompo.Initialize(maxHp);
         }
 
         private void OnEnable()
@@ -106,6 +109,8 @@ namespace Member.KJW.Code.Player
             
             onVeloctyXChangeChannel.OnEvent += SetFlip;
             onVeloctyChangeChannel.OnEvent += SetMoveAnim;
+
+            HealthCompo.OnDead += () => Application.Quit();
         }
 
         private void SetMoveAnim(Vector2 moveDir)

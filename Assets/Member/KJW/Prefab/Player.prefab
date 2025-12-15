@@ -261,6 +261,7 @@ MonoBehaviour:
   breakingFlagEventChannel: {fileID: 11400000, guid: 0af2e021c330093429ce65cda8f83342, type: 2}
   onVeloctyXChangeChannel: {fileID: 11400000, guid: ffbc0c2e22bcd334096010bf37189cba, type: 2}
   onVeloctyChangeChannel: {fileID: 11400000, guid: 21c5c50ba54756e479716a10fcf5a3dc, type: 2}
+  hsEventChannel: {fileID: 11400000, guid: b1bf41562d611f4449c38aea4ceaf135, type: 2}
   maxHp: 100
   moveBoolHash: {fileID: 11400000, guid: 9fc36f935e3ddee41afaa4780d3d7d12, type: 2}
   attackHash: {fileID: 11400000, guid: 715256a611c113344a73afd27d18af7b, type: 2}
