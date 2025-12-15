@@ -93,6 +93,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1371043525060343283}
     m_Modifications:
+    - target: {fileID: 4331091815329157727, guid: 7a6df4b0646172b48828a55427064068, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 72dbb0032ecb5e445bac50d37f760940, type: 2}
+    - target: {fileID: 4331091815329157727, guid: 7a6df4b0646172b48828a55427064068, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4401812686140891835, guid: 72dbb0032ecb5e445bac50d37f760940, type: 2}
+    - target: {fileID: 5618610853525855828, guid: 7a6df4b0646172b48828a55427064068, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 72dbb0032ecb5e445bac50d37f760940, type: 2}
+    - target: {fileID: 5618610853525855828, guid: 7a6df4b0646172b48828a55427064068, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4401812686140891835, guid: 72dbb0032ecb5e445bac50d37f760940, type: 2}
     - target: {fileID: 7087489099841744412, guid: 7a6df4b0646172b48828a55427064068, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -172,6 +188,10 @@ PrefabInstance:
     - target: {fileID: 7087489099841744412, guid: 7a6df4b0646172b48828a55427064068, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823912653792616788, guid: 7a6df4b0646172b48828a55427064068, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8436119488749889386, guid: 7a6df4b0646172b48828a55427064068, type: 3}
       propertyPath: m_Name
