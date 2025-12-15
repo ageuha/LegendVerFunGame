@@ -20,7 +20,7 @@ namespace Code.BT.Actions.GraphAction {
                 return Status.Failure;
             }
             
-            GraphEntity.Value.EndGraph();
+            GraphEntity.Value.PushToPool();
             return Status.Success;
         }
     }

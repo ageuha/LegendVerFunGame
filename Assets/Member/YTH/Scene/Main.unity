@@ -997,8 +997,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '- Made by HAKITA -'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 69858cad776c74d40a72f5c83c10b1ae, type: 2}
-  m_sharedMaterial: {fileID: -4401812686140891835, guid: 69858cad776c74d40a72f5c83c10b1ae, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 72dbb0032ecb5e445bac50d37f760940, type: 2}
+  m_sharedMaterial: {fileID: -7233942580385069675, guid: 72dbb0032ecb5e445bac50d37f760940, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1133,8 +1133,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC2DC\uC791\uD558\uAE30"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 69858cad776c74d40a72f5c83c10b1ae, type: 2}
-  m_sharedMaterial: {fileID: -4401812686140891835, guid: 69858cad776c74d40a72f5c83c10b1ae, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 72dbb0032ecb5e445bac50d37f760940, type: 2}
+  m_sharedMaterial: {fileID: -7233942580385069675, guid: 72dbb0032ecb5e445bac50d37f760940, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1344,8 +1344,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Legend Very \uB9E4\uC6B0 \uC804\uC124"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 69858cad776c74d40a72f5c83c10b1ae, type: 2}
-  m_sharedMaterial: {fileID: -4401812686140891835, guid: 69858cad776c74d40a72f5c83c10b1ae, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 72dbb0032ecb5e445bac50d37f760940, type: 2}
+  m_sharedMaterial: {fileID: -7233942580385069675, guid: 72dbb0032ecb5e445bac50d37f760940, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

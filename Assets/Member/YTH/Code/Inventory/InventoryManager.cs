@@ -5,6 +5,7 @@ using Code.Core.Utility;
 using Code.SaveSystem;
 using Code.UI.TooltipSystem;
 using Member.KJW.Code.Input;
+using Member.KJW.Code.SceneManagement;
 using Member.YTH.Code.Item;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
@@ -165,6 +166,7 @@ namespace YTH.Code.Inventory
         private void OnClear(Empty empty)
         {
             Logging.Log("Clear");
+            SceneManager.Instance.LoadScene(SceneID.NextScene);
         }
 
         private void InventoryLoad(Empty empty)
