@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Member.YDW.Script.BuildingSystem
+﻿namespace Member.YDW.Script.BuildingSystem
 {
     public interface IBuildingItem
     {

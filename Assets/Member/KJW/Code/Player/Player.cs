@@ -73,6 +73,8 @@ namespace Member.KJW.Code.Player
         [SerializeField] private HashSO attackHash;
         [SerializeField] private HashSO vxHash;
         [SerializeField] private HashSO vyHash;
+        [SerializeField] private LayerMask resourceLayer;
+        
         
         private void Awake()
         {
@@ -192,6 +194,15 @@ namespace Member.KJW.Code.Player
         private void Break()
         {
             if (_isBuilding) return;
+            Collider2D c = Physics2D.OverlapPoint(MouseWorldPos, resourceLayer);
+            if (c && c.TryGetComponent(out Resource re))
+            {
+                re.Harvest(CurItem);
+                breakingFlagEventChannel.Raise(_isBreaking);
+                _isBreaking = true;
+                return;
+            }
+            
 
             GridObject gridObj = GridManager.Instance.GridMap.GetObjectsAt(Vector2Int.RoundToInt(MouseWorldPos - new Vector2(0.5f, 0.5f)));
             Logging.Log(gridObj);

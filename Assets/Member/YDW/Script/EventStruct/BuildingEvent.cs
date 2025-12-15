@@ -1,6 +1,5 @@
 ﻿using Code.GridSystem.Objects;
 using UnityEngine;
-using Member.YDW.Script.BuildingSystem;
 
 namespace Member.YDW.Script.EventStruct
 {

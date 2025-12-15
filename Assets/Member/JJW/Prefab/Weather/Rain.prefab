@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &938559850664762081
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2716692797607019181}
+  - component: {fileID: 1439805957073183087}
+  m_Layer: 0
+  m_Name: Rain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2716692797607019181
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938559850664762081}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4804574509398036900}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1439805957073183087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938559850664762081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1a80e40ffd3484bac24d65cca52cb7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetColor: {r: 0, g: 0, b: 0.4245283, a: 0}
+  volume: {fileID: 0}
+  rainParticle: {fileID: 1027549473220747915}
+--- !u!1001 &3266125807545214472
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2716692797607019181}
+    m_Modifications:
+    - target: {fileID: 1688004487406772103, guid: 40a99dfb1a87a454f96dd39b98a48b47, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2526812768259114115, guid: 40a99dfb1a87a454f96dd39b98a48b47, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2539738276274978525, guid: 40a99dfb1a87a454f96dd39b98a48b47, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bc034aaf661d66543b20ec4f97d159ff, type: 2}
+    - target: {fileID: 2539738276274978525, guid: 40a99dfb1a87a454f96dd39b98a48b47, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bc034aaf661d66543b20ec4f97d159ff, type: 2}
+    - target: {fileID: 3954818245887003569, guid: 40a99dfb1a87a454f96dd39b98a48b47, type: 3}
+      propertyPath: m_Name
+      value: RainEffext
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954818245887003569, guid: 40a99dfb1a87a454f96dd39b98a48b47, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070128450635495340, guid: 40a99dfb1a87a454f96dd39b98a48b47, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070128450635495340, guid: 40a99dfb1a87a454f96dd39b98a48b47, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070128450635495340, guid: 40a99dfb1a87a454f96dd39b98a48b47, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070128450635495340, guid: 40a99dfb1a87a454f96dd39b98a48b47, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070128450635495340, guid: 40a99dfb1a87a454f96dd39b98a48b47, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070128450635495340, guid: 40a99dfb1a87a454f96dd39b98a48b47, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070128450635495340, guid: 40a99dfb1a87a454f96dd39b98a48b47, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070128450635495340, guid: 40a99dfb1a87a454f96dd39b98a48b47, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070128450635495340, guid: 40a99dfb1a87a454f96dd39b98a48b47, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070128450635495340, guid: 40a99dfb1a87a454f96dd39b98a48b47, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 40a99dfb1a87a454f96dd39b98a48b47, type: 3}
+--- !u!198 &1027549473220747915 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2526812768259114115, guid: 40a99dfb1a87a454f96dd39b98a48b47, type: 3}
+  m_PrefabInstance: {fileID: 3266125807545214472}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4804574509398036900 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8070128450635495340, guid: 40a99dfb1a87a454f96dd39b98a48b47, type: 3}
+  m_PrefabInstance: {fileID: 3266125807545214472}
+  m_PrefabAsset: {fileID: 0}

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050c0c06ef9a59f45881f581ecb05fa8, type: 3}
   m_Name: RoastRabbit
   m_EditorClassIdentifier: 
-  <ItemName>k__BackingField: RoastedChicken
+  <ItemName>k__BackingField: RoastRabbit
   <Description>k__BackingField: 
-  <Icon>k__BackingField: {fileID: 952919952012688977, guid: 21637a6a24ee50148b499e150299607c, type: 3}
+  <Icon>k__BackingField: {fileID: 661226364547248332, guid: 7bf6a83563f5ded448a4e26385834e99, type: 3}
   <ItemID>k__BackingField: 515
   <MaxStack>k__BackingField: 64
   <ItemType>k__BackingField: 0

@@ -1,5 +1,6 @@
 ﻿using System;
 using Code.Core.Pool;
+using Code.Core.Utility;
 using Code.EntityScripts;
 using Code.GridSystem.Objects;
 using Member.JJW.Code.SO;
@@ -53,7 +54,8 @@ namespace Member.JJW.Code.ResourceObject
         }
         public void Harvest(ItemDataSO itemInfo)
         {
-            CurrentHp.ApplyDamage(itemInfo.DamageInfoData.damage);  
+            Logging.Log(this);
+            CurrentHp.ApplyDamage(itemInfo ? itemInfo.DamageInfoData.damage : 1);  
         }
        
         private void OnDrawGizmosSelected()

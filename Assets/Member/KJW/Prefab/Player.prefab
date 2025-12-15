@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8650027688943176079
 Transform:
   m_ObjectHideFlags: 0
@@ -266,6 +266,9 @@ MonoBehaviour:
   attackHash: {fileID: 11400000, guid: 715256a611c113344a73afd27d18af7b, type: 2}
   vxHash: {fileID: 11400000, guid: 95563e9a8a556fe4289b1cbcc6b81c74, type: 2}
   vyHash: {fileID: 11400000, guid: 48b9058b348379f4c8dfc646400da40d, type: 2}
+  resourceLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &5244186388177151095
 MonoBehaviour:
   m_ObjectHideFlags: 0
