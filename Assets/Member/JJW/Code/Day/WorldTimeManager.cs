@@ -27,7 +27,7 @@ namespace Member.JJW.Code.Day
         {
             _timer += Time.deltaTime;
             
-            if (_timer >= 1) //만약 60분이 지났다면
+            if (_timer >= 60) //만약 60분이 지났다면
             {
                 _hourCount++;
                 if (_hourCount == _weatherChangeHour)

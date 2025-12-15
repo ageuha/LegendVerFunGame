@@ -1,8 +1,6 @@
-using System;
 using DG.Tweening;
 using Member.KJW.Code.SceneManagement;
 using TMPro;
-using UnityEditor.SearchService;
 using UnityEngine;
 
 namespace Member.JJW.Code.Intro

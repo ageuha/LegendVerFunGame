@@ -66,7 +66,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -94,6 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d14568078c4446fa82bdc4b2006a9f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CurrentHp>k__BackingField: {fileID: 0}
   <ResourceSO>k__BackingField: {fileID: 11400000, guid: 5239853ecaabef04f98d850b71e80189, type: 2}
   initialCapacity: 1
 --- !u!114 &693182493332570619
@@ -108,6 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5140507264aa49e4a9ab81c9b3536463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resource: {fileID: 0}
 --- !u!114 &7602855291016473057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,8 +196,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -769256641
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5c8e893bf92deec49b20132aa3371b72, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -221,3 +223,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites: []
+  resource: {fileID: 0}
