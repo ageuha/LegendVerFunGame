@@ -1,11 +1,15 @@
+ using Member.JJW.EventChannel;
  using Member.KJW.Code.Data;
-using UnityEngine;
+ using Member.KJW.Code.EventChannel;
+ using UnityEngine;
 
 namespace Member.KJW.Code.Player
 {
     public class AgentMovement : MonoBehaviour
     {
         [field: SerializeField] public MovementData MoveData { get; private set; }
+        [SerializeField] private FloatEventChannel onVeloctyXChangeChannel;
+        [SerializeField] private Vector2EventChannel onVeloctyChangeChannel;
 
         private Rigidbody2D _rb;
         private Vector2 _moveDir;
@@ -53,6 +57,8 @@ namespace Member.KJW.Code.Player
         private void Move()
         {
             _rb.linearVelocity = _moveDir * (_currentVelocity * SpeedMultiplyValue);
+            onVeloctyChangeChannel.Raise(_rb.linearVelocity);
+            onVeloctyXChangeChannel.Raise(_rb.linearVelocity.x);
         }
 
         public void AddForce(Vector2 force, ForceMode2D mode = ForceMode2D.Impulse)

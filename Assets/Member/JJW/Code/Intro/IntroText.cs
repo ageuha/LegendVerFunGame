@@ -1,6 +1,8 @@
 using System;
 using DG.Tweening;
+using Member.KJW.Code.SceneManagement;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 namespace Member.JJW.Code.Intro
@@ -27,7 +29,7 @@ namespace Member.JJW.Code.Intro
                     _textMeshPro.DOFade(0, 2).SetEase(fadeEase).OnComplete(() =>
                     {
                         Debug.Log("인트로 끝");
-                        //씬바꾸기
+                        SceneManager.Instance.LoadScene(SceneID.NextScene);
                     });
                 });
         }
