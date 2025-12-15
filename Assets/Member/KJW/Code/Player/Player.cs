@@ -1,4 +1,3 @@
-using System;
 using Code.Core.GlobalSO;
 using Code.Core.GlobalStructs;
 using Code.Core.Utility;
@@ -13,13 +12,12 @@ using Member.KJW.Code.CombatSystem.DamageSystem;
 using Member.KJW.Code.Data;
 using Member.KJW.Code.EventChannel;
 using Member.KJW.Code.Input;
-using Member.YDW.Script;
 using Member.YDW.Script.BuildingSystem;
 using Member.YDW.Script.EventStruct;
 using Member.YDW.Script.NewBuildingSystem;
 using Member.YTH.Code.Item;
+using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using YTH.Code.Inventory;
 
 namespace Member.KJW.Code.Player
@@ -75,6 +73,11 @@ namespace Member.KJW.Code.Player
         [SerializeField] private HashSO vxHash;
         [SerializeField] private HashSO vyHash;
         [SerializeField] private LayerMask resourceLayer;
+        [SerializeField] private float time = 1;
+        private float _colorTimer;
+
+        private ParticleSystem _ps;
+        private CinemachineImpulseSource _cinemachineImpulseSource;
         
         
         private void Awake()
@@ -86,6 +89,8 @@ namespace Member.KJW.Code.Player
             Thrower = GetComponentInChildren<Thrower>();
             Arm = GetComponentInChildren<Arm>(true);
             Weapon = GetComponentInChildren<Weapon>(true);
+            _ps = GetComponentInChildren<ParticleSystem>(true);
+            _cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
 
             RemainRoll = RollingData.MaxRoll;
             
@@ -93,8 +98,6 @@ namespace Member.KJW.Code.Player
             inventorySelectedSlotChangeChannel.OnEvent += CancelPlace;
             buildingGhostFlagEventChannel.OnEvent += SetIsBuilding;
             
-            hsEventChannel.Raise(HealthCompo);
-            HealthCompo.Initialize(maxHp);
         }
 
         private void OnEnable()
@@ -110,7 +113,22 @@ namespace Member.KJW.Code.Player
             onVeloctyXChangeChannel.OnEvent += SetFlip;
             onVeloctyChangeChannel.OnEvent += SetMoveAnim;
 
+            HealthCompo.OnDamaged += SetHurtShader;
             HealthCompo.OnDead += () => Application.Quit();
+        }
+
+        private void Start()
+        {
+            hsEventChannel.Raise(HealthCompo);
+            HealthCompo.Initialize(maxHp);
+        }
+
+        private void SetHurtShader(float value)
+        {
+            _ps.Play();
+            _cinemachineImpulseSource.GenerateImpulse();
+            PlayerRenderer.SetShaderValue(1.5f);
+            _colorTimer = Time.time + time;
         }
 
         private void SetMoveAnim(Vector2 moveDir)
@@ -144,6 +162,14 @@ namespace Member.KJW.Code.Player
 
         private void Update()
         {
+            PlayerRenderer.SetShaderValue((_colorTimer - Time.time)/time);
+
+            if (_colorTimer < Time.time)
+            {
+                PlayerRenderer.SetShaderValue(0);
+                _colorTimer = 0;
+            }
+            
             if (RemainRoll == RollingData.MaxRoll) return;
 
             if (_coolTimer >= RollingData.StackCoolTime)

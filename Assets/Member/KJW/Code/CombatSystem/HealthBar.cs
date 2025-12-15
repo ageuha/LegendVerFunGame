@@ -35,12 +35,14 @@ namespace Member.KJW.Code.CombatSystem
 
         private void SetSlider(float value)
         {
+            Logging.Log(value);
             _slider.value = value;
-            _text.text = $"{_healthSystem.Hp.Value}/{_maxHp}";
+            _text.text = $"{Hp}/{_maxHp}";
         }
         
         private void SetMaxHp(float value)
         {
+            Logging.Log(value);
             _maxHp = value;
         }
     }
